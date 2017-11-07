@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.juxian.bosscomments.widget.TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/DIMEN_18PX"
+    android:layout_marginTop="@dimen/DIMEN_18PX"
+    android:background="@drawable/tag_flow_bg_one"
+    android:gravity="center"
+    android:paddingBottom="@dimen/DIMEN_13PX"
+    android:paddingLeft="@dimen/DIMEN_18PX"
+    android:paddingRight="@dimen/DIMEN_18PX"
+    android:paddingTop="@dimen/DIMEN_13PX"
+    android:text="Helloworld"
+    android:textColor="@color/white"
+    android:textSize="@dimen/DIMEN_24PX">
+
+</com.juxian.bosscomments.widget.TextView>

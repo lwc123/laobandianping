@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4b1e31f4-6c93-4746-b062-50cb961ec9bd" name="bs" url="http://bc.jux360.cn:8000/">
+        <fileTransfer host="bc.jux360.cn" port="8000" rootFolder="http://bc.jux360.cn:8000/">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="8000" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

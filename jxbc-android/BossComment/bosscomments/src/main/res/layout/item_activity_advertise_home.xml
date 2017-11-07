@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/DIMEN_18PX"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/advertise_home_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_18PX"
+        android:text=""
+        android:textColor="@color/luxury_gold_color"
+        android:textSize="@dimen/DIMEN_30PX" />
+
+    <TextView
+        android:id="@+id/advertise_home_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_72PX"
+        android:layout_marginTop="@dimen/DIMEN_18PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:text="10-20k" />
+
+    <TextView
+        android:id="@+id/advertise_home_issue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/advertise_home_position"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_18PX"
+        android:textColor="@color/menu_color"
+        android:text=""
+        android:textSize="@dimen/DIMEN_24PX" />
+
+    <ImageView
+        android:id="@+id/advertise_home_go_to_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/advertise_home_position"
+        android:layout_marginRight="@dimen/DIMEN_16PX"
+        android:layout_centerVertical="true"
+        android:src="@drawable/xiangyou"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/advertise_home_post_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/advertise_home_issue"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_14PX"
+        android:textColor="@color/menu_color"
+        android:text=""
+        android:textSize="@dimen/DIMEN_22PX" />
+
+    <TextView
+        android:id="@+id/advertise_home_post_real_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/advertise_home_issue"
+        android:layout_marginTop="@dimen/DIMEN_14PX"
+        android:layout_toRightOf="@+id/advertise_home_post_time"
+        android:textColor="@color/menu_color"
+        android:text=""
+        android:textSize="@dimen/DIMEN_22PX" />
+
+    <TextView
+        android:id="@+id/position_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/DIMEN_72PX"
+        android:textColor="@color/juxian_red"
+        android:text="已关闭"/>
+</RelativeLayout>

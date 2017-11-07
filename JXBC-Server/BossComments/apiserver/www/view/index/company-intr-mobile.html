@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no" />
+		<title>公司简介——老板点评</title>
+        <link rel="stylesheet" type="text/css" href="{$Think.config.resources_site_root}/pc/css/index-mobile.css"/>
+        <script>
+	        //适配方案
+	        (function(){
+	            var width = document.documentElement.clientWidth;
+	            var html = document.querySelector("html");
+	            html.style.fontSize=width/16+"px";
+	        })();
+        </script>
+	</head>
+	<body>
+	{include file="-public/mobile_header" /}
+    <div class="top-img">
+        <img src="{$Think.config.resources_site_root}/pc/images/index750/banner_pic1.png"/>
+    </div>
+	<div class="com-content">
+		<ul class="moblie-tabNav">
+		   <li><a class="moblie-active-on" href="javascript:void(0);">公司简介</a></li>
+		   <li><a href="/index/development-history-mobile.html">发展历程</a></li>
+		   <li><a href="/index/committe-mobile.html">中国人才诚信建设工作委员会</a></li>
+		</ul>
+		<div class="company-content ">
+			<p>北京全联职信科技有限公司，主要从事计算机系统服务、技术开发、技术推广以及产品设计和软件资询服务；与中国职业人才诚信建设委员会是一套班子两个牌子，为中国职业经理人协会授权成立，受民政部、全国工商联指导。</p>
+		    <p>公司主要产品为中国人才诚信大数据平台——“老板点评”，这是一款拯救老板的职场神器，在老板圈子里广泛使用。用来帮助老板与员工建立信任关系并有效管束员工，其功能包括背景调查、员工评价、离任报告、老板圈和免费招聘等。其意义在于让老板用心点评员工，有效遏制职场失信现象，“为职场优秀者背书站台，让职场无信者无处可藏”。该产品已于2017年1月20日全国首发，并在2月18日于北京人民大会堂成功召开了新闻发布会。</p>
+		</div>
+	</div>
+	{include file="-public/mobile_footer" /}
+	</body>
+</html>

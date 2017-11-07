@@ -1,0 +1,91 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}开通老板点评服务{/block}
+
+{block name="page-content"}
+<!--右侧内容开始-->
+<div class="com1-bg">
+	<div class="backgrounddetail">
+		<h2>支付</h2>
+		<div class="pay-inner">
+			<h2>选择支付方式</h2>
+			<div class="choice-line wchat border">
+				<div class="">
+					<input id="checked2" checked type="radio" value="Wechat" name="pay">
+					<label for="checked2">微信支付</label>
+				</div>
+			</div>
+			<div class="choice-line alipay">
+				<div class="">
+					<input  id="checked3" type="radio" value="Alipay" name="pay">
+					<label  for="checked3">支付宝支付</label>
+				</div>
+			</div>
+		<!--	<div class="choice-line coffers">
+				<div class="">
+					<input  id="checked4" type="radio" value="wang" name="pay">
+					<label  for="checked4">公司转账</label>
+				</div>
+			</div>-->
+			<div class="money-detail">
+				<p>支付金额：{$Payment->TotalFee}元</p>
+				<p>支付说明：{$Payment->CommoditySubject}</p>
+			</div>
+		</div>
+		<p class="total-mon">应支付：<b>{$Payment->TotalFee}元</b> </p>
+		<button class="bac-pay" id="pay">支付</button>
+	</div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script>  
+jQuery(function($) {
+	var CompanyId=getUrlParam('CompanyId');
+	$('#checked4').click(function(){
+		window.location.href="/BackgroundSurvey/TransferAccounts?CompanyId="+CompanyId;
+	})
+//	   var w=document.body.clientWidth;
+//      $('.backgrounddetail').css('width',w-210+'px');
+//      $('.count-sum').css('width',w-210+'px');
+		function getUrlParam(name) {
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	        var r = window.location.search.substr(1).match(reg);
+	        if (r != null) return decodeURI(r[2]);return null;
+	    }
+
+	    var payment = {:json_encode($Payment)};
+  
+     
+
+        $('#pay').bind('click',function(){
+        	var payWay=$('input[type=radio]:checked').val();
+            payment.PayWay=payWay;
+            var apiUrl=AppEnvironment.apiRoot+'/appbase/Payment/createTrade';
+	        $.ajax({
+	            type:'post',
+	            url:apiUrl,
+	            data:payment,
+	            dataType:"json",
+	            success:function(data){
+		            console.log(data)
+		            var TradeCode=data.TradeCode;
+		            var CommoditySubject=payment.CommoditySubject;
+		            var TotalFee=payment.TotalFee;
+		            var SignedParams=data.SignedParams;
+		            var payWay=payment.PayWay;
+		            var CompanyId=getUrlParam('CompanyId');
+		            window.location.href='/Payment/QRCodePay?TradeCode='+TradeCode+"&QRCode="+encodeURIComponent(data.SignedParams)+"&CompanyId="+CompanyId;
+	            },
+	            error:function(data){
+	                console.log('支付失败！')
+	            }
+	         })
+        })
+	        
+    });
+</script>
+{/block} 
+
+	
+ 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>认领公司</title>
+		<meta name="description" content=""/>
+		<!--清理缓存 start-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+		<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+        {if(!empty($Think.get.Code))}
+		<div id="pageHead">
+			<svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3073"><path d="M738.145103 170.248828 663.234207 95.337931 313.114483 445.457655 312.937931 445.298759 238.768552 519.450483 238.945103 519.627034 238.768552 519.785931 313.679448 594.696828 313.838345 594.537931 658.996966 939.696552 733.166345 865.509517 388.007724 520.368552Z" p-id="3074"></path></svg>
+			<b class="font34">认领公司</b>
+		</div>
+        {/if}
+		<div class="claimIntr">
+		   <div class="headPic">
+		   	  <img src="{$Think.config.resources_site_root}/mobile/img/bj.png">
+		   </div>
+		   <div class="introduceCon">
+		   	   <h2 class="font30">认领企业可以管理企业的点评</h2>
+		   	   <p class="font24">1、获取员工对您企业最新的点评信息<br>
+		   	      2、管理点评信息<br>
+		   	      3、获得"老板点评"为期一年的企业服务。包括管理员工档案、阶段评价、离任报告、购买背景调查等等一系列服务。
+		   	   </p>
+		   </div>
+		   <div class="btn">
+               <a href="javascript:;" id="openService"><button>去认领公司</button></a>
+		   </div>
+		</div>
+	</body>
+</html>
+<script src="{$Think.config.resources_site_root}/mobile/js/jquery-2.0.3.min.js"></script>
+{include file="public/resources_footer" /}
+<script>
+    $('#openService').bind('click',function(){
+        AppBridge.gotoNativePage('openService','');
+    })
+</script>

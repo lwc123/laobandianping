@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/groups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/DIMEN_20PX"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/recommend_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_40PX"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/DIMEN_28PX"
+                android:textColor="@color/main_text_color"
+                android:text="是否推荐朋友：" />
+
+            <RadioButton
+                android:id="@+id/recommend"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_recommend_selector"
+                android:layout_marginRight="@dimen/DIMEN_30PX"
+                android:layout_marginLeft="@dimen/DIMEN_10PX"
+                android:text="推荐" />
+
+            <RadioButton
+                android:id="@+id/no_recommend"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_no_support_selector"
+                android:text="不推荐" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/support_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_40PX"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/DIMEN_28PX"
+                android:textColor="@color/main_text_color"
+                android:text="是否支持CEO：" />
+
+            <RadioButton
+                android:id="@+id/support"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_recommend_selector"
+                android:layout_marginLeft="@dimen/DIMEN_12PX"
+                android:layout_marginRight="@dimen/DIMEN_30PX"
+                android:text="支持" />
+
+            <RadioButton
+                android:id="@+id/no_support"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_no_support_selector"
+                android:text="不支持" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/optimistic_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_40PX"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/DIMEN_28PX"
+                android:textColor="@color/main_text_color"
+                android:text="是否看好公司：" />
+
+            <RadioButton
+                android:id="@+id/optimistic"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_recommend_selector"
+                android:layout_marginLeft="@dimen/DIMEN_10PX"
+                android:layout_marginRight="@dimen/DIMEN_30PX"
+                android:text="看好" />
+
+            <RadioButton
+                android:id="@+id/ordinary"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_ordinary_selector"
+                android:layout_marginRight="@dimen/DIMEN_30PX"
+                android:text="一般" />
+
+            <RadioButton
+                android:id="@+id/no_optimistic"
+                style="@style/post_opinion_label_style"
+                android:drawableLeft="@drawable/ic_no_support_selector"
+                android:text="不看好" />
+        </RadioGroup>
+    </LinearLayout>
+</RelativeLayout>

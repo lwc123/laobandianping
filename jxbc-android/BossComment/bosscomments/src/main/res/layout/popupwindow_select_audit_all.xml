@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/DIMEN_260PX"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_50PX"
+        android:src="@drawable/list_sanjiao" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/DIMEN_260PX"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_7PX"
+        android:layout_marginTop="@dimen/DIMEN_10PX"
+        android:background="@drawable/btn_gold">
+
+        <TextView
+            android:id="@+id/select_all_audit"
+            android:layout_width="@dimen/DIMEN_230PX"
+            android:layout_height="@dimen/DIMEN_86PX"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="所有"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:layout_below="@+id/select_all_audit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:background="@color/audit_popwindow_color" />
+
+        <TextView
+            android:id="@+id/select_waiting_audit"
+            android:layout_width="@dimen/DIMEN_230PX"
+            android:layout_height="@dimen/DIMEN_86PX"
+            android:layout_below="@+id/line1"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="审核中"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:layout_below="@+id/select_waiting_audit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:background="@color/audit_popwindow_color" />
+
+        <TextView
+            android:id="@+id/select_passed_audit"
+            android:layout_width="@dimen/DIMEN_230PX"
+            android:layout_height="@dimen/DIMEN_86PX"
+            android:layout_below="@+id/line2"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="审核通过"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:layout_below="@+id/select_passed_audit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:background="@color/audit_popwindow_color" />
+
+        <TextView
+            android:id="@+id/select_not_passed_audit"
+            android:layout_width="@dimen/DIMEN_230PX"
+            android:layout_height="@dimen/DIMEN_86PX"
+            android:layout_below="@+id/line3"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="审核未通过"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+    </RelativeLayout>
+</RelativeLayout>

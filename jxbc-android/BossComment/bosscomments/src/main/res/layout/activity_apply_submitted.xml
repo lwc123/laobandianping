@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_marginLeft="@dimen/DIMEN_60PX"
+        android:layout_marginRight="@dimen/DIMEN_60PX"
+        android:background="@color/line_color" />
+
+    <include
+        android:id="@+id/apply_head"
+        layout="@layout/include_head_apply_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:layout_below="@+id/head_head" />
+
+    <com.juxian.bosscomments.widget.RoundImageView
+        android:id="@+id/activity_me_photo"
+        android:layout_width="@dimen/DIMEN_200PX"
+        android:layout_height="@dimen/DIMEN_200PX"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DIMEN_50PX"
+        android:src="@drawable/apply_submit"
+        app:round_civ_border_color="@color/white"
+        app:round_civ_border_width="1dp" />
+
+    <com.juxian.bosscomments.widget.TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/list_color"
+        android:layout_marginTop="@dimen/DIMEN_50PX"
+        android:layout_marginLeft="@dimen/DIMEN_180PX"
+        android:layout_marginRight="@dimen/DIMEN_180PX"
+        android:text="@string/apply_submitted_hint"/>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/need_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/DIMEN_180PX"
+        android:layout_marginRight="@dimen/DIMEN_180PX"
+        android:layout_marginTop="@dimen/DIMEN_24PX"
+        android:text="@string/if_need_help"
+        android:textColor="@color/accredit_manage_bt_color"
+        android:textSize="@dimen/DIMEN_24PX" />
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_80PX"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX" />
+</LinearLayout>

@@ -1,0 +1,38 @@
+{extend name="-public:layout_fullscreen" /}
+
+{block name="page-title"}my title is fullscreen{/block}
+
+{block name="page-content"}
+
+<div id="com-body">
+    <div class="com-a">
+        <img class="com-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" >
+        <div class="com-form"></div>
+        <form>
+            <p class="com-title">选择身份进入</p>
+            <div class="sel-bg">
+                <p class="sel-title">企业身份</p>
+                <ul class="sel-list">
+                    <li><a href="#">举贤网科技(北京)股份有限公司<span>2条待审核评价</span></a></li>
+                    <li><a href="#">举贤网科技(北京)股份有限公司<span>2条待审核评价</span></a></li>
+                    <li><a href="#">举贤网科技(北京)股份有限公司<span>2条待审核评价</span></a></li>
+                </ul>
+                <p class="sel-title1">个人身份</p>
+                <p class="sel-list"><a class="sel-a" href="#">进入个人工作台</a></p>
+            </div>
+        </form>
+    </div>
+    <div class="com-footer"></div>
+</div>
+</div>
+
+{/block}
+
+{block name="resources-footer"}
+<script>
+    jQuery(function($) {
+
+    });
+</script>
+{/block}
+

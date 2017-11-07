@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/my_dream_job_include"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_96PX" />
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_42PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:textSize="@dimen/DIMEN_34PX"
+        android:textColor="@color/main_text_color"
+        android:text="@string/add_industry"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:layout_marginLeft="@dimen/DIMEN_40PX"
+        android:layout_marginRight="@dimen/DIMEN_40PX"
+        android:background="@color/white_item"
+        android:gravity="center_vertical">
+
+        <com.juxian.bosscomments.widget.EditText
+            android:id="@+id/activity_edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_border_gray"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/DIMEN_50PX"
+            android:paddingRight="@dimen/DIMEN_50PX"
+            android:singleLine="true"
+            android:textSize="@dimen/DIMEN_30PX" />
+    </RelativeLayout>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/type_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/list_color"
+        android:layout_marginLeft="@dimen/DIMEN_42PX"
+        android:layout_marginTop="@dimen/DIMEN_10PX"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:text="员工性别、出生年月会根据身份证号自动提取"/>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_80PX"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX" />
+</LinearLayout>

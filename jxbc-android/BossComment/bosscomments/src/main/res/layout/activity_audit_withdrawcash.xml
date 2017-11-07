@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/luxury_gold_color">
+
+        <TextView
+
+            android:id="@+id/company_vault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_30PX"
+            android:text="@string/company_vault"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <TextView
+            android:id="@+id/company_vault_real"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_vault"
+            android:layout_marginBottom="@dimen/DIMEN_30PX"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_32PX"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_60PX"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/DIMEN_18PX"
+        android:paddingTop="@dimen/DIMEN_18PX">
+
+        <TextView
+            android:id="@+id/withdraw_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_22PX"
+            android:text="提现金额"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/DIMEN_22PX"
+            android:paddingLeft="@dimen/DIMEN_22PX"
+            android:paddingTop="@dimen/DIMEN_22PX">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/main_color"
+                android:textSize="@dimen/DIMEN_60PX"/>
+
+            <TextView
+                android:id="@+id/input_withdraw_amounte"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:digits="0123456789"
+                android:singleLine="true"
+                android:textColorHint="@color/main_color"
+                android:textSize="@dimen/DIMEN_60PX"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/main_line_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/can_be_withdrawal_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_vault"
+            android:layout_marginBottom="@dimen/DIMEN_18PX"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_18PX"
+            android:text="@string/can_be_withdrawal_amount"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+
+        <TextView
+            android:id="@+id/can_be_withdrawal_amount_real"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_18PX"
+            android:layout_toRightOf="@+id/can_be_withdrawal_amount"
+            android:text=""
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bank_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_background"
+        android:paddingBottom="@dimen/DIMEN_24PX"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:paddingTop="@dimen/DIMEN_24PX"
+        android:text="@string/let_public_bank_account"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+
+    <LinearLayout
+        android:id="@+id/no_bank_count_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/no_public_bank_account_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/DIMEN_10PX"
+            android:paddingLeft="@dimen/DIMEN_22PX"
+            android:paddingTop="@dimen/DIMEN_20PX">
+
+            <TextView
+                android:id="@+id/withdraw_conmany_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/audit_withdraw_company_name"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <TextView
+                android:id="@+id/input_withdraw_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/DIMEN_22PX"
+                android:background="@null"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/DIMEN_10PX"
+            android:paddingLeft="@dimen/DIMEN_22PX"
+            android:paddingTop="@dimen/DIMEN_10PX">
+
+            <TextView
+                android:id="@+id/withdraw_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/audit_deposit_bank_name"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <TextView
+                android:id="@+id/input_withdraw_bank_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/DIMEN_22PX"
+                android:background="@null"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/DIMEN_20PX"
+            android:paddingLeft="@dimen/DIMEN_22PX"
+            android:paddingTop="@dimen/DIMEN_10PX">
+
+            <TextView
+                android:id="@+id/withdraw_bank_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/audit_bank_card_number"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <TextView
+                android:id="@+id/input_withdraw_bank_count"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/DIMEN_22PX"
+                android:background="@null"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_30PX"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"/>
+</LinearLayout>

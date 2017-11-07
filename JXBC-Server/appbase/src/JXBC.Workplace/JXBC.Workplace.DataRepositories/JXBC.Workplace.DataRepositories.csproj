@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9C9CF4DE-F670-430D-A034-D7ED4E157EE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXBC.Workplace.DataRepositories</RootNamespace>
+    <AssemblyName>JXBC.Workplace.DataRepositories</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\libs\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\libs\JXBC.Workplace.DataRepositories.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\..\..\R&amp;D\CodeStandard\CodeDesign_Rules_For_JuXian.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\libs\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\libs\JXBC.Workplace.DataRepositories.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\..\..\R&amp;D\CodeStandard\CodeDesign_Rules_For_JuXian.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="M2SA.AppGenome">
+      <HintPath>..\..\..\..\..\Libs\M2SA.AppGenome\M2SA.AppGenome.dll</HintPath>
+    </Reference>
+    <Reference Include="M2SA.AppGenome.Data">
+      <HintPath>..\..\..\..\..\Libs\M2SA.AppGenome\M2SA.AppGenome.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include=".basic\InvitedRelationshipRepository.basic.cs" />
+    <Compile Include=".basic\SmsMessageRepository.basic.cs" />
+    <Compile Include=".basic\ThirdApplicationRepository.basic.cs" />
+    <Compile Include=".basic\MessageRepository.basic.cs" />
+    <Compile Include="BizDictionaryRepository.cs" />
+    <Compile Include="MessageRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\JXBC.Passports\JXBC.Passports\JXBC.Passports.csproj">
+      <Project>{b2959860-6a53-4b8e-900d-6bb2cbee561d}</Project>
+      <Name>JXBC.Passports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.TradeSystem\JXBC.TradeSystem\JXBC.TradeSystem.csproj">
+      <Project>{a3f7b65c-e3b1-491e-bfc8-321f4a49aaf2}</Project>
+      <Name>JXBC.TradeSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXBC.Workplace\JXBC.Workplace.csproj">
+      <Project>{672b54ec-da09-4b30-9032-45dcc6fdba95}</Project>
+      <Name>JXBC.Workplace</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sqlmap\JXBC.Workplace\BizDictionaryRepository.sql.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sqlmap\JXBC.Workplace\InvitedRelationshipRepository.basic.sql.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sqlmap\JXBC.Workplace\MessageRepository.sql.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sqlmap\JXBC.Workplace\MessageRepository.basic.sql.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sqlmap\JXBC.Workplace\SmsMessageRepository.basic.sql.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sqlmap\JXBC.Workplace\ThirdApplicationRepository.basic.sql.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

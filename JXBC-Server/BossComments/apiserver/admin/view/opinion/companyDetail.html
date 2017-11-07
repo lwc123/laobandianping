@@ -1,0 +1,199 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+<style>
+    p{margin:0;padding:0;}
+    .tab{margin:0;padding:0;list-style:none;width:1000px;overflow:hidden;}
+    .tab li{float:left;width:200px;height:50px;background:#ccc;color:#fff;border:1px solid red; text-align:center;line-height:30px;cursor:pointer; }
+    .tab li.cur{background: #00b3ee;}
+</style>
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+
+        <!--<div class="table-header">
+           基本信息
+        </div>-->
+        <ul class="tab">
+            <li class="cur">基本详情</li>
+            <li >公司照片</li>
+            <li>公司产品</li>
+            <li>点评统计</li>
+        </ul>
+
+        <br/>
+
+        <div class="tab_list">
+        <div class="on">
+
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>公司名称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td>{$Detail.CompanyName}</td>
+                </tr>
+
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>公司简称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td>{$Detail.CompanyAbbr}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司LOGO</th>
+                    <td><img src="{$Detail.CompanyLogo}" alt="" width="80"/></td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司一句话介绍</th>
+                    <td>{$Detail.BriefIntroduction}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center' >公司CEO：</th>
+                    <td>{$Detail.CompanyCEO}</td>
+                </tr>
+
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center'  >行业：</th>
+                    <td>
+                        {$Detail.Industry}
+                    </td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center' >地点：</th>
+                    <td>
+                        {$Detail.Region}
+                    </td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center' >规模：</th>
+                    <td>
+                        {$Detail.CompanySize}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>成立时间</th>
+                    <td>
+                        {:toLocalDateTime($Detail.EstablishedTime,'Y-m-d ')}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司介绍</th>
+                    <td> {$Detail.Introduction}</td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>关注数</th>
+                    <td> {$Detail.LikedCount}</td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>是否关闭评论</th>
+                    <td> {if($Detail.IsCloseComment==true)}
+                        已开启
+                        {else/}
+                        已关闭
+                        {/if}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>认领企业</th>
+                    <td> </td>
+                </tr>
+
+            </table>
+        </div>
+        <div style="display: none" >
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+            <tr>
+               <td>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+                   <img src="{$Detail['CompanyLogo']}" alt="" width="80"/>
+
+               </td>
+            </tr>
+
+        </table>
+        </div>
+        <div style="display: none">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>美团</th>
+                <td>达芙妮及第三方</td>
+            </tr>
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>支付宝</th>
+                <td>达芙妮及第三方</td>
+            </tr>
+        </table>
+        </div>
+        <div style="display: none">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>公司点评数</th>
+                <td>{$Detail.CommentCount}</td>
+            </tr>
+
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>平均得分</th>
+                <td>{$Detail.Score}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>推荐率</th>
+                <td>{$Detail.Recommend}%</td>
+            </tr>
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>公司前景看好</th>
+                <td>{$Detail.Optimistic}%</td>
+            </tr>
+        <tr>
+            <th class="col-xs-3" style='text-align:center'>CEO支持率</th>
+            <td>{$Detail.SupportCEO}%</td>
+        </tr>
+        </table>
+        </div>
+       </div>
+    </div>
+</div>
+
+
+{/block}
+{block name="resources-footer"}
+<script>
+    $(document).ready(function(){
+        $(".tab li").click(function(){
+            $(".tab li").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
+            //alert($(this).index())
+            $(".tab_list").children('div').hide().eq($(this).index()).show();
+            //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on');
+
+        });
+    });
+
+</script>
+
+{/block}
+
+

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/headcolor"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_40PX"
+        android:background="@color/main_color" />
+
+    <include
+        layout="@layout/include_refresh_listview_no_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/remark_on_company"
+        android:layout_below="@+id/headcolor" />
+
+    <LinearLayout
+        android:id="@+id/include_head_title_lin"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_96PX"
+        android:layout_marginTop="@dimen/DIMEN_44PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/DIMEN_32PX"
+        android:paddingRight="@dimen/DIMEN_32PX">
+
+        <ImageView
+            android:id="@+id/include_head_title_back"
+            android:layout_width="@dimen/DIMEN_38PX"
+            android:layout_height="@dimen/DIMEN_40PX"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/nav_icon_back1"
+            android:scaleType="fitXY" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/include_head_title_tab"
+        android:layout_width="@dimen/DIMEN_72PX"
+        android:layout_height="@dimen/DIMEN_72PX"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_10PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"
+        android:padding="@dimen/DIMEN_18PX"
+        android:src="@drawable/ic_launcher"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/include_head_title_big_re1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_96PX"
+        android:background="@color/main_color"
+        android:layout_below="@+id/headcolor"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/include_head_title_lin1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/DIMEN_32PX"
+            android:paddingRight="@dimen/DIMEN_32PX">
+
+            <ImageView
+                android:id="@+id/include_head_title_back1"
+                android:layout_width="@dimen/DIMEN_38PX"
+                android:layout_height="@dimen/DIMEN_40PX"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/nav_icon_back1"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/include_head_title_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxWidth="150dp"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_34PX" />
+
+        <RelativeLayout
+            android:id="@+id/include_head_title_re1"
+            android:layout_width="@dimen/DIMEN_118PX"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/include_head_title_tab2"
+                android:layout_width="@dimen/DIMEN_72PX"
+                android:layout_height="@dimen/DIMEN_72PX"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/DIMEN_18PX"
+                android:src="@drawable/ic_launcher"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/include_head_title_tab3"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_50PX"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="@color/white"
+                android:visibility="invisible" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/include_head_title_re2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="@dimen/DIMEN_10PX"
+            android:paddingBottom="@dimen/DIMEN_10PX"
+            android:paddingLeft="@dimen/DIMEN_15PX"
+            android:paddingRight="@dimen/DIMEN_15PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_bg"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/include_head_title_tab4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="@color/luxury_gold_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/content_is_null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/search"
+        android:layout_marginTop="@dimen/DIMEN_36PX"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/DIMEN_200PX"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/personal_unhappy" />
+
+        <TextView
+            android:id="@+id/null_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_160PX"
+            android:layout_marginRight="@dimen/DIMEN_160PX"
+            android:layout_marginTop="@dimen/DIMEN_36PX"
+            android:text="此公司还没有收到任何评价，您可以点击下方“点评这家公司”进行点评哦~"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/remark_on_company"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:layout_alignParentBottom="true"
+        android:background="@color/luxury_gold_color"
+        android:gravity="center"
+        android:text="点评这家公司"
+        android:textColor="@color/white"
+        android:textSize="@dimen/DIMEN_30PX" />
+</RelativeLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_144PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_16PX"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_mycomment_auditor_employee_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <TextView
+                android:id="@+id/item_mycomment_auditor_employee_name_real"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_mycomment_auditor_employee_time_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_12PX"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/item_mycomment_auditor_employee_workState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_mycomment_auditor_employee_name"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"/>
+
+            <TextView
+                android:id="@+id/item_mycomment_auditor_employee_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_mycomment_auditor_audited_stated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/DIMEN_13PX"
+            android:layout_marginTop="@dimen/DIMEN_9PX"
+            android:padding="@dimen/DIMEN_9PX"
+            android:text="审核中"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+
+        <TextView
+            android:id="@+id/item_mycomment_auditor_employee_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/item_mycomment_auditor_audited_stated"
+            android:layout_marginRight="@dimen/DIMEN_13PX"
+            android:gravity="center"
+            android:padding="@dimen/DIMEN_9PX"
+            android:text="查看"
+            android:textColor="@color/luxury_gold_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+
+        <TextView
+            android:id="@+id/item_mycomment_auditor_employee_submittedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_mycomment_auditor_employee_time_comment"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_6PX"
+            android:text=""
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_22PX"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/line_color"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/item_mycomment_auditor_employee_reason"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_88PX"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/DIMEN_22PX"
+        android:text=""
+        android:textColor="@color/juxian_red"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:visibility="gone"/>
+</LinearLayout>

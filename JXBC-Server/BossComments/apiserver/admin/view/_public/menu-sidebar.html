@@ -1,0 +1,391 @@
+				<ul id="menu-sidebar" class="nav nav-list">
+					<li>
+						<a href="/sample/console">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> 控制台 </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text">用户管理</span>
+                            <span class="badge badge-primary">{php}echo feedBackCount();{/php}</span>
+                            <b class="arrow fa fa-angle-down"></b>
+						</a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="" >
+                                <a href="/user/userlist">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">用户列表</span>
+                                    <span class="badge badge-primary"></span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" >
+                                <a href="/user/feedbackList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">用户意见反馈</span>
+                                    <span class="badge badge-primary">{php}echo feedBackCount();{/php}</span>
+                                </a>
+                            </li>
+                            </ul>
+					</li>
+                    
+					<li class="">
+						<a href="#"  class="dropdown-toggle">
+							<i class="menu-icon fa fa-address-card"></i>
+							<span class="menu-text">企业管理</span>
+                            <span class="badge badge-primary"></span>
+                            <b class="arrow fa fa-angle-down"></b>
+						</a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="" >
+                                <a href="/Company/CompanyList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">企业列表</span>
+                                    <span class="badge badge-primary"></span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" >
+                                <a href="/Company/CompanyDataList?data=CompanyData">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">企业数据汇总</span>
+                                    <span class="badge badge-primary"></span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" >
+                                <a href="/Company/DueCompanyList?data=dueCompany">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">到期企业列表</span>
+                                    <span class="badge badge-primary"></span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+					</li>                    
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-check-square"></i>
+							<span class="menu-text">审核管理 </span>
+                            <span class="badge badge-primary">{php}echo CompanyAuditCount();{/php}</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="" id="lform">
+								<a href="/Company/auditList">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">认证审核</span>  
+                                    <span class="badge badge-primary">{php}echo CompanyAuditCount();{/php}</span>
+								</a>
+                                
+
+								<b class="arrow"></b>
+							</li>
+
+                         <!--   <li class="">
+                                <a href="/DrawMoney/drawMoneyList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">创建新的口碑公司</span>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>-->
+
+						<!--	<li class="">
+								<a href="/DrawMoney/drawMoneyList">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">提现审核</span>  
+								</a>
+
+								<b class="arrow"></b>
+							</li>-->
+
+						</ul>
+					</li>
+                    
+					<!--<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-child"></i>
+							<span class="menu-text"> 渠道管理 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="tables2.html">
+
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">渠道列表</span>  
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid2.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">新建渠道</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+                            
+							<li class="">
+								<a href="jqgrid3.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">渠道对账单</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid4.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">总代对账单</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>                              
+						</ul>
+					</li>-->
+
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-vcard"></i>
+                            <span class="menu-text">公司口碑</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/Opinion/CompanyList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">口碑公司管理</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="/Opinion/OpinionList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">点评管理</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="/Opinion/ClaimList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">认领公司申请</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="/Topic/TopicList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">专题管理</span>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="#">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">发送短信筛选</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="#">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">发送短信统计</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-vcard"></i>
+							<span class="menu-text">后台管理</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="/admin/adminUser/adminList.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">用户管理</span>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="/adminUser/addAdmin.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">新增用户</span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-vcard"></i>
+							<span class="menu-text">交易数据</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="/Trade/CompanyTradeHistory">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">企业交易记录</span>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="/Trade/PrivatenessTradeHistory">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">个人交易记录</span>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-vcard"></i>
+                            <span class="menu-text">消息通知管理</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/NoticeMessage/SmsList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">短信管理</span>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="/NoticeMessage/MsgList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">APP站内信</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="" >
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-fire"></i>
+                            <span class="menu-text">简历库关系模型</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="page-loading">
+                                <a href="/EmployeeData/EmployerList">
+                                    <i class="menu-icon fa"></i>
+                                    <span class="menu-text">企业列表</span>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="page-loading">
+                                <a href="/EmployeeData/PersonList">
+                                    <i class="menu-icon fa"></i>
+                                    <span class="menu-text">人才列表</span>
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-cogs"></i>
+							<span class="menu-text"> 系统设置 </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="/DictionaryEntry/dictionaryList">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">业务字典</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="/PriceStrategy/ActivityList">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">活动特惠列表</span>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+                            <li class="">
+                                <a href="/VersionManage/versionList">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <span class="menu-text">版本管理</span>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+						</ul>
+					</li>                    
+				</ul><!-- /.nav-list -->

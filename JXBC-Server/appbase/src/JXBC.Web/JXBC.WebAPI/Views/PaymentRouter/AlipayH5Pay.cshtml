@@ -1,0 +1,31 @@
+﻿@using JXBC.TradeSystem;
+
+@{
+    Layout = null;
+
+    var entity = (Payment)Model;
+    var signedParams = entity.SignedParams.ConvertEntity<IDictionary<string, string>>();
+    var charset = @signedParams["charset"];
+    //signedParams["productCode"] = signedParams["product_code"];
+    signedParams.Remove("charset");
+    //signedParams.Remove("product_code");
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>支付宝支付</title>
+</head>
+<body>
+    <form id='alipaysubmit' name='alipaysubmit' action='https://openapi.alipay.com/gateway.do?charset=@charset' method="post">
+        @foreach (var item in signedParams)
+        {
+            @Html.Raw(string.Format("<input type='hidden' name='{0}' value='{1}' />", item.Key, item.Value))
+
+        }
+        <input type='submit' value='ok' style='display:none;'>
+    </form>
+    <script>document.forms['alipaysubmit'].submit();</script>
+</body>
+</html>

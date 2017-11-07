@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>注册老板点评</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+	<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+</head>
+<body>
+	<div class="wrapper register">
+		<div class="inner">
+			<img src="{$Think.config.resources_site_root}/mobile/img/logo.png">
+			<h1 class="margin-b">举贤网科技股份有限公司</h1>
+			<h2>邀请您注册老板点评</h2>
+			<form id="boss-form" class="boss-form" method="post">
+				<div class="marginb-32">
+					<input class="phone inp" name="MobilePhone" id="phone" type="number" placeholder="请输入手机号">
+				</div>
+				<div class="marginb-32 yzm">
+					<input class="fl inp" id="yzm" name="ValidationCode" type="number" placeholder="请输入短信验证码">
+					<input class="fl get-yzm" type="button" value="获取验证码">
+				</div>
+				<div class="marginb-50">
+					<input class="pass inp" name="Password" type="password" id="password" placeholder="请输入6-18位数字与字母的组合">
+				</div>
+				<div class="btn">
+					<button id="register" class="register-btn" type="button">注册</button>
+					<p class="agree">
+						我已同意并阅读<a href="javascript:;">《企业用户协议》</a><a href="javascript:;">《企业用户隐私政策》</a>
+					</p>
+				</div>
+				<input type="text" value="2" name="SelectedProfileType" style="visibility:hidden">
+				<input type="text" value="" name="InviteCode" id="InviteCode" style="visibility:hidden">
+			</form>	
+			<p class="has">已有账号，<a href="javascript:;" id="has">马上登录</a></p>
+		</div>
+	</div>
+	<!-- 弹层 -->
+	<div class="bg" id="bg">
+		<div class="main-body">
+			<div class="header">
+				提示
+			</div>
+			<div class="content">
+				手机号已注册，请登录
+			</div>
+			<div class="footer">
+				<a href="javascript:;" class="fl" id="cancle">取消</a>
+				<a href="javascript:;" class="fr" id="ok">登录</a>
+			</div>
+		</div>
+	</div>
+	<!-- 错误提示 -->
+	<div class="error" id="error">手机号不能为空</div>
+<script src="{$Think.config.resources_site_root}/mobile/js/jquery-2.0.3.min.js"></script>
+<script src="http://bc-api.jux360.cn:8120/v-test/appbase/WebBridge/LoadAccountInfo"></script>
+<script type="text/javascript">
+	/*获取验证码*/
+	function SMS(obj,timer){
+		this.enable=true;
+		this.obj=$(obj);
+		this.timer=parseInt(timer)||10;
+	}
+	SMS.prototype.init = function() {
+		var that=this;
+		that.obj.bind('click',function(){
+			var phone=$('#phone').val();
+			var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+			if(phone==""){
+				$('#error').show();
+				setTimeout(function(){
+					$('#error').hide();
+				},1000);					
+			}else if(phone.length !=11){
+				$('#error').show().text('手机号格式不正确');
+				setTimeout(function(){
+					$('#error').hide();
+				},1000);
+			} else if(!pattern.test(phone)){
+				$('#error').show().text('手机号格式不正确');
+				setTimeout(function(){
+					$('#error').hide();
+				},1000);
+			}else{
+				var checkUrl='/v-test/appbase/Account/existsMobilePhone?phone='+phone;
+				$.get(checkUrl,function(data){
+					if(data==true){
+						$('#bg').show();
+						return false;
+					}else{
+						var yzmUrl="/v-test/appbase/Account/sendValidationCode?phone="+phone;
+						console.log(yzmUrl);
+						$.ajax({
+							type:'post',
+							url:yzmUrl,
+							data:phone,
+							dataType:"json",
+							success:function(data){
+								if(data.responseText='true'){
+									that.enable=false;
+									that.obj.addClass('selected').val('已发送'+that.timer+"s");
+									var _time,_i=that.timer;
+									var _fun=function(){
+										if(_i>1){
+											_i--;
+											that.obj.val('已发送'+_i+"s");
+											_time=setTimeout(_fun,1000);
+										}else{
+											clearTimeout(_time);
+											that.enable=true;
+											that.obj.val("重新获取").removeClass('selected');
+										}
+									}
+									_time=setTimeout(_fun,1000);
+								}else{
+									that.obj.val("重新获取").removeClass('selected');
+								}
+							},
+							error:function(data){
+								console.log(data.responseText);
+							}
+						})
+					}
+				})		
+
+			}
+		})
+	};
+	var sms=new SMS(".get-yzm",120);
+	sms.init();
+	
+
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#cancle').bind('click',function(){
+			$(this).parents('#bg').hide();
+		})
+		$('#ok').bind('click',function(){
+			var phone=$('#phone').val();
+			$(this).parents('#bg').hide();
+			window.location.href="http://bc-api.jux360.cn:8120/v-test/page/login.html?phone="+phone;
+		})
+		/*点击注册按钮*/
+		function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);return null;
+			}
+	$('#register').bind('click',function(){
+		var phone=$('#phone').val();
+		var password=$('#password').val();
+		var yzmVal=$('#yzm').val();
+		var passTest=/^[0-9a-zA-Z]{6,18}$/;
+		var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+		if(phone==''){
+			$('#error').show().text('手机号不能为空');
+			setTimeout(function(){
+				$('#error').hide();
+			},1000);	
+		}else if(phone.length !=11){
+			$('#error').show().text('手机号格式不正确');
+			setTimeout(function(){
+				$('#error').hide();
+			},1000);
+		} else if(!pattern.test(phone)){
+			$('#error').show().text('手机号格式不正确');
+			setTimeout(function(){
+				$('#error').hide();
+			},1000);
+		}else if(yzmVal==''){
+			$('#error').show().text('验证码不能为空');
+			setTimeout(function(){
+				$('#error').hide();
+			},1000);					
+		}else{			
+			var apiurl='/v-test/appbase/Account/checkValidationCode?phone='+phone+'&code='+yzmVal;
+			//alert(yzmVal);
+			
+			$.get(apiurl,function(data){
+				//console.log(data);
+				if(data!==true){
+					$('#error').show().text('验证码不正确');
+					setTimeout(function(){
+						$('#error').hide();
+					},1000);
+				}else if(password==''){
+					$('#error').show().text('密码不能为空');
+					setTimeout(function(){
+						$('#error').hide();
+					},1000);
+				}else if(!passTest.test(password)){
+					$('#error').show().text('密码格式不正确');
+					setTimeout(function(){
+						$('#error').hide();
+					},1000);
+				}else{
+					var InvitedCode=getUrlParam('InviterCode');
+					var registerUrl='/v-test/appbase/Account/signUp';
+					$('#InviteCode').val(InvitedCode);
+					console.log($('#boss-form').serialize())
+					//alert($('#InviteCode').val());
+					$.ajax({
+						type:'post',
+						url:registerUrl,
+						data:$('#boss-form').serialize(),
+						success:function(data){
+							$('#register').addClass('already');
+							$('#error').show().text('注册完成！');
+							setTimeout(function(){
+								$('#error').hide();
+								//alert(InvitedCode);
+								window.location.href="http://bc-api.jux360.cn:8120/v-test/page/pay-detail.html?InvitedCode="+InvitedCode;
+							},2000);
+						},
+						error:function(data){
+							console.log(data)
+						}
+					})										
+				}
+			})
+		}	
+	});
+	
+	
+		
+	
+});
+</script>
+<script type="text/javascript">
+	$(function(){
+		function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);return null;
+			}
+		var InvitedCode=getUrlParam('InviterCode');
+		$('#has').bind('click',function(){
+			window.location.href="http://bc-api.jux360.cn:8120/v-test/page/login.html?InvitedCode="+InvitedCode;
+		})
+	})
+</script>
+</body>
+</html>

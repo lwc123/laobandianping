@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:jxl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height" />
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/main_text_color"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:textSize="@dimen/DIMEN_34PX"
+        android:text="@string/select_auditor"/>
+
+    <com.juxian.bosscomments.widget.TagFlowLayout
+        android:id="@+id/lable_flowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginRight="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX">
+
+    </com.juxian.bosscomments.widget.TagFlowLayout>
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX" />
+</LinearLayout>

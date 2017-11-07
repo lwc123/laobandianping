@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="611ae0a9-2262-4874-b0b4-ba9b6efa0b82" name="boss" url="http://www.jx.io:8000">
+        <fileTransfer host="www.jx.io" port="8000">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="8000" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

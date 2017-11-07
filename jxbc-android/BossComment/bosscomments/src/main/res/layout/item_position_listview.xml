@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/position_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_162PX"
+    android:background="@color/white_item"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/DIMEN_22PX">
+
+    <TextView
+        android:id="@+id/position_time"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_54PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:gravity="center_vertical"
+        android:text="2011.11-2011.11"/>
+
+    <LinearLayout
+        android:id="@+id/position_and_department"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_54PX"
+        android:layout_below="@+id/position_time"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="人力资源总监"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/DIMEN_10PX"
+            android:background="@color/main_text_color"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="人事部"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+    </LinearLayout>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/wage_income"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_54PX"
+        android:textColor="@color/menu_color"
+        android:layout_below="@+id/position_and_department"
+        android:text="薪水100000元"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:gravity="center_vertical"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/DIMEN_22PX"
+        android:src="@drawable/xiangyou" />
+</RelativeLayout>

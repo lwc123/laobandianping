@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>联系我们——老板点评</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{$Think.config.resources_site_root}/pc/css/pc-public-index.css" type="text/css" rel="stylesheet">
+		<link href="{$Think.config.resources_site_root}/pc/css/com-bottom.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+	<div id="wrap">
+	    {include file="-public/pc_header" /}
+	    <!--内容部分-->
+	    <div class="lrwrap">
+	    	<div class="wrap-company">
+	    		<img src="{$Think.config.resources_site_root}/pc/images/banner_piclittle.png">
+	    		<div class="com-tab">
+	    			<ul class="tab-nav">
+	    				<li><a class="active-on" href="javascript:void(0);">联系我们</a></li>
+	    				<li><a href="question.html">常见问题</a></li>
+	    			</ul>
+	    			<div class="tab-content">
+    					<p>服务热线：400-815-9166</p>
+    					<p>E-mail：service@laobandianping.com</p>
+    					<p>ADD：北京市朝阳区广渠东路3号中水电国际大厦1105</p>
+    					<div id="allmap"></div>
+    					<button class="contact-button button" id="btn-dai" type="button">申请代理</button>
+                   </div>	
+	    		</div>	
+	    	</div>
+	    </div>
+        {include file="-public/pc_footer" /}
+	</div>
+	</body>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=zPzvRwLMu2xL4EuWlAT3zot7Ar7lCyT4"></script>
+	<script type="text/javascript">
+		// 百度地图API功能
+		var map = new BMap.Map("allmap");
+		var point = new BMap.Point(116.508595,39.899939);
+		map.centerAndZoom(point, 15);
+		var marker = new BMap.Marker(point);  // 创建标注
+		map.addOverlay(marker);              // 将标注添加到地图中
+		map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+	    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+		var label = new BMap.Label("我在这里",{offset:new BMap.Size(20,-10)});
+		marker.setLabel(label);
+		
+		var btn=document.getElementById("btn-dai");
+		btn.onclick=function(){
+			window.location.href="http://tidyway.cn/#apply";
+		}
+  </script>
+</html>

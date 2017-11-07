@@ -1,0 +1,254 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}阶段评价详情{/block}
+{block name="page-content"}
+<!--弹窗-->
+<div id="zhezhao">
+    <form id="alert" method="post" src="">
+        <div class="alertT">
+            <b id="alertClose">×</b>
+            <span></span>
+        </div>
+        <div class="alertB">
+        </div>
+        <div class="alertBtn"></div><br>
+        <span class="patch"></span>
+        <div class="power_person_details">
+        </div>
+    </form>
+</div>
+<!--弹窗结束-->
+<!--员工档案部分-->
+<div class="com1-bg em-info">
+    {if $model.AuditStatus eq 1}
+    {if $bottomdisplay eq 0}
+    <div class="work_details_top">该评价正在等待审核，请联系审核人操作</div>
+    {/if}
+    {elseif $model.AuditStatus eq 2}
+    <div class="work_details_top">该评价已由 <span>{$model.OperatePassportId}</span> 审核通过</div>
+    {else}
+    <div class="work_details_top">该评价已由 <span>{$model.OperatePassportId}</span> 审核不通过
+       <p><span class="reason_title">不通过原因：</span>{$model.RejectReason}</p>
+    </div>
+    {/if}
+    <!--员工档案详情部分-->
+    <div class="em3-info1">
+        <p class="com-tt">详情</p>
+        <div class="em1-info1 em3">
+            <img src="{$archivedetail.Picture}">
+            <p class="nname"><a href="#">{$archivedetail.RealName}</a></p>
+            <p class="work">{$ArchivePostTitle} | {$ArchiveDepartment}</p>
+            <p class="time">{:toLocalDateTime($archivedetail.EntryTime,'Y年m月d日')}入职
+                {if condition="($archivedetail.IsDimission eq '离任') or
+                ($archivedetail.IsDimission eq 1) "}
+                | {:toLocalDateTime($archivedetail.DimissionTime,'Y年m月d日')}离任 {/if}</p>
+        </div>
+    </div>
+</div>
+<div class="com1-bg em-info">
+    <div class="em3-info1">
+        <p class="com-tt">阶段工作评价
+            {if(empty($model.IsMessage))}
+            <a href="commentupdate?CommentId={$model.CommentId}&CompanyId={$CompanyId}&CommentType=0">修改</a>
+            {/if}
+           <!-- <a href="commentupdate?CommentId={$model.CommentId}&CompanyId={$CompanyId}&CommentType=0">修改</a>-->
+        </p>
+        <div class="em3-info11">
+            <p class="yeartitle">{$model.StageYear}度</p>
+            <p class="em3-tt"><i class="iconfont">&#xe641;</i>{$model.StageSection}工作综合评语</p>
+            <ul class="em3-block">
+                <li><span class="top-t">工作能力</span>
+                	<div class="block-left">
+                       <span>{$model.WorkAbilityText}</span>
+                    </div>
+                    <span class="block-right">{$model.WorkAbility}<br>分</span>
+                </li>
+                <li><span class="top-t">工作态度</span>
+                	<div class="block-left">
+                       <span>{$model.WorkAttitudeText}</span>
+                     </div>
+                    <span class="block-right">{$model.WorkAttitude}<br>分</span>
+                </li>
+                <li><span class="top-t">工作业绩</span>
+                	<div class="block-left">
+                       <span>{$model.WorkPerformanceText}</span>
+                    </div>
+                    <span class="block-right">{$model.WorkPerformance}<br>分</span>
+                </li>
+            </ul>
+            <div class="em3-say">
+                <p>工作评语</p>
+                <div class="say-content">
+                    <div class="say-word">
+                        {php}echo nl2br($model['WorkComment']){/php}
+                    </div>
+                    {if condition="$model.WorkCommentImages neq '' "}
+                    <div class="remark-img overflow demo-gallery" data-pswp-uid="1">
+                        {foreach $model.WorkCommentImages as $images}
+                        {php}$exist_images=exist_file($images);{/php}
+                        {if $exist_images}
+                        <figure class="img">
+                            <div><a href="{$images}" data-size="{$exist_images}" data-med="{$images}"
+                                    data-med-size="1024x1024"><img src="{$images}"></a></div>
+                        </figure>
+                        {/if}
+                        {/foreach}
+                    </div>
+                    {/if}
+                    {if condition="$model.WorkCommentVoice neq '' "}
+                    <!-- 收听语音 -->
+                    <div class="audio">
+                        <div class="audio-inner play">
+                            <div class="circle fl"></div>
+                            <audio id="audioa{$model.CommentId}" src="{$model.WorkCommentVoice}"></audio>
+                            <p class="font24 fl audio-txt">点击收听评价{$model.WorkCommentVoiceSecond}"</p>
+                        </div>
+                        <div class="audio-inner pause hidden">
+                            <div class="circle fl"></div>
+                            <audio id="audioa{$model.CommentId}" src="{$model.WorkCommentVoice}"></audio>
+                            <p class="font24 fl audio-txt">点击收听评价{$model.WorkCommentVoiceSecond}"</p>
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+                <p>评价时间：<span>{$model.CreatedTime|substr=0,10}</span></p>
+                <p>评价提交人：<span>{$model.PresenterId}</span></p>
+                <p>评价审核人：<span>{$model.AuditPersons}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{if $model.AuditStatus eq 1}
+{if $bottomdisplay eq 1}
+
+<div class="pending com1-bg">
+    <button type="button" id="shenhePass">审核通过</button>
+    <button type="button" id="shenheNoPass" class="buttonactive">审核不通过</button>
+</div>
+{/if}
+{/if}
+<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg" style=""></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item">
+                <div class="pswp__zoom-wrap">
+                    <img class="pswp__img" src="">
+                </div>
+            </div>
+            <div class="pswp__item">
+                <div class="pswp__zoom-wrap">
+                    <img class="pswp__img" src=""></div>
+            </div>
+            <div class="pswp__item">
+                <div class="pswp__zoom-wrap">
+                    <img class="pswp__img" src=""></div>
+            </div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--fs pswp__element--disabled" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+
+
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<script>
+    jQuery(function($) {
+        $("#shenhePass").click(function () {
+            var status=true;
+            $(document).on('change','#send-msg',function () {
+                if($(this).prop('checked')==false){
+                    $(this).val(false);
+                    status=false;
+                }else {
+                    $(this).val(true);
+                    status=true;
+                }
+                $(".alertBtn a").attr('href',"AuditPass?CompanyId={$CompanyId}&CommentId={$model.CommentId}&CommentType={$model.CommentType}&IsSendSms="+status)
+            });
+            $("#alert>.alertT>span").text("确认通过审核");
+            $(".alertB").html('<div class="bcontent">确认要通过审核么 </div><div class="send-msg-employe"> <input id="send-msg" type="checkbox" value="true" name="IsSendSms" checked="" style="display: none"> <label for="send-msg" class="radio">发送短信通知员工</label> </div>')
+            $(".alertBtn").html('<a href="AuditPass?CompanyId={$CompanyId}&CommentId={$model.CommentId}&CommentType={$model.CommentType}&IsSendSms='+status+'")><button type="button" class="newJobSaveBtn" ></button></a>')
+            $(".newJobSaveBtn").text("确认");
+            $('.patch').css("display","none");
+            $('.power_person_details').css("display","none")
+            alertwin();
+        })
+        $("#shenheNoPass").click(function () {
+            $("#alert>.alertT>span").text("您希望提交人怎么调整？");
+            $(".alertB").html('<textarea name="RejectReason" id="suggert" required maxlength="200"  placeholder="请输入未通过的理由，最多200字" ></textarea>');
+            $(".alertBtn").html('<a href="javascript:;"><button type="button" class="newJobSaveBtn" ></button></a>')
+            $(".newJobSaveBtn").text("确认,不通过")
+            $('.patch').css("display","none");
+            $('.power_person_details').css("display","none")
+            alertwin();
+            var  aaa=true;
+            $('.newJobSaveBtn').click(function () {
+                var val=$("#suggert").val();
+                if(val){
+                    window.location.href="AuditReject?CompanyId={$CompanyId}&CommentId={$model.CommentId}&CommentType={$model.CommentType}&RejectReason="+val;
+                    return false;
+                }else{
+                    if(aaa){
+                        aaa=false;
+                        $("#suggert").after('<label id="WithDrawMoney0-error" class="error" for="WithDrawMoney0"><i class="iconfont"></i> 请输入拒绝理由</label>')
+                        return false;
+                    }
+                }
+            })
+
+            $("#suggert").keyup(function () {
+                if($("#suggert").val()){$("#WithDrawMoney0-error").hide()}
+                aaa=true;
+            })
+        })
+        /*function getVal() {
+            var val=$("#suggert").val();
+            $(".alertBtn").html('<a href="AuditReject?CompanyId={$CompanyId}&CommentId={$model.CommentId}&CommentType={$model.CommentType}&RejectReason='+val+'"><button type="button" class="newJobSaveBtn" ></button></a>')
+
+        }*/
+        $('.newJobSaveBtn').click(function () {
+            getVal();
+        })
+        function alertwin() {
+            var zhezhao = document.getElementById('zhezhao');
+            var alertform = document.getElementById('alert');
+             var alertClose = document.getElementById('alertClose');
+            zhezhao.style.display = 'block';
+            var height = alertform.offsetHeight;
+            alertform.style.marginTop = -(height/2)+'px';
+            zhezhao.style.width = document.documentElement.clientWidth + 'px';
+            zhezhao.style.height = document.documentElement.clientHeight + 'px';
+             alertClose.onclick = function () {
+                 zhezhao.style.display = 'none';
+             }
+            window.onresize = function () {
+                zhezhao.style.width = document.documentElement.clientWidth + 'px';
+                zhezhao.style.height = document.documentElement.clientHeight + 'px';
+            }
+        }
+    });
+</script>
+<link href="{$Think.config.resources_site_root}/mobile/css/photoswipe.css?v=0" rel="stylesheet">
+<link href="{$Think.config.resources_site_root}/mobile/css/default-skin/default-skin.css?v=0" rel="stylesheet">
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe-ui-default.min.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/boss.js"></script>
+{/block}

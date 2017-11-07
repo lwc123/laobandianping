@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.juxian.bosscomments">
+
+
+    <!-- Required -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!-- Optional -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <!-- Camera -->
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <!-- 友盟推送 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!--
+      android:screenOrientation="portrait"
+        android:configChanges="orientation"
+    -->
+    <!-- 环信需要的权限 -->
+    <!-- Required -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+
+
+    <application
+        android:name=".AppContext"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="environment:runtime_mode"
+            android:value="beta"
+            tools:replace="android:value"/>
+        <!-- public:公开发行, beta:内测, test:封测 -->
+        <!-- 14d1953c8ae755f6d9581c18 : debug -->
+        <!-- LDe9N0eSIquQsn4arSEVvEd4 : dev -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5804613367e58e65c10004e3"/>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="7726ed0c934e1c0471bd99b2f56279ba">
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="juxian"/>
+        <meta-data
+            android:name="WXPAY_APPID"
+            android:value="wxae2889dd481d4049"/>
+
+        <!-- 欢迎页 -->
+        <activity
+            android:name=".ui.Welcome_Acitivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <!-- 引导页 -->
+        <activity
+            android:name=".ui.GuideActivity"
+            android:fitsSystemWindows="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <!-- 图片相关的Activity -->
+        <activity
+            android:name=".imageCrop.ui.ImageCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".ui.EditPhotoGridActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityAnimiationHome"/>
+        <activity
+            android:name=".ui.ImageGridActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.PicActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.SignInActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.InputBasicInformationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.CompanyRegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".ui.ForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+        </activity>
+        <activity
+            android:name=".ui.CHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+        </activity>
+        <activity
+            android:name=".ui.LegalPersonInformationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity
+            android:name=".ui.LoginOrNewAccountActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+            android:name=".ui.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+            android:name=".ui.ApplySubmittedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SelectUserIdentityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+            android:name=".ui.SelectCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+            android:name=".ui.OpenServiceActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.OpenServiceSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+            android:name=".ui.SuggestionFeedBackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.PostCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name=".ui.InviteFriendsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.PayActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.VaultPayActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.RechargeRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AccreditManageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AddAccreditPersonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.MySearchRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SearchBossCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.SearchEmployeeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.AddBossCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SearchResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.MyAddCommentsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.InputMoneyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.WithdrawDepositActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.EditIndustryLableActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.EditNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.SelectCityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.OneWheelActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme"/>
+        <activity
+            android:name=".ui.SelectYearActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme"/>
+        <activity
+            android:name=".ui.SelectEducationBackgroundActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme"/>
+        <activity
+            android:name=".ui.AddEmployeeRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.EditTimeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme"/>
+        <activity
+            android:name=".ui.EditMyDataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.HaveBankCardNumberActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.AllEmployeeRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.HoldPostActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.SelectDepartmentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.ShowBigImgActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AddDepartureReportActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name=".ui.NullRecordListViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.ChangeListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.CommentListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.DepartureReportListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.SelectAuditorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.MessageListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.SearchCityResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SearchEmployeeResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SearchCRResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.WebPromptActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.MyCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AuditWebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.CompanyCircleWebViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.RolePowerExplainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.WebViewDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.JTDetailWebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AuditRejectReasonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.ModifyCpInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.ModifyAvatarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.ModifyDataActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.WithdrawCashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.WithdrawSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.AdvertiseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <!-- 个人端 -->
+        <activity
+            android:name=".ui.PWorkbenchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.MyArchiveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.LookMyArchiveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.PersonalJobListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.PersonalArchiveListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AllDepartmentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.PersonalOpenServiceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.BossCirclePostMsgActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.BossCircleMyDynamicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AddRecruitInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.RecruitInfoCompanyInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.RecruitInfoModifyCommonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.RecruitInfoModifySalaryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.RecruitInfoModifyPositionDescribeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.PersonalJobSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.PersonalJobSearchListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.PersonalInviteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.PersonalRechargeRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.RegisterAgreementActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.BuySuccessWebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AboutUsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AccountInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.ModifyRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.CMessageListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.MessageDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SelectOtherCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.StartUpHomePageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.CompanyDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SingleTypeCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SearchCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.AddOpinionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.MineOpinionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.SelectOpinionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.ManageLableActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity
+            android:name=".ui.ManageOpinionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme">
+
+        </activity>
+
+
+
+        <!-- ******* WeiXin Required start ******* -->
+        <activity
+            android:name="com.juxian.bosscomments.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity
+            android:name="com.juxian.bosscomments.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+        <!-- ******* WeiXin Required end ******* -->
+    </application>
+
+</manifest>

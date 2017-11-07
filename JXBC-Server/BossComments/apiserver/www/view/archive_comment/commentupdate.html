@@ -1,0 +1,344 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}修改阶段评价{/block}
+{block name="page-content"}
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<!--loading pic-->
+<div id="loadingpic">
+    <img  src="{$Think.config.resources_site_root}/pc/img/loadingpic.gif">
+</div>
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--修改评价页面部分-->
+<div class="com1-bg">
+    <p class="ev-title">修改阶段评价<span>温馨提示：员工离任后，其他企业查看该人才的阶段评价，您公司可获得10金币收益</span></p>
+    <div class="em-info">
+        <form class="ev-info" id="employe_create" action="" enctype="multipart/form-data" method="post">
+                <div class="em3-info1">
+                    <div class="em1-info1 em3">
+                        <img src="{$Detail.EmployeArchive.Picture}" style="border-radius:8px;width:80px;height:80px">
+                        <p class="nname"><a href="#">{$Detail.EmployeArchive.RealName}</a></p>
+                        <p class="work">{$Detail.EmployeArchive.WorkItem.PostTitle} | {$Detail.EmployeArchive.WorkItem.Department}</p>
+                        <p class="time">{:toLocalDateTime($Detail.EmployeArchive.EntryTime,'Y年m月')}入职
+                            {if condition="($Detail.EmployeArchive.IsDimission eq '离任') or
+                            ($Detail.EmployeArchive.IsDimission eq 1) "}
+                            | {:toLocalDateTime($Detail.EmployeArchive.DimissionTime,'Y年m月')}离任 {/if}
+
+                        </p>
+                    </div>
+                </div>
+            <input name="CommentId" type="hidden" value="{$Detail.CommentId}"/>
+            <input name="ArchiveId" id="txt-person" type="hidden" value="{$Detail.ArchiveId}"/>
+            <input name="CompanyId" type="hidden" value="{$CompanyId}"/>
+            <input name="CommentType"  type="hidden" value="{$Detail.CommentType}"   type="hidden"  />
+            <input name="PresenterId"  type="hidden" value="0"   type="hidden"  />
+            <input name="BossPassportId"  type="hidden" value="{$CompanySummary ['BossInformation']['PassportId']}"   type="hidden"  />
+
+
+
+            <!--选择评价阶段-->
+            <p class="com-tt select-tt">阶段工作评价</p>
+            <span>选择时间段</span>
+            <select name="StageYear">
+                <?php for($i=date('Y');$i>=1990;$i--){
+                if($Detail['StageYear']==$i){
+                      echo '<option value="'.$i.'年"  selected>'.$i.'年</option>';
+                    }else{
+                      echo '<option value="'.$i.'年" >'.$i.'年</option>';
+                    }
+                }
+                ?>
+            </select>
+            <ul class="sel-stage">
+                {volist name="StageSection" id="vo"}
+                <li data-stage-id="{$vo.Code}" {if $Detail.StageSection ==$vo.Code }class="selected" {/if}>{$vo.Name}</li>
+                {/volist}
+                <input id="txt-sel-stage" name="StageSection" value="{$Detail.StageSection}"  class="hide" type="hidden"  role="sel-stage"/>
+                <!--<li class="sel-gray">全年  <span>已评</span></li>-->
+            </ul>
+
+            <!--工作评价开始-->
+            <p class="com-tt select-tt">工作综合评价</p>
+            <div class="slider-grade">
+                <span class="title">工作能力</span>
+                <span id="ev">{$Detail.WorkAbilityText}</span>
+                <div class="scale" id="bar0">
+                    <div style="width:{$Detail.WorkAbilityWidth}px"></div>
+                    <span id="btn0" style="left: {$Detail.WorkAbilityWidth}px;"><span id="title0">{$Detail.WorkAbility}</span></span>
+                    <b class="drag_bg_click"></b>
+                </div>
+                <span class="bars_10">100分</span>
+                <input class="hide" type="text" value="{$Detail.WorkAbility}" name="WorkAbility" id="txt0">
+            </div>
+            <div class="slider-grade">
+                <span class="title">工作态度</span>
+                <span id="ev1">{$Detail.WorkAttitudeText}</span>
+                <div class="scale" id="bar1">
+                    <div style="width:{$Detail.WorkAttitudeWidth}px"></div>
+                    <span id="btn1"  style="left: {$Detail.WorkAttitudeWidth}px;"><span id="title1">{$Detail.WorkAttitude}</span></span>
+                    <b class="drag_bg_click"></b>
+                </div>
+                <span class="bars_10">100分</span>
+                <input class="hide" type="text" value="{$Detail.WorkAttitude}" name="WorkAttitude" id="txt1">
+            </div>
+            <div class="slider-grade">
+                <span class="title">工作业绩</span>
+                <span id="ev2">{$Detail.WorkPerformanceText}</span>
+                <div class="scale" id="bar2">
+                    <div style="width:{$Detail.WorkPerformanceWidth}px"></div>
+                    <span id="btn2" style="left: {$Detail.WorkPerformanceWidth}px;"><span id="title2">{$Detail.WorkPerformance}</span></span>
+                    <b class="drag_bg_click"></b>
+                </div>
+                <span class="bars_10">100分</span>
+                <input class="hide" type="text" value="{$Detail.WorkPerformance}" name="WorkPerformance" id="txt2">
+            </div>
+            <!--工作评语部分-->
+            <p class="com-tt select-tt">工作评语</p>
+            <div class="ev-comment comment-Word">
+                <div>
+                   <textarea id="ev-say" class="ev-say" name="WorkComment" required>{$Detail['WorkComment']}</textarea>
+                </div>
+               <p><span class="count">0</span>/500</p>
+                <img class="ev-pic" src="{$Think.config.resources_site_root}/pc/img/camera.png"><span>上传纸质评语照片</span>
+                <div id="iden-pics">
+                 {$photo}
+                </div>
+            </div>
+
+            <!--工作评语部分-->
+
+
+            <!--添加审核部分-->
+            <p class="com-tt select-tt">添加评价审核人<span>（一人通过审核即生效）</span></p>
+            <div class="ev-person">
+                <input id="txt-audit-persons" class="hide" name="AuditPersons" type="hidden" value="{$Detail.AuditPersonString}" role="ev-person"/>
+                <p>{$CompanySummary ['BossInformation']['RealName']}<span class="position">(老板)</span></p>
+                <ul>
+                    {foreach($Detail.AuditPersonList as $val)}
+                    {if($val.Role !=1)}
+                    <li data-val="{$val.PassportId}">{$val.RealName}<label class="position">(高管)</label><span class="del"><i class="iconfont">&#xe647;</i></span></li>
+                    {/if}
+                    {/foreach}
+                </ul>
+                <p class="rect"><i class="iconfont">&#xe651;</i></p>
+            </div>
+            <button id="submit"  >提交</button>
+            <!--<p class="comment-tip">审核生效后将发送短信告知员工</p>-->
+        </form>
+        <!--添加审核人弹框-->
+        <div id="alertzhe">
+            {if(empty($AuditPerson))}
+            <div class="person1">
+                <p class="person-tt">选择授权的审核人（可多选）<i class="iconfont close1">&#xe647;</i></p>
+                <p class="pe-con">您公司目前除了老板，没有更多的评价审核人，请联系老板或管理员添加。</p>
+                <button type="button">我知道了</button>
+            </div>
+            {else/}
+            <div class="person2">
+                <p class="person-tt">选择授权的审核人（可多选）<i class="iconfont close1">&#xe647;</i></p>
+                <div class="pp">
+                    {foreach $AuditPerson as $value}
+                    <span data-person-id="{$value.PassportId}">{$value.RealName}<label class="position">(高管)</label></span>
+                    {/foreach}
+                </div>
+                <button type="button">确定</button>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    $(function(){
+        function picadd() {
+            $("#previewImagesBtn").click(function () {
+                var num = $("#ImageIndex").val();
+                $("input[name=ImagesP"+num+"]").unbind("change").change(function () {
+                    previewLocalImageFile(this, $("#previewImagesP"+num));
+                    if($(this).data("has-file")){
+                        $('#previewImagesP'+num).append('<div class="pics_close">×</div>');
+                        $("#previewImagesP"+num).show();
+                        num++;
+                        $("#ImageIndex").val(num);
+                        $("#previewImagesBtn").before('<div><div class="iden-rec iden2-rec" id="previewImagesP'+num+'"></div><input class="em-btn" type="file"  name="ImagesP'+num+'" accept="image/jpeg,image/x-png,image/png"/></div>')
+
+                        if($("#iden-pics input[type='file']").size()>9){
+                            $("#previewImagesBtn").hide();
+                        }
+                    }
+                });
+                $("input[name=ImagesP"+num+"]").unbind("click").click();
+            })
+
+            $(document).on("click","#iden-pics .pics_close",function () {
+
+                $(this).parent().parent().remove();
+                $("#previewImagesBtn").show()
+            })
+        }
+        picadd();
+        
+        ArchiveId = $('input[name=ArchiveId]').val();
+        StageSection = $('input[name=StageSection]').val();
+        //选择时间段
+        var stageUrl='/ArchiveComment/EmployeArchive?CompanyId={$CompanyId}&ArchiveId='+ArchiveId;
+		      $.ajax({
+		       type:"post",
+		       url: stageUrl,
+		       dataType:'json',
+		       success:function(data){
+		            var year=data.exists;
+		            for(var i=0;i<year.length;i++){
+		                
+		                if(year[i].StageYear =="2017年"){
+		                	
+		                    var code=year[i].StageSection;
+		                    for(var m=0;m<code.length;m++){
+		                    	var codeArr=data.periods;
+		                        var bar="";
+			                   	for(var j=0;j<codeArr.length;j++){ 	
+			                   
+			                   		if(code.indexOf(codeArr[j].Code)>=0){	
+				                   		  if(codeArr[j].Code== StageSection){
+				                   	           bar+="<li class='selected' data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"</li>";
+				                   		   }else{
+				                   		   	   bar+="<li class='sel-gray' data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"（已评）</li>";
+				                   		   }
+			                        
+			                        }else{
+			                           bar+="<li data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"</li>";
+			                        }   
+			                   }
+		                    }
+		                   $(".sel-stage").empty();
+		                   $(".sel-stage").append(bar);
+		                }
+		            }
+
+		       }
+		    })
+    })
+</script>
+
+<script>
+ var CompanyId = {$CompanyId};
+    $.validator.setDefaults({
+        submitHandler: function() {
+            var AuditPersons = $('input[name=AuditPersons]').val();
+            var BossPassportId = $('input[name=BossPassportId]').val();
+                var apiUrl="update?CompanyId="+{$CompanyId};
+                var formData = new FormData($("#employe_create")[0]);
+                $.ajax({
+                    type:'post',
+                    contentType: false,
+                    url:apiUrl,
+                    data:formData,
+                    processData: false,
+                    beforeSend:function(){
+                    	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+                    },
+                    success:function(data){
+//                  	removeLoading();
+						$("#submit").html("提交").removeAttr("disabled");
+                        console.log(data);
+                        if(data==true){
+                            $("#alert>.alertT>span").text("");
+                            if(AuditPersons !="") {
+                                if (AuditPersons.indexOf({$PassportId}) > 0) {
+                                       $(".alertB").html('<div class="bcontent">修改成功！<br>  您是审核人，阶段评价已生效</div>');
+                                } else {
+                                    if (BossPassportId == {$PassportId} || AuditPersons == {$PassportId}) {
+                                        $(".alertB").html('<div class="bcontent">修改成功！<br> 您是审核人，阶段评价已生效</div>');
+                                    } else {
+                                        $(".alertB").html('<div class="bcontent">修改成功！<br> 审核通过后，阶段评价将生效</div>');
+                                    }
+                                }
+                            }else{
+                                if(BossPassportId =={$PassportId}){
+                                    $(".alertB").html('<div class="bcontent">修改成功！<br> 您是审核人，阶段评价已生效</div>');
+                                }else{
+                                    $(".alertB").html('<div class="bcontent">修改成功！<br> 审核通过后，阶段评价将生效</div>');
+                                }
+                            }
+                            $(".btnwrap").html('<a  class="button newJobSaveBtn" href="/ArchiveComment/index?CompanyId={$CompanyId}&CommentType=0" class="button db_btn_style">关闭</a>');
+                            alertwin();
+                        }else{
+                            $("#alert>.alertT>span").text("错误提示");
+                            $(".alertB").html('<div class="bcontent">提交失败，请重新提交</div>');
+                            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data)
+                    }
+            });
+        }
+    });
+    
+    $("#employe_create select").change(function(){
+			$(".sel-stage li").each(function(){
+				$(this).removeClass("sel-gray selected");
+			})
+		      var ArchiveId = $("#txt-person").val();
+	           var stageUrl='/ArchiveComment/EmployeArchive?CompanyId='+CompanyId+'&ArchiveId='+ArchiveId;
+			      $.ajax({
+			       type:"post",
+			       url: stageUrl,
+			       dataType:'json',
+			       success:function(data){
+			            var year=data.exists;
+			            for(var i=0;i<year.length;i++){ 
+			                if(year[i].StageYear ==$("#employe_create select").val()){
+			                    var code=year[i].StageSection;
+			                    for(var m=0;m<code.length;m++){
+		                    	var codeArr=data.periods; 
+		                    	console.log(codeArr);
+			                    var bar="";
+			                   for(var j=0;j<codeArr.length;j++){ 
+			                        if(code.indexOf(codeArr[j].Code)>=0){
+			                           bar+="<li class='sel-gray' data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"</li>";
+			                        }else{
+			                           bar+="<li data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"</li>";
+			                        }   
+			                   }
+		                    }
+			                   $(".sel-stage").empty();
+			                   $(".sel-stage").append(bar);
+			                }
+			            }
+			         
+			        
+			       }
+			    })
+	         
+	})
+		
+    $(".ev-comment .count").html($.trim($(".ev-say").val()).length);
+</script>
+
+{/block}

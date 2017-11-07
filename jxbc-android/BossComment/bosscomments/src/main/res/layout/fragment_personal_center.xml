@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <!--<include-->
+    <!--android:id="@+id/head_title"-->
+    <!--layout="@layout/include_head_title"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"/>-->
+
+
+    <RelativeLayout
+        android:id="@+id/modify_personal_information"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_360PX"
+        android:background="@drawable/personal_center_head">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/DIMEN_130PX"
+            android:layout_height="@dimen/DIMEN_130PX"
+            android:layout_centerInParent="true"
+            android:src="@drawable/personal_gold_head"
+            app:border_width="0dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/DIMEN_122PX"
+            android:layout_height="@dimen/DIMEN_122PX"
+            android:layout_centerInParent="true"
+            android:src="@drawable/personal_default_avatar"
+            app:border_width="0dp" />
+
+        <TextView
+            android:id="@+id/personal_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/DIMEN_30PX"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_28PX" />
+
+        <ImageView
+            android:id="@+id/jiantou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_24PX"
+            android:src="@drawable/xiangyou" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_20PX"
+                android:background="@color/main_background" />
+
+            <RelativeLayout
+                android:id="@+id/service_explain"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/white_item"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/service_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/DIMEN_20PX"
+                    android:text="您的服务已经到期，请开通服务后继续使用"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_24PX" />
+
+                <TextView
+                    android:id="@+id/open_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_28PX"
+                    android:background="@drawable/item_line_button"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/DIMEN_10PX"
+                    android:paddingLeft="@dimen/DIMEN_24PX"
+                    android:paddingRight="@dimen/DIMEN_24PX"
+                    android:paddingTop="@dimen/DIMEN_10PX"
+                    android:text="@string/open_service"
+                    android:textColor="@color/juxian_red"
+                    android:textSize="@dimen/DIMEN_24PX" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_i_add_the_evaluation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_i_add_the_evaluation_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/boss_account_comment" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_mine_shezhi_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/i_add_the_evaluation"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/activity_my_other_company"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_my_other_company_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/my_other_company" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_my_other_company_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/my_other_company"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/activity_invite_other_company"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_invite_other_company_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/invite_other_company" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_invite_other_company_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/invite_other_company"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_user_role"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_user_role_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/manager" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_user_role_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text=""
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <TextView
+                    android:id="@+id/audit_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/activity_user_role_img_jiantou"
+                    android:textColor="@color/luxury_gold_color"
+                    android:textSize="@dimen/DIMEN_24PX" />
+
+                <ImageView
+                    android:id="@+id/activity_user_role_img_jiantou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/activity_withdraw_deposit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/company_vault_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/activity_withdraw_deposit_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/DIMEN_20PX"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/boss_account_recharge" />
+
+                        <TextView
+                            android:id="@+id/company_vault_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/DIMEN_82PX"
+                            android:text="企业金库"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="@dimen/DIMEN_30PX" />
+
+                        <TextView
+                            android:id="@+id/company_vault_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/DIMEN_50PX"
+                            android:text="0金币"
+                            android:textColor="@color/luxury_gold_color"
+                            android:textSize="@dimen/DIMEN_30PX" />
+
+                        <com.juxian.bosscomments.widget.TextView
+                            android:id="@+id/withdraw_deposit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="@dimen/DIMEN_24PX"
+                            android:paddingRight="@dimen/DIMEN_24PX"
+                            android:text="@string/withdraw_deposit_title"
+                            android:textColor="@color/juxian_red"
+                            android:textSize="@dimen/DIMEN_34PX"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/company_vault_item"
+                        android:layout_marginLeft="@dimen/DIMEN_82PX"
+                        android:layout_marginTop="@dimen/DIMEN_4PX"
+                        android:text="可用于购买背景调查，1金币=1元"
+                        android:textColor="@color/menu_color"
+                        android:textSize="@dimen/DIMEN_22PX"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/company_vault_item"
+                        android:layout_marginLeft="@dimen/DIMEN_82PX"
+                        android:layout_marginTop="@dimen/DIMEN_16PX"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/company_cash_check_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="可提现金额："
+                            android:textColor="@color/main_text_color"
+                            android:textSize="@dimen/DIMEN_30PX" />
+
+                        <TextView
+                            android:id="@+id/company_cash_check_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/company_cash_check_title"
+                            android:text="0元"
+                            android:textColor="@color/luxury_gold_color"
+                            android:textSize="@dimen/DIMEN_30PX" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_boss_comment_recharge"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:background="@color/conversation_item_bg_selector"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/activity_laobandianping_recharge_img"
+                    android:layout_width="@dimen/DIMEN_32PX"
+                    android:layout_height="@dimen/DIMEN_32PX"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:layout_marginRight="@dimen/DIMEN_22PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/boss_account_recharge" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_recharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/activity_laobandianping_recharge_img"
+                    android:text="@string/recharge"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_16PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/activity_boss_comment_recharge_record"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_recharge_record_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/transaction_record" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_recharge_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/boss_comment_recharge"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/activity_authorization_management"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_authorization_management_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/boss_account_accredit" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_me_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/authorization_management"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/activity_department_management"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_department_management_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/department_manage" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_me_department"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/department_manage"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_system_setting"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/excel_height_90px"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:background="@color/conversation_item_bg_selector">
+
+                <ImageView
+                    android:id="@+id/activity_change_system_setting_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_20PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/boss_account_setting" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/re_change_to_cc_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/DIMEN_82PX"
+                    android:text="@string/system_setting"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/DIMEN_24PX"
+                    android:src="@drawable/xiangyou" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/head_height" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

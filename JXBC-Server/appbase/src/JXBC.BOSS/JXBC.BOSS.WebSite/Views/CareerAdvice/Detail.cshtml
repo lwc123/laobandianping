@@ -1,0 +1,67 @@
+﻿@using M2SA.AppGenome.Data;
+@using JXBC.Workplace;
+@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+
+@{
+    ViewBag.Title = "高见详情-举贤令";
+    var entity = (CareerAdviceEntity)Model;
+}
+
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="/">首页</a>
+        </li>
+        <li class="active">业务管理</li>
+        <li class="active">高见详情</li>
+    </ul>
+</div>
+
+
+<div>
+    <div class="col-md-offset-2 col-md-8 container_form">
+        <form role="form">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    高见详情
+                </div>
+                <div class="panel-body">
+                    <div style="margin:10px 0;">
+                        <label style="font-weight:bold;font-size:16px;">高见简介</label>
+                        <div>@entity.Subject</div>
+                    </div>
+                    <div style="margin:10px 0;">
+                        <label style="font-weight:bold;font-size:16px;">高见内容</label>
+                        <p>
+                            @Html.Raw(entity.Content.Replace("\n", "<br/>"))
+                        </p>
+                    </div>
+                    <div style="margin:10px 0;">
+                        <label style="font-weight:bold;font-size:16px;">猎头信息</label>
+                        <div style="width:200px">
+                            <span class="pull-left"><img class="avatar" src="@entity.Profile.Avatar" /></span>
+                            <span style="float:left;margin-left:12px;">
+                                <br />
+                                @entity.Profile.RealName
+                                @for (var i = 0; i < entity.Profile.ConsultantGrade; i++)
+                                { @Html.Raw("<i class='icon-star'></i>")}<br />
+                                @entity.Profile.Identity
+                            </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div style="margin:10px 0;">
+                        <label style="font-weight:bold;font-size:16px;">高见图片</label>
+                        <div><img style="width:200px;" src="@entity.Picture" /></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div role="alert" class="col-md-offset-2 col-md-8 alert alert-warning text-center">
+    <span>
+        <a id="btnPassed" class="btn btn-primary" href="../Edit/@entity.AdviceId">编辑</a>
+    </span>
+</div>

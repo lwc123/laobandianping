@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_96PX" />
+
+    <RelativeLayout
+        android:id="@+id/re_jinku_pay"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/item_pay_method_photo2"
+            android:layout_width="@dimen/DIMEN_42PX"
+            android:layout_height="@dimen/DIMEN_42PX"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:layout_marginRight="@dimen/DIMEN_34PX"
+            android:scaleType="fitXY"
+            android:src="@drawable/pay_vault" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_pay_method_photo2"
+            android:orientation="vertical">
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/item_pay_method_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:text="@string/pay_company_vault"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+            <TextView
+                android:id="@+id/vault_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/luxury_gold_color"
+                android:text="余额：300元"
+                android:textSize="@dimen/DIMEN_24PX"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/pay_jinku_selected"
+            android:layout_width="@dimen/DIMEN_60PX"
+            android:layout_height="@dimen/DIMEN_60PX"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/DIMEN_10PX"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_22PX"
+            android:src="@drawable/xuanzhong" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/DIMEN_90PX"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/DIMEN_20PX"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="消耗："
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="3000"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+            <com.juxian.bosscomments.widget.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="金币"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="@color/line_color"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/DIMEN_90PX"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/DIMEN_20PX"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="消耗说明："
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/pay_explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="开通老板点评服务"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/DIMEN_20PX"
+            android:orientation="horizontal">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/activity_purchase_service_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="应扣除："
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/activity_pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="3000"
+                android:textStyle="bold"
+                android:textColor="@color/juxian_red"
+                android:textSize="@dimen/DIMEN_48PX" />
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/activity_purchase_service_money_qian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="金币"
+                android:textStyle="bold"
+                android:textColor="@color/juxian_red"
+                android:textSize="@dimen/DIMEN_48PX" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_50PX"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX" />
+</LinearLayout>

@@ -1,0 +1,11 @@
+*.pdb
+*.oob
+*.suo
+*.user
+*.log
+*.dat
+*.db
+*.class
+*.testsettings*
+*.vs
+

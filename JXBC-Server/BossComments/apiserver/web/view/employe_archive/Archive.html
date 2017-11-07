@@ -1,0 +1,343 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>员工档案详情</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta content="telephone=no" name="format-detection" />
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+	<link href="{$Think.config.resources_site_root}/mobile/css/photoswipe.css?v=0" rel="stylesheet">
+	<link href="{$Think.config.resources_site_root}/mobile/css/default-skin/default-skin.css?v=0" rel="stylesheet">
+	<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+	<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+	<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe-ui-default.min.js"></script>
+</head>
+<body>
+{include file="employe_archive:Header" /}
+	<!-- 基本信息 -->
+	<section class="base-detail">
+		<div class="list-show">
+			<p class="tit font30">基本信息</p>
+			<div class="list-wrap">
+				<ul class="detail-list">
+					<li>
+						<span>目前状态：</span>
+						<span>{$archivedetail.IsDimission}</span>
+					</li>
+					<li>
+						<span>身份证号：</span>
+						<span>{$archivedetail.IDCard}</span>
+					</li>
+					<li>
+						<span>性别：</span>
+						<span>{$archivedetail.Gender}</span>
+					</li>
+				</ul>
+				<ul class="detail-list list-hidden hidden">
+					<li>
+						<span>年龄： </span>
+						<span>{$archivedetail.age}岁({$archivedetail.Birthday|substr=0,10})</span>
+					</li>
+					<li>
+						<span>手机号码：</span>
+						<span>{$archivedetail.MobilePhone}</span>
+					</li>
+					<li>
+						<span>入职日期：</span>
+						<span>{$EntryTime}</span>
+					</li>
+					{if condition="$archivedetail.IsDimission  eq '离任'"   }
+                    <li>
+                        <span>离任日期：</span>
+                        <span>{$DimissionTime}</span>
+                    </li>
+                    {/if}
+                    <li>
+                        <span>毕业学校：</span>
+                        <span>{$archivedetail.GraduateSchool}</span>
+                    </li>
+                    <li>
+                        <span>学历：</span>
+                        <span>{$archivedetail.Education}</span>
+                    </li>
+					<li class="overflow">
+						<span class="fl">担任职务：</span>
+						<div class="fl duties">
+							<ul>
+						 	   {volist name="workitemlist" id="workitemlist"}
+								<li>{$workitemlist.PostStartTime|substr=0,7}-
+								{if strstr($workitemlist.PostEndTime,'3000') or strstr($workitemlist.PostEndTime,'1970')}
+								至今 
+								{else}
+								{$workitemlist.PostEndTime|substr=0,7}
+								{/if}
+								</li>
+								<li>{$workitemlist.PostTitle}({$workitemlist.Department.DeptName})</li>
+								{/volist}
+							</ul>
+						</div>	
+					</li>
+				</ul>
+			</div>
+			<div class="show-btn">
+				<a href="javascript:;" class="sign">
+					点击查看完整信息
+				</a>
+			</div>
+		</div>		
+	</section>
+	
+	{if condition="($Report eq '' ) and  ($StageYear eq '' )"}
+	<div class="none font24">
+        还未对TA的工作进行评价或离任报告
+    </div>
+	{/if}
+	
+	 {if condition="$Report neq ''  "}
+	<!-- 离任报告 -->
+    <section class="report">
+        <p class="title font30">离任报告：{$Report.CommentCode}</p>
+        <div class="report-inner">
+            <ul class="detail-list">
+                <li><span>离任时间：</span> <span>{$DimissionTime}</span>
+                </li>
+                <li><span>离任薪资：</span> <span>{$Report.DimissionSalary}</span>
+                </li>
+                <li class="pad-b"><span>离任原因：</span> <span>{$Report.DimissionReason}&nbsp;&nbsp;{$Report.DimissionSupply}</span></li>
+            </ul>
+        </div>
+        <!-- 在职期间工作评价 -->
+        <div class="job-on">
+            <p class="job-tit font24">在职期间工作评价</p>
+            <div class="score overflow">
+                <div class="grade">
+                    <div class="grade-top font24">工作能力</div>
+                    <div class="grade-bottom">
+                        <span class="font24">{$Report.WorkAbilityText}</span><span><b
+                            class="big">{$Report.WorkAbility}</b><b class="small">分</b></span>
+                    </div>
+                </div>
+                <div class="grade">
+                    <div class="grade-top font24">工作态度</div>
+                    <div class="grade-bottom">
+                        <span class="font24">{$Report.WorkAttitudeText}</span><span><b
+                            class="big">{$Report.WorkAttitude}</b><b class="small">分</b></span>
+                    </div>
+                </div>
+                <div class="grade pad-r">
+                    <div class="grade-top font24">工作业绩</div>
+                    <div class="grade-bottom">
+                        <span class="font24">{$Report.WorkPerformanceText}</span><span><b
+                            class="big">{$Report.WorkPerformance}</b><b class="small">分</b></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 工作交接情况 -->
+        <div class="job-on pad-t border-b">
+            <p class="job-tit font24">工作交接情况</p>
+            <div class="score  overflow pad-b27">
+                <div class="grade">
+                    <div class="grade-top font24">及时性</div>
+                    <div class="grade-bottom">
+                        <span class="font24">{$Report.HandoverTimelyText}
+                        </span><span><b class="big">{$Report.HandoverTimely}</b><b
+                            class="small">分</b></span>
+                    </div>
+                </div>
+                <div class="grade">
+                    <div class="grade-top font24">全面性</div>
+                    <div class="grade-bottom">
+                        <span class="font24">{$Report.HandoverOverallText}</span><span><b class="big">{$Report.HandoverOverall}</b><b
+                            class="small">分</b></span>
+                    </div>
+                </div>
+                <div class="grade pad-r">
+                    <div class="grade-top font24">后续支持</div>
+                    <div class="grade-bottom">
+                        <span class="font24">{$Report.HandoverSupportText}</span><span><b class="big">{$Report.HandoverSupport}</b><b
+                            class="small">分</b></span>
+                    </div>
+                </div>
+            </div>
+            <p class="will">
+                <b>返聘意愿：</b>{$Report.WantRecall}
+            </p>
+        </div>
+        <!-- 离任评语 -->
+        <div class="remark">
+            <p class="remark-tit font24">离任评语</p>
+            <div class="remark-con font24">{php}echo nl2br($Report['WorkComment']){/php}</div>
+            {if condition="$Report.WorkCommentImages neq ''  "}
+            <div class="remark-img overflow demo-gallery" data-pswp-uid="1">
+             
+               {foreach $Report.WorkCommentImages as $images}
+                {php}$imageshttp=get_headers($images,1);{/php}
+                {if preg_match('/200/',$imageshttp[0]) }
+                {php}$wight=getimagesize($images);{/php}
+
+                 	<figure class="img">
+						<div><a href="{$images}" data-size="{$wight['0']}x{$wight['1']}" data-med="{$images}" data-med-size="1024x1024"><img src="{$images}"></a></div>
+					</figure>
+
+                    <!-- <a href="{$images}" data-size="{$wight['0']}x{$wight['1']}" data-med="{$images}" data-med-size="1024x1024" class="img">
+                        <img src="{$images}">
+                    </a> -->
+                 {/if} 
+                {/foreach}
+                
+            </div>
+            {/if}
+            <!-- 收听语音 -->
+            {if condition="$Report.WorkCommentVoice neq ''  "}
+            <div class="audio">
+                <div class="audio-inner">
+                    <div class="circle fl"></div>
+                    <p class="font24 fl audio-txt">点击收听评价{$Report.WorkCommentVoiceSecond}"</p>
+                </div>
+                <audio id="audioa{$Report.CommentId}" src="{$Report.WorkCommentVoice}"></audio>
+            </div>
+            {/if}
+            <ul class="remark-list detail-list">
+                <li>
+                    <span>评价时间：</span><span>{$Report.CreatedTime|substr=0,10}</span>
+                </li>
+                <li>
+                    <span>评价提交人：</span><span>{$Report.PresenterId}</span>
+                </li>
+                <li class="pad-b">
+                    <span>评价审核人：</span><span>{$Report.AuditPersons}</span>
+                </li>
+            </ul>
+        </div>
+ 
+    </section>
+    {/if}
+    {if condition="$StageYear neq ''  "}
+	<!-- 阶段工作评价 -->
+	<section class="evaluate"> 
+		<p class="title font30">阶段工作评价</p> 
+		 {foreach name="StageYear" item="vo" key="k"   }
+		<div class="years">
+			<h3 class="years-num font30 border-b">{$k}度</h3> 
+			 {foreach name="vo.Commentlist" item="comment" key="keys"}
+		 
+			<div class="job-on">
+				<p class="job-tit font24">{$comment.StageSection}工作评价</p>
+				<div class="score overflow">
+					<div class="grade">
+						<div class="grade-top font24">工作能力</div>
+						<div class="grade-bottom">
+							<span class="font24">{$comment.WorkAbilityText}</span><span><b class="big">{$comment.WorkAbility}</b><b class="small">分</b></span>
+						</div>
+					</div>
+					<div class="grade">
+						<div class="grade-top font24">工作态度</div>
+						<div class="grade-bottom">
+							<span class="font24">{$comment.WorkAttitudeText}</span><span><b class="big">{$comment.WorkAttitude}</b><b class="small">分</b></span>
+						</div>
+					</div>
+					<div class="grade pad-r">
+						<div class="grade-top font24">工作业绩</div>
+						<div class="grade-bottom">
+							<span class="font24">{$comment.WorkPerformanceText}</span><span><b class="big">{$comment.WorkPerformance}</b><b class="small">分</b></span>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="remark border-b">
+			<p class="remark-tit font24">工作评语</p>
+			<div class="remark-con font24"> 
+				{php}echo nl2br($comment['WorkComment']){/php}
+			</div>
+			{if condition="$comment.WorkCommentImages neq ''  "}
+			<div class="remark-img overflow demo-gallery" data-pswp-uid="1">
+			  
+				{foreach $comment.WorkCommentImages as $images}
+                {php}$imageshttp=get_headers($images,1);{/php}
+                {if preg_match('/200/',$imageshttp[0]) }
+                {php}$wight=getimagesize($images);{/php}
+                <figure class="img">
+					<div><a href="{$images}" data-size="{$wight['0']}x{$wight['1']}" data-med="{$images}" data-med-size="1024x1024"><img src="{$images}"></a></div>
+				</figure>
+                   <!--  <a href="{$images}" data-size="{$wight['0']}x{$wight['1']}" data-med="{$images}" data-med-size="1024x1024" class="img">
+                        <img src="{$images}">
+                    </a> -->
+                 {/if} 
+                {/foreach} 
+			</div>
+            {/if}
+             {if condition="$comment.WorkCommentVoice neq ''  "}
+			<!-- 收听语音 -->
+			<div class="audio">
+				<div class="audio-inner">
+					<div class="circle fl"></div>
+					<p class="font24 fl audio-txt">点击收听评价{$comment.WorkCommentVoiceSecond}"</p>
+				</div>
+				<audio id="audioa{$keys}{$k|substr=0,4}{$keys}" src="{$comment.WorkCommentVoice}"></audio>
+			</div>
+			{/if}
+			<ul class="remark-list detail-list">
+				<li>
+					<span>评价时间：</span><span>{$comment.CreatedTime|substr=0,10}</span>
+				</li>
+				<li>
+					<span>评价提交人：</span><span>{$comment.PresenterId}</span>
+				</li>
+				<li class="pad-b">
+					<span>评价审核人：</span><span>{$comment.AuditPersons}</span>
+				</li>
+			</ul>
+		</div>
+ {/foreach}
+{/foreach}
+	</section>
+	{/if}
+	<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="pswp__bg" style=""></div>
+		<div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+		<div class="pswp__item">
+			<div class="pswp__zoom-wrap">
+				<img class="pswp__img" src="">
+			</div>
+		</div>
+		<div class="pswp__item">
+			<div class="pswp__zoom-wrap">
+				<img class="pswp__img" src=""></div>
+			</div>
+		<div class="pswp__item">
+			<div class="pswp__zoom-wrap">
+				<img class="pswp__img" src=""></div>
+			</div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+				<div class="pswp__counter"></div>
+				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+				<button class="pswp__button pswp__button--fs pswp__element--disabled" title="Toggle fullscreen"></button>
+				<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+				<div class="pswp__preloader">
+					<div class="pswp__preloader__icn">
+					  <div class="pswp__preloader__cut">
+					    <div class="pswp__preloader__donut"></div>
+					  </div>
+					</div>
+				</div>
+            </div>
+          </div>
+        </div>
+    </div> 
+	<script src="{$Think.config.resources_site_root}/mobile/js/jquery-2.0.3.min.js"></script>
+	<script src="{$Think.config.resources_site_root}/mobile/js/boss.js"></script>
+	<script src="{$Think.config.resources_site_root}/mobile/js/AppBridge.js"></script>
+</body>
+</html>

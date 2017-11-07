@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>找回密码</title>
+          {include file="-public/resources_fullscreen_header" /}     
+    </head>
+    <body>
+        <div id="com-body"> 
+            <div class="find-mid">
+                <a href="../index/index.html"><img class="com-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" ></a>
+                <div class="find-form"></div>
+                <form id="commentForm">
+                    <p class="com-title">密码找回</p>
+                    <div class="com-left">
+                       <div class="com-put">
+                           <i class="iconfont img">&#xe63f;</i>
+                           <input type="text" value="" placeholder="请输入手机号码" name="MobilePhone" id="phone" required>
+                        </div>
+                        <div class="com-put">
+                           <i class="iconfont img img1">&#xe63d;</i>
+                           <input type="text" value="" id="yzm" placeholder="验证码" name="ValidationCode">
+                           <button type="button" class="com-btn" type="button">获取验证码</button>
+                        </div>
+                        <div class="com-put">
+                           <i class="iconfont img">&#xe63e;</i>
+                           <input name="Password" type="password" id="password" placeholder="请输入由字母和数字组合的6位以上密码" required>
+                       </div>
+                        <button class="com-btn1" id="submit">密码找回</button>
+                    </div>
+                </form>
+            </div>
+            <div class="com-footer"></div>
+        </div>
+        <div class="phone"></div>
+    </body>
+      {include file="-public/resources_fullscreen_footer" /} 
+      <script type="text/javascript">
+      $(function(){
+        function getUrlParam(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null) return unescape(r[2]);return null;
+        }
+        var phone=$('#phone').val(phone);
+
+        /*获取验证码*/
+        function SMS(obj,timer){
+            this.enable=true;
+            this.obj=$(obj);
+            this.timer=parseInt(timer)||10;
+        }
+        SMS.prototype.init = function() {
+            var that=this;
+            that.obj.bind('click',function(){
+            var phone=$('#phone').val();
+            var password=$('#password').val();
+            var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+            if(phone==""){
+                return false;
+            }else if(phone.length !=11){
+                return false;
+            }else if(!pattern.test(phone)){
+                return false;
+            }else{
+                 var InviteCode=getUrlParam('InviteCode');
+                var checkUrl=AppEnvironment.apiRoot+'/appbase/Account/existsMobilePhone?phone='+phone;
+                $.get(checkUrl,function(data) {
+                    if (data == false) {
+                        $('.phone').show().text('手机号未注册，请注册');
+                        setTimeout(function () {
+                            $('.phone').hide();
+                            window.location.href = "register?InviteCode={$Think.get.InviteCode}";
+                        }, 2000);
+                        return false;
+                    } else {
+
+
+
+                    //发送验证码
+                     var yzmUrl=AppEnvironment.apiRoot+"/appbase/Account/sendValidationCode?phone="+phone;
+                     $.ajax({
+                        type:'post',
+                        url:yzmUrl,
+                        data:phone,
+                        dataType:'json',
+                        success:function(data){
+                            if(data.responseText='true'){
+                                that.enable=false;
+                                that.obj.addClass('gray-bg').text('已发送'+that.timer+"s");
+                                var _time,_i=that.timer;
+                                var _fun=function(){
+                                    if(_i>1){
+                                        _i--;
+                                        that.obj.text('已发送'+_i+"s");
+                                        _time=setTimeout(_fun,1000);
+                                    }else{
+                                        clearTimeout(_time);
+                                        that.enable=true;
+                                        that.obj.text("重新获取").removeClass('gray-bg');
+                                    }
+                                }
+                                _time=setTimeout(_fun,1000);
+                            }else{
+                                that.obj.text("重新获取").removeClass('gray-bg');
+                            }
+                        },
+                        error:function(data){
+                            console.log(data.responseText);
+                        }
+                     })
+                    }
+                })
+
+                }
+            })
+        }
+        var sms=new SMS(".com-btn",120);
+        sms.init();
+
+        jQuery.validator.addMethod("isMobile", function (value, element, param) {
+            var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+            if (pattern.test(value) && value.length == 11) {
+                $("#phone-msg").html("");
+                return true;
+            } else {
+                return false;
+            }
+        }, "请输入正确的手机号") ;
+         $("#commentForm").validate({
+            onsubmit:true,// 是否在提交是验证  
+            onfocusout:false,// 是否在获取焦点时验证  
+            onkeyup :false,// 是否在敲击键盘时验证  
+            rules: {
+                MobilePhone:{
+                    required: true,
+                    isMobile: true
+                },
+                Password: {
+                    required: true,
+                    rangelength: [6, 18]
+                }
+            },
+            messages: {
+                MobilePhone : {
+                   required : "<i class='iconfont'>&#xe640;</i>请输入手机号码",
+                   isMobile : "<i class='iconfont'>&#xe640;</i>手机格式不正确"
+                },
+                Password: {
+                   required: "<i class='iconfont'>&#xe640;</i>请输入密码",
+                   rangelength: "<i class='iconfont'>&#xe640;</i>请输入6-18位密码"
+                }
+        },
+        submitHandler:function(form){
+            var phone=$('#phone').val();
+            var yzmVal=$('#yzm').val();
+            if(yzmVal==''){
+                $('.phone').show().text('验证码不能为空');
+                     setTimeout(function(){
+                    $('.phone').hide();
+                },1000);    
+            }else{
+                var apiurl=AppEnvironment.apiRoot+'/appbase/Account/checkValidationCode?phone='+phone+'&code='+yzmVal;
+                  $.get(apiurl,function(data){
+                    if(data!==true){
+                         $('.phone').show().text('验证码不正确');
+                             setTimeout(function(){
+                            $('.phone').hide();
+                        },1000);
+                    }else{
+                        var InviteCode=getUrlParam('InviterCode');
+                        if(InviteCode==null){
+                            InviteCode='';
+                        }
+                        var registerUrl=AppEnvironment.apiRoot+'/appbase/Account/resetPassword';
+                        $('#InviteCode').val(InviteCode);
+                        console.log($('#commentForm').serialize())
+
+                        $.ajax({
+                            type:'post',
+                            url:registerUrl,
+                            data:$('#commentForm').serialize(),
+                            beforeSend:function(){
+		                    	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+		                    },
+                            success:function(data){
+                                $('.phone').show().text('修改完成!');
+                                setTimeout(function(){
+                                    $('.phone').hide();
+                                     $("#submit").html("密码找回").removeAttr("disabled");
+                                    window.location.href="login?InviteCode="+InviteCode;
+                                },2000);
+                            },
+                            error:function(data){
+                                console.log(data)
+                            }
+                        })
+                    }
+                    })
+
+            }
+            return false;
+        },
+        invalidHandler:function(form, validator){
+            // alert('bbb')
+        }
+    })
+      })
+        
+
+      </script>
+</html>

@@ -1,0 +1,75 @@
+{extend name="-public:layout_console-enterprise" /}
+{block name="page-title"}{if($Think.get.CommentType==0)}阶段评价{else/}离任报告{/if}列表{/block}
+{block name="page-content"}
+		  <!--右侧内容部分-->
+		  <div class="com1-bg">
+		       <div class="em-search">
+                   <form action="" method="get">
+					   <input name="CompanyId" type="hidden" value="{$CompanyId}">
+                       <input type="hidden" name="CommentType" value="{$Think.get.CommentType}"/>
+		  	      <div class="search">
+		  		      <i class="iconfont">&#xe63b;</i>
+		  		      <input type="text"  value="{$Think.get.RealName}" name="RealName" placeholder="请输入员工姓名">
+		  	      </div>
+		  	      <div class="search1">
+                      <select name="DeptId">
+                          <option value="">所有部门</option>
+                          {volist name="Departments" id="vo"}
+                          <option value="{$vo.DeptId}" {if $Think.get.DeptId == $vo.DeptId } selected {/if}> {$vo.DeptName}</option>
+                          {/volist}
+                      </select>
+		  	      </div>
+		  	      <button>搜索评价</button>
+                   </form>
+		       </div>
+		      <!--已生效评价-->
+			  {if empty($list)}
+			  <div class="ev-mid">
+				  <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+                  {if($Think.get.CommentType==0)}
+                   <p class="ev-s">您公司目前还没有对任何员工进行评价行动起来，先评价几个员工吧！</p>
+				  <button><a href="/ArchiveComment/commentcreate?CompanyId={$CompanyId}&CommentType={$Think.get.CommentType}">创建新评价</a></button>
+                  {else/}
+                   <p>员工离任后，该人才的阶段评价每被其他企业查看购买，您公司即获得10元收益。</p>
+                  <button><a href="/ArchiveComment/commentcreate?CompanyId={$CompanyId}&CommentType={$Think.get.CommentType}">创建新离任报告</a></button>
+                  {/if}
+			  </div>
+			  {else}
+		      <div class="em-info em1-info">
+		  	      <p class="com-tt">{if $Think.get.CommentType==0}已生效评价{else}已生效离任报告{/if}</p>
+                  {volist name="list" id="vo"}
+		  	      <div class="em1-info1">
+		  		       <img src="{$vo.EmployeArchive['Picture']}">
+		  		       <p class="nname">{$vo.EmployeArchive['RealName']}</p>
+		  		       <p class="work">{$vo.PostTitle}</p>
+		  		       <p class="time">
+                           {if $Think.get.CommentType==0}
+                           {:toLocalDateTime($vo.EmployeArchive['EntryTime'],'Y年m月d日')}入职
+                           {else}
+                           {:toLocalDateTime($vo.EmployeArchive['EntryTime'],'Y年m月d日')}入职  |   {:toLocalDateTime($vo.EmployeArchive['DimissionTime'],'Y年m月d日')}离任
+                           {/if}
+                       </p>
+		  		       <span>
+						   {if $Think.get.CommentType==0}
+						   <a href="comment?oid={$vo.CommentId}&CompanyId={$CompanyId}&CommentType=0" class="blue">{$vo.StageYear}{$vo.StageSection}评价</a>
+						   {else}
+						   <a href="comment?oid={$vo.CommentId}&CompanyId={$CompanyId}&CommentType=1" class="blue">离任报告</a>
+						   {/if}
+					   </span>
+		  	      </div>
+                  {/volist}
+                  <div class="em-page">
+                      {$page}
+                  </div>
+		      </div>
+			  {/if}
+	       </div>
+{/block}
+
+{block name="resources-footer"}
+<script>
+    jQuery(function($) {
+
+    });
+</script>
+{/block}

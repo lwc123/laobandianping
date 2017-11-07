@@ -1,0 +1,181 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}背景调查{/block}
+
+{block name="page-content"}
+
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+            <a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<!--右侧内容开始-->
+<div class="com1-bg">
+	<div class="backgrounddetail">
+		<h2>支付</h2>
+		<!--其他支付方式-->
+		<div id="choice-pay-inner">
+			<div class="pay-inner">
+				<h2>选择支付方式</h2>
+				<div class="choice-line wchat border">
+					<div class="">
+						<input id="checked2" checked type="radio" value="Wechat" name="pay">
+						<label for="checked2">微信支付</label>
+					</div>
+				</div>
+				<div class="choice-line alipay">
+					<div class="">
+						<input  id="checked3" type="radio" value="Alipay" name="pay">
+						<label  for="checked3">支付宝支付</label>
+					</div>
+				</div>
+				<!--<div class="choice-line coffers">
+					<div class="">
+						<input  id="checked4" type="radio" value="wang" name="pay">
+						<label  for="checked4">公司转账</label>
+					</div>
+				</div>-->
+				<div class="money-detail">
+				    <p><i class='iconfont'>&#xe640;</i>  企业金库余额不足，请购买金币进行支付</p>
+				    <p>&nbsp;&nbsp;<b>1人民币=1金币</b></p>
+					<p>购买金币数量：{$Payment->TotalFee}（个）</p>
+					<p>支付说明：{$Payment->CommoditySubject}</p>
+				</div>
+			</div>
+			<p class="total-mon">应支付：<b>{$Payment->TotalFee}金币</b> </p>
+			<button class="bac-pay" id="pay">支付</button>
+		</div>
+		<!--金币支付-->
+		<div id="gold-pay">
+			<div class="pay-inner">
+				<h2>金币支付</h2>
+				<div class="choice-line coffers">
+					<div class="">
+						<input  id="checked4" type="radio" value="wang" name="pay">
+						<label>公司金库</label><br>
+						<span>余额：{if empty($CompanySummary.Wallet.AvailableBalance)}0.00{else}{$CompanySummary.Wallet.AvailableBalance}{/if}金币</span>
+					</div>
+				</div>
+				<div class="money-detail">
+					<p>消耗：<span>{$Payment->TotalFee}</span>（金币）</p>
+					<p>支付说明：{$Payment->CommoditySubject}</p>
+				</div>
+			</div>
+			<p class="total-mon">应扣除：<b>{$Payment->TotalFee}金币</b> </p>
+			<button class="bac-pay" id="pay1">确定扣除金币</button>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script>  
+jQuery(function($) {
+	var CompanyId=getUrlParam('CompanyId');
+	/*$('#checked4').click(function(){
+		window.location.href="/BackgroundSurvey/TransferAccounts.html?CompanyId="+CompanyId;
+	})*/
+
+
+		function getUrlParam(name) {
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	        var r = window.location.search.substr(1).match(reg);
+	        if (r != null) return decodeURI(r[2]);return null;
+	    }
+
+	    var payment = {:json_encode($Payment)};
+        //是否可用金币支付
+        var gold=parseFloat($(".com1-money .com1-m1 p:last-child").html());
+        var  overplus=parseFloat($("#gold-pay .money-detail span").html());
+
+        if(gold>=overplus){
+            payment.PayWay = 'Wallet';
+            $("#choice-pay-inner").hide();
+        }else{
+            var payWay=$('input[type=radio]:checked').val();
+            payment.PayWay=payWay;
+            $("#gold-pay").hide();
+        }
+        $('#pay1').bind('click',function() {
+            $("#alert>.alertT>span").text("温馨提示");
+            $(".alertB").html('<div class="bcontent">确认使用企业金库支付？</div>');
+            $(".btnwrap").html('<a  href="#" class="button db_btn_style "  id="money">确认</a><a  href="#" class="button db_btn_style alertClose">关闭</a>');
+            alertwin();
+        })
+       //微信支付宝支付
+          $(document).on("click","#pay,#money",function(){
+//        $('#pay,#money').bind('click',function(){
+            var apiUrl=AppEnvironment.apiRoot+'/appbase/Payment/createTrade';
+	        $.ajax({
+	            type:'post',
+	            url:apiUrl,
+	            data:payment,
+	            dataType:"json",
+	            success:function(data){
+		            var TradeCode=data.TradeCode;
+		            var CommoditySubject=payment.CommoditySubject;
+		            var TotalFee=payment.TotalFee;
+		            var SignedParams=data.SignedParams;
+		            var payWay=payment.PayWay;
+		            var CompanyId=getUrlParam('CompanyId');
+                    if( payment.PayWay=='Wallet'){
+                        $('#zhezhao').hide();
+                      var  WalletUrl=AppEnvironment.apiRoot+'/appbase/Wallet/Pay?ownerId='+CompanyId+'&tradeCode='+TradeCode;
+                        $.post(WalletUrl,function (data) {
+                          if(data.Success==true){
+                              var  queryTradeUrl=AppEnvironment.apiRoot+'/appbase/payment/PaymentCompleted';
+                              data.PayWay="Wallet";
+
+                              $.ajax({
+                                  type:'post',
+                                  url:queryTradeUrl,
+                                  data:data,
+                                  dataType:"json",
+                                  success:function(message){
+                                      var targetBizTradeCode=message.TargetBizTradeCode;
+                                  //Url="/BackgroundSurvey/BoughtDetail?RecordId="+targetBizTradeCode+"&CompanyId="+CompanyId;
+                                     // returnUrl="PaySuccess?ReturnUrl={:urlencode("+window.location.pathname+")}&BizSource="+payment.BizSource+"&BizCode="+targetBizTradeCode;
+                                      var CompanyId=getUrlParam('CompanyId')
+                                    //  if(payment.BizSource == AppEnvironment.bizSources.BuyBackgroundSurvey){
+                                          returnUrl = "/BackgroundSurvey/BoughtDetail?RecordId="+targetBizTradeCode+"&CompanyId="+CompanyId;
+                                    //  }
+                                     window.location.href=returnUrl;
+                                  }})
+
+                          }
+
+                        })
+                    }else{
+                        window.location.href='/Payment/QRCodePay?TradeCode='+TradeCode+"&QRCode="+encodeURIComponent(data.SignedParams)+"&CompanyId="+CompanyId;
+                    }
+
+	            },
+	            error:function(data){
+	                console.log('支付失败！')
+	            }
+	         })
+        })
+	        
+    });
+</script>
+{/block} 
+
+	
+ 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="shape">  
+        <enum name="rectangle" value="0" />
+        <enum name="round" value="1" />  
+        <enum name="circle" value="2" />        
+    </attr>	 
+
+    <declare-styleable name="MagicImageView">
+        <attr name="shape" />
+        <attr name="borderColor" format="color" />
+		<attr name="borderWidth" format="dimension" />
+		<attr name="BorderAlpha" format="float" />
+        <attr name="cornerRadius" format="dimension" />   
+        <attr name="url" format="string" />
+    </declare-styleable>  
+
+</resources>

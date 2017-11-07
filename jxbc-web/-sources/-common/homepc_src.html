@@ -1,0 +1,44 @@
+<script type="text/javascript" src="http://bc-res.jx.io:8000/pc/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://bc-res.jx.io:8000/pc/js/swiper-3.4.1.jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var swiper = new Swiper('.swiper-container', {
+            autoplay : 3000,
+            speed:1000,
+            loop : true,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplayDisableOnInteraction : false
+        });
+        setTimeout(function () {
+            var $swiperTop = $('.swiper-container').height();
+            var $contact = $(".contact");
+            $contact.css("top", $swiperTop - 50);
+            $contact.css("display", "block");
+
+            $(window).resize(function () {
+                var $swiperTop = $('.swiper-container').height();
+                var $contact = $(".contact");
+                $contact.css("top",$swiperTop-50);
+            });
+        },50)
+    });
+
+</script>
+<script type="text/javascript" src="http://bc-res.jx.io:8000/pc/js/index1200.js"></script>
+<script src="http://bc-res.jx.io:8000/pc/js/scroll.js"></script>
+<script>
+    $("#myCarousel").carousel('cycle');
+</script>
+<script src="http://bc-res.jx.io:8000/pc/js/jquery.carousel.js"></script>
+<script>
+    Caroursel.init($('.caroursel'))
+</script>
+<script src="http://bc-res.jx.io:8000/pc/js/wow.min.js"></script>
+<script>
+    if(!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+        new WOW().init();
+    };
+</script>
+<script src="http://bc-res.jx.io:8000/pc/js/MeiqiaEvent.js?ver=17.0.1" type="text/javascript" charset="utf-8"></script>

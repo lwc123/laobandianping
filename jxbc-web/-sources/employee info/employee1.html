@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	    <!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+	<body>
+	 <!--左侧部分-->
+	    <div class="com1-left">
+		   <!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+		</div>
+		<!--#include virtual="/-sources/-common/header.html"-->
+		<!--右侧内容部分开始-->
+		<div class="com1-bg">
+		  <form class="em-info">
+		  	  <p class="com-tt">员工档案资料</p>
+		  	    <div class="em-info1">
+		  	      <div class="info-pic">
+		  	          <p class="info-p">员工照片</p>
+		  	          <p class="em-rec" style="border-radius: 15px; overflow: hidden">
+						  <i class="iconfont">&#xe64a;</i>
+						  <input name="file0" id="file0" style="width: 77px;height: 82px;position: relative;bottom: 72px;opacity: 0;z-index: 666;" type="file"/>
+						  <img style="width:77px; height: 82px" src="" id="img0" >
+					  </p>
+		  	          <p class="em-btn">选择照片</p><br>
+		  	          <p class="em-p">支持JPG，PNG格式，不超过2M</p>
+		  	      </div>
+		  	      <div class="em-state">
+		  	          <p><span class="em-red">*</span>目前状态</p>
+		  	          <div class="radio">
+		  	              <input id="checked1" type="radio" value="stay" name="state" required>
+		  	              <label for="checked1">在职</label>
+		  	              <input id="checked" checked type="radio" value="leave" name="state">
+		  	              <label for="checked">离任</label>
+		  	          </div>
+		  	      </div>
+		  	      <div class="em-name">
+		  		       <span><span class="em-red">*</span>员工姓名</span>
+		  		       <input type="text" name="name" required>
+		  	      </div>
+		  	      <div class="em-name">
+		  		       <span><span class="em-red">*</span>身份证号</span>
+		  		       <input type="text" name="card" required>
+		          </div>
+		  	      <div class="em-name">
+		  		       <span><span class="em-red">*</span>手机号码</span>
+		  		       <input type="text" name="phone" required>
+		  	       </div>
+		   	       <div class="em-name">
+		  		       <span><span class="em-red">*</span>入职日期</span>
+		  		       <input type="text" class="selectDate" name="startdate" required>
+		  	       </div>
+		  	       <div class="em-name">
+		  		       <span><span class="em-red">*</span>离任日期</span>
+		  		       <input type="text"  class="selectDate" name="stopdate" required>
+		     	   </div>
+		  	       <div class="em-name">
+		  		       <span><span class="em-red">*</span>毕业学校</span>
+		  		       <input type="text" name="school" required>
+		  	       </div>
+		  	       <div class="em-name">
+		  		       <span class="name-title"><span class="em-red">*</span>学历</span>
+		  		       <select name="degree" required>
+		  		       <option value="1">本科</option>
+		  		       </select>
+		  	       </div>
+		  	   </div>
+		  	   <!--员工职务信息部分-->
+		  	   <div class="employee-info">
+		  	   	  <div>
+		  	          <p class="com-tt new-title">员工职务信息<span class="count gold">1</span></p>
+		  	          <div class="em-info1 em-details">
+		  	              <div class="em-name name-first">
+		  		             <span><span class="em-red">*</span>职务名称</span>
+		  		             <input type="text" name="position" required>
+		  	               </div>
+		  	               <div class="em-name">
+		  		              <span><span class="em-red">*</span>开始时间</span>
+		  		              <input type="text"  class="selectDate" name="starttime" required>
+		                  </div>
+		  	              <div class="em-name">
+		  		              <span><span class="em-red">*</span>结束时间</span>
+		  		              <input type="text"  class="selectDate" name="stoptime" placeholder="至今" required>
+		  	              </div>
+		  	              <div class="em-name">
+		  		              <span class="salary">薪资金额</span>
+		  		              <input type="text">
+		  	              </div>
+		  	              <div class="em-name">
+		  		              <span><span class="em-red">*</span>所在部门</span>
+		  		              <input type="text" class="dep-Id" name="dep" required>
+		  	              </div>  
+		  	           </div>
+		  	           <p class="em-add"><i class="iconfont">&#xe64a;</i>添加职务信息</p>
+		  	        </div>
+		  	    </div>
+		  	  <button>保存</button>
+		  	</form>
+		  	<div class="txt-department">
+		  		<div class="dep-bg"></div>
+		  		<div class="dep-add">
+		  		    <p class="person-tt">选择部门<i class="iconfont close1">&#xe600;</i></p>
+		  		    <div class="new-dep">
+		  		        <p>添加部门</p>
+		  		        <input type="text" placeholder="已有部门没有您需要的可新加，最多10个字">
+		  		        <p class="red"><i class="iconfont">&#xe616;</i>请添加部门</p>
+		  		    </div>
+		  		    <button type="button">添加</button>
+		  		    <div class="dep-con">
+		  		        <p>选择已有部门</p>
+		  		        <span>IT互联网</span>
+		  		        <span>生活服务</span>
+		  		        <span>旅游</span>
+		  		        <span>金融</span>
+		  		        <span>咨询/翻译/法律</span>
+		  		        <span>媒体</span>
+		  		        <span>IT软件</span>
+		  		        <span>房地产/建筑</span>
+		  		    </div>
+		  		</div>
+		  	</div>
+	    </div>	
+	</body>
+	<!--#include virtual="/-sources/-common/resources_footer.html"-->
+	<script type="text/javascript">
+        $("#file0").change(function(){
+            var objUrl = getObjectURL(this.files[0]) ;
+            console.log("objUrl = "+objUrl) ;
+            if (objUrl) {
+                $("#img0").attr("src", objUrl) ;
+            }
+        }) ;
+        //建立一個可存取到該file的url
+        function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { // basic
+                url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file) ;
+            }
+            return url ;
+        }
+	</script>
+</html>

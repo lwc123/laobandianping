@@ -1,0 +1,146 @@
+﻿@using JXBC.WebCore;
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="@(AppEnvironment.ImageSiteRoot)/juxianling.ico?v=0">
+    @Html.Partial("_common_resources_header")
+    @RenderSection("_resources_header", false)
+</head>
+<body @if (false == string.IsNullOrEmpty(ViewBag.BodyId)) { @Html.Raw("id=\"" + @ViewBag.BodyId + "\"") ; }>
+    <!-- 头部 20160615 start-->
+    <header class="container-fluid cmn-head">
+        <div class="container">
+            <h1 class="cmn-logo pull-left"><a href="/" title="">举贤令——猎头为您找工作</a></h1>
+            <nav class="cmn-nav pull-right">
+                <button type="button" class="navbar-toggle cmn-nav-btn" data-toggle="collapse" data-target="#cmn-nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse cmn-nav-collapse" id="cmn-nav-collapse">
+                    <ul class="clearfix">
+                        <li class="cmn-naver @if(Request.Path == "/") { @Html.Raw("on");}"><a href="/" title="">首页</a></li>
+                        <li class="cmn-naver @if (Request.Path.ToLower().Contains("/home/product")) { @Html.Raw("on");}"><a href="/home/product" title="">产品介绍</a></li>
+                        <li class="cmn-naver @if (Request.Path.ToLower().Contains("/home/about")) { @Html.Raw("on");}"><a href="/home/about" title="">关于我们</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- 头部 20160615 end-->
+
+    @RenderBody()
+
+    <!-- 底部 20160509 start-->
+    <div class="container-fluid cmn-comm">
+        <div class="container">
+            <div class="row">
+                <div class="cmn-comm-qr text-center col-md-2 visible-lg">
+                    <div class="qr"><img src="@(AppEnvironment.ResourcesSiteRoot)/jxl/common/img/cmn/qr.png" alt="" class="img-responsive"></div>
+                    <p class="cue">扫码关注微信公众平台</p>
+                </div>
+                <div class="cmn-comm-slogan col-md-4 text-center clearfix hidden-xs">
+                    <div class="row">
+                        <dl class="cmn-comm-sloganer col-xs-4">
+                            <dt>快</dt>
+                            <dd class="visible-lg">
+                                <svg viewBox="0 0 100 100">
+                                    <path d="M 20,0 a 60,60 0 1,1 -60,30 z" id="circle1" />
+                                    <text>
+                                        <textPath xlink:href="#circle1">
+                                            24小时极速响应
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </dd>
+                        </dl>
+                        <dl class="cmn-comm-sloganer col-xs-4">
+                            <dt>省</dt>
+                            <dd class="visible-lg">
+                                <svg viewBox="0 0 100 100">
+                                    <path d="M 15,0 a 60,60 0 1,1 -50,25 z" id="circle2" />
+                                    <text>
+                                        <textPath xlink:href="#circle2">
+                                            节省50%招聘成本
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </dd>
+                        </dl>
+                        <dl class="cmn-comm-sloganer  col-xs-4">
+                            <dt>准</dt>
+                            <dd class="visible-lg">
+                                <svg viewBox="0 0 100 100">
+                                    <path d="M 25,0 a 50,50 0 1,1 -50,50 z" id="circle3" />
+                                    <text>
+                                        <textPath xlink:href="#circle3">
+                                            人才数据精准匹配
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="cmn-comm-nav col-md-offset-1 col-md-5 hidden-xs">
+                    <div class="row">
+                        <dl class="cmn-comm-naver col-sm-4">
+                            <dt class="visible-lg">关于</dt>
+                            <dd>
+                                <a href="#" title="">关于举贤</a>
+                                <a href="#" title="">友情链接</a>
+                                <a href="#" title="">联系我们</a>
+                                <a href="#" title="">创业老板</a>
+                            </dd>
+                        </dl>
+                        <dl class="cmn-comm-naver col-sm-4">
+                            <dt class="visible-lg">链接</dt>
+                            <dd>
+                                <a href="#" title="">中国信用</a>
+                                <a href="#" title="">ICP 备案</a>
+                                <a href="#" title="">人力许可</a>
+                                <a href="#" title="">国家高新</a>
+                                <a href="#" title="">安全网站</a>
+                            </dd>
+                        </dl>
+                        <dl class="cmn-comm-naver col-sm-4">
+                            <dt class="visible-lg">联系</dt>
+                            <dd>
+                                <div>
+                                    <span>企业电话：</span>400-706-8376
+                                </div>
+                                <div>
+                                    <span>意见反馈：</span>juxianling@juxian.com
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 20160509 end-->
+    <!-- 页脚 20160509 start -->
+    <div class="cmn-footer copyright text-center">
+        ©2015举贤网科技（北京）股份有限公司
+        <span class="hidden-xs">
+            <a href="http://www.juxian.com">
+                Juxian.com
+            </a>
+            <span>京ICP备08001277号</span>
+            <span>人才服务许可证RC0901192</span>
+        </span>
+    </div>
+    <!-- 页脚 20160509 end -->
+
+    @Html.Partial("_common_resources_footer")
+    @RenderSection("_resources_footer", false)
+</body>
+</html>

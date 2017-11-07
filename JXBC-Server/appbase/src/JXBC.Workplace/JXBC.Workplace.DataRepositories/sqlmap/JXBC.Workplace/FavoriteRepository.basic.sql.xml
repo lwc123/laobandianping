@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="FavoriteRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into favorite (PassportId, BizType, BizId, CreatedTime, ModifiedTime)
+      values (@PassportId, @BizType, @BizId, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY; 
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update favorite set PassportId = @PassportId, BizType=@BizType, BizId=@BizId, ModifiedTime=@ModifiedTime where FavoriteId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from favorite where FavoriteId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from favorite where FavoriteId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from favorite order by FavoriteId desc
+    </sqlWrap>
+
+    <sqlWrap sqlName="SelectByBizType" supportDBType="SqlServer, MySql">
+      select * from favorite where BizType=@BizType
+      order by FavoriteId desc
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByBizTypeWithPassport" supportDBType="SqlServer, MySql">
+      select * from favorite where PassportId=@PassportId and BizType=@BizType
+      order by FavoriteId desc
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByPassportWithBizId" supportDBType="SqlServer, MySql">
+      select * from favorite where PassportId=@PassportId and BizType=@BizType and BizId=@BizId
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByPassportWithBizIds" supportDBType="SqlServer, MySql">
+      select * from favorite where PassportId=@PassportId and BizType=@BizType and BizId in (@BizIds)
+    </sqlWrap>
+    
+  </module>
+</root>

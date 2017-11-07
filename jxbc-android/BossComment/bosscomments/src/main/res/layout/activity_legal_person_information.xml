@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head_title"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/apply_head"
+                layout="@layout/include_head_apply_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/head_head"
+                android:layout_marginTop="@dimen/DIMEN_20PX" />
+
+            <RelativeLayout
+                android:id="@+id/leader_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_88PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_32PX"
+                android:background="@drawable/edit_border_gray"
+                android:paddingLeft="@dimen/DIMEN_24PX">
+
+                <ImageView
+                    android:id="@+id/leader_name_image"
+                    android:layout_width="@dimen/DIMEN_34PX"
+                    android:layout_height="@dimen/DIMEN_34PX"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/legal_person" />
+
+                <com.juxian.bosscomments.widget.EditText
+                    android:id="@+id/input_leader_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/leader_name_image"
+                    android:background="@null"
+                    android:hint="@string/please_input_legal_person_name"
+                    android:paddingLeft="@dimen/DIMEN_32PX"
+                    android:singleLine="true"
+                    android:textColor="@color/main_text_color"
+                    android:textColorHint="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_88PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_32PX"
+                android:background="@drawable/edit_border_gray"
+                android:paddingLeft="@dimen/DIMEN_24PX">
+
+                <ImageView
+                    android:id="@+id/your_phone_image"
+                    android:layout_width="@dimen/DIMEN_34PX"
+                    android:layout_height="@dimen/DIMEN_34PX"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_in_account" />
+
+                <com.juxian.bosscomments.widget.EditText
+                    android:id="@+id/input_your_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/your_phone_image"
+                    android:background="@null"
+                    android:hint="@string/please_input_legal_person_phone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/DIMEN_32PX"
+                    android:singleLine="true"
+                    android:textColor="@color/main_text_color"
+                    android:textColorHint="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/DIMEN_88PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_32PX"
+                android:background="@drawable/edit_border_gray"
+                android:paddingLeft="@dimen/DIMEN_24PX">
+
+                <ImageView
+                    android:id="@+id/yanzhengma"
+                    android:layout_width="@dimen/DIMEN_34PX"
+                    android:layout_height="@dimen/DIMEN_34PX"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/reset_pwd_code" />
+
+                <com.juxian.bosscomments.widget.EditText
+                    android:id="@+id/input_validation_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/setting_password_timers"
+                    android:layout_toRightOf="@+id/yanzhengma"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="@string/please_input_validation_code"
+                    android:maxLength="6"
+                    android:numeric="integer"
+                    android:paddingLeft="@dimen/DIMEN_32PX"
+                    android:singleLine="true"
+                    android:textColor="@color/main_text_color"
+                    android:textColorHint="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/setting_password_timers"
+                    android:layout_width="@dimen/DIMEN_132PX"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/verification_code_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/DIMEN_10PX"
+                    android:text="@string/get_verification_code"
+                    android:textColor="@color/luxury_gold_color"
+                    android:textSize="@dimen/DIMEN_22PX" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_78PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:gravity="center_vertical"
+                android:text="@string/legal_person_identity_card_positive_photo"
+                android:textColor="@color/main_text_color"
+                android:visibility="gone"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/DIMEN_90PX">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/legal_person_picture"
+                        android:layout_width="@dimen/DIMEN_172PX"
+                        android:layout_height="@dimen/DIMEN_172PX"
+                        android:layout_marginRight="@dimen/DIMEN_20PX"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/company_business_license_picture"
+                            android:layout_width="@dimen/DIMEN_150PX"
+                            android:layout_height="@dimen/DIMEN_150PX"
+                            android:layout_alignParentBottom="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/default_pic"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/delete"
+                            android:layout_width="@dimen/DIMEN_44PX"
+                            android:layout_height="@dimen/DIMEN_44PX"
+                            android:layout_marginLeft="@dimen/DIMEN_128PX"
+                            android:src="@drawable/delete"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/legal_person_picture1"
+                        android:layout_width="@dimen/DIMEN_172PX"
+                        android:layout_height="@dimen/DIMEN_172PX"
+                        android:layout_marginRight="@dimen/DIMEN_20PX"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/company_business_license_picture1"
+                            android:layout_width="@dimen/DIMEN_150PX"
+                            android:layout_height="@dimen/DIMEN_150PX"
+                            android:layout_alignParentBottom="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/default_pic"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/delete1"
+                            android:layout_width="@dimen/DIMEN_44PX"
+                            android:layout_height="@dimen/DIMEN_44PX"
+                            android:layout_marginLeft="@dimen/DIMEN_128PX"
+                            android:src="@drawable/delete"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/add_positive_photo"
+                        android:layout_width="@dimen/DIMEN_150PX"
+                        android:layout_height="@dimen/DIMEN_150PX"
+                        android:layout_marginTop="@dimen/DIMEN_22PX"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/add_positive_photo" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <include
+                layout="@layout/include_button_text34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_50PX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_24PX"
+                android:text="@string/legal_person_information_hint"
+                android:textColor="@color/list_color"
+                android:textSize="@dimen/DIMEN_24PX" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_180PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_24PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:text="@string/company_promise_content"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/main_text_color" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,148 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<style>
+    p{margin:0;padding:0;}
+    .tab{margin:0;padding:0;list-style:none;width:1000px;overflow:hidden;}
+    .tab li{float:left;width:200px;height:50px;background:#ccc;color:#fff;border:1px solid red; text-align:center;line-height:30px;cursor:pointer; }
+    .tab li.cur{background: #00b3ee;}
+</style>
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+
+        <!--<div class="table-header">
+           基本信息
+        </div>-->
+        <ul class="tab">
+            <li class="cur">查看点评</li>
+            <li >点评回复</li>
+        </ul>
+
+        <br/>
+
+        <div class="tab_list">
+        <div class="on">
+
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>公司名称</th>
+                    <td>{$Detail.Company.CompanyName}</td>
+                </tr>
+
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>公司简称</th>
+                    <td>{$Detail.Company.CompanyAbbr}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>打分</th>
+                    <td>{$Detail.Scoring}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>推荐意愿</th>
+                    <td>
+                        {if($Detail.Recommend==1)}
+                        我愿意推荐朋友来这家公司
+                        {else/}
+                        我不愿意推荐朋友来这家公司
+                        {/if}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center' >公司前景看好</th>
+                    <td>
+                        {if($Detail.Optimistic==1)}
+                        我看好公司未来发展
+                        {else/}
+                        我不看好公司未来发展
+                        {/if}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center'  >CEO支持率</th>
+                    <td>
+                        {if($Detail.SupportCEO==1)}
+                        我支持CEO
+                        {else/}
+                        我不支持CEO
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center' >标签</th>
+                    <td>
+                        {$Detail.Labels}
+                    </td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center' >点评内容</th>
+                    <td>
+                        {$Detail.Content}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>点评人</th>
+                    <td>
+                        <a href="/user/Detail?uid={$Detail['PassportId']}" target="_blank">{$Detail.MobilePhone}</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>点评时间</th>
+                    <td>  {:toLocalDateTime($Detail.LastReplyTime,'Y-m-d H:i:s')}</td>
+                </tr>
+
+
+                <tr>
+            </table>
+        </div>
+
+        <div style="display: none">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+           <tr>
+               <th>回复人</th>
+               <th>回复时间</th>
+               <th>回复内容</th>
+           </tr>
+            {if(!empty($Detail.Replies))}
+            {foreach($Detail.Replies as $key=>$val)}
+
+            <tr>
+                <td>{$val.PassportId}</td>
+                <td>{$val.Content}</td>
+                <td>{:toLocalDateTime($val.LeadingTime,'Y-m-d H:i:s')}</td>
+            </tr>
+            {/foreach}
+            {else}
+            <tr><td colspan="3" class="center"><h2>暂无数据!</h2></td></tr>
+            {/if}
+        </table>
+        </div>
+       </div>
+    </div>
+</div>
+
+
+{/block}
+{block name="resources-footer"}
+<script>
+    $(document).ready(function(){
+        $(".tab li").click(function(){
+            $(".tab li").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
+            //alert($(this).index())
+            $(".tab_list").children('div').hide().eq($(this).index()).show();
+            //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on');
+
+        });
+    });
+</script>
+
+{/block}
+
+

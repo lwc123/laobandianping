@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_background">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_marginTop="@dimen/DIMEN_22PX"
+        android:background="@color/list_color" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_marginTop="@dimen/DIMEN_22PX"
+        android:background="#000000"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_44PX"
+        android:layout_marginRight="@dimen/DIMEN_44PX"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/base_information"
+                android:layout_width="@dimen/DIMEN_44PX"
+                android:layout_height="@dimen/DIMEN_44PX"
+                android:src="@drawable/shape_become_cc_red" />
+
+            <TextView
+                android:id="@+id/base_information_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:text="@string/include_head_base_information_text"
+                android:textSize="@dimen/DIMEN_20PX"
+                android:textColor="@color/luxury_gold_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/upload_legal_person"
+                android:layout_width="@dimen/DIMEN_44PX"
+                android:layout_height="@dimen/DIMEN_44PX"
+                android:src="@drawable/shape_become_cc_gray" />
+
+            <TextView
+                android:id="@+id/upload_legal_person_picture_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:gravity="center"
+                android:text="@string/include_head_upload_legal_person_picture_text"
+                android:textSize="@dimen/DIMEN_20PX"
+                android:textColor="@color/list_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/set_password"
+                android:layout_width="@dimen/DIMEN_44PX"
+                android:layout_height="@dimen/DIMEN_44PX"
+                android:src="@drawable/shape_become_cc_gray" />
+
+            <TextView
+                android:id="@+id/set_password_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:text="@string/include_head_set_password_text"
+                android:textSize="@dimen/DIMEN_20PX"
+                android:textColor="@color/list_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/approved_account"
+                android:layout_width="@dimen/DIMEN_44PX"
+                android:layout_height="@dimen/DIMEN_44PX"
+                android:src="@drawable/shape_become_cc_gray" />
+
+            <TextView
+                android:id="@+id/approved_account_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:text="@string/include_head_approved_account_text"
+                android:textSize="@dimen/DIMEN_20PX"
+                android:textColor="@color/list_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

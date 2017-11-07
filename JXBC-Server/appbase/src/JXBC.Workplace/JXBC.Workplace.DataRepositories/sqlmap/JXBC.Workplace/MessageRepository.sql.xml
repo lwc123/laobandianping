@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="MessageRepository" dbName="JXBC.Workplace">   
+
+    <sqlWrap sqlName="SelectByPassportId" supportDBType="SqlServer, MySql">
+      select * from message where ToPassportId=@ToPassportId and ToProfileType=@ToProfileType and FromPassportId=@FromPassportId
+      order by MessageId desc
+    </sqlWrap>
+       
+  </module>
+</root>

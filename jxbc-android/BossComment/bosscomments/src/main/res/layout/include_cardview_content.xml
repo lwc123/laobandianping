@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DIMEN_101PX"
+        android:text="维达纸巾公司"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_34PX" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/company_industry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/menu_color"
+            android:text="计算机软件" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="@dimen/DIMEN_24PX"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:background="@color/menu_color"/>
+
+        <TextView
+            android:id="@+id/company_region"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/menu_color"
+            android:text="河北" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="@dimen/DIMEN_24PX"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:background="@color/menu_color"/>
+
+        <TextView
+            android:id="@+id/company_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/menu_color"
+            android:text="1000-1111人" />
+    </LinearLayout>
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/MyRatingBarOne"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_36PX"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DIMEN_24PX"
+        android:isIndicator="true"
+        android:numStars="5" />
+    <com.juxian.bosscomments.widget.TagFlowLayout
+        android:id="@+id/tag_flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="11dp"
+        android:layout_marginBottom="@dimen/DIMEN_32PX"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="@dimen/DIMEN_24PX">
+
+    </com.juxian.bosscomments.widget.TagFlowLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_26PX"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <com.juxian.bosscomments.widget.RoundProgressBar
+                android:id="@+id/roundProgressBar1"
+                android:layout_width="@dimen/DIMEN_80PX"
+                android:layout_height="@dimen/DIMEN_80PX"
+                android:layout_alignLeft="@+id/roundProgressBar1"
+                android:layout_alignParentBottom="true"
+                android_custom:roundColor="@color/round_progress_bar_recommend_color"
+                android_custom:roundProgressColor="@color/round_progress_bar_recommend_color"
+                android_custom:roundProgressBarWidth="@dimen/DIMEN_1PX"
+                android_custom:roundProgressWidth="@dimen/DIMEN_8PX"
+                android_custom:centerTextColor="@color/round_progress_bar_recommend_color"
+                android_custom:centerTextSize="9sp" />
+            <ImageView
+                android:id="@+id/no_data1"
+                android:layout_width="@dimen/DIMEN_80PX"
+                android:layout_height="@dimen/DIMEN_80PX"
+                android:visibility="gone"
+                android:src="@drawable/ic_no_data"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/main_text_color"
+                android:text="推荐率"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <com.juxian.bosscomments.widget.RoundProgressBar
+                android:id="@+id/roundProgressBar2"
+                android:layout_width="@dimen/DIMEN_80PX"
+                android:layout_height="@dimen/DIMEN_80PX"
+                android:layout_alignLeft="@+id/roundProgressBar1"
+                android:layout_alignParentBottom="true"
+                android_custom:roundColor="@color/round_progress_bar_prospect_color"
+                android_custom:roundProgressColor="@color/round_progress_bar_prospect_color"
+                android_custom:roundProgressBarWidth="@dimen/DIMEN_1PX"
+                android_custom:roundProgressWidth="@dimen/DIMEN_8PX"
+                android_custom:centerTextColor="@color/round_progress_bar_prospect_color"
+                android_custom:centerTextSize="9sp" />
+            <ImageView
+                android:id="@+id/no_data2"
+                android:layout_width="@dimen/DIMEN_80PX"
+                android:layout_height="@dimen/DIMEN_80PX"
+                android:visibility="gone"
+                android:src="@drawable/ic_no_data"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/main_text_color"
+                android:text="公司前景看好"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <com.juxian.bosscomments.widget.RoundProgressBar
+                android:id="@+id/roundProgressBar3"
+                android:layout_width="@dimen/DIMEN_80PX"
+                android:layout_height="@dimen/DIMEN_80PX"
+                android:layout_alignLeft="@+id/roundProgressBar1"
+                android:layout_alignParentBottom="true"
+                android_custom:roundColor="@color/round_progress_bar_support_color"
+                android_custom:roundProgressColor="@color/round_progress_bar_support_color"
+                android_custom:roundProgressBarWidth="@dimen/DIMEN_1PX"
+                android_custom:roundProgressWidth="@dimen/DIMEN_8PX"
+                android_custom:centerTextColor="@color/round_progress_bar_support_color"
+                android_custom:centerTextSize="9sp" />
+            <ImageView
+                android:id="@+id/no_data3"
+                android:layout_width="@dimen/DIMEN_80PX"
+                android:layout_height="@dimen/DIMEN_80PX"
+                android:visibility="gone"
+                android:src="@drawable/ic_no_data"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/main_text_color"
+                android:text="CEO支持率"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

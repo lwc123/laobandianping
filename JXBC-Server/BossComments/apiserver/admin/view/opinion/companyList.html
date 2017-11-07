@@ -1,0 +1,98 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-10">
+        <div class="widget-box ui-sortable-handle">
+            <!-- #section:custom/widget-box.options.collapsed -->
+            <div class="widget-header widget-header-small">
+                <h6 class="widget-title">
+                    口碑- 口碑公司搜索
+                </h6>
+
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div>
+                        <form id="form-search" method="get" class="form-inline" role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10">
+                                    <div class="form-group">
+                                        <label for="CompanyName">企业名称：</label>
+                                        <input type="text" id="CompanyName" name="CompanyName" value="{$Think.get.CompanyName}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    <button class="btn btn-app btn-purple btn-sm pull-right">
+                                        <i class="ace-icon fa fa-search bigger-200"></i>
+                                        搜索
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-10">
+        <h3 class="header smaller lighter blue">口碑公司列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center"> <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号ID</th>
+                    <th>企业名称</th>
+                    <th>企业简称</th>
+                    <th class="col-xs-2">是否已认领</th>
+                    <th class="col-xs-2">操作</th>
+                </tr>
+                </thead>
+                {foreach( name="List" item="item")}
+                <tbody>
+                <tr>
+                    <td class="center">{$item['CompanyId']}</td>
+                    <td>{$item['CompanyName']}</td>
+                    <td >{$item['CompanyAbbr']}</td>
+                    <td class="center">
+                     {if($item['IsClaim'] == 2)}
+                        已认领
+                    {else/}
+                        未认领
+                    {/if}
+                    </td>
+                    <td class="center">
+                        <a href="CompanyDetail?CompanyId={$item['CompanyId']}" target="_blank">查看详情</a>   <a href="OpinionLIst?CompanyName={$item['CompanyName']}" target="_blank">查看点评</a>
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: {$Pagination->TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {$PageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

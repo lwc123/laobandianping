@@ -1,0 +1,48 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">版本管理</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center"> <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号ID</th>
+                    <th class="col-xs-1">类型</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <th class="col-xs-1">版本code</th>
+                    <th class="col-xs-1">版本名字</th>
+                    <th class="col-xs-1">最低支持版本</th>
+                    <th class="col-xs-2">版本描述</th>
+                    <th class="col-xs-2">下载地址</th>
+                    <th class="col-xs-1">创建时间</th>
+                    <th class="col-xs-1">修改时间</th>
+                    <th class="col-xs-1">操作</th>
+                </tr>
+                </thead>
+                {foreach( name="VersionList" item="item")}
+                <tbody>
+                <tr class="center">
+                    <td>{$item['VersionId']}</td>
+                    <td>{$item['AppType']}</td>
+                    <td>{$item['VersionCode']}</td>
+                    <td>{$item['VersionName']}</td>
+                    <td>{$item['LowestSupportVersion']}</td>
+                    <td>{$item['Description']}</td>
+                    <td>{$item['DownloadUrl']}</td>
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{:toLocalDateTime($item['ModifiedTime'],'Y-m-d H:i:s')}</td>
+                    <td>
+                        <a href="/VersionManage/versionUpdate?VersionId={$item['VersionId']}">修改</a>
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{/block}

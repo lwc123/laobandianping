@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no" />
+		<title>关于我们——老板点评</title>
+        <link rel="stylesheet" type="text/css" href="{$Think.config.resources_site_root}/pc/css/index-mobile.css"/>
+        <script>
+	        //适配方案
+	        (function(){
+	            var width = document.documentElement.clientWidth;
+	            var html = document.querySelector("html");
+	            html.style.fontSize=width/16+"px";
+	        })();
+        </script>
+	</head>
+	<body>
+	{include file="-public/mobile_header" /}
+
+    <div class="top-img">
+        <img src="{$Think.config.resources_site_root}/pc/images/index750/banner_pic1.png"/>
+    </div>
+
+	<div class="com-content">
+		<ul class="moblie-tabNav">
+			<li><a class="moblie-active-on" href="/index/about-us-mobile.html">关于老板点评</a></li>
+			<li><a href="/index/about-company-mobile.html">企业用户协议</a></li>
+			<li><a  href="/index/about-person-mobile.html">个人用户协议</a></li>
+		</ul>
+		<div class="company-content ">
+			<p>老板点评隶属于北京全联职信科技有限公司，是职场征信的领跑者，致力于向企业决策者提供在管理、招聘（选、用、留）等方面的优秀产品解决方案。</p>
+			<p>民企发展到底有多难？相信每位老板都能吐槽吐上几天几夜。如果再说到人员管理中遇到的坑和奇葩，相信每位老板还能再吐几升血。</p>
+			<p>老板点评不能帮你解决所有的发展问题，但是在人员管理方面，您早一天使用，必定早一天受益！</p>
+			<p>“让老板们联合起来，于大共同抵制那些不良职场行为，共建利于降低企业用人风险的职场诚信环境；于小防止无信者为害自己公司，让有信有才者更容易被发现并为公司发挥更大的价值”，这就是老板点评想给你的。</p>
+		</div>
+	</div>
+	{include file="-public/mobile_footer" /}
+	</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="SignedUpInfoRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into signed_up_info (PassportId, SignedUpTime, SignedUpIP, UtmSource, HttpUserAgent, RefererDomain, HttpReferer, InviteCode)
+      values (@PassportId, @SignedUpTime, @SignedUpIP, @UtmSource, @HttpUserAgent, @RefererDomain, @HttpReferer, @InviteCode);
+      select @@identity
+    </sqlWrap>
+  </module>
+</root>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_hint_bg_color"/>
+
+    <EditText
+        android:id="@+id/activity_recruit_common_edt"
+        android:layout_width="@dimen/DIMEN_744PX"
+        android:layout_height="@dimen/DIMEN_86PX"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DIMEN_18PX"
+        android:background="@drawable/bt_input_boss_circle"
+        android:hint="最多不能超过20个字"
+        android:imeOptions="actionDone"
+        android:paddingBottom="@dimen/DIMEN_18PX"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        android:paddingTop="@dimen/DIMEN_18PX"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <TextView
+        android:id="@+id/activity_recruit_common_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_30PX"
+        android:gravity="center"
+        android:text="不能填写QQ，微信，电话等联系方式，以及特殊符号"
+        android:textColor="@color/menu_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_180PX"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"/>
+</LinearLayout>

@@ -1,0 +1,21 @@
+<div class="com1-head">
+	<a href="#" title=""> <img src="{$Think.config.resources_site_root}/default/EmployePicture.png" ></a>
+</div>
+<p class="com1-name">{$MyMobilePhone}</p>
+<!--金库部分-->
+<div class="com1-money">
+	<div class="money ">
+		<i class="iconfont">&#xe630;</i>
+		<div class="com1-m1">
+			<p class="com-p1">我的口袋</p>
+			<p>{if($MyWallet.AvailableBalance)}{$MyWallet.AvailableBalance}{else/}0.00{/if}元</p>
+		</div>
+	</div>
+<!--	<div class="money">
+		<i class="iconfont">&#xe62f;</i>
+		<div class="com1-m1">
+			<p class="com-p1">可提现金额</p>
+			<p>{if($MyWallet.CanWithdrawBalance)}{$MyWallet.CanWithdrawBalance}{else/}0.00{/if}元</p>
+		</div>
+	</div>-->
+</div>

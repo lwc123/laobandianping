@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>企业信息认证</title>
+    {include file="-public/resources_fullscreen_header" /}
+</head>
+<body>
+<!--弹窗-->
+<div id="Szhezhao">
+    <div id="alertS">
+        <div class="alertST">
+            <b class="SalertClose">×</b>
+            <span></span>
+        </div>
+        <div class="selectAlertB">
+            <div class="bcontent">
+                <div id="check_content">
+                    <div class="select_content_search">
+                        <div class="button searchBtn">搜索</div>
+                        <i class="iconfont img img1">&#xe64a;</i>
+                        <input autocomplete="off" type="text" value="">
+                    </div>
+                    <div class="show_content_checked">
+
+                    </div>
+
+                    <div class="show_content_select">
+                        <span class="show_content_selectT"></span><br>
+                        <ul class="show_content_list">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="btnwrap">-->
+
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<!--选择城市-->
+
+
+<div class="iden-body">
+    <div class="iden-con">
+        <img class="com-logo iden-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" >
+        <div class="com-form iden-bg iden-bg1"></div>
+        <div class="iden-info">
+            <p class="com-title">企业认证</p>
+            <ul>
+                <li class="iden-circle"></li>
+                <li class="iden-line iden-gray iden-remove"></li>
+                <li class="iden-circle iden-gray iden-remove"></li>
+                <li class="iden-line iden-gray"></li>
+                <li class="iden-circle iden-gray"></li>
+                <li class="iden-line iden-gray"></li>
+                <li class="iden-circle iden-gray"></li>
+            </ul>
+            <dl>
+                <dd class="iden-color">填写企业信息</dd>
+                <dd>填写法人信息</dd>
+                <dd>信息审核</dd>
+                <dd>进入工作台</dd>
+            </dl>
+            <form>
+                <input autocomplete="off" type="hidden" name="CompanyId" value="{$CompanyId}"/>
+                <div class="com-left">
+                    {if($AuditRequest.AuditStatus==9)}
+                    <!--拒绝-->
+                    <div class="iden-warn">
+                        <i class="iconfont iden-img">&#xe648;</i>
+                        <div class="warn-word">
+                            <p class="orange">很抱歉，审核未通过！</p>
+                            <p><span class="orange orange1">原因：</span>
+                                {$AuditRequest.RejectReason}
+                            </p>
+                            <p class="orange">请修改后重新提交审核</p>
+                        </div>
+                    </div>
+                    <!--拒绝-->
+                    {else/}
+                    {/if}
+
+                    <div class="identity-step1">
+                        <div class="com-put">
+                            <i class="iconfont img img1">&#xe652;</i>
+                            <input autocomplete="off" type="text" value="{$Company.CompanyName}" name="CompanyName" readonly placeholder="请输入和营业执照一致的公司名称" required>
+                        </div>
+                        <div class="com-put">
+                            <i class="iconfont img">&#xe643;</i>
+                            <input autocomplete="off" type="text" value="{$Company.CompanyAbbr}" name="CompanyAbbr" placeholder="请输入企业简称" required>
+                        </div>
+                        <div class="com-put">
+                            <i class="iconfont img">&#xe606;</i>
+                            <input autocomplete="off" id="check_industry" type="text" value="{$Company.Industry}" name="Industry" required readonly placeholder="请选择企业行业"/>
+                        </div>
+                        <div class="com-put">
+                            <i class="iconfont img">&#xe605;</i>
+                            <select name="CompanySize" required>
+                                <option value="">请选择企业规模</option>
+                                {foreach $CompanySizeDictionary['CompanySize'] as $item}
+                                <option value="{$item['Code']}" {if($Company.CompanySize==$item['Code'])} selected {/if}>{$item['Name']}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="com-put">
+                            <i class="iconfont img">&#xe607;</i>
+
+                            <input autocomplete="off" id="check_city" type="text" value="{$Company.RegionText}" name="Region" data-city="{$Company.Region}" required readonly placeholder="请选择所在城市"/>
+
+                        </div>
+                        <div class="iden-pic">
+                            <p class="iden-t">营业执照图片</p>
+                            <div id="previewLicence" class="iden-rec">
+                                {if($AuditRequest.Licence==Config('resources_site_root'))}
+                                {else/}
+                                <img src="{$AuditRequest.Licence}" alt="" style='width:100%;height:100%; z-index: 999;position: relative' />
+                                {/if}
+                                <i class="iconfont pic">&#xe651;</i>
+                               <!--<lable class="file-btn">选择文件</lable>-->
+                            </div>
+                            <span id="Licence-error" class="error-tip hide"><i class='iconfont'>&#xe640;</i>请上传照片</span>
+                        </div>
+                        <button type="submit" class="com-btn1" id="stepNext" AuditStatus="{$AuditRequest.AuditStatus}">下一步</button>
+                    </div>
+                </div>
+            </form>
+
+   <!--填写法人信息-->
+                <form action="RequestCompanyAudit?CompanyId={$CompanyId}" enctype="multipart/form-data" method="post">
+                    <div class="identity-step2" >
+                        <div class="com-left">
+                        <div class="com-put">
+                            <i class="iconfont img">&#xe62c;</i>
+                            <input autocomplete="off" type="text" value="{$Company.LegalName}" name="LegalName" placeholder="请输入法人姓名" required>
+                        </div>
+                        <div class="com-put">
+                            <i class="iconfont img">&#xe63f;</i>
+                            <input autocomplete="off" type="text"   value="{$AuditRequest.MobilePhone}"   name="MobilePhone" placeholder="请输入法人手机号" id="phone" required>
+                        </div>
+                        <div class="com-put">
+                            <i class="iconfont img img1">&#xe63d;</i>
+                            <input autocomplete="off" type="number" value="" placeholder="验证码"  name="ValidationCode" id="yzm" required>
+                            <button type="button"  id="MobilePhone" class="com-btn get-yzm"  /><span id="yanzhengma"> 获取验证码</span></button>
+                        </div>
+                       <!-- <div class="iden-pic">
+                            <p class="iden-t iden-t2">法人身份证正反面照片</p>
+                            <div class="iden-rec iden2-rec" id="previewImagesZ">
+
+                                {if $AuditRequest.Images}
+                                <img src="{$AuditRequest.Images[0]}" alt="" style='width:100%;height:100%; z-index: 999;position: relative' />
+                                {else/}
+                                <i class="iconfont pic pic2">&#xe651;</i>
+                                <p>法人身份证正面</p>
+                                {/if}
+
+                            </div>
+                        &lt;!&ndash;    <span id="ImagesZ-error" class="error hide"><i class='iconfont'>&#xe640;</i>请上传照片</span>&ndash;&gt;
+                            <div class="iden-rec iden2-rec" id="previewImagesF">
+                                {if $AuditRequest.Images}
+                                <img src="{$AuditRequest.Images[0]}" alt="" style='width:100%;height:100%; z-index: 999;position: relative' />
+                                {else/}
+                                <i class="iconfont pic pic2">&#xe651;</i>
+                                <p>法人身份证反面</p>
+                                {/if}
+                            </div>
+                            <span id="ImagesF-error" class="error-tip hide"><i class='iconfont'>&#xe640;</i>请上传法人身份证正反照片</span>
+                        </div>-->
+                        <input autocomplete="off" type="hidden" name="CompanyId" value="{$Think.get.CompanyId}">
+                        <input autocomplete="off" type="hidden" name="CompanyName" class="companyName" value="">
+                        <input autocomplete="off" type="hidden" name="CompanyAbbr" class="companyAbbr" value="">
+                        <input autocomplete="off" type="hidden" name="Industry" class="Industry" value="">
+                        <input autocomplete="off" type="hidden" name="CompanySize" class="size" value="">
+                            <input autocomplete="off" type="hidden" name="Licence1"  {if($AuditRequest.AuditStatus==9)}  value="{$AuditRequest.Licence}"  {/if}>
+                        <input autocomplete="off" type="hidden" name="Region" class="city" value="">
+                        <input autocomplete="off" class="em-btn" type="file"  name="Licence" data-img-preview="previewLicence" />
+                 <!--       <input autocomplete="off" class="em-btn" type="file"  name="ImagesZ" data-img-preview="previewImagesZ" />
+                        <input autocomplete="off" class="em-btn" type="file"  name="ImagesF" data-img-preview="previewImagesF" />-->
+                        <div class="iden-zz">
+                            <p class="iden2-z1">老板点评仅支持企业法人信息认证</p>
+                            <p>我们对此郑重承诺：</p>
+                            <p>法人信息仅用于验证企业信息，及自动为法人创建超级管理账号使用，老板点评将对<br>此信息内容严格保密</p>
+                        </div>
+                        <div class="Renewal stepgo">
+	               			<button id="openservice_back" type="button">上一步</button>
+		               		<button id="step2" class="openservice_btn" type="submit">提交审核</button><br>
+	                    </div>
+                        <!--<button id="step2"class="com-btn1">提交审核</button>-->
+                       <!-- <p class="iden-p">认证如有问题，请联系400-400-40000</p>-->
+                            </div>
+                </div>
+
+            <!--填写法人信息-->
+           </form>
+        </div>
+    </div>
+
+</div>
+<div class="phone" ></div>
+</body>
+</html>
+<script src="{$Think.config.resources_site_root}/-common/js/AppEnvironment.js"></script>
+<script>
+   $("input[name=Industry],input[name=Region]").blur(function(){
+   	  $(this).next("label").hide();
+   })
+
+    $(function(){
+    	//返回上一步
+    	$("#openservice_back").click(function(){
+    		$('.identity-step1').show();
+			$('.identity-step2').hide();
+    	})
+
+        //验证手机号 法人信息
+        /*获取验证码*/
+        function SMS(obj,timer){
+            this.enable=true;
+            this.obj=$(obj);
+            this.timer=parseInt(timer)||10;
+        }
+        SMS.prototype.init = function() {
+            var that=this;
+            that.obj.bind('click',function(){
+                var phone=$('#phone').val();
+                var password=$('#password').val();
+                var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+                if(!phone){
+
+                    $('.phone').show().text('请填写手机号');
+                    setTimeout(function(){
+                        $('.phone').hide();
+                    },2000);
+
+                    return false;
+                }
+                if(!pattern.test(phone) || phone.length !=11) {
+                    $('.phone').show().text('手机号格式不正确');
+                    setTimeout(function(){
+                        $('.phone').hide();
+                    },2000);
+                    return false;
+                }
+                //发送验证码
+                var yzmUrl=AppEnvironment.apiRoot+"/appbase/Account/sendValidationCode?phone="+phone;
+                $.ajax({
+                    type:'post',
+                    url:yzmUrl,
+                    data:phone,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.responseText='true'){
+                            that.enable=false;
+                            that.obj.addClass('gray-bg').text('已发送'+that.timer+"s");
+                            that.obj.attr('disabled','disabled')
+                            var _time,_i=that.timer;
+                            var _fun=function(){
+                                if(_i>1){
+                                    _i--;
+                                    that.obj.text('已发送'+_i+"s");
+                                    _time=setTimeout(_fun,1000);
+                                }else{
+                                    clearTimeout(_time);
+                                    that.enable=true;
+                                    that.obj.text("重新获取").removeClass('gray-bg');
+                                    that.obj.removeAttr('disabled')
+                                }
+                            }
+                            _time=setTimeout(_fun,1000);
+                        }else{
+                            that.obj.text("重新获取").removeClass('gray-bg');
+                        }
+                    },
+                    error:function(data){
+                        console.log(data.responseText);
+                    }
+                })
+
+        })
+        }
+        var sms=new SMS(".get-yzm",120);
+        sms.init();
+        $('#yzm').blur(function(){
+            var phone=$('#phone').val();
+            var yzmVal=$('#yzm').val();
+            if(!yzmVal){
+                $('.phone').show().text('验证码不能为空');
+                setTimeout(function(){
+                    $('.phone').hide();
+                },1000);
+                return false;
+            }
+            var apiurl=AppEnvironment.apiRoot+'/appbase/Account/checkValidationCode?phone='+phone+'&code='+yzmVal;
+            $.get(apiurl,function(data){
+
+                if(data!==true){
+                    $('.phone').show().text('验证码不正确');
+                    setTimeout(function(){
+                        $('.phone').hide();
+                    },1000);
+                }
+            })
+        })
+
+
+
+       /*城市行业模块封装*/
+        cityIndestrySelect('city');
+        cityIndestrySelect('industry');
+        function cityIndestrySelect(name) {
+            var selectNum1='';
+            var data_name;
+            var data_str='';
+            var data_Chinese='';
+            $.ajax({
+                type:"get",
+                url: ' /api/workplace/Dictionary/getDictionaries?codes='+name,
+                dataType:'json',
+                success:function(data){
+                    data_name=data[name];
+                    console.log(data_name)
+                    for(var i=0;i<data_name.length;i++){
+                        if(data_name[i].IsHotspot==1){
+                            data_str+='<li><div class="'+name+'_list" data-'+name+'="'+data_name[i].Code+'">'+data_name[i].Name+'</div></li>';
+                        }
+                    }
+                }
+            })
+            if(name=='city'){
+                data_Chinese='城市';
+            }else {
+                data_Chinese='行业';
+            }
+
+            var checkedboolean=true;
+            var ccc =false;
+            var $checklist='';
+            var $search_input=$(".select_content_search input");
+            function alertS() {
+                var Szhezhao = document.getElementById('Szhezhao');
+                var alertform = document.getElementById('alertS');
+                var SalertClose = document.querySelectorAll('.SalertClose');
+                Szhezhao.style.display = 'block';
+                var height = alertform.offsetHeight;
+                alertform.style.marginTop = -(height / 2) + 'px';
+                Szhezhao.style.width = document.documentElement.clientWidth + 'px';
+                Szhezhao.style.height = document.documentElement.clientHeight + 'px';
+                for (var i = 0; i < SalertClose.length; i++) {
+                    SalertClose[i].onclick = function() {
+                        Szhezhao.style.display = 'none';
+                    }
+                }
+                window.onresize = function() {
+                    Szhezhao.style.width = document.documentElement.clientWidth + 'px';
+                    Szhezhao.style.height = document.documentElement.clientHeight + 'px';
+                }
+            }
+            $("#check_"+name).click(function () {
+                if(selectNum1){
+                    $(".show_content_checked").html('<div class="'+name+'_close">'+selectNum1+'<span>×</span></div>');
+                }else {
+                    $(".show_content_checked").html('');
+                }
+
+                $("#alertS>.alertST>span").text("选择所在"+data_Chinese);
+                $search_input.attr({name:'citySearch',placeholder:'搜索所在'+data_Chinese});
+                $(".show_content_selectT").text('热门'+data_Chinese)
+
+                $search_input.val('');
+                $(".show_content_list").html(data_str);
+                $(".btnwrap").html('<a href="javascript:void (0)" class="button db_btn_style SalertClose">确认</a>' +
+                    '<a href="javascript:void (0)" class="button db_btn_style SalertClose">取消</a>').hide();
+                $(".show_content_list li div").each(function () {
+                    if($(this).text()==$(".show_content_checked div").text().substr(0,($(".show_content_checked div").text()).length-1)){
+                        $(this).addClass("checkbtn");
+                    }
+                })
+                alertS();
+                $(".searchBtn").click(function () {
+                    var searchstr='';
+                    var searchVal=$search_input.val();
+                    for(var p=0;p<data_name.length;p++){
+                        if (data_name[p].Name.indexOf(searchVal)>=0&&data_name[p].Level==1&&$.trim(searchVal)!==''||data_name[p].Name.indexOf(searchVal)>=0&&data_name[p].IsHotspot==1&&$.trim(searchVal)!==''){
+                            searchstr+='<li><div class="'+name+'_list" data-'+name+'="'+data_name[p].Code+'">'+data_name[p].Name+'</div></li>';
+                        }
+                    }
+                    if($.trim(searchVal)!==''){
+                        $(".show_content_list").html(searchstr)
+                    }
+                })
+
+                $(document).on("click",".show_content_list li ."+name+"_list",function () {
+                    var val = $(this).text();
+                    if (checkedboolean){
+                        if (ccc){
+                            $checklist.removeClass("checkbtn");
+                        }
+                        ccc=true;
+                        $(this).addClass("checkbtn");
+                        selectNum1=val
+                        $(".show_content_checked").html('<div class="'+name+'_close">'+val+'<span>×</span></div>');
+                        checkedboolean=false;
+                        $checklist=$(this);
+                    }
+                    $("#Szhezhao").hide();
+                    $("#check_"+name).val(val).attr('data-'+name,$(this).attr('data-'+name));
+                })
+                checkedboolean=true;
+                $(document).on("click",".show_content_checked ."+name+"_close",function () {
+                    $(".show_content_checked").html('');
+                    $(".checkbtn").removeClass('checkbtn');
+                    $("#check_"+name).val('').attr('data-'+name,'');
+                    selectNum1=''
+                })
+            });
+        }
+
+
+
+        var interval = setInterval(function () {
+            $("#previewLicence:has(img[src!=''])").next().hide();
+            $("#previewImagesZ:has(img[src!=''])"&&"#previewImagesF:has(img[src!=''])").next().hide();
+        },500)
+
+
+    })
+
+</script>
+
+<script src="http://cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script src="{$Think.config.resources_site_root}/pc/js/select_change.js"></script>
+ <script>
+
+	$.validator.setDefaults({
+	    submitHandler: function(form) {
+           var AuditStatus =$("#stepNext").attr('AuditStatus');
+	    	if(this.submitButton.id == "stepNext") {
+	    		var hasFile=$("input[name='Licence']").data("has-file");
+                if(AuditStatus !=9){
+	    		if(typeof(hasFile)=="undefined"){
+                 $("#Licence-error").show();
+                 return false;
+                 }
+                }
+	    		$(".iden-color").next().addClass("iden-color");
+	    		$(".iden-remove").removeClass("iden-gray");
+
+	    		$('.identity-step1').hide();
+				$('.identity-step2').show();
+
+				$(".companyName").val($(".com-put:eq(0) input").val());
+				$(".companyAbbr").val($(".com-put:eq(1) input").val());
+				$(".Industry").val($(".com-put:eq(2) input").val());
+				$(".size").val($(".com-put:eq(3) select").val());
+				$(".city").val($(".com-put:eq(4) input").attr("data-city"));
+	      		return false;
+	    	} else {
+                //身份证号  为空验证
+	    		/* var hasPic=$("input[name='ImagesF']").data("has-file");
+	    		 var hasPic1=$("input[name='ImagesZ']").data("has-file");
+//		           console.log(hasPic);
+                if(AuditStatus !=9) {
+                    if (typeof(hasPic) == "undefined" || typeof(hasPic1) == "undefined") {
+                        $("#ImagesF-error").show();
+                        return false;
+                    }
+                }*/
+	    		form.submit();
+	    	}
+	    }
+	});
+    
+    
+    
+ </script>
+
+</html>

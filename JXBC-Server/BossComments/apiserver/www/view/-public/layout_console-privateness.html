@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{block name="page-title"}老板点评{/block}</title>
+	{include file="-public/resources__header" /}
+</head>
+<body>
+
+	<div class="com-bb">
+		<!--左侧部分-->
+		<div class="com1-left">
+			{include file="-public/menu-sidebar-privateness" /}
+		</div>
+		{include file="-public/header-privateness" /}
+		<div id="page-content">
+		{block name="page-content"}
+			<!-- this is page-content -->
+		{/block}
+		</div>
+
+	</div>
+	{include file="-public/resources__footer" /}
+	{block name="resources-footer"}
+	<!-- this is page-content -->
+	{/block}
+</body>
+</html>

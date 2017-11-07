@@ -1,0 +1,335 @@
+﻿{extend name="-public:layout_console-enterprise" /} {block name="page-title"}添加员工档案{/block} {block name="page-content"}
+<!--弹窗-->
+<div id="zhezhao">
+	<div id="alert">
+		<div class="alertT">
+			<b class="alertClose">×</b>
+			<span></span>
+		</div>
+		<form class="alertB">
+			<div class="bcontent">
+			</div>
+		</form>
+		<div class="btnwrap">
+			<a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>
+			<a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>
+		</div>
+		<!--<div class="patch">-->
+		<!--</div>-->
+		<!--<div class="power_person_details">-->
+		<!--</div>-->
+	</div>
+</div>
+<!--弹窗结束-->
+<!--loading pic-->
+<div id="loadingpic">
+    <img  src="{$Think.config.resources_site_root}/pc/img/loadingpic.gif">
+</div>
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--右侧内容部分-->
+<!--右侧内容部分开始-->
+<div class="com1-bg">
+	<form id= "uploadForm" style="display: none;">
+		<input id="batch_load-in_employe" type="file" name="archive" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+		<input type="hidden" value="{$Think.get.CompanyId}" name="CompanyId">
+	</form>
+	<form  id="employe_create" class="em-info excel-step2" action="" enctype="multipart/form-data" method="post">
+		<p class="com-tt p-inline">员工档案资料
+			<span class="p-inline">
+
+				<span class="button batch_load-in_employe">批量导入档案</span>
+				<span class="load-in_employe_details">说明：仅支持excel标准格式模板批量导入，且大小不超过2M，
+					<a href="/EmployeArchive/excel?CompanyId={$Think.get.CompanyId}">查看模板说明并下载</a>
+				</span>
+
+			</span>
+			<span class="red-marked">
+				<i class='iconfont'>&#xe640;</i><span class="red-marked-word"></span>
+			</span>
+		</p>
+		<div class="em-info1">
+			<div class="info-pic">
+				<p class="info-p">员工照片</p>
+				<p class="em-rec" id="previewPicture"><i class="iconfont">&#xe651;</i></p>
+				<p class="file-btn">
+					<input type="file" name="Picture" class="em-btn" accept="image/jpeg,image/x-png,image/png" data-img-preview="previewPicture"/>选择照片</p>
+				<br>
+				<p class="em-p">支持JPG，PNG格式，不超过2M</p>
+			</div>
+			<div class="em-state">
+				<p><span class="em-red">*</span>目前状态</p>
+				<div class="radio">
+					<input id="checked1" {if $Think.get.IsDimission!=1}checked{/if} type="radio" value="0" name="IsDimission" required>
+					<label for="checked1">在职</label>
+					<input id="checked" {if $Think.get.IsDimission==1}checked{/if} type="radio" value="1" name="IsDimission">
+					<label for="checked">离任</label>
+				</div>
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<input type="text"  name="RealName" required placeholder="请输入姓名">
+				<br>
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>身份证号</span>
+				<input type="text"  name="IDCard" required placeholder="请输入身份证号码，性别，年龄自动提取">
+				<br>
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>手机号码</span>
+				<input type="text" name="MobilePhone" required placeholder="请输入手机号码，以便有评论时对其进行短信通知">
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>入职日期</span>
+				<input type="text"   class="selectDate entrytime" name="EntryTime" data-end-date='DimissionTime' placeholder="请输入入职日期">
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>离职日期</span>
+				<input type="text"  class="selectDate dimisstime" data-start-date='EntryTime' name="DimissionTime" placeholder="请输入离职日期">
+				<br>
+				<span class="dimisstime-tip hide"><i class='iconfont'>&#xe640;</i>员工在职不能选择离任日期</span>
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>毕业学校</span>
+				<input type="text" class="school" name="GraduateSchool" required placeholder="请输入毕业学校">
+				<br>
+			</div>
+			<div class="em-name">
+				<span><span class="em-red">*</span>学历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<select name="Education" required>
+					<option value="" >请选择学历</option>
+					{volist name="Education" id="vo"}
+					<option value="{$vo.Code}">{$vo.Name}</option>
+					{/volist}
+				</select>
+			</div>
+		</div>
+		<!--员工职务信息部分-->
+		<div class="employee-info">
+			<div class="depinfo" id="depinfo1">
+				<p class="com-tt new-title">员工职务信息<span class="count gold">1</span></p>
+				<div class="em-info1 em-details">
+					<div class="em-name name-first">
+						<span><span class="em-red">*</span>职务名称</span>
+						<input type="text" class="pos" name="PostTitle1" required placeholder="请输入担任职务">
+					</div>
+					<div class="em-name">
+						<span><span class="em-red">*</span>开始时间</span>
+						<input type="text" class="selectDate starttime" name="PostStartTime1" placeholder="请选择担任职务开始时间">
+					</div>
+					<div class="em-name">
+						<span><span class="em-red">*</span>结束时间</span>
+						<input type="text" class="selectDate postEnd" name="PostEndTime1" data-value="3000-1-1" placeholder="请选择担任职务结束时间">
+						<input type="checkbox" class="now"> 至今
+					</div>
+					<div class="em-name">
+						<span class="salary">年薪收入（万元）</span>
+						<input type="text" class="per-salary" name="Salary1" placeholder="包括：薪资、福利、奖金等等">
+						<br>
+						<span class="salary-tip hide"><i class='iconfont'>&#xe640;</i>请输入正确的年薪收入哦~</span>
+					</div>
+					<div class="em-name">
+						<span><span class="em-red">*</span>所在部门</span>
+						<input type="text" class="dep-Id" name="Department1" required placeholder="请选择所在部门">
+					</div>
+				</div>
+			</div>
+
+			<p id="addDept" class="em-add"><i class="iconfont">&#xe651;</i>添加职务信息</p>
+			<div class="send-msg-employe">
+				<input id="send-msg" type="text" value="true" name="IsSendSms"style="display: none">
+				<img id="send-msg-true" src="{$Think.config.resources_site_root}/pc/img/green.png" alt="">
+				<img id="send-msg-false" style="display: none" src="{$Think.config.resources_site_root}/pc/img/gray.png" alt="">
+				<label id="send-msg-label" class="radio">发送短信通知员工</label>
+			</div>
+			<br>
+		</div>
+		<input type="hidden" value="{$CompanyId}" name="CompanyId">
+		<input type="hidden" value="1" name="deptCount" id="deptCount">
+		<button id="submit" >保存</button>
+	</form >
+	<div  class="txt-department">
+		<div id="alertzhe1">
+			<div class="dep-bg">
+				<div class="dep-add">
+					<p class="person-tt">选择部门<i class="iconfont close1">&#xe647;</i></p>
+					<div class="new-dep">
+						<p>添加部门</p>
+						<input type="text" placeholder="根据需要，您可以新加部门，最多10个字">
+						<p class="red"><i class="iconfont">&#xe640;</i>请添加部门</p>
+					</div>
+					<button type="button">添加</button>
+					<div class="dep-con">
+						<p>选择已创建部门</p>
+						{volist name="Departments" id="vo"}
+						<span>{$vo.DeptName}</span> {/volist}
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="excel-step3 em-info">
+		<img class="excel-loading-gif" src="{$Think.config.resources_site_root}/pc/img/gif-excel.gif" alt="Loading">
+		<p>请稍后，员工档案正在导入...</p>
+	</div>
+	<div class="excel-step4 em-info">
+		<div class="excel-step-4s">
+			<img class="excel-success" src="{$Think.config.resources_site_root}/pc/img/u269.png" alt="success">
+			<span>导入完成</span>
+		</div>
+		<p>共发现<span id="totalArchive"></span>份员工档案，成功 <span id="SuccessNum"></span>份，导入失败 <span id="FailNum"></span>份 <span class="check-excel-error-list">查看导入失败档案</span></p>
+		<a href="/EmployeArchive/index?CompanyId={$CompanyId}&IsDimission=0" class="button excel-employe-list">查看员工档案</a>
+	</div>
+	<div class="excel-step5 em-info">
+		<p class="com-tt">导入失败档案</p>
+		<div class="excel-error-list">
+			<ul class="excel-error-lists">
+			</ul>
+		</div>
+	</div>
+</div>
+{/block} {block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/employee_archive.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/select_change.js"></script>
+<script>
+    $.validator.setDefaults({
+        submitHandler: function() {
+            var apiUrl="add?CompanyId="+{$CompanyId};
+            var formData = new FormData($("#employe_create")[0]);
+            var Dimission =$('input:radio[name="IsDimission"]:checked').val();
+            // console.log(formData);
+            //alert(formData['Picture']);
+            $.ajax({
+                type:'post',
+                contentType: false,
+                url:apiUrl,
+                data:formData,
+                processData: false,
+                beforeSend:function(){
+                	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+                },
+                success:function(data){
+//              	removeLoading();
+                    console.log(data);
+                    $("#submit").html("保存").removeAttr("disabled");
+                    if(data.Success==true){
+                    	$('.alertClose').hide();
+                        $("#alert>.alertT>span").text("温馨提示");
+                        $(".alertB").html('<div class="bcontent">操作成功，您可以在档案列表查看。</div>');
+                        if(Dimission==0){
+                            $(".btnwrap").html('<a  href="index?CompanyId='+{$CompanyId}+'&IsDimission=0" class="button db_btn_style">关闭</a><a href="/ArchiveComment/commentcreate?CompanyId='+{$CompanyId}+'&CommentType=0" class="button db_btn_style">添加阶段评价</a>');
+                        }
+                        else{
+                            $(".btnwrap").html('<a  href="index?CompanyId='+{$CompanyId}+'&IsDimission=1" class="button db_btn_style">关闭</a><a href="/ArchiveComment/commentcreate?CompanyId='+{$CompanyId}+'&CommentType=1" class="button db_btn_style">添加离职报告</a>');
+                        }
+                        alertwin();
+                    }else{
+                        $("#alert>.alertT>span").text("温馨提示");
+                        $(".alertB").html('<div class="bcontent">'+data.ErrorMessage+'</div>');
+                        $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                        alertwin();
+                    }
+                },
+                error:function (data) {
+                    console.log(data)
+                }
+            });
+        }
+    });
+
+
+    $('#batch_load-in_employe').change(function () {
+        var filetype = $(this)[0].value.split('.')[$(this)[0].value.split('.').length-1];
+        var fileSize = $(this)[0].files[0].size/(1024*1024)
+        if(filetype=='xls'||filetype=='xlsx'){
+            marked(false,'');
+            if(fileSize<2){
+                marked(false,'');
+                $('.excel-step2').hide();
+                $('.excel-step3').show();
+                var formData = new FormData($("#uploadForm")[0]);
+                //console.log(formData)
+                $.ajax({
+                    url: 'upLoadArchiveRequest?CompanyId={$Think.get.CompanyId}' ,
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data)
+                        $('.excel-step2,.excel-step3').hide();
+                        $('.excel-step4').show();
+                        $('#totalArchive').text(data.totalArchive);
+                        $('#SuccessNum').text(data.SuccessNum);
+                        $('#FailNum').text(data.FailNum);
+                        if(data.FailNum == 0){
+                            $('.check-excel-error-list').hide()
+                        }
+                        var errorMsg = data.ErrorMsg;
+                        var errorStr='';
+                        for(var i=0;i<errorMsg.length;i++){
+                            var errorCodeMsg=errorMsg[i].ErrorMsg.join(';<br>');
+                            errorStr += '<li><span class="errorName">'+errorMsg[i].name+'：</span><br><span class="errorDetails">'+errorCodeMsg+';</span>';
+                        }
+                        $('.excel-error-lists').html(errorStr)
+                    },
+                    error: function (data) {
+                        console.log(data)
+                        marked(true,'未知网络错误，请重新提交');
+                        $('.excel-step2').show();
+                        $('.excel-step3').hide();
+                    }
+                });
+
+            }else {
+                marked(true,'文件大小不超过2M');
+
+            }
+        }else {
+            marked(true,'文件格式仅支持xls、xlsx');
+        }
+    })
+    $('.check-excel-error-list').click(function () {
+        $('.excel-step4').hide();
+        $('.excel-step5').show();
+    })
+
+    $(document).on("blur",".dep-Id",function(){
+        $(this).parent(".em-name").children("label").hide();
+    })
+    $('.batch_load-in_employe').click(function () {
+        $('#batch_load-in_employe').click();
+    })
+
+	var n=0
+    $('.send-msg-employe').click(function () {
+        n+=1;
+        console.log(n)
+		if(n%2==1){
+			$('#send-msg-true').hide();
+			$('#send-msg-false').show()
+			$('#send-msg').attr('value','false')
+		}else if(n%2==0){
+			$('#send-msg-false').hide();
+			$('#send-msg-true').show()
+            $('#send-msg').attr('value','true')
+		}
+    })
+
+
+    function marked(bool,txt) {
+        if(bool){
+            $('.red-marked').show();
+        }else {
+            $('.red-marked').hide();
+        }
+        $('.red-marked-word').text(txt)
+    }
+
+</script>
+
+{/block}

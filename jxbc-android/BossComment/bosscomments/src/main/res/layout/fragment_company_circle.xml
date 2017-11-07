@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/head"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <include
+        android:id="@+id/tab_control"
+        android:layout_below="@+id/head"
+        layout="@layout/include_company_circle_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_80PX" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_company_circle_viewpager"
+        android:layout_below="@+id/tab_control"
+        android:layout_above="@+id/company_detail_bts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/company_detail_bts"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_88PX"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/company_detail_left_bt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/luxury_gold_color"
+            android:gravity="center"
+            android:padding="@dimen/DIMEN_16PX"
+            tools:text="@string/audit_result_notpass"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/company_detail_right_bt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:padding="@dimen/DIMEN_16PX"
+            tools:text="@string/audit_result_pass"
+            android:textColor="@color/luxury_gold_color" />
+    </LinearLayout>
+</RelativeLayout>

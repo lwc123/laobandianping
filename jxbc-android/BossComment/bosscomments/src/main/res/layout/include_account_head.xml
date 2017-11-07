@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cc_head"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_530PX">
+
+    <ImageView
+        android:id="@+id/head_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/user_head" />
+
+    <ImageView
+        android:id="@+id/include_head_title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/DIMEN_20PX"
+        android:layout_marginTop="@dimen/DIMEN_55PX"
+        android:padding="@dimen/DIMEN_15PX"
+        android:src="@drawable/mis_icon_back" />
+
+    <RelativeLayout
+        android:id="@+id/user_head"
+        android:layout_width="@dimen/DIMEN_200PX"
+        android:layout_height="@dimen/DIMEN_200PX"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_40PX"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:background="@drawable/btn_alpha_head_bg">
+
+        <com.juxian.bosscomments.widget.RoundAngleImageView
+            android:id="@+id/activity_me_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/DIMEN_15PX"
+            android:scaleType="fitXY"
+            android:src="@drawable/user_head"
+            app:roundHeight="5dp"
+            app:roundTag="0"
+            app:roundWidth="5dp" />
+        <ImageView
+            android:id="@+id/compile_my_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:layout_marginBottom="@dimen/DIMEN_30PX"
+            android:src="@drawable/compile_my_message"/>
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/user_head"-->
+        <!--android:layout_width="78dp"-->
+        <!--android:layout_height="78dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerVertical="true">-->
+
+        <!--<com.juxian.bosscomments.widget.RoundImageView-->
+            <!--app:round_civ_border_color="@color/white"-->
+            <!--app:round_civ_border_width="0dp"-->
+            <!--android:layout_width="78dp"-->
+            <!--android:layout_height="78dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/shape_alpha_oval_white" />-->
+
+        <!--<com.juxian.bosscomments.widget.RoundImageView-->
+            <!--android:id="@+id/activity_me_photo"-->
+            <!--app:round_civ_border_color="@color/white"-->
+            <!--app:round_civ_border_width="1dp"-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="70dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/user_head" />-->
+        <!--<ImageView-->
+            <!--android:id="@+id/compile_my_message"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="@dimen/DIMEN_34PX"-->
+            <!--android:layout_marginBottom="@dimen/DIMEN_34PX"-->
+            <!--android:visibility="gone"-->
+            <!--android:src="@drawable/compile_my_message"/>-->
+    <!--</RelativeLayout>-->
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/activity_user_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_head"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:singleLine="true"
+        android:text="未填写"
+        android:textColor="@color/line_color_write"
+        android:textSize="@dimen/DIMEN_34PX" />
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/activity_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_user_company"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_16PX"
+        android:singleLine="true"
+        android:text="@string/default_name"
+        android:textColor="@color/line_color_write"
+        android:textSize="@dimen/DIMEN_22PX" />
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/activity_me_right_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_head"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_28PX"
+        android:text="立即登录"
+        android:textColor="@color/line_color_write"
+        android:textSize="@dimen/DIMEN_34PX"
+        android:visibility="gone" />
+</RelativeLayout>

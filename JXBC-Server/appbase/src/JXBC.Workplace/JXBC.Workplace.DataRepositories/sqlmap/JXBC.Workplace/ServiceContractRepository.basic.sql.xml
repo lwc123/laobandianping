@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="ServiceContractRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into service_contract (ContractCode, BuyerId, ContractStatus, ServiceBeginTime, ServiceEndTime, TotalFee, PaidWay, TradeCode, CreatedTime, ModifiedTime)
+      values (@ContractCode, @BuyerId, @ContractStatus, @ServiceBeginTime, @ServiceEndTime, @TotalFee, @PaidWay, @TradeCode, @CreatedTime, @ModifiedTime);
+      select @ContractCode;
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update service_contract set ContractStatus=@ContractStatus, ServiceBeginTime=@ServiceBeginTime, ServiceEndTime=@ServiceEndTime, TotalFee=@TotalFee
+      , PaidWay=@PaidWay
+      , ModifiedTime=@ModifiedTime where ContractCode = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from service_contract where ContractCode = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from service_contract where ContractCode = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from service_contract
+    </sqlWrap>
+  </module>
+</root>

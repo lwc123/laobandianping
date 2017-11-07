@@ -1,0 +1,79 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="page-header">
+    <button style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;border:none;outline: none" id="addActivity"><font color="#f0f8ff">新建</font></button>
+</div>
+
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            专题列表
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable no-footer" >
+            <thead>
+            <tr align="center"> <!- 表格总宽度=12 ->
+                <th class="col-xs-1">专题</th>
+                <th class="col-xs-1">专题名称</th>
+                <th class="col-xs-1">公司数</th>
+                <th class="col-xs-1">专题排序</th>
+                <th class="col-xs-1">状态</th>
+                <th class="col-xs-2">操作</th>
+            </tr>
+            </thead>
+
+            {foreach name="TopicList" item="item" }
+            <tbody>
+            <tr align="center">
+                <td>
+                    {$item['TopicId']}
+                </td>
+                <td>{$item['TopicName']}</td>
+                <td>
+                    {$item['CompanyCount']}
+                </td>
+
+                <td>{$item['TopicOrder']}</td>
+                <td>
+                    {if($item['IsOpen']==1)}
+                        正常
+                    {else/}
+                       已关闭
+                    {/if}</td>
+                <td>
+
+
+                    {if($item['IsOpen']==1)}
+                    <a href="TopicClose?TopicId={$item['TopicId']}">关闭</a>
+                    {else/}
+                    <a href="TopicOpen?TopicId={$item['TopicId']}">开启</a>
+                    {/if}
+                    <a href="update?TopicId={$item['TopicId']}">修改</a>
+                    <a href="topicCreateList?TopicId={$item['TopicId']}">添加公司</a>
+                    <a href="topicCompanyList?TopicId={$item['TopicId']}">所属公司</a>
+                </td>
+            </tr>
+            </tbody>
+            {/foreach}
+
+
+        </table>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="resources-footer"}
+
+<script>
+    jQuery(function($) {
+      $('#addActivity').click(function(){
+          window.location.href = 'addTopic';
+      })
+
+    })
+</script>
+{/block}

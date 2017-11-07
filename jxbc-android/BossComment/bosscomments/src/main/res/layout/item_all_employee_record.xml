@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/company_department"
+        android:layout_width="match_parent"
+        android:background="@color/main_background"
+        android:paddingLeft="@dimen/DIMEN_20PX"
+        android:paddingRight="@dimen/DIMEN_20PX"
+        android:layout_height="@dimen/DIMEN_88PX">
+        <TextView
+            android:id="@+id/department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"
+            android:text="人事行政部"/>
+        <TextView
+            android:id="@+id/number_of_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="8人"/>
+    </RelativeLayout>
+    <!--<include-->
+        <!--layout="@layout/item_search_employee"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
+    <!--<com.juxian.bosscomments.widget.ResultListView-->
+        <!--android:id="@+id/listView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:divider="@color/line_color"-->
+        <!--android:dividerHeight="@dimen/DIMEN_1PX"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:scrollbars="none">-->
+
+    <!--</com.juxian.bosscomments.widget.ResultListView>-->
+    <LinearLayout
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+    <View
+        android:id="@+id/white_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:visibility="gone"
+        android:background="@color/line_color"/>
+</LinearLayout>

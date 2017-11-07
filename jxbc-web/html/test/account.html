@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>BossComments - APIs</title>
+<script src="/api/appbase/WebBridge/LoadAccountInfo"></script>
+</head>
+<body>
+<code id="accountWrap"> wait load user info ...</code>
+
+<script>
+    document.getElementById("accountWrap").innerText = JSON.stringify(app.account);
+</script>
+</body>
+</html>

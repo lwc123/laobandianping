@@ -1,0 +1,233 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}金库 - 老板点评{/block}
+{block name="page-content"}
+
+<!--右侧内容部分-->
+<div class="com1-bg pocket-content company-pocket">
+    <!--<div class="pocket-top">
+       &lt;!&ndash; <div class="myPocket">
+            <p>公司金库</p>
+            <p>￥{if empty($CompanySummary.Wallet.AvailableBalance)}0.00{else}{$CompanySummary.Wallet.AvailableBalance}{/if}金币</p>
+        </div>
+        <div class="withDraw-crash2">
+            <p>可提现额度：{if empty($CompanySummary.Wallet.CanWithdrawBalance)}0.00{else}{$CompanySummary.Wallet.CanWithdrawBalance}{/if}金币</p>
+            <input type="button" value="提现" id="btnWithDraw">
+        </div>&ndash;&gt;
+    </div>-->
+    <div class="trade-log">
+        <p class="com-tt">交易记录</p>
+        <div class="em-selectType">
+            <ul >
+                <li><a href="/CompanyWallet/index?CompanyId={$Think.get.CompanyId}"><button {if ($TradeMode==0)}class="active"{/if}>全部</button></a></li>
+                <li><a href="/CompanyWallet/index?CompanyId={$Think.get.CompanyId}&mode=1"><button {if ($TradeMode==1)}class="active"{/if}>收入记录</button></a></li>
+                <li><a href="/CompanyWallet/index?CompanyId={$Think.get.CompanyId}&mode=21"><button {if ($TradeMode==21)}class="active"{/if}>消费记录</button></a></li>
+            <!--    <li><a href="/CompanyWallet/index2?CompanyId={$Think.get.CompanyId}&mode=22"><button {if ($TradeMode==22)}class="active"{/if}>提现记录</button></a></li>-->
+            </ul>
+        </div>
+        {if empty($TradeHistroy)}
+            <div class="em-mid">
+                <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+                <p class="em-s">没有相关交易记录！</p>
+            </div>
+        {else}
+            <div class="trade-list">
+                {volist name="TradeHistroy" id="item"}
+                    <div class="log-list">
+                        <p>{$item.CommoditySubject}</p>
+                        <p>{:toLocalDateTime($item.ModifiedTime,'Y-m-d H:i:s')}</p>
+
+                        {if ($item.TotalFee>0)}
+                            <span>
+                                +{:sprintf("%.1f", $item.TotalFee)}金币
+                            </span>
+                            <p>{$item.CommoditySummary}</p>
+                        {else}
+                            <span>
+                                 {if($item.BizSource== 'OpenEnterpriseGift' || $item.BizSource== 'OpenEnterpriseService')}
+                                -{:sprintf("%.1f", abs($item.TotalFee))}元
+                                {else/}
+                                -{:sprintf("%.1f", abs($item.TotalFee))}金币
+                                {/if}
+                               </span>
+                            <p>
+                                {switch name="item.PayWay"}
+                                    {case value="Alipay"}微信支付{/case}
+                                    {case value="Wechat"}微信支付{/case}
+                                    {case value="Wallet"}企业金库支付{/case}
+                                    {default /}系统支付
+                                {/switch}
+                            </p>
+                        {/if}
+                    </div>
+                {/volist}
+                <div class="em-page">
+                    {$PageNavigation}
+                </div>
+            </div>
+        {/if}
+    </div>
+</div>
+
+<div id="WithDrawContainer">
+    <input type="hidden" name="CompanyId" value="{$Think.get.CompanyId}"/>
+    <input type="hidden" name="MoneyNumber" role="WithDrawMoney"/>
+
+    <div role="WithDraw-Step-One" class="hide">
+        <div class="moneyNum">
+            <p>公司金库：{if empty($CompanySummary.Wallet.AvailableBalance)}0.00{else}{$CompanySummary.Wallet.AvailableBalance}{/if}金币</p>
+            <p>可提现金额：<span role="CanWithdrawBalance">{if empty($CompanySummary.Wallet.CanWithdrawBalance)}0.00{else}{$CompanySummary.Wallet.CanWithdrawBalance}{/if}</span>金币</p>
+            <p class="bank-title">提现金额：<input type="text" name="WithDrawMoney0" placeholder="请输入提现金额"></p>
+        </div>
+        <p class="bank-title">对公银行账号</p>
+        <table>
+            <tr role="defaultBankCard">
+                <td width="30" height="80"><input type="radio" name="selectedBankCard" value="1" checked> </td>
+                <td width="380" style="text-align: left; padding-left: 5px;">
+                    <p class="alertCompanyName"  role="BankOwnerName">111</p>
+                    <p class="alertBankCard" role="BankName">222</p>
+                    <span  class="alertBankName" role="BankCard">333</span>
+                </td>
+            </tr>
+            <tr>
+                <td height="30"><input type="radio" name="selectedBankCard" value="0"> </td>
+                <td style="text-align: left;padding-left: 5px;">
+                    <span>新建对公账号</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div role="WithDraw-Step-Two" class="hide">
+        <div class="moneyNum">
+            <p>公司金库：{if empty($CompanySummary.Wallet.AvailableBalance)}0.00{else}{$CompanySummary.Wallet.AvailableBalance}{/if}金币</p>
+            <p>可提现金额：{if empty($CompanySummary.Wallet.CanWithdrawBalance)}0.00{else}{$CompanySummary.Wallet.CanWithdrawBalance}{/if}金币</p>
+            <p class="bank-title">提现金额：<input type="text" name="WithDrawMoney1" placeholder="请输入提现金额" role="WithDrawMoney"></p>
+        </div>
+        <p class="bank-title">对公银行账号</p>
+        <div class="pocket-con"> 开户名&nbsp;&nbsp; ：
+            <input type="text" name="BankOwnerName"	placeholder="请输入银行开户名"  role="BankOwnerName">
+        </div>
+        <div class="pocket-con">开户银行：
+            <input type="text" name="BankName" required placeholder="请输入银行营业网点"  role="BankName">
+        </div>
+        <div class="pocket-con">银行账号：
+            <input type="text" name="BankCard" required placeholder="请输入银行账号"  role="BankCard">
+        </div>
+    </div>
+    <div role="WithDraw-Step-End"  class="hide">
+        <div class="moneyNum">
+            <p>公司金库：{if empty($CompanySummary.Wallet.AvailableBalance)}0.00{else}{$CompanySummary.Wallet.AvailableBalance}{/if}金币</p>
+            <p>可提现金额：{if empty($CompanySummary.Wallet.CanWithdrawBalance)}0.00{else}{$CompanySummary.Wallet.CanWithdrawBalance}{/if}金币</p>
+            <p class="bank-title">提现金额 <span role="WithDrawMoney"></span>金币</p>
+        </div>
+        <p class="bank-title"><b>对公银行账号信息</b></p>
+        <p class="alert_company_name">开户名：&nbsp;&nbsp;&nbsp;&nbsp;<span role="BankOwnerName"></span></p>
+        <p class="alert_bank_name">开户行：&nbsp;&nbsp;&nbsp;&nbsp;<span role="BankName"></span></p>
+        <p class="alert_money_num">银行账号：&nbsp;<span role="BankCard"></span></p>
+    </div>
+</div>
+<!--弹窗-->
+<div id="zhezhao">
+    <form id="alert">
+        <div class="alertT">
+            <b id="alertClose" class="alertClose">×</b>
+            <span></span>
+        </div>
+        <div class="alertB">
+
+        </div>
+        <button type="submit" class="newJobSaveBtn pickUpMoney1" id="submitWithDraw" data-posted-text="提现申请已提交">提现</button>
+        <span class="patch">
+			</span>
+        <div class="power_person_details">
+        </div>
+    </form>
+</div>
+<!--弹窗结束-->
+{/block}
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    $.validator.setDefaults({
+        submitHandler: function () {
+            var step = $("#submitWithDraw").data("step");
+            console.info("step:%s, sel:%s", step,$("#alert input:radio[name='selectedBankCard']:checked").val());
+            if(step == "One") {
+                var addCard = "0" == $("#alert input:radio[name='selectedBankCard']:checked").val();
+                $("#alert div[role='WithDraw-Step-One']").hide();
+                var withDrawMoney = $("#alert input[name='WithDrawMoney0']").val();
+                $("#alert input[role='WithDrawMoney']").val(withDrawMoney);
+                $("#alert span[role='WithDrawMoney']").text(withDrawMoney);
+                if(addCard) {
+                    $("#submitWithDraw").data("step","Two");
+                    $("#alert div[role='WithDraw-Step-Two']").show();
+                } else {
+                    $("#alert input[name='BankOwnerName']").val($("#alert [role='defaultBankCard'] [role='BankOwnerName']").text());
+                    $("#alert input[name='BankName']").val($("#alert [role='defaultBankCard'] [role='BankName']").text());
+                    $("#alert input[name='BankCard']").val($("#alert [role='defaultBankCard'] [role='BankCard']").text());
+
+                    $("#alert span[role='BankOwnerName']").text($("#alert input[name='BankOwnerName']").val());
+                    $("#alert span[role='BankName']").text($("#alert input[name='BankName']").val());
+                    $("#alert span[role='BankCard']").text($("#alert input[name='BankCard']").val());
+
+                    $("#submitWithDraw").data("step","End");
+                    $("#alert div[role='WithDraw-Step-End']").show();
+                }
+            } else if(step == "Two") {
+                $("#alert div[role='WithDraw-Step-Two']").hide();
+                var withDrawMoney = $("#alert input[name='WithDrawMoney1']").val();
+                $("#alert input[role='WithDrawMoney']").val(withDrawMoney);
+                $("#alert span[role='WithDrawMoney']").text(withDrawMoney);
+
+                $("#alert span[role='BankOwnerName']").text($("#alert input[name='BankOwnerName']").val());
+                $("#alert span[role='BankName']").text($("#alert input[name='BankName']").val());
+                $("#alert span[role='BankCard']").text($("#alert input[name='BankCard']").val());
+
+                $("#submitWithDraw").data("step","End");
+                $("#alert div[role='WithDraw-Step-End']").show();
+            } else if(step == "End") {
+                $("#alert input[name='WithDrawMoney0']").remove();
+                $("#alert input[name='WithDrawMoney1']").remove();
+                $("#alert input[name='selectedBankCard']").remove();
+                $("#alert input[name='BankOwnerName']").attr("name","CompanyName");
+                $("#submitWithDraw").posting();
+                $.ajax({
+                    type:'post',
+                    dataType:'json',
+                    url:"/api/workplace/DrawMoneyRequest/add",
+                    data:$('#alert').serialize(),
+                    success:function(data){
+                        $("#submitWithDraw").hide();
+                        if(data.Success==true){
+                            $("#alert>.alertT>span").text("提现成功");
+                            $(".alertB").html('<div class="bcontent"><p>提现申请已提交！</p><p>1个工作日内运营将处理您的请求。</p></div>');
+                            $("#alertClose").unbind("click").click(function(){
+                                $("#alert").hide();
+                                location.reload();
+                            });
+                            alertwin();
+                        }else{
+                            $("#submitWithDraw").resetPostStatus();
+                            $("#alert>.alertT>span").text("错误提示");
+                            $(".alertB").html('<div class="bcontent">'+data.ErrorMessage+'</div>');
+                            alertwin();
+                        }
+                    },
+                    error:function (data) {
+                        $("#submitWithDraw").resetPostStatus();
+                        console.error(data);
+                        $("#alert>.alertT>span").text("错误提示");
+                        $(".alertB").html('<div class="bcontent">提现失败</div>');
+                        alertwin();
+                    }
+                });
+            }
+            return false;
+        }
+    });
+    jQuery(function() {
+
+    });
+</script>
+{/block}

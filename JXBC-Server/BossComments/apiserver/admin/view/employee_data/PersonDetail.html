@@ -1,0 +1,89 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="page-header">
+    <h1>IO - 人才详情w</h1>
+</div>
+<div class="row" id="Person-container">
+    <div class="col-xs-12 col-sm-10">
+        <div class="profile-user-info profile-user-info-striped">
+            <div class="profile-info-row">
+                <div class="profile-info-name">人才编号</div>
+                <div class="profile-info-value">{$Entity['PersonId']}</div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name">姓名</div>
+                <div class="profile-info-value">{$Entity['RealName']}</div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name">手机号</div>
+                <div class="profile-info-value">{$Entity['MobilePhone']}</div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name">邮箱</div>
+                <div class="profile-info-value">{$Entity['Email']}</div>
+            </div>
+        </div>       
+    {if ($WorkHitory)}
+        {foreach( name="WorkHitory" item="item")}
+        <div class="profile-user-info profile-user-info-striped">
+            <div class="profile-info-row">
+                <div class="profile-info-name">公司</div>
+                <div class="profile-info-value">
+                    <a href="EmployerDetail?EmployerId={$item['EmployerId']}"><b>{$item.CompanyName}</b></a>  
+                    ({$item.Department})
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name">职位</div>
+                <div class="profile-info-value"><b>{$item.JobTitle}</b>   {:toLocalDateTime($item.WorkStart)}-{:toLocalDateTime($item.WorkEnd)}</div>
+            </div>
+        </div>
+        {/foreach}
+    
+    {/if}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-10">      
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div id="ColleagueList-container">
+            <div class="table-header">
+                同事列表
+            </div>
+            <div class="center">
+                <div  style="padding-top:48px;font-size:48px;">
+                    <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                </div>
+                <div>正在获取同事列表...</div>
+            </div>
+        </div>
+        </div>               
+    </div>
+</div>
+
+{/block}
+
+{block name="resources-footer"}
+<script>
+    $(document).ready(function () {
+        function loadPageHtml(url) {
+            $.get(url, function(content,status) {
+                $("#ColleagueList-container").html(content);
+                onPageLoadCompleted();
+                
+                $("#pagination-container a").click(function(){
+                    onPageLoading($(this).data("page-loading-text"));
+                    loadPageHtml($(this).attr("href"));                    
+                    return false;
+                });
+            });
+        }
+        loadPageHtml("ColleagueList?PersonId={$Think.get.PersonId}");
+    });
+</script>
+{/block}
+
+

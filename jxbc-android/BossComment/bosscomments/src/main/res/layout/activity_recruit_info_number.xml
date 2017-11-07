@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_hint_bg_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:paddingRight="@dimen/DIMEN_22PX">
+
+        <EditText
+            android:id="@+id/activity_recruit_common_edtbegin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DIMEN_86PX"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/bt_input_boss_circle"
+            android:gravity="center"
+            android:inputType="number"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:padding="@dimen/DIMEN_18PX"
+            android:text="元  —  "/>
+
+        <EditText
+            android:id="@+id/activity_recruit_common_edtend"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DIMEN_86PX"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/bt_input_boss_circle"
+            android:gravity="center"
+            android:inputType="number"
+            android:paddingLeft="@dimen/DIMEN_30PX"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:padding="@dimen/DIMEN_18PX"
+            android:text="元   "/>
+    </LinearLayout>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_180PX"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"/>
+</LinearLayout>

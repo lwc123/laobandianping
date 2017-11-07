@@ -1,0 +1,277 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}{$archivedetail.RealName}档案详情{/block}
+{block name="page-content"}
+<!--档案详情部分-->
+<div class="com1-bg em-info">
+    <!--员工档案详情部分-->
+    <div class="em3-info1">
+        <p class="com-tt">{$archivedetail.IsDimission}员工档案<a href="update?ArchiveId={$archivedetail.ArchiveId}&CompanyId={$CompanyId}">修改</a></p>
+        <div class="em1-info1 em3">
+            <img src="{$archivedetail.Picture}">
+            <p class="nname"><a href="#">{$archivedetail.RealName}</a></p>
+            <p class="work">{$ArchivePostTitle.PostTitle} | {$ArchiveDepartment}</p>
+            <p class="time">{:toLocalDateTime($archivedetail.EntryTime,'Y年m月d日')}入职
+                {if condition="($archivedetail.IsDimission eq '离任') or
+                ($archivedetail.IsDimission eq 1) "}
+                | {:toLocalDateTime($archivedetail.DimissionTime,'Y年m月d日')}离任 {/if}</p>
+        </div>
+        <div class="em3-info11">
+            <p>目前状态：<span>{$archivedetail.IsDimission}</span></p>
+            <p>性别：<span>{$archivedetail.Gender}</span></p>
+            <p>年龄：<span>{$archivedetail.age}岁（{:toLocalDateTime($archivedetail.Birthday,'Y年m月d日')}）</span></p>
+            <p>手机号码：<span>{$archivedetail.MobilePhone}</span></p>
+            <p>入职日期：<span>{:toLocalDateTime($archivedetail.EntryTime,'Y年m月d日')}</span></p>
+            {if condition="$archivedetail.IsDimission eq '离任'" }
+            <p>离任日期：<span>{:toLocalDateTime($archivedetail.DimissionTime,'Y年m月d日')}</span></p>
+            
+            <p>离任薪资： <span>{if $ArchivePostTitle.Salary}年薪{$ArchivePostTitle.Salary}万元{else}--{/if}</span></p>
+            {/if}
+            <p>身份证号：<span>{$archivedetail.IDCard}</span></p>
+            <p>毕业学校：<span>{$archivedetail.GraduateSchool}</span></p>
+            <p>学历：<span>{$archivedetail.Education}</span></p>
+            <p>担任职务：</p>
+
+            {volist name="workitemlist" id="workitemlist"}
+
+            <p><span class="employee-time">{:toLocalDateTime($workitemlist.PostStartTime,'Y年m月d日')} -
+                {if strstr($workitemlist.PostEndTime,'3000') or strstr($workitemlist.PostEndTime,'1970')}
+                至今
+                {else}
+                {:toLocalDateTime($workitemlist.PostEndTime,'Y年m月d日')}
+                {/if}
+            </span>
+                <span class="em3-ww">{$workitemlist.PostTitle}（{$workitemlist.Department.DeptName}） {if $workitemlist.Salary}&nbsp;&nbsp;年薪{$workitemlist.Salary}万元{/if}</span></p>
+            {/volist}
+        </div>
+    </div>
+    {if condition="($Report eq '' ) and ($StageYear eq '' )"}
+    <div class="none font24 detail-face">
+      <img src="{$Think.config.resources_site_root}/pc/img/none.png"><br>
+                 还未对TA的工作进行评价或离任报告
+    </div>
+    {/if}
+    {if condition="$Report neq '' "}
+    <!--员工离任报告部分-->
+    <div class="em3-info2">
+        <p class="com-tt">员工离职报告<a href="/ArchiveComment/commentupdate?CommentId={$Report.CommentId}&CompanyId={$CompanyId}&CommentType=1">修改</a></p>
+        <div class="em3-info11 em3-info21">
+            <p>离任时间：<span>{:toLocalDateTime($archivedetail.DimissionTime,'Y年m月d日')}</span></p>
+            <p>离任薪资：<span>
+                {if($Report.DimissionSalary)}
+                年薪 {$Report.DimissionSalary}万元
+                {else/}
+                暂无
+                {/if}
+            </span></p>
+            <p>离任原因：<span>{$Report.DimissionReason}</span></p>
+            <p>离任原因补充说明：</p>
+            <p><span>{$Report.DimissionSupply}</span></p>
+            <p class="em3-tt"><i class="iconfont">&#xe641;</i>在职期间工作评价</p>
+            <ul class="em3-block">
+                <li><span class="top-t">工作能力</span>
+                	<div class="block-left">
+                        <span>{$Report.WorkAbilityText}</span>
+                    </div>
+                    <span class="block-right">{$Report.WorkAbility}<br>分</span>
+                </li>
+                <li><span class="top-t">工作态度</span>
+                	<div class="block-left">
+                       <span>{$Report.WorkAttitudeText}</span>
+                    </div>
+                    <span class="block-right">{$Report.WorkAttitude}<br>分</span>
+                </li>
+                <li><span class="top-t">工作业绩</span>
+                	<div class="block-left">
+                       <span>{$Report.WorkPerformanceText}</span>
+                    </div>
+                    <span class="block-right">{$Report.WorkPerformance}<br>分</span>
+                </li>
+            </ul>
+            <div class="em3-ev">
+                <p class="em3-tt"><i class="iconfont">&#xe641;</i>工作交接情况</p>
+                <ul class="em3-block">
+                    <li><span class="top-t">及时性</span>
+                    	<div class="block-left">
+                             <span>{$Report.HandoverTimelyText}</span>
+                        </div>
+                        <span class="block-right">{$Report.HandoverTimely}<br>分</span>
+                    </li>
+                    <li><span class="top-t">全面性</span>
+                    	<div class="block-left">
+                            <span>{$Report.HandoverOverallText}</span>
+                        </div>
+                        <span class="block-right">{$Report.HandoverOverall}<br>分</span>
+                    </li>
+                    <li><span class="top-t">后续支持</span>
+                    	<div class="block-left">
+                           <span>{$Report.HandoverSupportText}</span>
+                        </div>
+                        <span class="block-right">{$Report.HandoverSupport}<br>分</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="em3-say">
+                <p>离任评语</p>
+                <div class="say-content">
+                    <div class="say-word">
+                        {php}echo nl2br($Report['WorkComment']){/php}
+                    </div>
+                    {if condition="$Report.WorkCommentImages neq '' "}
+                    <div class="remark-img overflow demo-gallery" data-pswp-uid="1">
+
+                        {foreach $Report.WorkCommentImages as $images}
+                        {php}$exist_images=exist_file($images);{/php}
+                        {if $exist_images}
+                        <figure class="img">
+                            <div><a href="{$images}" data-size="{$exist_images}" data-med="{$images}"
+                                    data-med-size="1024x1024"><img src="{$images}"></a></div>
+                        </figure>
+                        {/if}
+                        {/foreach}
+
+                    </div>
+                    {/if}
+                    <!-- 收听语音 -->
+                    {if condition="$Report.WorkCommentVoice neq '' "}
+                    <div class="audio">
+                        <div class="audio-inner play">
+                            <div class="circle fl"></div>
+                            <audio id="audioa{$Report.CommentId}" src="{$Report.WorkCommentVoice}"></audio>
+                            <p class="font24 fl audio-txt">点击收听评价{$Report.WorkCommentVoiceSecond}"</p>
+                        </div>
+                        <div class="audio-inner pause hidden">
+                            <div class="circle fl"></div>
+                            <audio id="audioa{$Report.CommentId}" src="{$Report.WorkCommentVoice}"></audio>
+                            <p class="font24 fl audio-txt">点击收听评价{$Report.WorkCommentVoiceSecond}"</p>
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+                <p>返聘意愿：<span>{$Report.WantRecall}</span></p>
+                <p>评价时间：<span>{$Report.CreatedTime|substr=0,10}</span></p>
+                <p>评价提交人：<span>{$Report.PresenterId}</span></p>
+                <p>评价审核人：<span>{$Report.AuditPersons}</span></p>
+            </div>
+        </div>
+    </div>
+    {/if}
+    {if condition="$StageYear neq '' "}
+    <!--员工离任报告第二部分-->
+    <div class="em3-info3">
+        <p class="com-tt">员工阶段工作评价</p>
+        {foreach name="StageYear" item="vo" key="k" }
+        <div class="em3-info11">
+            <p>{$k}年度</p>
+            {foreach name="vo.Commentlist" item="comment" key="keys"}
+            <p class="em3-tt"><i class="iconfont">&#xe641;</i>{$comment.StageSection}工作评价<a href="/ArchiveComment/commentupdate?CommentId={$comment.CommentId}&CompanyId={$CompanyId}&CommentType=0">修改</a></p>
+            <ul class="em3-block">
+                <li><span class="top-t">工作能力</span>
+                    <span class="block-left">{$comment.WorkAbilityText}</span>
+                    <span class="block-right">{$comment.WorkAbility}<br>分</span>
+                </li>
+                <li><span class="top-t">工作态度</span>
+                    <span class="block-left ">{$comment.WorkAttitudeText}</span>
+                    <span class="block-right">{$comment.WorkAttitude}<br>分</span>
+                </li>
+                <li><span class="top-t">工作业绩</span>
+                    <span class="block-left">{$comment.WorkPerformanceText}</span>
+                    <span class="block-right">{$comment.WorkPerformance}<br>分</span>
+                </li>
+            </ul>
+            <div class="em3-say">
+                <p>工作评语</p>
+                <div class="say-content">
+                    <div class="say-word">
+                        {php}echo nl2br($comment['WorkComment']){/php}
+                    </div>
+                    {if condition="$comment.WorkCommentImages neq '' "}
+                    <div class="remark-img overflow demo-gallery" data-pswp-uid="1">
+                        {foreach $comment.WorkCommentImages as $images}
+                        {php}$exist_images=exist_file($images);{/php}
+                        {if $exist_images}
+                        <figure class="img">
+                            <div><a href="{$images}" data-size="{$exist_images}" data-med="{$images}"
+                                    data-med-size="1024x1024"><img src="{$images}"></a></div>
+                        </figure>
+                        {/if}
+                        {/foreach}
+                    </div>
+                    {/if}
+                    {if condition="$comment.WorkCommentVoice neq '' "}
+                    <!-- 收听语音 -->
+                    <div class="audio">
+                        <div class="audio-inner play">
+                            <div class="circle fl"></div>
+                            <audio id="audioa{$keys}{$k|substr=0,4}{$keys}" src="{$comment.WorkCommentVoice}"></audio>
+                            <p class="font24 fl audio-txt">点击收听评价{$comment.WorkCommentVoiceSecond}"</p>
+                        </div>
+                        <div class="audio-inner pause hidden">
+                            <div class="circle fl"></div>
+                            <audio id="audioa{$keys}{$k|substr=0,4}{$keys}" src="{$comment.WorkCommentVoice}"></audio>
+                            <p class="font24 fl audio-txt">点击收听评价{$comment.WorkCommentVoiceSecond}"</p>
+                        </div>
+
+                    </div>
+                    {/if}
+                </div>
+                <p>评价时间：<span>{$comment.CreatedTime|substr=0,10}</span></p>
+                <p>评价提交人：<span>{$comment.PresenterId}</span></p>
+                <p>评价审核人：<span>{$comment.AuditPersons}</span></p>
+            </div>
+            {/foreach}
+        </div>
+        {/foreach}
+    </div>
+    {/if}
+</div>
+<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg" style=""></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item">
+                <div class="pswp__zoom-wrap">
+                    <img class="pswp__img" src="">
+                </div>
+            </div>
+            <div class="pswp__item">
+                <div class="pswp__zoom-wrap">
+                    <img class="pswp__img" src=""></div>
+            </div>
+            <div class="pswp__item">
+                <div class="pswp__zoom-wrap">
+                    <img class="pswp__img" src=""></div>
+            </div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--fs pswp__element--disabled" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="resources-footer"}
+<script>
+    jQuery(function ($) {
+
+    });
+</script>
+<link href="{$Think.config.resources_site_root}/mobile/css/photoswipe.css?v=0" rel="stylesheet">
+<link href="{$Think.config.resources_site_root}/mobile/css/default-skin/default-skin.css?v=0" rel="stylesheet">
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe-ui-default.min.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/boss.js"></script>
+{/block}

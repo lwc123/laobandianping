@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="theme_primary">@color/indigo_500</color>
+	<color name="page_background">#ffeeeeee</color>
+	<color name="panel_background">#ffffffff</color>
+	<color name="panel_secondary_background">@color/indigo_50</color>	
+
+	<color name="text_primary">@color/text_primary_black</color>
+	<color name="text_secondary">@color/text_secondary_black</color>
+	<color name="text_primary_disabled">@color/text_primary_black_disabled</color>
+    
+	<color name="text_primary_black">@color/black</color>
+	<color name="text_secondary_black">@color/black_alpha_87</color>
+	<color name="text_primary_black_disabled">@color/black_alpha_54</color>
+	<color name="text_primary_white">@color/white</color>
+	<color name="text_secondary_white">@color/white_alpha_70</color>	
+
+	<color name="background_material_light">@color/page_background</color>
+	<color name="primary_material_dark">@color/text_primary_black</color> 
+
+	<color name="primary_text_default_material_light">@color/text_primary</color>
+	<color name="secondary_text_default_material_light">@color/text_secondary</color>
+	<color name="primary_text_disabled_material_light">@color/text_primary_disabled</color>
+	
+	<color name="primary_text_default_material_dark">@color/text_primary_white</color>
+	<color name="secondary_text_default_material_dark">@color/text_secondary_white</color>
+</resources>

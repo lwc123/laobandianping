@@ -1,0 +1,165 @@
+body{
+	background:#e7e8ec;
+	width:100%;
+	height:973px;
+	position: relative;
+}
+.com-width{
+	width:1200px;
+	margin: auto;
+}
+.com-top{
+	height:60px;
+	background: #2c291f;
+}
+.com-top img{
+	margin:8px 695px 8px 62px;
+}
+.com-top img,.com-top1{
+	float:left;
+}
+.com-loss{
+	width:32px;
+	height: 15px;
+	background:linear-gradient(to left,#fc0509,#a8041a);
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='#fc0509',endColorstr='#a8041a')"; 
+	position:relative;
+	margin-left:111px;
+	margin-top:-28px;
+}
+.com-tr{
+	width:0;
+	height:0;
+	border:7.5px solid #db0510;
+	border-right:7.5px solid #2c291f;
+	position:absolute;
+	left:20px;
+	}
+.com-top span{
+	font-size: 10px;
+	color:#fff;
+	padding-left: 4px;
+	position:absolute;
+	z-index: 2;
+	}
+.com-top p,.em-a{
+	float:left;
+	margin-top:20px;
+	margin-right: 53px;
+	position:relative;
+}
+.com-top a{
+	font-size: 18px;
+	color:#fff;
+}
+/*中间部分*/
+.qq-mid{
+	background: #fff;
+}
+.qq-content{
+	width:772px;
+	height:774px;
+	margin:auto;
+	overflow: hidden;
+	padding-top:60px;
+}
+.qq-title{
+	font-size: 20px;
+	margin-bottom: 30px;
+	clear:both;
+	font-weight: bold;
+}
+.qq-content p{
+	font-size: 16px;
+	line-height: 25px;
+}
+.btn{
+	float:left;
+	margin: 47px 74px ;
+	text-align: center;
+}
+.btn p{
+	margin-top:15px;
+}
+.btn button{
+	width:200px;
+	height:50px;
+}
+.red{
+	color:#d31518;
+}
+.grad{
+	color:#d0b676;
+}
+.com-bottom{
+	height:78px;
+	background:linear-gradient(to bottom,#000,#4e1014);
+}
+/*支付单页*/
+.pay-content{
+	padding-top:35px;
+	background: #fff;
+	padding-left:50px;
+	height: 878px;
+}
+.pay-content p{
+	color:#b8b8b8;
+	padding-top:15px;	
+}
+.pay-method span{
+	font-size: 18px;
+	color:#000;
+}
+.weixin img,.zhi img{
+	padding-top:25px;
+}
+.img-pic{
+	padding-top:74px;
+	width:780px;
+	margin:auto;
+}
+.img-code{
+	float:left;
+	padding-top:80px;
+	padding-right:170px;
+}
+.img-code p{
+	padding:20px 12px;
+	background:#f9e6d8;
+	color:#000;
+	text-align: center;
+	margin-top:25px;
+}
+/*支付成功跳转*/
+.success{
+	text-align: center;
+	padding-top:195px;
+}
+.gold{
+	color:#d5bd83;
+}
+/*公司转账*/
+.qq-content.account-transfer{
+	padding: 60px 50px;
+	margin:0!important;
+	color: #000;
+	font-size: 20px;
+}
+.margin-b20{
+	margin-bottom: 20px;
+}
+.font-20{
+	font-size: 20px!important;
+}
+.qq-content.account-transfer .account-txt{
+	margin-bottom: 20px;
+}
+.qq-content.account-transfer .account-con li{
+	font-size: 20px;
+}
+.qq-content.account-transfer .account-open{
+	color: #d0b676;
+}
+.qq-content.account-transfer .account-tel{
+	
+}

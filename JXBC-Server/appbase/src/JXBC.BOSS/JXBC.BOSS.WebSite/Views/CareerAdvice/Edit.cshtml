@@ -1,0 +1,73 @@
+﻿@using M2SA.AppGenome.Data;
+@using JXBC.Workplace;
+@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+
+@{
+    ViewBag.Title = "高见修改-举贤令";
+    var entity = (CareerAdviceEntity)Model;
+}
+
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="/">首页</a>
+        </li>
+        <li class="active">业务管理</li>
+        <li class="active">高见修改</li>
+    </ul>
+</div>
+
+<div>
+    <div class="col-md-offset-2 col-md-8 container_form">
+        <form role="form">
+            <input type="hidden" name="AdviceId" value="@entity.AdviceId">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    高见修改
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="Subject">高见简介</label>
+                        <input type="text" class="form-control" id="txtSubject" name="Subject" value="@entity.Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="SelfIntroduction">高见内容</label>
+                        <textarea class="form-control" id="txtContent" name="Content" rows="12">@entity.Content</textarea>
+                    </div>
+                    <div style="margin:10px 0;">
+                        <label style="font-weight:bold;font-size:16px;">猎头风采</label>
+                        <div><img style="width:200px;" src="@entity.Picture" /></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div role="alert" class="col-md-offset-2 col-md-8 alert alert-warning text-center">
+    <span>
+        <input id="btnChange" class="btn btn-primary" type="button" value="确认修改" />
+    </span>
+</div>
+@section _resources_footer {
+    <script type="text/javascript">
+    $(function () {
+        $('#btnChange').click(function () {
+            var postData = $("form").serialize();
+
+            var $this = $(this);
+            $this.onPosting();
+            $.post('../Change', postData, function (res) {
+                    $this.resetPostStatus();
+                    if (res.success) {
+                        jx.modal.alert("修改服务信息成功！");
+                        setTimeout(function(){location.href='../Detail/@(entity.AdviceId)';},2000);
+                    } else {
+                        jx.modal.alert("修改失败！");
+                    }
+                }, 'json');
+        });
+    });
+    </script>
+}

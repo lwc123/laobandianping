@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:background="@color/main_color">
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/first_page_buy_num_color"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:padding="@dimen/DIMEN_8PX"
+            android:text="取消"/>
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:text="请选择日期"
+            android:textSize="@dimen/DIMEN_34PX" />
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/luxury_gold_color"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:padding="@dimen/DIMEN_8PX"
+            android:text="确定"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
+    <com.kankan.wheel.widget.WheelView
+        android:id="@+id/id_company_person_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.kankan.wheel.widget.WheelView>
+
+</LinearLayout>

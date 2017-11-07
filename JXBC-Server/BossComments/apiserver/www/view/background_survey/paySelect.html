@@ -1,0 +1,113 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}背景调查{/block}
+
+{block name="page-content"}
+	<!--右侧内容开始-->
+	<div class="com1-bg">
+		<div class="backgrounddetail fr">
+			<h2>支付</h2>
+			<div class="pay-inner">
+				<h2>选择支付方式</h2>
+				<!-- <ul>
+					<li class="wchat">
+						<div class="fl">微信支付</div>
+						<div class="fr">
+							<span class="check-radio">
+								<input type="radio" value="Wechat" name="pay">
+							</span>
+						</div>				
+					</li>
+					<li class="alipay">
+						<div class="fl">支付宝支付</div>
+						<div class="fr">
+							<span class="check-radio">
+								<input type="radio" value="Alipay" name="pay">
+							</span>
+						</div>
+					</li>
+					<li class="coffers">
+						<div class="fl mon-coffers">
+							老板点评金库
+						<span>余额400元</span>
+						</div>
+						<div class="fr">
+							<span class="check-radio">
+								<input type="radio" value="wang" name="pay">
+							</span>
+						</div>
+					</li>
+				</ul> -->
+				<div class="choice-line wchat border">
+		            <div class="">
+		                <input id="checked2" checked type="radio" value="Wechat" name="pay">
+		                <label for="checked2">微信支付</label>
+		            </div>
+		        </div>
+		        <div class="choice-line alipay">
+		            <div class="">
+		                <input  id="checked3" type="radio" value="Alipay" name="pay">
+		                <label  for="checked3">支付宝支付</label>
+		            </div>      
+		        </div>
+		        <div class="choice-line coffers">
+		            <div class="">
+		                <input  id="checked4" type="radio" value="wang" name="pay">
+		                <label  for="checked4">公司转账</label>
+		            </div>      
+		        </div>
+				<div class="money-detail">
+					<p>支付金额：450金币</p>
+					<p>支付说明：购买张然的背景调查报告</p>
+				</div>
+			</div>
+			<p class="total-mon">应支付：<b>450金币</b> </p>
+			<button class="bac-pay" id="pay">支付</button>
+		</div>
+	</div>
+{/block}
+
+{block name="resources-footer"}
+    <script>
+    /*var payment = JSON.parse(payment);*/
+    $(function(){
+//  	var w=document.body.clientWidth;
+//	 	$('.backgrounddetail').css('width',w-210+'px');
+//	 	$('.count-sum').css('width',w-210+'px');
+    	$('#pay').bind('click',function(){
+          var payWay=$('input[type=radio]:checked').val();
+          payment.PayWay=payWay;
+          var InviteCode=getUrlParam('InviteCode');
+          var item={
+              'CompanyName':company,
+              'InviteCode':InviteCode,
+              'JobTitle':duties,
+              'RealName':name,
+          }
+          payment.CommodityExtension = JSON.stringify(item);
+          var apiUrl=AppEnvironment.apiRoot+'/appbase/Payment/createTrade';
+          $.ajax({
+              type:'post',
+              url:apiUrl,
+              data:payment,
+              dataType:"json",
+              success:function(data){
+                console.log(data)
+                var TradeCode=data.TradeCode;
+                var CommoditySubject=payment.CommoditySubject;
+                var TotalFee=payment.TotalFee;
+                var SignedParams=data.SignedParams;
+                var payWay=payment.PayWay;
+                window.location.href='pay?TradeCode='+TradeCode+'&CommoditySubject='+encodeURI(CommoditySubject)+'&TotalFee='+TotalFee+'&SignedParams='+SignedParams+'&PayWay='+payWay;
+              },
+              error:function(data){
+                  console.log('支付失败！')
+              }
+         })
+      })
+    })
+    </script>
+{/block} 
+
+	
+ 

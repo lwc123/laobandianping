@@ -1,0 +1,116 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@using JXBC.Workplace;
+@{
+    var entity = (CareerServiceContractEntity)Model;
+    var fromPay = Request["from"] == "pay";
+
+    ViewBag.Title = "订单详情";
+    ViewBag.BodyClass = "jxm-body st-c1";
+    
+    var statusName = "等待接受";
+    var statusClass = "status-4-1";
+    if (ViewBag.viewType == "buyer" && null != entity.Buyer) 
+    {
+        statusName = "等待对方接受";
+        if(string.IsNullOrEmpty(entity.Buyer.Nickname))
+        {
+            entity.Buyer.Nickname = "举贤令用户";
+        }
+    }
+    if(entity.ContractStatus==ContractStatus.ServiceEnd)
+    {
+        statusName = "指导完成";
+        statusClass = "status-4-4";
+    } 
+    else if(entity.ContractStatus==ContractStatus.Servicing)
+    {
+        statusName = "进行指导";
+        statusClass = "status-4-3";
+    }
+    else if(entity.ContractStatus==ContractStatus.Rejected)
+    {
+        statusName = "猎头已拒绝";
+        statusClass = "status-2-2";
+    }
+
+}
+
+<div class="jxm">
+    <div class="order-progress">
+        <h2 class="order-progress-tl">@statusName</h2>
+        <div class="order-progress-con @statusClass  ">
+            <dl class="order-progress-son">
+                <dt>付款成功</dt>
+                <dd>@entity.CreatedTime.ToString("yyyy.M.dd")</dd>
+            </dl>
+            @if(entity.ContractStatus==ContractStatus.Rejected)
+            {
+                <dl class="order-progress-son">
+                    <dt>猎头拒绝</dt>
+                    <dd>@entity.ServiceBeginTime.ToString("yyyy.M.dd")</dd>
+                </dl>
+            }
+            else 
+            {
+                <dl class="order-progress-son">
+                    <dt>猎头接受</dt>
+                    <dd>@entity.ServiceBeginTime.ToString("yyyy.M.dd")</dd>
+                </dl>
+                <dl class="order-progress-son">
+                    <dt>进行指导</dt>
+                    <dd>@entity.ServiceBeginTime.ToString("yyyy.M.dd")</dd>
+                </dl>
+                <dl class="order-progress-son">
+                    <dt>指导完成</dt>
+                    <dd>@entity.ServiceEndTime.ToString("yyyy.M.dd")</dd>
+                </dl>	                
+            }
+											
+        </div>		
+    </div>    
+    @if (ViewBag.viewType == "buyer" && null != entity.Buyer)
+    {
+        <dl class="order-card">
+            <dt class="avton"><img class="headPicture" src="@(entity.Buyer.Avatar)" 
+                    { @Html.Raw("data-target=\"app:gotoNativePage\" data-page-name=\"UserPage\" data-page-params='{\"oid\":" + entity.BuyerId + "}'")  }/></dt>
+            <dd class="con">
+                <div class="name ellipsis">
+                    @(entity.Buyer.Nickname)
+                    @if(false==string.IsNullOrEmpty(entity.Buyer.CurrentCompany) || false==string.IsNullOrEmpty(entity.Buyer.CurrentJobTitle))
+                    {
+                        <span>|</span><span>@(entity.Buyer.CurrentCompany) @(entity.Buyer.CurrentJobTitle)</span>
+                    }                    
+                </div>
+                <div class="infor ellipsis">电话：<span>@(entity.BuyerPhone)</span></div>
+            </dd> 
+        </dl>
+    }
+    @if (ViewBag.viewType == "seller" && null != entity.Seller)
+    {
+        <dl class="order-card">
+            <dt class="avton"><img class="headPicture" src="@(entity.Seller.Avatar)" 
+                     { @Html.Raw("data-target=\"app:gotoNativePage\" data-page-name=\"HunterPage\" data-page-params='{\"oid\":" + entity.SellerId + "}'")  }/></dt>
+            <dd class="con">
+                <div class="name ellipsis">
+                    @(entity.Seller.RealName)<span>|</span><span>@(entity.Seller.Identity)</span>
+                </div>
+                <div class="infor ellipsis">电话：<span>@(entity.SellerPhone)</span></div>
+            </dd> 
+        </dl>
+    }        
+    </dl>
+    <div class="order-content">
+        <h2 class="order-content-tl">我遇到的求职问题</h2>
+        <div class="order-content-con">
+            @entity.Question
+        </div>
+    </div>		
+    <ul class="jxm-list order-list">
+        <li><span>服务单号：</span><i class="sp-1">@entity.ContractCode</i></li>
+        <li><span>购买时间：</span>@entity.CreatedTime.ToString("yyyy年M月dd日")</li>
+        <li><span>支付方式：</span>@entity.PaidWayName</li>
+        <li><span>订单总额：</span>@(entity.TotalFee)元</li>
+        <li><span>有效时间：</span>@((int)(entity.ServiceEndTime-entity.ServiceBeginTime).TotalDays)天</li>
+    </ul>
+</div>    

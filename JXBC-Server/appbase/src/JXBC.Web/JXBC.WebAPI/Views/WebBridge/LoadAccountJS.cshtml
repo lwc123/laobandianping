@@ -1,0 +1,18 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@{
+    Layout = null;
+    var entity = (AccountEntity)Model;
+}
+
+if(typeof(app)=='undefined') {
+    appbase = {};
+}
+
+@if(null != entity && entity.PassportId > 0)
+{
+    @Html.Raw(string.Format("appbase.account = {0};", entity.ToJson()));
+} else
+{
+    @Html.Raw("appbase.account = null;");
+}

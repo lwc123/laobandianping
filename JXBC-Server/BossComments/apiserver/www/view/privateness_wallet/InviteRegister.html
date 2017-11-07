@@ -1,0 +1,19 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}个人-邀请企业注册{/block}
+{block name="page-content"}
+	    <!--右侧内容部分-->
+	    <div class="com1-bg">
+	    	<div class="invitate-top">
+	    		<h4>尊敬的{$MyMobilePhone}用户</h4>
+	    		<p class="invitate-content">共建职场诚信体系需要您的参与，您的任何一个分享邀请都将是中国职场征信建设的一大步！</p>
+				<p>为感激您的分享邀请，您每邀请一个企业成功开户，您公司将获得400元奖励。</p>
+	    	</div>
+	    	<div class="invitate-ma">
+	    		<p>1、将二维码截图发送到QQ,微信好友，扫一扫注册老板点评</p>
+	    		<img src="{$InviteRegister.InviteRegisterQrcode}">
+	    	    <p>2、复制链接发送到QQ、微信好友注册老板点评</p>
+	    	    <p>{$InviteRegister.InviteRegisterUrl}</p>
+	    	</div>
+	    </div>
+{/block}

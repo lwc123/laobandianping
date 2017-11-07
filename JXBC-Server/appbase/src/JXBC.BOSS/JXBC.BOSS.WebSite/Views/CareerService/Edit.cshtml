@@ -1,0 +1,109 @@
+﻿@using M2SA.AppGenome.Data;
+@using JXBC.Workplace;
+@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+
+@{
+    ViewBag.Title = "服务修改-举贤令";
+    var entity = (CareerServiceEntity)Model;
+}
+
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="/">首页</a>
+        </li>
+        <li class="active">业务管理</li>
+        <li class="active">服务修改</li>
+    </ul>
+</div>
+
+<div>
+    <div class="col-md-offset-2 col-md-8 container_form">
+        <form role="form">
+            <input type="hidden" name="ServiceId" value="@entity.ServiceId">
+            <input type="hidden" class="form-control" id="txtContents" name="Contents">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    服务修改
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="Subject">服务简介</label>
+                        <input type="text" class="form-control" name="Subject" value="@entity.Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="Content">服务内容</label>                        
+                        @{
+                            var index = 0;
+                            if (null != entity.Contents)
+                            {
+                                index = entity.Contents.Length;
+                                foreach (var text in entity.Contents)
+                                {
+                                    <input type="text" class="form-control" name="Content" value="@text">
+                                }
+                            }
+
+                            if (index < 5)
+                            {
+                                for (var i= index; i<5; i++)
+                                {
+                                    <input type="text" class="form-control" name="Content">
+                                }
+                            }
+                        }
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">服务价格</label>
+                        <input type="text" class="form-control" name="Price" value="@entity.Price.ToString("F2")">
+                    </div>
+                    <div class="form-group">
+                        <label for="SelfIntroduction">个人简介</label>
+                        <textarea class="form-control" name="SelfIntroduction" rows="6">@entity.Profile.SelfIntroduction</textarea>
+                    </div>
+
+                    <div style="margin:10px 0;">
+                        <label style="font-weight:bold;font-size:16px;">猎头风采</label>
+                        <div><img style="width:200px;" src="@entity.Picture" /></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div role="alert" class="col-md-offset-2 col-md-8 alert alert-warning text-center">
+    <span>
+        <input id="btnChange" class="btn btn-primary" type="button" value="确认修改" />
+    </span>
+</div>
+@section _resources_footer {
+    <script type="text/javascript">
+    $(function () {
+        $('#btnChange').click(function () {
+            var contents = [];
+            $("input[name='Content']").each(function(){
+                var content = $(this).val();
+                if(content.length > 0)
+                    contents.push(content);
+            });
+            $("#txtContents").val(JSON.stringify(contents));
+            var postData = $("form").serialize();
+
+            var $this = $(this);
+            $this.onPosting();
+            $.post('../Change', postData, function (res) {
+                    $this.resetPostStatus();
+                    if (res.success) {
+                        jx.modal.alert("修改服务信息成功！");
+                        setTimeout(function () { location.href = '../Detail/@(entity.ServiceId)'; }, 2000);
+                    } else {
+                        jx.modal.alert("修改失败！");
+                    }
+                }, 'json');
+        });
+    });
+    </script>
+}

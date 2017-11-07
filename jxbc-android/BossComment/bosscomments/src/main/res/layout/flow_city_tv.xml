@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.juxian.bosscomments.widget.TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_city"
+    android:gravity="center"
+    android:id="@+id/tv"
+    android:paddingBottom="@dimen/DIMEN_12PX"
+    android:paddingLeft="@dimen/DIMEN_18PX"
+    android:paddingRight="@dimen/DIMEN_18PX"
+    android:paddingTop="@dimen/DIMEN_12PX"
+    android:text="Helloworld"
+    android:textColor="@color/main_text_color"
+    android:textSize="@dimen/DIMEN_24PX">
+
+</com.juxian.bosscomments.widget.TextView>

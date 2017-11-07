@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_20PX"
+        android:background="@color/main_background"/>
+
+    <RelativeLayout
+        android:id="@+id/activity_boss_comment_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white">
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/item_change_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:text=""
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <ImageView
+            android:id="@+id/jiantou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_22PX"
+            android:src="@drawable/xiangyou" />
+    </RelativeLayout>
+</LinearLayout>

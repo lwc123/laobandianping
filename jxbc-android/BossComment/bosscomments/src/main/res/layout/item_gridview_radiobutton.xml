@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/rb_tab"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:layout_height="@dimen/DIMEN_80PX"
+        android:layout_margin="@dimen/DIMEN_10PX"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:textSize="@dimen/DIMEN_22PX"
+        android:textColor="@color/time_phasing_color_selector"
+        android:button="@null"
+        android:background="@drawable/time_phasing_selector"
+        android:text="其他" />
+</LinearLayout>

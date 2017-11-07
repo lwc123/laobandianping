@@ -1,0 +1,79 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+所属专题：{$Detail.TopicName}
+
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            专题列表
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable no-footer" >
+            <thead>
+            <tr align="center"> <!- 表格总宽度=12 ->
+                <th class="col-xs-2">Id</th>
+                <th class="col-xs-2">企业名称</th>
+                <th class="col-xs-2">点评数</th>
+                <th class="col-xs-2">操作</th>
+            </tr>
+            </thead>
+            {if(!empty($Detail.Companys))}
+            {foreach name="$Detail.Companys" item="item" key="key" }
+            <tbody>
+            <tr align="center">
+                <td>
+                    {$key+1}
+                </td>
+                <td>
+                    {$item.CompanyName}
+                </td>
+                <td>
+                {$item.CommentCount}
+               </td>
+
+                <td>
+                    <a href="javascript:;" class="addCompany" data-companyid="{$item.CompanyId}" data-topic="{$Think.get.TopicId}">清除</a>
+                </td>
+            </tr>
+            </tbody>
+            {/foreach}
+
+            {else/}
+            <tr>
+                <td colspan="3"> <h2>暂无公司</h2></td>
+            </tr>
+            {/if}
+        </table>
+
+    </div>
+</div>
+
+
+{/block}
+
+{block name="resources-footer"}
+
+<script>
+    jQuery(function($) {
+      $('.addCompany').click(function(){
+          _this=$(this);
+          CompanyId =  _this.attr('data-companyid');
+
+          TopicId =  $(this).attr('data-topic');
+          $.get('deleteCompanyTopic',{CompanyId:CompanyId,TopicId:TopicId},function(data){
+              if(data==true){
+                  alert("删除成功");
+                  _this.parents('tr').remove();
+              }else{
+                  alert("删除失败");
+              }
+              history(0);
+          })
+
+      })
+
+    })
+</script>
+{/block}

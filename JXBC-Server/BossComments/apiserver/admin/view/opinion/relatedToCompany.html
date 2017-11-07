@@ -1,0 +1,93 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+                <p>开户公司：{$workplaceCompany.CompanyName}</p>
+      {if($ClaimOpinion)}
+                <p>申请关联口碑公司：{$ClaimOpinion.company.CompanyName}</p>
+      {/if}
+
+<div class="page-header">
+    {if($ClaimOpinion)}
+    <a href="/Opinion/OpinionClaim?OpinionCompanyId={$ClaimOpinion.company.CompanyId}&CompanyId={$workplaceCompany.CompanyId}&CompanyName={$workplaceCompany.CompanyName}&OpinionCompanyName={$ClaimOpinion.company.CompanyName}">
+        <button style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;border:none;outline: none" id="addActivity"><font color="#f0f8ff">关联</font></button>
+    </a>
+    {/if}
+    <a href="/Opinion/create?workplaceCompanyId={$workplaceCompany.CompanyId}&CompanyName={$workplaceCompany.CompanyName}">
+    <button style="background: #00b3ee;border-radius: 7px;width:200px;height: 45px;border:none;outline: none" id="CreatOpinionCompany"><font color="#f0f8ff">创建新口碑公司并关联</font></button>
+    </a>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-xs-10">
+        <h3 class="header smaller lighter blue">关联更多的口碑公司</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <form action="CompanyList" method="get">
+                <input type="hidden" name="CompanyId" value="{$Think.get.CompanyId}"/>
+              <input type="text" name="CompanyName" value="{$Think.get.CompanyName}"/>
+                <input type="submit" value="搜索"/>
+            </form>
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center">
+                    <th  class="col-xs-2">口碑公司名称</th>
+                    <th class="col-xs-2">是否已关联</th>
+                    <th class="col-xs-2">操作</th>
+                </tr>
+                </thead>
+
+                {foreach( name="List" item="item")}
+                <tbody>
+                <tr>
+                    <td>{$item['CompanyName']}</td>
+                    <td class="center">
+                        {if($item['IsClaim'] == 2)}
+                        已关联
+                        {else/}
+                        未关联
+                        {/if}
+                    </td>
+                    <td class="center">
+                        {if($item['IsClaim'] == 2)}
+
+                        {else/}
+                        <a href="/Opinion/OpinionClaim?OpinionCompanyId={$item['CompanyId']}&CompanyId={$workplaceCompany.CompanyId}&CompanyName={$workplaceCompany.CompanyName}&OpinionCompanyName={$item.CompanyName}">关联</a>
+                        {/if}
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: {$Pagination->TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {$PageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="resources-footer"}
+
+<script>
+    jQuery(function($) {
+      /*  $('#CreatOpinionCompany').click(function(){
+            window.location.href = 'create';
+        })
+*/
+    })
+</script>
+{/block}
+

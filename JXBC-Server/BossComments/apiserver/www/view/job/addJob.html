@@ -1,0 +1,121 @@
+{extend name="-public:layout_console-enterprise" /}
+{block name="page-title"}创建新职位{/block}
+{block name="page-content"}
+<!--弹窗-->
+<!--<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+            <a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>
+        </div>
+    </div>
+</div>-->
+<!--弹窗结束-->
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--右侧内容部分-->
+<!--右侧内容部分开始-->
+<div class="com1-bg">
+    <div class="em-info">
+        <form  class="ev-info" action="add?CompanyId={$CompanyId}"  method="post">
+            <p class="com-tt select-tt">职位基本信息<span class="em-red">*</span></p>
+            <div class="">
+                <div class="em-name">
+                    <span>职位名称</span>
+                    <input class="newjobtext" type="text"  name="JobName" required placeholder="请输入职位名称" maxlength="20">
+                    <br>
+                </div>
+                <div class="em-name">
+                    <span>薪资范围</span>
+                    <input type="text" class="SalaryRangeMin" name="SalaryRangeMin" required style="width: 60px;border-radius: 10px 0 0 10px" /><span class="newjob_salary_num">元</span>
+                    到
+                    <input type="text" class="SalaryRangeMax" name="SalaryRangeMax" required style="width: 60px;border-radius: 10px 0 0 10px;margin-left: 0" /><span class="newjob_salary_num">元</span>
+                </div>
+                <div class="em-name">
+                    <span>工作城市</span>
+                    <select name="JobCity" id="" required>
+                        {foreach($DictionaryRegion as $val)}
+                        <option value="{$val.Code}">{$val.Name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+
+                <div class="em-name">
+                    <span>工作地点</span>
+                    <input maxlength="100" class="newjobtext" type="text"  required name="JobLocation" placeholder="请输入工作地点">
+                    <br>
+                </div>
+            </div>
+            <p class="com-tt select-tt">职位要求<span class="em-red">*</span></p>
+            <div class="">
+                <div class="em-name">
+                    <span>经验要求</span>
+                    <select name="ExperienceRequire" required>
+                    	<option value="">请选择</option>
+                        {foreach($DictionaryExperience as $val)}
+                        <option value="{$val.Code}">{$val.Name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <div class="em-name">
+                    <span>学历要求</span>
+                    <select name="EducationRequire" required>
+                    	<option value="">请选择</option>
+                        {foreach($DictionaryEducation['academic'] as $val)}
+                        <option value="{$val.Code}">{$val.Name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <div class="ev-comment comment-pos">
+                    <span style="color: black">职位描述</span>
+                    <textarea  name="JobDescription" maxlength="5000" id="ev-say" class="pos-say" placeholder="" required  wrap="physical" ></textarea>
+                </div>
+            </div>
+            <p class="com-tt select-tt">职位投递信息<span class="em-red">*</span></p>
+
+            <div class="">
+                <div class="em-name">
+                    <span>接收简历邮箱</span>
+                    <input class="newjobtext" style="margin-left: 2px" required type="text"  name="ContactEmail" placeholder="请输入接收简历邮箱">
+                    <br>
+                </div>
+                <div class="em-name">
+                    <span>联系电话</span>
+                    <input class="newjobtext" type="text" name="ContactNumber" placeholder="请输入联系电话">
+                    <br>
+                </div>
+            </div>
+            <input type="hidden" name="CompanyId" value="{$CompanyId}"/>
+            <input type="hidden" name="DisplayState" value="0"/>
+            <button >保存</button>
+        </form>
+    </div>
+
+
+</div>
+
+{/block} {block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+$(function () {
+    $("#ev-say").attr("placeholder"," 填写详细、清晰的职位描述有助于您得到更匹配的候选人\n 例如：\n 1.岗位职责（工作内容）……；\n 2.任职要求（硬技能、软实力等）……；\n 3.职位优势诱惑……；\n 4.团队介绍……；")
+})
+
+	$(".SalaryRangeMin").focus(function(){
+		$(".SalaryRangeMax").next("label").hide();
+	})
+	$(".SalaryRangeMax").focus(function(){
+		$(".SalaryRangeMin").next("label").hide();
+	})
+
+</script>
+
+{/block}

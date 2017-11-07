@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/checkbox_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_60PX">
+        <CheckBox
+            android:id="@+id/select_opinion"
+            android:layout_width="@dimen/DIMEN_40PX"
+            android:layout_height="@dimen/DIMEN_40PX"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:layout_centerVertical="true"
+            android:background="@drawable/check_record_status_selector"
+            android:button="@null" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/checkbox_item"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:id="@+id/company_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line2"
+        android:paddingBottom="@dimen/DIMEN_16PX"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        android:paddingRight="@dimen/DIMEN_30PX"
+        android:paddingTop="@dimen/DIMEN_16PX">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/DIMEN_100PX"
+            android:layout_height="@dimen/DIMEN_100PX"
+            android:src="@drawable/personal_default_avatar"
+            app:border_width="0dp" />
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/profile_image"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"
+            tools:text="1234546" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/company_information"
+        android:background="@color/line_color" />
+
+    <RelativeLayout
+        android:id="@+id/comment_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line1"
+        android:paddingBottom="@dimen/DIMEN_20PX">
+
+        <com.juxian.bosscomments.widget.TagFlowLayout
+            android:id="@+id/tag_flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/DIMEN_14PX"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX">
+
+        </com.juxian.bosscomments.widget.TagFlowLayout>
+
+        <LinearLayout
+            android:id="@+id/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tag_flow"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/comment_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_flow"
+                android:textColor="@color/juxian_red"
+                android:textSize="@dimen/DIMEN_28PX"
+                tools:text="4分" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/MyRatingBarTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_36PX"
+                android:layout_marginLeft="@dimen/DIMEN_16PX"
+                android:layout_toRightOf="@+id/comment_grade"
+                android:isIndicator="true"
+                android:numStars="5" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/comment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/score"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:layout_marginTop="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_color"
+            android:textSize="@dimen/DIMEN_28PX"
+            tools:text="记者行也专家级别，新闻挖掘能力很" />
+
+        <TextView
+            android:id="@+id/comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comment_title"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_24PX"
+            tools:text="fasdfasdfasdfasfasfa" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/comment_information"
+        android:background="@color/line_color" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_60PX"
+        android:layout_below="@+id/line"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        android:paddingRight="@dimen/DIMEN_30PX">
+
+        <TextView
+            android:id="@+id/employee_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_22PX"
+            tools:text="前员工-1年-北京" />
+
+        <TextView
+            android:id="@+id/read_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_22PX"
+            tools:text="阅读2222" />
+    </RelativeLayout>
+</RelativeLayout>

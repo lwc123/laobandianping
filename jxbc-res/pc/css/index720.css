@@ -1,0 +1,489 @@
+/*适配*/
+/*清楚默认样式*/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+input,
+a,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei";
+}
+.clearfix:after,
+.clearfix:before {
+  display: table;
+  clear: both;
+  content: '';
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+li {
+  list-style: none;
+}
+input {
+  outline: none;
+  -webkit-appearance: none;
+}
+/*解决固定定位*/
+html,
+body {
+  background: #eee;
+  color: white;
+}
+.wrap {
+  overflow: hidden;
+  height: 100%;
+  font-size: 0.44444444rem;
+  font-weight: 200;
+}
+#header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1.77777778rem;
+  background: #232323;
+  z-index: 996;
+  /*display:none;*/
+  /*关闭下载打开这个*/
+}
+/*头部左侧*/
+.header-left {
+  float: left;
+}
+.logo img {
+  width: 1.31111111rem;
+  height: 1.28888889rem;
+  padding: 0.26666667rem 0.48888889rem;
+}
+.logo,
+.header-title {
+  float: left;
+}
+.header-title em {
+  display: block;
+  background: url("../img/home720/phone.png") no-repeat center;
+  background-size: 0.42222222rem 0.55555556rem;
+  width: 0.42222222rem;
+  height: 0.55555556rem;
+  float: left;
+}
+.header-title > span {
+  display: block;
+  font-size: 0.4rem;
+  color: #c0a260;
+  padding: 0.33333333rem 0 0.06666667rem;
+}
+.header-title div span {
+  float: left;
+  font-size: 0.44444444rem;
+  font-weight: 500;
+  line-height: 0.51111111rem;
+  padding-left: 0.2rem;
+  color: white;
+  text-decoration: none;
+}
+/*头右侧*/
+.header-right {
+  float: right;
+  padding-top: 0.48888889rem;
+}
+#download {
+  display: inline-block;
+  width: 2.93333333rem;
+  height: 0.71111111rem;
+  line-height: 0.77777778rem;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  background: url("../img/home720/btn_bg.png") no-repeat center;
+  background-size: 2.93333333rem 0.71111111rem;
+}
+#downloadClose {
+  display: inline-block;
+  width: 0.37777778rem;
+  height: 0.37777778rem;
+  background: url("../img/home720/delete.png") no-repeat center;
+  background-size: 0.37777778rem;
+  padding: 0 0.42222222rem 0 0.82222222rem;
+}
+/*内容区*/
+#content {
+  position: relative;
+  width: 100%;
+  padding-top: 1.75555556rem;
+  /*关闭下载这个清除*/
+  background-color: white;
+}
+#picWrap {
+  position: relative;
+  overflow: hidden;
+  height: 13.33333333rem;
+}
+#picList {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+#picList li {
+  float: left;
+  list-style: none;
+  width: 16rem;
+  height: 13.33333333rem;
+}
+#picList img {
+  width: 100%;
+  display: block;
+}
+#picNav {
+  position: absolute;
+  left: 0;
+  bottom: 0.8rem;
+  width: 100%;
+  text-align: center;
+  line-height: 0.35555556rem;
+}
+#picNav span {
+  display: inline-block;
+  width: 0.26666667rem;
+  height: 0.26666667rem;
+  border: 1px solid #C2C0BD;
+  border-radius: 0.11111111rem;
+}
+#picNav .picActive {
+  background-color: #C2C0BD;
+}
+/*登录阴影*/
+#shadow {
+  position: absolute;
+  left: 0;
+  top: 1.77777778rem;
+  /*关闭下载 这个清除*/
+  z-index: 69;
+  width: 100%;
+  height: 1.77777778rem;
+  background: url("../img/home720/home_banner_bg1.png");
+}
+.shadow-close {
+  display: none;
+  /*下载页面关闭，这个显示*/
+}
+.shadow-login {
+  float: right;
+  color: #F6F6F6;
+}
+.shadow-login a {
+  float: right;
+  color: #F6F6F6;
+  font-size: 0.62222222rem;
+  padding: 0.46666667rem;
+}
+.shadow-title {
+  display: block;
+  padding: 0.51111111rem 0;
+  color: #b5995a;
+}
+/*观影*/
+#movie {
+  position: relative;
+  width: 100%;
+  height: 1.11111111rem;
+  background-color: #fff;
+}
+#movie .contact {
+  position: absolute;
+  left: 0;
+  top: -1.15555556rem;
+  height: 2.33333333rem;
+  width: 3.64444444rem;
+  background: url("../img/home720/home_pup_bg.png") no-repeat center;
+  background-size: 3.64444444rem 2.33333333rem;
+}
+.movie-video {
+  display: inline-block;
+  padding-left: 5.77777778rem;
+}
+.movie-video img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 0.22222222rem;
+  width: 0.62222222rem;
+  height: 0.62222222rem;
+}
+.movie-video span {
+  display: inline-block;
+  height: 0.44444444rem;
+  vertical-align: middle;
+  margin-top: 0.13333333rem;
+  color: #b5995a;
+}
+.contact a {
+  display: block;
+  height: 1.06666667rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+.contact span {
+  display: inline-block;
+  margin-left: 0.02222222rem;
+  margin-top: 0.04444444rem;
+}
+.contact a img {
+  float: left;
+  height: 0.66666667rem;
+  width: 0.71111111rem;
+  padding: 0.2rem;
+}
+.contact div {
+  width: 90%;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+}
+.lianxi {
+  border-bottom: 1px solid #F2EDDF;
+}
+.pic1 {
+  width: 16rem;
+}
+.pic1 img {
+  width: 100%;
+}
+.banner {
+  position: relative;
+  width: 16rem;
+  height: 12.22222222rem;
+  background-color: #F7C957;
+  background-size: 16rem 12.22222222rem;
+}
+.picban {
+  width: 16rem;
+  height: 12.22222222rem;
+  overflow: hidden;
+}
+.picban ul {
+  display: block;
+  transition: 1s;
+  transform: translateX(0rem);
+}
+.picban li {
+  display: inline-block;
+  float: left;
+  box-sizing: border-box;
+  width: 16rem;
+  padding: 0 0.15555556rem;
+  height: 12.22222222rem;
+}
+.picban li span {
+  display: inline-block;
+  width: 4.75555556rem;
+  height: 4.75555556rem;
+  border-radius: 0.22222222rem;
+  margin: 3.55555556rem 0.17777778rem;
+  overflow: hidden;
+}
+.picban span img {
+  width: 4.75555556rem;
+  height: 4.75555556rem;
+}
+.banner .btnl {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  width: 2.22222222rem;
+  height: 2.42222222rem;
+}
+.pic_banner_title {
+  position: absolute;
+  width: 100%;
+}
+.pic_banner_title img {
+  width: 100%;
+}
+.banner .btnl img {
+  width: 2.22222222rem;
+  height: 2.42222222rem;
+}
+.banner .btnr {
+  position: absolute;
+  top: 55%;
+  right: 0;
+  width: 2.17777778rem;
+  height: 2.42222222rem;
+}
+.banner .btnr img {
+  width: 2.22222222rem;
+  height: 2.42222222rem;
+}
+/*底部*/
+#footerT {
+  width: 100%;
+  height: 6.22222222rem;
+  background-color: #000;
+  font-size: 0.33333333rem;
+}
+#footerT .ftAdd {
+  padding-top: 0.84444444rem;
+}
+#footerT .faLeft {
+  background: url("../img/home720/home_pic8_cut.png") no-repeat right;
+  background-size: 0.06666667rem 2.22222222rem;
+  float: left;
+  width: 7.22222222rem;
+  padding: 0.08888889rem 0.11111111rem 0.11111111rem 0.44444444rem;
+}
+#footerT .faRight {
+  float: left;
+  width: 7.33333333rem;
+  padding: 0rem 0.44444444rem 0.11111111rem 0.28888889rem;
+}
+#footerT .faLeft em {
+  display: inline-block;
+  position: relative;
+  top: 0.26666667rem;
+  width: 0.73333333rem;
+  height: 0.73333333rem;
+  background: url("../img/home720/logo.png") no-repeat center;
+  background-size: 0.73333333rem 0.73333333rem;
+}
+#footerT .faLeft a {
+  text-decoration: none;
+  font-weight: 300;
+  color: #b5995a;
+}
+#footerT .ftCall {
+  height: 0.86666667rem;
+  padding: 0.44444444rem 0.44444444rem;
+}
+#footerT .ftCall a {
+  display: block;
+  width: 50%;
+  height: 0.86666667rem;
+}
+.ftCall em {
+  display: inline-block;
+  width: 0.64444444rem;
+  height: 0.86666667rem;
+  background: url("../img/home720/home_pic8_ic_phone.png") no-repeat center;
+  background-size: 0.64444444rem 0.86666667rem;
+}
+.ftCall span {
+  position: relative;
+  top: -0.35555556rem;
+  text-decoration: none;
+  color: white;
+}
+/*底部固定*/
+#footerFix {
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  width: 16rem;
+  height: 1.11111111rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1%;
+}
+#footerFix > div {
+  width: 49%;
+  height: 1.11111111rem;
+  float: left;
+}
+#footerFix > .ffleft {
+  border-right: 1px solid white;
+}
+#footerFix img {
+  width: 0.77777778rem;
+  height: 0.77777778rem;
+}
+#footerFix img,
+#footerFix span {
+  color: white;
+  position: relative;
+  left: 2rem;
+  bottom: 0.22222222rem;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.55555556rem;
+}
+#icp a:hover,
+#icp a:visited,
+#icp a:link,
+#icp a:active {
+  color: white;
+  text-decoration: none;
+}
+#registerAlert {
+  position: fixed;
+  top: 40%;
+  left: 20%;
+  width: 12.31111111rem;
+  height: 10.02222222rem;
+  display: none;
+}
+#registerAlert img {
+  width: 12.31111111rem;
+  height: 10.02222222rem;
+}
+.registerAlertClose {
+  width: 1.11111111rem;
+  height: 1.11111111rem;
+  position: absolute;
+  top: 0.02222222rem;
+  left: 9.33333333rem;
+}
+.feature {
+  position: relative;
+}
+.feature-title {
+  position: absolute;
+  width: 20%;
+  left: 40%;
+  top: 5%;
+}
+.feature-con {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 20%;
+  overflow: hidden;
+}
+.swiper-container2 {
+  width: 100%;
+}
+.swiper-wrapper {
+  width: 100%;
+  margin-left: 2%;
+}
+.swiper-slide {
+  width: 100%;
+  overflow: hidden;
+}
+.swiper-slide img {
+  width: 100%;
+  margin-left: -5%;
+}
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  text-align: center;
+}
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}

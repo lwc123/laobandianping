@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="UserProfileRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into user_profile (PassportId, CurrentProfileType, Nickname, RealName, Gender, Avatar, Birthday,Email,Signature
+      , CurrentCompany, CurrentJobTitle, AttestationStatus
+      , LastSignedInTime, LastActivityTime, CreatedTime, ModifiedTime)
+      values (@PassportId, @CurrentProfileType, @Nickname, @RealName, @Gender, @Avatar, @Birthday, @Email, @Signature
+      , @CurrentCompany, @CurrentCompany, @AttestationStatus
+      , @LastSignedInTime, @LastActivityTime, @CreatedTime, @ModifiedTime);
+      select @PassportId;
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update user_profile set CurrentProfileType=@CurrentProfileType, Nickname=@Nickname, RealName=@RealName, Gender=@Gender, Avatar=@Avatar, Birthday=@Birthday, Email=@Email, Signature=@Signature
+      , CurrentCompany=@CurrentCompany, CurrentJobTitle=@CurrentJobTitle, AttestationStatus=@AttestationStatus
+      , LastSignedInTime=@LastSignedInTime, LastActivityTime=@LastActivityTime, ModifiedTime=@ModifiedTime
+      where PassportId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from user_profile where PassportId = @Id
+    </sqlWrap>
+  </module>
+</root>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>消息</title>
+		<!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+
+	<body>
+		<!--左侧部分-->
+		<div class="com1-left">
+			<!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+		</div>
+		<!--#include virtual="/-sources/-common/header.html"-->
+		<!--右侧内容开始-->
+		<div class="com1-bg info-bg">
+			<div class="files-detail">
+				<p class="com-tt">消息</p>
+				<div class="info-content">
+					<div class="list_title active-bg">待处理事项</div>
+					<div class="message_title">通知<span></span></div>
+					<ul class="todo_list">
+						<li class="info-list">
+							<p class="detail-name name-weight">岳新林的工作评价，请审核</p>
+							<p class="detail-num">2011-11-11 14:35</p>
+							<span><a href="#" class="blue">去查看</a></span>
+						</li>
+						<li class="info-list">
+							<p class="detail-name">审核员工 岳新林 的离任报告</p>
+							<p class="detail-num">2011-11-11 14:35</p>
+							<span><a href="#" class="blue">去查看</a></span>
+						</li>
+					</ul>
+					<ul class="message_list hide">
+						<li class="info-list">
+							<p class="detail-name name-weight">岳新林的工作评价，请审核</p>
+							<p class="detail-num">2011-11-11 14:35</p>
+							<span><a href="#" class="blue">去查看</a></span>
+						</li>
+						<li class="info-list">
+							<p class="detail-name">审核员工 岳新林 的离任报告</p>
+							<p class="detail-num">2011-11-11 14:35</p>
+							<span><a href="#" class="blue">去查看</a></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="/-sources/-common/resources_footer.html"-->
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".list_title").click(function(){
+	   	      $(this).addClass("active-bg").next().removeClass("active-bg");
+	   	       $(".todo_list").show().next(".message_list").hide();
+	   	  
+	        });
+	       $(".message_title").click(function(){
+	   	       $(this).addClass("active-bg").prev().removeClass("active-bg");
+	   	       $(".message_list").show().prev(".todo_list").hide();
+	   	  
+		    })
+			
+	   })
+	</script>
+
+</html>

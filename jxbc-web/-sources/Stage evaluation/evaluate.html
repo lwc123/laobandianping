@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	    <!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+	<body>
+		<!--左侧部分-->
+		<div class="com1-left">
+		  	<!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+		</div>
+		<!--#include virtual="/-sources/-common/header.html"-->
+		<!--右侧内容开始-->
+		 <div class="com1-bg">
+		    <p class="ev-title">创建新评价<span>温馨提示：员工离任后，其他企业查看该人才的阶段评价，您公司可获得10元收益</span></p>
+		   <div class="em-info">
+		   	  <form class="ev-info">
+		   	      <div id="selectP" class="ev-select">
+		   		      <p class="select-title">选择员工</p>
+		   		      <p class="em-rec sel-add"><i class="iconfont">&#xe64a;</i></p>
+		   		      <input id="txt-person" type="text" name="ArchiveId" value="" >
+		   	      </div>
+		   	<!--选择评价阶段-->
+		          <p class="com-tt select-tt">选择评价阶段</p>
+		   	      <span>选择时间段</span>
+		   	      <select name="StageYear"></select>
+		   	      <ul class="sel-stage">
+		   	 	      <li data-stage-id="1">Q1</li>
+		   	 	      <li data-stage-id="2" class="selected">Q2</li>
+		   	 	      <li data-stage-id="3">半年</li>
+		   	 	      <li data-stage-id="4">Q3</li>
+		   	 	      <li data-stage-id="5">Q4</li>
+		   	 	      <li data-stage-id="6" class="sel-gray">全年  <span>已评</span></li>
+		   	       </ul>
+		   	       <input id="txt-sel-stage" name="StageSection" value=""  class="hide" type="text"  role="sel-stage"/> 
+		   	 <!--工作评价开始-->
+		   	       <p class="com-tt select-tt">工作综合评价</p>
+		   	       <div class="slider-grade">
+			           <span class="title">工作能力</span>
+			           <span id="ev">极差</span>
+			           <div class="scale" id="bar0">
+				            <div></div>
+				            <span id="btn0"><span id="title0">0</span></span>
+			            </div>
+			            <span class="bars_10">100分</span>
+			            <input  class="hide" name="WorkAbility" type="text" value="0" id="txt0">
+		           </div>
+		           <div class="slider-grade">
+			            <span class="title">工作态度</span>
+			            <span id="ev1">极差</span>
+			            <div class="scale" id="bar1">
+				           <div></div>
+				           <span id="btn1"><span id="title1">0</span></span>
+			            </div>
+			            <span class="bars_10">100分</span>
+			            <input class="hide" name="WorkAttitude" type="text" value="0" id="txt1">
+		           </div>
+		           <div class="slider-grade">
+			            <span class="title">工作业绩</span>
+			            <span id="ev2">极差</span>
+			            <div class="scale" id="bar2">
+				            <div></div>
+				            <span id="btn2"><span id="title2">0</span></span>
+			            </div>
+			            <span class="bars_10">100分</span>
+			            <input class="hide" name="WorkPerformance" type="text" value="0" id="txt2">
+		           </div>
+		     <!--工作评语部分-->
+		            <p class="com-tt select-tt">工作评语</p>
+		            <div class="ev-comment">
+		                <textarea name="WorkComment" class="ev-say"></textarea>
+		                <p><span class="count">0</span>/500</p>
+		                <img  class="ev-pic" src="http://bc-res.jx.io:8000/pc/img/camera.png"><span>上传纸质评语照片</span>
+		                <div class="comment-pic"></div>
+		            </div>
+		      <!--添加审核人部分-->
+		            <p class="com-tt select-tt">添加评价审核人<span>（一人通过即生效）</span></p>		       
+		            <div class="ev-person">
+		       	        <input id="txt-audit-persons" class="hide"name="audit-persons" type="text" value="" role="ev-person"/>
+		       	        <p>王小仙<span class="position">(老板)</span><span class="del"><i class="iconfont">&#xe600;</i></span></p>
+		       	        <ul></ul>
+		                <p class="rect"><i class="iconfont">&#xe64a;</i></p>
+		            </div>
+		             <button>保存</button>
+		   	</form>
+		   	<!--弹框部分-->
+		   	<div class="evaluate-add">
+		   		<p class="com-tt add-tt">员工离任报告<i class="iconfont close">&#xe600;</i></p>
+		   		<div class="add-search">
+		   		  <div>部门<select><option>请选择</option></select></div>
+		   		</div>
+		   		<div class="add-search">
+		   		  <div>在职状态<select><option>全部</option></select></div>
+		   		</div>
+		   		<div class="add-search">姓名<span class="add-k">请选择</span></div>
+		   		<button class="add-cha">查询</button>
+		   		<table>
+		   			<tr class="thead"><td>姓名</td><td>部门</td><td>职务</td><td>在职状态</td><td>入职时间</td><td>操作</td></tr>
+		   			<tr><td>林子大1</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="1" class="add">选择</td></tr>
+		   			<tr><td>林子大2</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="2" class="add">选择</td></tr>
+		   			<tr><td>林子大3</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="3" class="add">选择</td></tr>
+		   			<tr><td>林子大4</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="4" class="add">选择</td></tr>
+		   			<tr><td>林子大5</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="5" class="add">选择</td></tr>
+		   			<tr><td>林子大6</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="6" class="add">选择</td></tr>
+		   			<tr><td>林子大7</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="7" class="add">选择</td></tr>
+		   			<tr><td>林子大8</td><td>大鸟部</td><td>伐木工</td><td>在职</td><td>2013年11月</td><td data-employee-id="8" class="add">选择</td></tr>
+		   		</table>
+		   		<div class="page-num">
+		   		    <span>共<span class="red">70</span>条</span>
+		   		    <span class="aa">当前第<span class="num">1</span>页</span><span class="aa">共7页</span>
+		   		</div>
+		   		<div class="em-page page">		
+		  		    <a href="#"class="up">></a>
+		  		    <a href="#" class="bg">1</a>
+		  		    <a href="#">2</a>
+		  		    <a href="#">3</a>
+		  		    <a href="#">4</a>
+		  		    <a href="#">5</a>
+		  		    <b>...</b>
+		  		    <a href="#">20</a>
+		  		    <a href="#" class="next"><</a>
+		  	    </div>
+		  	    <div class="em-mid ev-mid1 hide">
+		   			<img src="http://bc-res.jx.io:8000/pc/img/face.png">
+		   			<p>检测到您目前没有任何员工档案，先创建几个员工档案吧</p>
+		   			<button class="create">创建档案</button>
+		   		</div>
+		   	</div>
+		   	<!--添加审核人弹框-->
+		   	<div class="person-add"></div>
+		   	<div class="person1">
+		   		<p class="person-tt">添加评价审核人<i class="iconfont close1">&#xe600;</i></p>
+		   		<p class="pe-con">您公司目前除了老板，没有更多的评价审核人，请联系老板或管理员添加。</p>
+		   		<button type="button">我知道了</button>
+		   	</div>
+		   	<div class="person2">
+		   		<p class="person-tt">添加评价审核人<i class="iconfont close1">&#xe600;</i></p>
+		   		<div class="pp">
+		   			<span data-person-id="1">岳晓琳<label class="position">(管理员、高管)</label></span>
+		   			<span data-person-id="2">林大<label class="position">(高管)</label></span>
+		   			<span data-person-id="3">林二<label class="position">(高管)</label></span>
+		   		</div>
+		   		<button type="button">确定</button>
+		   	</div>
+		</div>
+	</div>	
+	</body>
+	<!--#include virtual="/-sources/-common/resources_footer.html"-->
+</html>

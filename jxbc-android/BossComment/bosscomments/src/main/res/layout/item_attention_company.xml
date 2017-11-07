@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/attention_cause"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_76PX"
+        android:background="@color/main_background"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_20PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"
+        tools:text="老东家" />
+
+    <com.juxian.bosscomments.widget.CustomRelativeLayout
+        android:id="@+id/company_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/attention_cause"
+        android:background="@color/white"
+        android:padding="@dimen/DIMEN_20PX">
+
+        <com.juxian.bosscomments.widget.RoundAngleImageView
+            android:id="@+id/company_logo"
+            android:layout_width="@dimen/DIMEN_100PX"
+            android:layout_height="@dimen/DIMEN_100PX"
+            android:layout_margin="@dimen/DIMEN_6PX"
+            android:scaleType="fitXY"
+            android:src="@drawable/company_logo"
+            app:roundHeight="5dp"
+            app:roundTag="0"
+            app:roundWidth="5dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/company_logo">
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                tools:text="1234546" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/MyRatingBarOne"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_36PX"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/DIMEN_30PX"
+                android:isIndicator="true"
+                android:numStars="5" />
+
+            <ImageView
+                android:id="@+id/msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="@dimen/DIMEN_6PX"
+                android:src="@drawable/msg" />
+
+            <com.juxian.bosscomments.widget.TagFlowLayout
+                android:id="@+id/tag_flow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/company_name"
+                android:layout_marginBottom="@dimen/DIMEN_10PX"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:layout_marginTop="@dimen/DIMEN_20PX">
+
+            </com.juxian.bosscomments.widget.TagFlowLayout>
+
+            <TextView
+                android:id="@+id/basic_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_flow"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:textColor="@color/menu_color"
+                android:textSize="@dimen/DIMEN_22PX"
+                tools:text="前员工-1年-北京" />
+        </RelativeLayout>
+    </com.juxian.bosscomments.widget.CustomRelativeLayout>
+
+</RelativeLayout>

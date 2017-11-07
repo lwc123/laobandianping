@@ -1,0 +1,337 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}修改离任报告{/block}
+{block name="page-content"}
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<!--loading pic-->
+<div id="loadingpic">
+    <img  src="{$Think.config.resources_site_root}/pc/img/loadingpic.gif">
+</div>
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--修改评价页面部分-->
+<div class="com1-bg">
+    <p class="ev-title">修改离任报告<span>温馨提示：员工离任后，其他企业查看该人才的离任报告，您公司可获得15金币收益</span></p>
+    <div class="em-info">
+        <form class="ev-info" id="employe_create" action="" enctype="multipart/form-data" method="post">
+            <div class="em3-info1">
+                <div class="em1-info1 em3">
+                    <img src="{$Detail.EmployeArchive.Picture}" style="border-radius:8px;width:80px;height:80px">
+                    <p class="nname"><a href="#">{$Detail.EmployeArchive.RealName}</a></p>
+                    <p class="work">{$Detail.EmployeArchive.WorkItem.PostTitle} | {$Detail.EmployeArchive.WorkItem.Department}</p>
+                    <p class="time">{:toLocalDateTime($Detail.EmployeArchive.EntryTime,'Y年m月')}入职
+                        | {:toLocalDateTime($Detail.EmployeArchive.DimissionTime,'Y年m月')}离任
+                    </p>
+                </div>
+            </div>
+            <input name="CommentId" type="hidden" value="{$Detail.CommentId}"/>
+            <input name="ArchiveId" type="hidden" value="{$Detail.ArchiveId}"/>
+            <input name="CompanyId" type="hidden" value="{$CompanyId}"/>
+            <input name="CommentType"  type="hidden" value="{$Detail.CommentType}"   type="hidden"  />
+            <input name="PresenterId"  type="hidden" value="0"   type="hidden"  />
+            <input name="BossPassportId"  type="hidden" value="{$CompanySummary ['BossInformation']['PassportId']}"   type="hidden"  />
+
+
+            <div class="em-name leave-report">
+                <span>离任时间</span>
+                <input type="text" name="DimissionTime"  class="selectDate" placeholder="请选择离任时间"  value="{:toLocalDateTime($Detail.EmployeArchive.DimissionTime,'Y-m-d')}">
+            </div>
+            <div class="em-name leave-report">
+                <span>离任薪资</span>
+				<input type="text" name="DimissionSalary" placeholder="请填写离任薪资（万元），可不填" value="">
+                <br>
+                <span class="salary-tip hide"><i class='iconfont'>&#xe640;</i>请输入正确的年薪收入哦~</span>
+            </div>
+
+    <!--离任原因-->
+    <p class="com-tt select-tt new-title">离任原因补充说明</p>
+    <ul class="sel-stage">
+        {volist name="leaving" id="vo"}
+        <li data-stage-id="{$vo.Code}" {if $Detail.DimissionReason == $vo.Code } class="selected" {/if}>{$vo.Name} </li>
+        {/volist}
+        <!-- <li class="sel-gray">全年  <span>已评</span></li>-->
+    </ul>
+    <input id="txt-sel-stage" name="DimissionReason" value="{$Detail.DimissionReason}" type="hidden"  role="sel-stage"/>
+    <div class="select-sm">
+        <p >补充说明：</p>
+        <br>
+        <textarea cols="75" rows="5" class="report-reason" name="DimissionSupply" maxlength="100" placeholder="选填，对离任原因进行更详细的描述...">{$Detail.DimissionSupply}</textarea>
+    </div>
+    <!--工作评价开始-->
+    <p class="com-tt select-tt">在职期间工作评价</p>
+    <div class="slider-grade">
+        <span class="title">工作能力</span>
+        <span id="ev">{$Detail.WorkAbilityText}</span>
+        <div class="scale" id="bar0">
+            <div style="width:{$Detail.WorkAbilityWidth}px"></div>
+            <span id="btn0" style="left: {$Detail.WorkAbilityWidth}px;"><span id="title0">{$Detail.WorkAbility}</span></span>
+            <b class="drag_bg_click"></b>
+        </div>
+        <span class="bars_10">100分</span>
+        <input type="hidden" value="{$Detail.WorkAbility}" name="WorkAbility" id="txt0">
+    </div>
+    <div class="slider-grade">
+        <span class="title">工作态度</span>
+        <span id="ev1">{$Detail.WorkAttitudeText}</span>
+        <div class="scale" id="bar1">
+            <div style="width:{$Detail.WorkAttitudeWidth}px"></div>
+            <span id="btn1"  style="left: {$Detail.WorkAttitudeWidth}px;"><span id="title1">{$Detail.WorkAttitude}</span></span>
+            <b class="drag_bg_click"></b>
+        </div>
+        <span class="bars_10">100分</span>
+        <input type="hidden" value="{$Detail.WorkAttitude}" name="WorkAttitude" id="txt1">
+    </div>
+    <div class="slider-grade">
+        <span class="title">工作业绩</span>
+        <span id="ev2">{$Detail.WorkPerformanceText}</span>
+        <div class="scale" id="bar2">
+            <div style="width:{$Detail.WorkPerformanceWidth}px"></div>
+            <span id="btn2" style="left: {$Detail.WorkPerformanceWidth}px;"><span id="title2">{$Detail.WorkPerformance}</span></span>
+            <b class="drag_bg_click"></b>
+        </div>
+        <span class="bars_10">100分</span>
+        <input type="hidden" value="{$Detail.WorkPerformance}" name="WorkPerformance" id="txt2">
+    </div>
+    <!--工作交接情况-->
+    <p class="com-tt select-tt">工作交接情况</p>
+    <div class="slider-grade content-padding-left">
+        <span class="title">及时性</span>
+        <span id="ev3">{$Detail.HandoverTimelyText}</span>
+        <div class="scale" id="bar3">
+            <div style="width:{$Detail.HandoverTimelyWidth}px"></div>
+            <span id="btn3" style="left: {$Detail.HandoverTimelyWidth}px;"><span id="title3">{$Detail.HandoverTimely}</span></span>
+            <b class="drag_bg_click"></b>
+        </div>
+        <span class="bars_10">100分</span>
+        <input name="HandoverTimely" type="hidden" value="{$Detail.HandoverTimely}" id="txt3">
+    </div>
+    <div class="slider-grade content-padding-left">
+        <span class="title">全面性</span>
+        <span id="ev4">{$Detail.HandoverOverallText}</span>
+        <div class="scale" id="bar4">
+            <div style="width:{$Detail.HandoverOverallWidth}px"></div>
+            <span id="btn4" style="left: {$Detail.HandoverOverallWidth}px;"><span id="title4">{$Detail.HandoverOverall}</span></span>
+            <b class="drag_bg_click"></b>
+        </div>
+        <span class="bars_10">100分</span>
+        <input name="HandoverOverall" type="hidden" value="{$Detail.HandoverOverall}" id="txt4">
+    </div>
+    <div class="slider-grade content-padding-left">
+        <span class="title">后续支持</span>
+        <span id="ev5">{$Detail.HandoverSupportText}</span>
+        <div class="scale" id="bar5">
+            <div style="width:{$Detail.WHandoverSupportWidth}px"></div>
+            <span id="btn5" style="left: {$Detail.WHandoverSupportWidth}px;"><span id="title5">{$Detail.HandoverSupport}</span></span>
+            <b class="drag_bg_click"></b>
+        </div>
+        <span class="bars_10">100分</span>
+        <input  name="HandoverSupport" type="hidden" value="{$Detail.HandoverSupport}" id="txt5">
+    </div>
+    <!--工作评语部分-->
+    <p class="com-tt select-tt">离任评语</p>
+    <div class="ev-comment comment-Word">
+    	<div>
+         <textarea name="WorkComment" id="ev-say" class="ev-say">{$Detail['WorkComment']}</textarea>
+        </div>
+        <p><span class="count">0</span>/500</p>
+        <img id="ccc"  class="ev-pic" src="{$Think.config.resources_site_root}/pc/img/camera.png"><span>上传纸质评语照片</span>
+        <div id="iden-pics">
+            {$photo}
+        </div>
+
+    </div>
+
+    <!--返聘意愿-->
+    <p class="com-tt select-tt">返聘意愿</p>
+    <ul class="sel-stage">
+        {volist name="panicked" id="vo"}
+        <li data-want-id="{$vo.Code}" {if $Detail.WantRecall ==$vo.Code }class="selected" {/if}>{$vo.Name} </li>
+        {/volist}
+    </ul>
+    <input id="txt-wantRecall" name="WantRecall" value="{$Detail.WantRecall}"  type="hidden"  role="sel-stage"/>
+    <!--添加审核部分-->
+    <p class="com-tt select-tt">添加离任报告审核人<span>（一人通过审核即生效）</span></p>
+    <div class="ev-person content-padding-left">
+        <input id="txt-audit-persons" name="AuditPersons" type="hidden"  value="{$Detail.AuditPersonString}" role="ev-person"/>
+        <p>{$CompanySummary ['BossInformation']['RealName']}<span class="position">(老板)</span></p>
+        <ul>
+            {foreach($Detail.AuditPersonList as $val) }
+            {if($val.Role !=1)}
+            <li data-val="{$val.PassportId}">{$val.RealName}<label class="position">(高管)</label><span class="del"><i class="iconfont">&#xe647;</i></span></li>
+            {/if}
+            {/foreach}
+        </ul>
+        <p class="rect"><i class="iconfont">&#xe651;</i></p>
+    </div>
+    <button id="submit"  >保存修改并提交审核</button>
+     <!--<p class="comment-tip">审核生效后将发送短信告知员工</p>-->
+    </form>
+        <!--添加审核人弹框-->
+        <div id="alertzhe">
+            {if(empty($AuditPerson))}
+            <div class="person1">
+                <p class="person-tt">选择授权的审核人（可多选）<i class="iconfont close1">&#xe647;</i></p>
+                <p class="pe-con">您公司目前除了老板，没有更多的评价审核人，请联系老板或管理员添加。</p>
+                <button type="button">我知道了</button>
+            </div>
+            {else/}
+            <div class="person2">
+                <p class="person-tt">选择授权的审核人（可多选）<i class="iconfont close1">&#xe647;</i></p>
+                <div class="pp">
+                    {foreach $AuditPerson as $value}
+                    <span data-person-id="{$value.PassportId}">{$value.RealName}<label class="position">(高管)</label></span>
+                    {/foreach}
+                </div>
+                <button type="button">确定</button>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    $(function(){
+        function picadd() {
+            $("#previewImagesBtn").click(function () {
+                var num = $("#ImageIndex").val();
+                $("input[name=ImagesP"+num+"]").unbind("change").change(function () {
+                    previewLocalImageFile(this, $("#previewImagesP"+num));
+                    if($(this).data("has-file")){
+                        $('#previewImagesP'+num).append('<div class="pics_close">×</div>');
+                        $("#previewImagesP"+num).show();
+                        num++;
+                        $("#ImageIndex").val(num);
+                        $("#previewImagesBtn").before('<div><div class="iden-rec iden2-rec" id="previewImagesP'+num+'"></div><input class="em-btn" type="file"  name="ImagesP'+num+'" accept="image/jpeg,image/x-png,image/png"/></div>')
+
+                        if($("#iden-pics input[type='file']").size()>9){
+                            $("#previewImagesBtn").hide();
+                        }
+                    }
+                });
+                $("input[name=ImagesP"+num+"]").unbind("click").click();
+            })
+
+            $(document).on("click","#iden-pics .pics_close",function () {
+
+                $(this).parent().parent().remove();
+                $("#previewImagesBtn").show()
+            })
+        }
+        picadd();
+    })
+</script>
+<script>
+
+    $.validator.setDefaults({
+        submitHandler: function() {
+            var AuditPersons = $('input[name=AuditPersons]').val();
+            var BossPassportId = $('input[name=BossPassportId]').val();
+                var apiUrl="update?CompanyId="+{$CompanyId};
+                var formData = new FormData($("#employe_create")[0]);
+                $.ajax({
+                    type:'post',
+                    contentType: false,
+                    url:apiUrl,
+                    data:formData,
+                    processData: false,
+                    beforeSend:function(){
+                    	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+                    },
+                    success:function(data){
+//                  	removeLoading();
+						$("#submit").html("提交").removeAttr("disabled");
+                        if(data==true){
+                            $("#alert>.alertT>span").text("");
+                            if(AuditPersons !="") {
+                                if (AuditPersons.indexOf({$PassportId}) > 0) {
+                                    $(".alertB").html('<div class="bcontent">修改成功！<br>  您是审核人，离职报告已生效</div>');
+                                } else {
+                                    if (BossPassportId == {$PassportId} || AuditPersons == {$PassportId}) {
+                                        $(".alertB").html('<div class="bcontent">修改成功！<br> 您是审核人，离职报告已生效</div>');
+                                    } else {
+                                        $(".alertB").html('<div class="bcontent">修改成功！<br> 审核通过后，离职报告将生效</div>');
+                                    }
+                                }
+                            }else{
+                                if(BossPassportId =={$PassportId}){
+                                    $(".alertB").html('<div class="bcontent">修改成功！<br> 您是审核人，离职报告已生效</div>');
+                                }else{
+                                    $(".alertB").html('<div class="bcontent">修改成功！<br> 审核通过后，离职报告将生效</div>');
+                                }
+                            }
+                            $(".btnwrap").html('<a  class="button newJobSaveBtn" href="/ArchiveComment/index?CompanyId={$CompanyId}&CommentType=1" class="button db_btn_style">关闭</a>');
+                            alertwin();
+                        }else{
+                            $("#alert>.alertT>span").text("错误提示");
+                            $(".alertB").html('<div class="bcontent">提交失败，请重新提交</div>');
+                            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data)
+                    }
+                });
+        }
+    });
+
+    $("#submit").click(function(){
+        var str=$("#ev-say").val();
+        var ArchiveId = $('input[name=ArchiveId]').val();
+        var DimissionReason = $('input[name=DimissionReason]').val();
+        var WantRecall = $('input[name=WantRecall]').val();
+        $("#alert>.alertT>span").text("错误提示");
+        if(ArchiveId==''){
+            $(".alertB").html('<div class="bcontent">请选择员工档案</div>');
+            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+            alertwin();
+            return false
+        }
+        if(DimissionReason==""){
+            $(".alertB").html('<div class="bcontent">请选择离职原因</div>');
+            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+            alertwin();
+            return false;
+        }
+        if(str==""){
+            $(".alertB").html('<div class="bcontent">请填写评语</div>');
+            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+            alertwin();
+            return false;
+        }
+        if(WantRecall==""){
+            $(".alertB").html('<div class="bcontent">请填写返聘意愿</div>');
+            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+            alertwin();
+            return false;
+        }
+    })
+    
+    $(".ev-comment .count").html($.trim($(".ev-say").val()).length);
+</script>
+
+{/block}

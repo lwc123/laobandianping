@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="WalletJournalRepository" namespace="JXBC.TradeSystem">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into wallet_journal (WalletId, HandlerId, TradeMode, TargetTradeCode, BizSource, TotalFee, LastOperator, CreatedTime, ModifiedTime)
+      values (@WalletId, @HandlerId, @TradeMode, @TargetTradeCode, @BizSource, @TotalFee, @LastOperator, @CreatedTime, @ModifiedTime);
+      select @@identity;
+    </sqlWrap> 
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from wallet_journal where JournalId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from wallet_journal where JournalId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from wallet_journal
+    </sqlWrap>
+
+    <sqlWrap sqlName="SelectByOwnerId" supportDBType="SqlServer, MySql">
+      select * from wallet_journal where OwnerId=@OwnerId order by ModifiedTime desc
+    </sqlWrap>
+  </module>
+</root>

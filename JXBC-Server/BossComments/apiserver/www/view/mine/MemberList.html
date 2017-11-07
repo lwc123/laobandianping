@@ -1,0 +1,218 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}授权管理{/block}
+{block name="page-content"}
+<!--弹窗-->
+
+<div id="zhezhao">
+
+    <form id="alert" method="post">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <div class="alertB">
+        </div>
+        <input type="hidden" name="CompanyId" value="{$CompanyId}" />
+        <button type="submit" class="newJobSaveBtn"></button>
+        <div class="power_person_details hide">
+            <span class="table_creat_warnning warnning"><i class="iconfont">&#xe640;</i>确认授权后，该用户可以登录老板点评，进行点评，请谨慎操作</span><br/>
+            <!--<span>角色权限描述：</span><br><span>高管：可以建档、提交评价、背景调查查询、发布职位、审核评价；</span><br><span>建档员：可以建档、提交评价、背景调查查询、发布职位</span><br><span>管理员：可以建档、提交评论、背景调查查询、发布职位、授权管<br/>理、修改企业资料信息。</span>-->
+        </div>
+        <div class="btnwrap hide">
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">取消</a>
+            <a id="Memberlist_delete" href="javascript:void (0)" class="button db_btn_style">确认</a>
+        </div>
+    </form>
+
+</div>
+<!--弹窗结束-->
+<div id="MemberRole" class="pocket-con hide">
+
+<div class="pocket-con">姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="RealName" required	placeholder="请输入姓名" maxlength="5" value=""><br></div>
+<div class="pocket-con">手机号：&nbsp;&nbsp;<input type="text" name="MobilePhone" required placeholder="请输入手机号，将作为登录账号" maxlength="11" value="" ></div>
+<div class="pocket-con">职务：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   name="JobTitle" required placeholder="请输入职务" maxlength="30" value=""><br></div>
+<div class="Role-radio">赋予角色  &nbsp;&nbsp;{if $MyCompanyRole == 1  ||  $MyCompanyRole == 2}
+    <input id="admin"        type="radio" value="2" name="Role"><label for="admin" class="radio">管理员</label>{/if}
+    <input id="high-level"  type="radio" value="3" name="Role"><label for="high-level" class="radio">高管</label>
+    <input id="creat-msg"   type="radio" value="4" name="Role" checked><label for="creat-msg" class="radio">建档员</label>
+</div><br>
+
+</div>
+		<!--档案详情部分-->
+		<div class="com1-bg em-info">
+		  <!--员工档案详情部分-->
+		  <div class="em3-info1">
+		  	   <p class="com-tt">授权管理<a class="table_creat_power" href="javascript:void (0)" MemberId="" PassportId=""  MobilePhone=""  Role="" JobTitle=""  RealName="" PassportId="">创建新的授权</a></p>
+			  <table class="em_content_table"  width="300" border="1" cellspacing="0">
+				  <tr>
+					  <th width="200" height="40">公司管理者</th>
+					  <th width="200" height="40">角色</th>
+					  <th width="500">操作</th>
+				  </tr>
+                  {foreach($memberlist as $value)}
+				  <tr>
+					  <td height="40">{$value.RealName}</td>
+					  <td>{$value.RoleName}</td>
+					  {if($value.Role==1)}
+					  <td></td>
+                      {elseif($value.Role==2 && $MyCompanyRole==2 && $value.PassportId !=$PassportId)}
+                      <td></td>
+                      {elseif($value.Role==2 && $MyCompanyRole==2 && $value.PassportId==$PassportId)}
+					  <td><span class="table_creat_power" MobilePhone="{$value.MobilePhone}"  Role="{$value.Role}" JobTitle="{$value.JobTitle}" PassportId="{$value.PassportId}"  RealName="{$value.RealName}" MemberId="{$value.MemberId}" PassportId="{$value.PassportId}">修改</span>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      {else/}
+                      <td><span class="table_creat_power" MobilePhone="{$value.MobilePhone}"  Role="{$value.Role}" JobTitle="{$value.JobTitle}" PassportId="{$value.PassportId}"  RealName="{$value.RealName}" MemberId="{$value.MemberId}" PassportId="{$value.PassportId}">修改</span>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span class="table_delete" MemberId="{$value.MemberId}">删除</span></td>
+					  {/if}
+				  </tr>
+				  {/foreach}
+			  </table>
+		   </div>
+	    </div>
+        <div class="phone"></div>
+
+{/block}
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    var CompanyId = "{$CompanyId}";
+    var MyCompanyRole = "{$MyCompanyRole}";
+    var  CurrentPassportId = "{$PassportId}";
+    var submitHandler = function(){alert("没有设置提交处理方法");};
+    $.validator.setDefaults({
+        submitHandler:function(){submitHandler();}
+    });
+
+    $(document).ready(function() {
+        //添加授权人
+        $(".table_creat_power").click(function () {
+
+                var MemberId = $(this).attr('MemberId');
+                var Role=  $(this).attr('Role');
+                var RealName=  $(this).attr('RealName');
+                var JobTitle=  $(this).attr('JobTitle');
+                var MobilePhone=  $(this).attr('MobilePhone');
+                var PassportId=  $(this).attr('PassportId');
+
+                if(!MemberId){
+                    $("#alert>.alertT>span").text("添加授权人");
+                    $(".alertB").html($('#MemberRole').show().html())
+                    $("#MemberRole").hide();
+                    $(".newJobSaveBtn").show().html('保存');
+                    $(".power_person_details").show().html()
+                    $(".alertB [name='MobilePhone']").val(MobilePhone);
+                    $(".table_creat_warnning").show();
+                    $(".Role-radio input[type=radio]").removeAttr("disabled");
+                    if( MyCompanyRole==2){
+                        $('#admin').add($("#admin").next()).hide();
+                    }
+                
+                }else{
+                    $("#alert>.alertT>span").text("修改授权人");
+                    $(".alertB").html($('#MemberRole').show().html())
+                    $("#MemberRole").hide();
+                    $(".newJobSaveBtn").show().html('修改');
+                    $(".power_person_details").show().html()
+                    $(".table_creat_warnning").show();
+
+                    if( MyCompanyRole==2 && Role==2){
+                        $(".Role-radio input[type=radio]").attr("disabled","disabled");
+                        $(".radio:first").css({"background":"url('{$Think.config.resources_site_root}/pc/img/already.png') no-repeat"})
+                    }else if(MyCompanyRole>=2 && Role>2){
+                    	
+                        $('#admin').add($("#admin").next()).hide();
+                    }else if(  MyCompanyRole==1){
+                        $(".Role-radio ").show()
+                    }
+                    $(":radio[name='Role'][value='" + Role + "']").prop("checked", "checked");
+                    $(".alertB [name='MobilePhone']").val(MobilePhone).attr("disabled","disabled");
+                }
+            $(".alertB [name='RealName']").val(RealName);
+            $(".alertB [name='JobTitle']").val(JobTitle);
+            $('.btnwrap').hide();
+            alertwin();
+            //新增
+            submitHandler = function() {
+                var Role = $('input:radio[name="Role"]:checked').val();
+                var RealName = $('input[name=RealName]').val();
+                var JobTitle = $('input[name=JobTitle]').val();
+                var MobilePhone = $('input[name=MobilePhone]').val();
+                $.post('addMember', {
+                    CompanyId: CompanyId,
+                    Role: Role,
+                    RealName: RealName,
+                    JobTitle: JobTitle,
+                    MemberId: MemberId,
+                    MobilePhone:MobilePhone,
+                    PassportId: PassportId
+                }, function (data) {
+                    console.log(data)
+                    if (data.Success == true) {
+                        var actionText = MemberId>0?"修改":"新增";
+                        $("#alert>.alertT>span").text(actionText+"授权人");
+                        $(".alertB").html('<div class="bcontent">'+actionText+'成功</div>');
+                        $(".newJobSaveBtn").hide();
+                        $('.btnwrap').hide();
+                        $(".power_person_details").hide()
+                        alertwin();
+                        setTimeout(function () {
+                            $("#zhezhao").css("display", "none");
+                            location.href = "MemberList?CompanyId=" + "{$CompanyId}";
+                        }, 1000)
+                    } else {
+//                        $("#alert>.alertT>span").text("温馨提示");
+//                        $(".alertB").html('<div class="bcontent">' + data.ErrorMessage + '</div>');
+//                        $(".newJobSaveBtn").hide();
+//                        $('.btnwrap').hide();
+//                        $(".power_person_details").hide()
+//                        alertwin();
+                          $(".phone").show().text(data.ErrorMessage );
+                          setTimeout(function(){
+                              $(".phone").hide();
+                          },2000);
+                    }
+                })
+            }
+        })
+        //删除
+
+
+        $(".table_delete").unbind().click(function () {
+            var MemberId=  $(this).attr('MemberId')
+            $("#alert>.alertT>span").text("温馨提示");
+            $(".alertB").html('<div class="bcontent">确认要删除吗？</div>');
+            $(".newJobSaveBtn").hide();
+            $(".btnwrap").show();
+            $(".power_person_details").hide()
+            alertwin();
+            $("#Memberlist_delete").unbind().click(function () {
+                $.post('deleteMember', {CompanyId: CompanyId,MemberId:MemberId}, function (data) {
+                    console.log(data)
+                    if (data == true) {
+                        $("#alert>.alertT>span").text("温馨提示");
+                        $(".alertB").html('<div class="bcontent">删除成功</div>');
+                        $(".newJobSaveBtn").hide();
+                        $(".btnwrap").hide();
+                        $(".power_person_details").hide();
+                        alertwin();
+                        setTimeout(function () {
+                            $("#zhezhao").css("display", "none");
+                            location.href = "MemberList?CompanyId=" + {$CompanyId};
+                        }, 1500)
+                    } else {
+                        $("#alert>.alertT>span").text("温馨提示");
+                        $(".alertB").html('<div class="bcontent">你没有此权限</div>');
+                        $(".newJobSaveBtn").hide();
+                        $(".btnwrap").hide();
+                        $(".power_person_details").hide()
+                        alertwin();
+                    }
+                })
+            })
+        })
+        })
+</script>
+{/block}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/message_type"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_72PX"
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/re_cc_service"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_weight="1">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/my_collect_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="所有公司"
+            android:textColor="@color/luxury_gold_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <View
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_6PX"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/luxury_gold_color" />
+
+        <ImageView
+            android:id="@+id/msg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/my_collect_service"
+            android:layout_toEndOf="@+id/my_collect_service"
+            android:layout_toRightOf="@+id/my_collect_service"
+            android:paddingLeft="@dimen/DIMEN_6PX"
+            android:src="@drawable/msg"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="@dimen/DIMEN_2PX"
+        android:layout_height="@dimen/DIMEN_44PX"
+        android:layout_gravity="center_vertical"
+        android:background="@color/line_color" />
+    
+    <RelativeLayout
+        android:id="@+id/re_work_height"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_weight="1">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/my_collect_work_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="关注"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <View
+            android:id="@+id/two"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_6PX"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/luxury_gold_color" />
+
+        <ImageView
+            android:id="@+id/msg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/my_collect_work_height"
+            android:layout_alignStart="@+id/my_collect_work_height"
+            android:layout_alignTop="@+id/my_collect_work_height"
+            android:layout_marginLeft="34dp"
+            android:layout_marginStart="34dp"
+            android:src="@drawable/msg"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/change"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            >
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/account_info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/account_info_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/input_one_text"
+                android:gravity="right"
+                android:paddingRight="@dimen/DIMEN_44PX"
+                android:text="修改"
+                android:visibility="gone"
+                android:textColor="@color/juxian_red"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_24PX"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="@color/line_color"/>
+
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/account_info_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="@color/line_color"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/account_info_position"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="@color/line_color"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/account_info_role"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+    </LinearLayout>
+</LinearLayout>

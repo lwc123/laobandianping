@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_white"
+    android:orientation="vertical">
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/dialog_tips_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_200PX"
+        android:gravity="center"
+        android:text="@string/delete_accredit_person_hint"
+        android:textColor="#000000"
+        android:textSize="@dimen/DIMEN_32PX" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/line_color"/>
+
+    <LinearLayout
+        android:id="@+id/select_send_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:paddingBottom="@dimen/DIMEN_22PX"
+        android:paddingTop="@dimen/DIMEN_24PX">
+
+        <CheckBox
+            android:id="@+id/send_sms_check"
+            android:layout_width="@dimen/DIMEN_26PX"
+            android:layout_height="@dimen/DIMEN_26PX"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/check_send_msg_selector"
+            android:button="@null"
+            android:checked="true" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:text="@string/send_sms_inform_employee"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_22PX" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/line_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/dialog_tips_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DIMEN_116PX"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/close_dialog"
+            android:textColor="#000000"
+            android:textSize="@dimen/DIMEN_32PX" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="@dimen/DIMEN_116PX"
+            android:background="@color/line_color" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/dialog_tips_ok"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DIMEN_116PX"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/ok"
+            android:textColor="#000000"
+            android:textSize="@dimen/DIMEN_32PX" />
+    </LinearLayout>
+</LinearLayout>

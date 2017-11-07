@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+	<module moduleName="AnonymousAccountRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into anonymous_account (PassportId, DeviceId, Nickname, Avatar, CreatedTime,ModifiedTime)
+      values (@PassportId, @DeviceId, @Nickname, @Avatar, @CreatedTime,@ModifiedTime);
+
+      insert into anonymous_account_token (PassportId, AccountId, AccessToken, ExpiresTime,CreatedTime,ModifiedTime)
+      values (@PassportId, @@identity, @AccessToken, @ExpiresTime, @CreatedTime,@ModifiedTime);
+      select @@identity;
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update anonymous_account set PassportId=@PassportId,Nickname=@Nickname, Avatar=@Avatar
+      , ModifiedTime=@ModifiedTime
+      where AccountId = @AccountId;
+
+      update anonymous_account_token set PassportId=@PassportId,AccessToken=@AccessToken,ExpiresTime=@ExpiresTime
+      , ModifiedTime=@ModifiedTime
+      where TokenId = @TokenId
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from anonymous_account where AccountId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByAccessToken" supportDBType="SqlServer, MySql">
+      select * from anonymous_account A inner join anonymous_account_token B on A.AccountId=B.AccountId
+      where AccessToken = @AccessToken
+    </sqlWrap>
+    <sqlWrap sqlName="SelectLastByPassport" supportDBType="SqlServer, MySql">
+      select * from anonymous_account A inner join anonymous_account_token B on A.AccountId=B.AccountId
+      where a.PassportId=@PassportId
+    </sqlWrap>
+  </module>
+</root>

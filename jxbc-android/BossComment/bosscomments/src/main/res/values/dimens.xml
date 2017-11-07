@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">12dp</dimen>
+    <dimen name="tabhost_height">64dp</dimen>
+
+    <dimen name="activity_margin">10dp</dimen>
+    <dimen name="company_topic_contentsize">15sp</dimen>
+    <dimen name="company_topic_getgift_size">15sp</dimen>
+    <dimen name="nav_bar_height">48dp</dimen>
+    <dimen name="nav_bar_image_size">32dp</dimen>
+    <dimen name="nav_bar_title_size">@dimen/text_title_toolbar</dimen>
+    <dimen name="nav_bar_text_size">@dimen/text_size_menu</dimen>
+
+    <dimen name="settings_text_size">@dimen/text_size_primary</dimen>
+
+    <dimen name="home_ad_height">64dp</dimen>
+
+    <dimen name="trends_avatar_size">48dp</dimen>
+    <dimen name="trends_image_height">200dp</dimen>
+    <dimen name="trends_header_size">14sp</dimen>
+    <dimen name="trends_header_tags_size">@dimen/text_size_caption</dimen>
+    <dimen name="trends_body_size">@dimen/trends_header_size</dimen>
+
+    <dimen name="trends_text_triangle">36dp</dimen>
+    <dimen name="trends_text_triangle_size">16dp</dimen>
+    <dimen name="trends_text_triangle_size_reverse">-24dp</dimen>
+
+    <dimen name="promo_prize_size">24dp</dimen>
+    <dimen name="promo_rank_size">20dp</dimen>
+    <dimen name="promo_sendflowers_dialog_width">300dp</dimen>
+    <dimen name="promo_sendflowers_dialog_height">360dp</dimen>
+    <dimen name="promo_sendflowers_box_height">176dp</dimen>
+    <dimen name="promo_sendflowers_flower_text">20sp</dimen>
+
+    <dimen name="promo_timer_left">232dp</dimen>
+    <dimen name="promo_timer_top">57dp</dimen>
+    <dimen name="promo_timer_item_width">16dp</dimen>
+
+    <dimen name="company_logo_size">64dp</dimen>
+    <dimen name="company_name_size">16dp</dimen>
+
+    <dimen name="company_summary_padding_left">36dp</dimen>
+    <dimen name="company_summary_padding_top">24dp</dimen>
+    <dimen name="company_summary_title_size">14sp</dimen>
+
+    <dimen name="cardview_radius">4dp</dimen>
+    <dimen name="cardview_elevation">4dp</dimen>
+    <dimen name="cardview_elevation_max">4dp</dimen>
+
+    <dimen name="page_indicator_size">8dp</dimen>
+
+    <dimen name="line_micro">1px</dimen>
+    <dimen name="line_mini">0.5dp</dimen>
+    <dimen name="line_small">0.1dp</dimen>
+
+    <dimen name="padding_micro">1dp</dimen>
+    <dimen name="padding_mini">2dp</dimen>
+    <dimen name="padding_small">2dp</dimen>
+    <dimen name="padding_medium">@dimen/DIMEN_18PX</dimen>
+    <dimen name="padding_large">12dp</dimen>
+    <dimen name="padding_xlarge">16dp</dimen>
+
+    <dimen name="head_height">@dimen/DIMEN_107PX</dimen>
+    <!-- 新项目 -->
+    <dimen name="social_network_image_width">70dp</dimen>
+    <dimen name="head_status_bar">@dimen/DIMEN_40PX</dimen>
+
+    <!--main主页中的radiobutton的样式-->
+    <dimen name="main_bottom_tab_padding_top">5dp</dimen>
+    <dimen name="main_bottom_tab_font_size">16sp</dimen>
+    <dimen name="main_bottom_tab_drawable_padding">2dp</dimen>
+
+    <!-- 字体大小 -->
+    <dimen name="SIZE_8">5.33sp</dimen>
+    <dimen name="SIZE_9">6sp</dimen>
+    <dimen name="SIZE_10">6.67sp</dimen>
+    <dimen name="SIZE_11">7.33sp</dimen>
+    <dimen name="SIZE_12">8sp</dimen>
+    <dimen name="SIZE_13">8.67sp</dimen>
+    <dimen name="SIZE_14">9.33sp</dimen>
+    <dimen name="SIZE_15">10sp</dimen>
+    <dimen name="SIZE_16">10.67sp</dimen>
+    <dimen name="SIZE_17">11.33sp</dimen>
+    <dimen name="SIZE_18">12sp</dimen>
+    <dimen name="SIZE_19">12.67sp</dimen>
+    <dimen name="SIZE_20">13.33sp</dimen>
+    <dimen name="SIZE_21">14sp</dimen>
+    <dimen name="SIZE_22">14.67sp</dimen>
+    <dimen name="SIZE_23">15.33sp</dimen>
+    <dimen name="SIZE_24">16sp</dimen>
+    <dimen name="SIZE_25">16.67sp</dimen>
+    <dimen name="SIZE_26">17.33sp</dimen>
+    <dimen name="SIZE_27">18sp</dimen>
+    <dimen name="SIZE_28">18.67sp</dimen>
+    <dimen name="SIZE_29">19.33sp</dimen>
+    <dimen name="SIZE_30">20sp</dimen>
+    <dimen name="SIZE_31">20.67sp</dimen>
+    <dimen name="SIZE_32">21.33sp</dimen>
+    <dimen name="SIZE_33">22sp</dimen>
+    <dimen name="SIZE_34">22.67sp</dimen>
+    <dimen name="SIZE_35">23.33sp</dimen>
+    <dimen name="SIZE_36">24sp</dimen>
+    <dimen name="SIZE_37">24.67sp</dimen>
+    <dimen name="SIZE_38">25.33sp</dimen>
+    <dimen name="SIZE_39">26sp</dimen>
+
+</resources>

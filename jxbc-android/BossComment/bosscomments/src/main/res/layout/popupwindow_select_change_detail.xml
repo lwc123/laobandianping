@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/DIMEN_350PX"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_50PX"
+        android:src="@drawable/list_sanjiao"/>
+
+    <RelativeLayout
+        android:layout_width="@dimen/DIMEN_350PX"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_7PX"
+        android:layout_marginTop="@dimen/DIMEN_10PX"
+        android:background="@drawable/btn_gold">
+
+        <RelativeLayout
+            android:id="@+id/re_change_employee_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/img_income_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:layout_centerVertical="true"
+                android:src="@drawable/edit_archive" />
+
+            <TextView
+                android:id="@+id/select_income_record"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_86PX"
+                android:layout_marginLeft="@dimen/DIMEN_12PX"
+                android:layout_toRightOf="@+id/img_income_record"
+                android:gravity="center"
+                android:text="添加阶段评价"
+                android:textColor="@color/white"
+                android:textSize="@dimen/DIMEN_30PX" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:layout_below="@+id/re_change_employee_record"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            android:layout_centerHorizontal="true"
+            android:background="#44ffffff" />
+
+        <RelativeLayout
+            android:id="@+id/re_change_comment_or_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/img_expense_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:src="@drawable/update_comment" />
+
+            <TextView
+                android:id="@+id/select_expense_record"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_86PX"
+                android:layout_marginLeft="@dimen/DIMEN_12PX"
+                android:layout_toRightOf="@+id/img_expense_record"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="修改阶段评价"
+                android:textColor="@color/white"
+                android:textSize="@dimen/DIMEN_30PX" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

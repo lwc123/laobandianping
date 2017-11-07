@@ -1,0 +1,54 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            版本修改
+        </div>
+        <form  action="update" method="post" >
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <input type="hidden" name="VersionId" value="{$Version.VersionId}"/>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>版本类型</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td><input type="text"  name="AppType" value="{$Version.AppType}"/></td>
+                </tr>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>版本Code</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td><input type="text"  name="VersionCode" value="{$Version.VersionCode}"/></td>
+                </tr>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>版本名字</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td><input type="text"  name="VersionName" value="{$Version.VersionName}"/></td>
+                </tr>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>最低版本</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td><input type="text"  name="LowestSupportVersion" value="{$Version.LowestSupportVersion}"/></td>
+                </tr>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>版本描述</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td>
+                        <textarea name="Description" cols="50" rows="5">{$Version.Description}</textarea>
+                    </td>
+                </tr>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>下载地址</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td>
+                        <textarea name="DownloadUrl" id="" cols="70" rows="5">{$Version.DownloadUrl}</textarea>
+                    </td>
+                </tr>
+
+
+            </table>
+            <center>
+                <input type="submit" style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;" value="修改并保存"/>
+            </center>
+        </form>
+    </div>
+</div>
+
+
+{/block}
+

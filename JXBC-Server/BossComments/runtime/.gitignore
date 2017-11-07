@@ -1,0 +1,13 @@
+*.dll
+*.pdb
+*.oob
+*.suo
+*.user
+*.dat
+*.db
+*.class
+*.testsettings*
+*.vs
+*.apk
+*.log
+*.php

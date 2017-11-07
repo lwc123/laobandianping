@@ -1,0 +1,121 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@using JXBC.Workplace;
+@{
+    var entity = (ConsultantPageEntity)Model;
+
+    ViewBag.Title = "猎人主页";
+}
+
+<div class="jxm">
+    <!--jxm-head-hunter begin-->
+    <header class="jxm-head-hunter">
+        <div class="jxm-btn-back" data-target="app:gotoNativePage" data-page-name="back" data-page-params=""><a></a></div>
+        <dl class="jxm-per-hunter">
+            <dt class="avton"><a><img src="@entity.Profile.Avatar" alt="" /></a></dt>
+            <dd class="con">
+                <div class="name ellipsis">
+                    <a>@entity.Profile.RealName</a>
+                    @for (var i = 0; i < entity.Profile.ConsultantGrade; i++)
+                    {<i></i>}
+                </div>
+                <div class="infor ellipsis">@(entity.Profile.Identity)</div>
+                <div class="serv ellipsis">
+                    <span>@entity.Profile.ServiceIndustryText</span><span>|</span>
+                    @if (false == string.IsNullOrEmpty(entity.Profile.ServiceJobCategoriesText))
+                    {
+                        foreach (var item in entity.Profile.ServiceJobCategoriesText.Split(','))
+                        {
+                            <span>@item</span>
+                        }
+                    }
+                </div>
+            </dd>
+        </dl>
+    </header>
+    <!--jxm-head-hunter end-->
+    <!--jxm-con-hunter begin-->
+    <section class="jxm-con-hunter">
+        @if (null != entity.CareerServices && entity.CareerServices.Count > 0)
+        {
+            var service = entity.CareerServices[0];
+
+            <section class="jxm-coner-hunter jxm-ser-hunter">
+                <header>
+                    <h2>TA的服务</h2>
+                </header>
+                <article data-target="app:gotoNativePage" data-page-name="CareerService" data-page-params='{"oid":@(service.ServiceId)}'>
+                    <p><a href="#">
+                        @for (var i = 0; i < service.Contents.Length; i++)
+                        {
+                            @service.Contents[i]
+                        }
+                    </a></p>
+                </article>
+                <aside data-target="app:gotoNativePage" data-page-name="CareerService" data-page-params='{"oid":@(service.ServiceId)}'>
+                    <div>
+                        @if (service.BuyerCount > 0)
+                        {
+                            <a class="pay fr">@(service.BuyerCount)人付款</a>
+                        }
+                        <span><i>￥</i><em>@service.Price</em>/月</span>
+                    </div>
+                </aside>
+                <div class="icon">
+                </div>
+            </section>
+        }
+        @*if (null != entity.CareerAdvices && entity.CareerAdvices.Count > 0)
+        {
+            <section class="jxm-coner-hunter jxm-news-hunter">
+                <header>
+                    <div class="more fr" data-target="app:gotoNativePage" data-page-name="CareerAdvice:All" data-page-params='{"oid":@(entity.Profile.PassportId)}'><a>全部>></a></div>
+                    <h2>TA的职场高见</h2>
+                </header>
+                @foreach (var item in entity.CareerAdvices)
+                {
+                    <article data-target="app:gotoNativePage" data-page-name="CareerAdvice" data-page-params='{"oid":@(item.AdviceId)}'>
+                        <p><a>@item.Subject</a></p>
+                        <div class="bar clear-fix"><a href="#" class="fee fr">@(item.GratuityCount)打赏</a><a href="#" class="fvt fr">@(item.ReadCount)赞</a></div>
+                    </article>
+                }
+                <div class="icon">
+                </div>
+            </section>
+        }*@
+        @if (null != entity.OperationJobs && entity.OperationJobs.Count > 0)
+        {
+            <section class="jxm-coner-hunter jxm-job-hunter">
+                <header>
+                    <h2>TA运作的职位</h2>
+                </header>
+                @foreach (var item in entity.OperationJobs)
+                {
+                    <article data-target="app:gotoNativePage" data-page-name="OperationJob" data-page-params='{"oid":@(item.ItemId)}'>
+                        <div>
+                            <a class="tl">@item.JobTitle</a>
+                            <span class="salary">@item.SalaryRange</span>
+                            <span class="location">@item.Location</span>
+                        </div>
+                        <p>@item.Company</p>
+                    </article>
+                }
+                <div class="icon">
+                    <span class="lt"></span>
+                    <span class="lb"></span>
+                </div>
+            </section>
+        }
+    </section>
+    <!--jxm-con-hunter end-->
+    <!--跟他聊聊 由APP做-->
+</div>
+@section _resources_footer {
+    <script>
+		    $(function(){
+			    if(navigator.userAgent.match(/UC/) ? true : false){
+				    $(".jxm-con-hunter").css("min-height",$(window).height()-$(".jxm-head-hunter").height());
+			    }
+		    })
+    </script>
+}

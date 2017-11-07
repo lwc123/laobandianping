@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="UserPassportManagerRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="SelectByAttestationStatus" supportDBType="SqlServer, MySql">
+      select * from consultant_profile where PassportId>0
+      #if(@AttestationStatus) { and AttestationStatus=@AttestationStatus }
+      order by ModifiedTime desc
+    </sqlWrap>
+
+    <sqlWrap sqlName="SelectTalentesByQuery" supportDBType="SqlServer, MySql">
+      select u.PassportId from user_passport u
+      inner join user_profile up on up.PassportId=u.PassportId and u.ProfileType=@ProfileType
+      where u.ProfileType=@ProfileType
+      #if(@Keyword) { and ( up.Realname like @Keyword or up.CurrentCompany like @Keyword or up.CurrentJobTitle like @Keyword ) }
+      order by u.CreatedTime desc
+    </sqlWrap>
+
+    <sqlWrap sqlName="SelectConsultantesByQuery" supportDBType="SqlServer, MySql">
+      select u.PassportId from user_passport u
+      inner join user_profile up on up.PassportId=u.PassportId
+      inner join consultant_profile cp on cp.PassportId=u.PassportId
+      where u.ProfileType=@ProfileType
+      #if(@AttestationStatus) { and cp.AttestationStatus=@AttestationStatus }
+      #if(@Keyword) { and ( up.Realname like @Keyword or up.CurrentCompany like @Keyword or up.CurrentJobTitle like @Keyword or cp.ConsultantCompany like @Keyword or cp.Identity like @Keyword) }
+      order by u.CreatedTime desc
+    </sqlWrap>
+
+  </module>
+</root>

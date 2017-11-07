@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/boss_brief"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_40PX"
+                android:layout_marginBottom="@dimen/DIMEN_40PX"
+                android:background="@color/white"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_20PX"
+                android:layout_marginTop="@dimen/DIMEN_40PX"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/DIMEN_10PX"
+                    android:text="@string/invite_register_link"
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_24PX" />
+
+                <Button
+                    android:id="@+id/copy_link"
+                    android:layout_width="@dimen/DIMEN_220PX"
+                    android:layout_height="@dimen/DIMEN_60PX"
+                    android:background="@drawable/button_bg_content_null"
+                    android:text="复制分享"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/DIMEN_30PX" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/DIMEN_40PX"
+            android:text="@string/invite_register_qr_code"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX" />
+
+        <ImageView
+            android:id="@+id/invite_qrcode"
+            android:layout_width="@dimen/DIMEN_220PX"
+            android:layout_height="@dimen/DIMEN_220PX"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/DIMEN_40PX"
+            android:padding="@dimen/DIMEN_16PX"
+            android:scaleType="fitXY"
+            android:background="@drawable/btn_white"
+            android:src="@drawable/default_pic" />
+
+        <Button
+            android:id="@+id/share"
+            android:layout_width="@dimen/DIMEN_220PX"
+            android:layout_height="@dimen/DIMEN_48PX"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_bg_content_null"
+            android:text="@string/share"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_30PX" />
+    </LinearLayout>
+
+</LinearLayout>

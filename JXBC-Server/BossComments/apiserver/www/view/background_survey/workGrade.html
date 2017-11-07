@@ -1,0 +1,48 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}职场信用分{/block}
+
+{block name="page-content"}
+<div class="com1-bg">
+	<div class="grade_title">职场信用分</div>
+	<div class="Grade_content">
+		<div class="grade">
+			<div class="content_title">
+				<img src="{$Think.config.resources_site_root}/pc/img/ic_credit.png">
+				<span>什么是职场信用分</span>	
+			</div>
+			<div class="content_desc">
+				老板点评携手华道征信，全方位分析人员行为习惯偏好，约谈之前即可掌握候选人意向程度；通过各招聘方反馈及行为模式推论爽约概率；协助 HR 针对新入职员
+工主要诉求开展团建，增强企业粘着性。信用记录侧面展现求职者的品质，高分求职者更易被企业看中。
+			</div>
+		</div>
+		<div class="grade">
+			<div class="content_title">
+				<img src="{$Think.config.resources_site_root}/pc/img/ic_dimension.png">
+				<span>维度</span>	
+			</div>
+			<div class="content_desc">
+				身份工作履历信息：包括报告人身份信息以及从业以来的公司及年限信息<br>
+				消费历史：包括报告人的历史购物信息和退换货信息<br>
+				商旅信息：包括报告人飞行、住宿等出行商旅信息<br>
+				历史客户信息：包括报告人服务过的客户公司情况信息<br>
+				信用历史信息：包括报告人的历史授信额度信息和历史还款信息
+			</div>
+		</div>
+		<div class="grade">
+			<div class="content_title">
+				<img src="{$Think.config.resources_site_root}/pc/img/ic_explin.png">
+				<span>分值说明</span>	
+			</div>
+			<div class="content_desc">
+				LOW-541 信用极差<br>
+				541-585 信用差<br>
+				585-605 信用一般<br>
+				605-638 信用好<br>
+				638-HIGH 信用极好
+			</div>
+		</div>
+	</div>
+</div>
+
+{/block}

@@ -1,0 +1,50 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">字典表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr > <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号ID</th>
+                    <th class="center col-xs-1">父类ID</th>
+                    <th class="center col-xs-1">字典名称</th>
+                    <th class="center col-xs-1">编码</th>
+                    <th class="center col-xs-1">键值</th>
+                    <th class="center col-xs-1">操作</th>
+                </tr>
+                </thead>
+                {foreach($Dictionary[$Code]  as $key=> $item)}
+                <tbody>
+                <tr class="center" >
+                    <td>{$item['EntryId']}</td>
+                    <td>{$item['DictionaryId']}</td>
+                    <td>{$item['Name']}</td>
+                    <td>{$item['Code']}</td>
+                    <td>{$item['RelativeKeys']}</td>
+                    <td> <a href="#">修改</a></td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total:</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

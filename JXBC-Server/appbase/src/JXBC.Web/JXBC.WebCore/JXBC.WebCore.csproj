@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6C11390-DC4D-4ED7-806F-CA5F3AA48886}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXBC.WebCore</RootNamespace>
+    <AssemblyName>JXBC.WebCore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JXTB.CommonData">
+      <HintPath>..\..\..\..\libs\JXTB.CommonData.dll</HintPath>
+    </Reference>
+    <Reference Include="M2SA.AppGenome">
+      <HintPath>..\..\..\..\libs\M2SA.AppGenome.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Helpers">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Http.WebHost" />
+    <Reference Include="System.Web.Mvc">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppEnvironment.cs" />
+    <Compile Include="AccountAuthentication.cs" />
+    <Compile Include="MicroServiceController.cs" />
+    <Compile Include="AuthenticatedApiController.cs" />
+    <Compile Include="CookieHelper.cs" />
+    <Compile Include="Mvc\RequestExtension.cs" />
+    <Compile Include="Mvc\ApiControllerExtension.cs" />
+    <Compile Include="Mvc\WebApiApplication.cs" />
+    <Compile Include="Mvc\BaseApplication.cs" />
+    <Compile Include="Mvc\MvcApplication.cs" />
+    <Compile Include="ImageHelper.cs" />
+    <Compile Include="Mvc\MvcRouteConfig.cs" />
+    <Compile Include="ViewModels\MicroServiceEntity.cs" />
+    <Compile Include="ViewModels\ComplexDictionary.cs" />
+    <Compile Include="ViewModels\MessageExtension.cs" />
+    <Compile Include="ViewModels\UserPageEntity.cs" />
+    <Compile Include="ViewModels\ConsultanPageEntity.cs" />
+    <Compile Include="ViewModels\ModelExtension.cs" />
+    <Compile Include="ViewModels\MessageResult.cs" />
+    <Compile Include="MvcContext.cs" />
+    <Compile Include="Mvc\CacheMessageHanlder.cs" />
+    <Compile Include="JsonExtension.cs" />
+    <Compile Include="Mvc\FilterConfig.cs" />
+    <Compile Include="Mvc\WebApiRouteConfig.cs" />
+    <Compile Include="Mvc\UnhandledErrorController.cs" />
+    <Compile Include="Mvc\UnhandledExceptionAttribute.cs" />
+    <Compile Include="Mvc\WebApiConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mvc\UnhandledFilterAttribute.cs" />
+    <Compile Include="ViewModels\AvatarEntity.cs" />
+    <Compile Include="ViewModels\ConsultantSummary.cs" />
+    <Compile Include="ViewModels\UserSummary.cs" />
+    <Compile Include="ViewModels\AccountEntity.cs" />
+    <Compile Include="ViewModels\AccountSign.cs" />
+    <Compile Include="ViewModels\AccountSignResult.cs" />
+    <Compile Include="ViewModels\AdditionalAction.cs" />
+    <Compile Include="ViewModels\ProfileExtension.cs" />
+    <Compile Include="ViewModels\TradeJournalEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\JXBC.Passports\JXBC.Passports\JXBC.Passports.csproj">
+      <Project>{b2959860-6a53-4b8e-900d-6bb2cbee561d}</Project>
+      <Name>JXBC.Passports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.TradeSystem\JXBC.TradeSystem\JXBC.TradeSystem.csproj">
+      <Project>{a3f7b65c-e3b1-491e-bfc8-321f4a49aaf2}</Project>
+      <Name>JXBC.TradeSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.Workplace\JXBC.Workplace\JXBC.Workplace.csproj">
+      <Project>{672b54ec-da09-4b30-9032-45dcc6fdba95}</Project>
+      <Name>JXBC.Workplace</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

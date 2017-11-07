@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_100PX"
+    android:background="@color/search_bg">
+    <RelativeLayout
+        android:id="@+id/activity_cc_page_error_rela"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_100PX"
+        android:background="@color/search_bg">
+    <TextView
+        android:id="@+id/activity_search_text"
+        android:layout_width="@dimen/DIMEN_98PX"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/DIMEN_17PX"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/search"
+        android:textColor="@color/white" />
+    <!-- 在地图隐藏之后如果是用gone隐藏，则layout_marginLeft需要再加115px -->
+    <RelativeLayout
+        android:id="@+id/activity_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_60PX"
+        android:layout_marginLeft="@dimen/DIMEN_20PX"
+        android:layout_marginRight="@dimen/DIMEN_20PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:layout_toLeftOf="@+id/activity_search_text"
+        android:background="@drawable/search_bg_gray_radiu">
+
+        <ImageView
+            android:id="@+id/activity_search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/DIMEN_24PX"
+            android:background="@drawable/sousuo" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/input_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/DIMEN_15PX"
+            android:gravity="center_vertical"
+            android:text="@string/please_input_employee_name"
+            android:textColor="@color/discount_gray"
+            android:textSize="@dimen/DIMEN_30PX" />
+    </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

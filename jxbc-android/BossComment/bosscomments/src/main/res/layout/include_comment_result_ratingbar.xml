@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/DIMEN_24PX"
+    android:paddingRight="@dimen/DIMEN_24PX">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_24PX"
+        android:layout_marginRight="@dimen/DIMEN_24PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/operational_capability"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <com.example.xlhratingbar_lib.XLHRatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            xlhRatingBar:canEdit="false"
+            xlhRatingBar:countSelected="0"
+            xlhRatingBar:differentSize="false"
+            xlhRatingBar:dividerWidth="@dimen/DIMEN_20PX"
+            xlhRatingBar:starCount="5"
+            xlhRatingBar:stateResId="@drawable/start_rating_bar_full"
+            xlhRatingBar:widthAndHeight="@dimen/DIMEN_40PX" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_24PX"
+        android:layout_marginRight="@dimen/DIMEN_24PX"
+        android:layout_marginTop="@dimen/DIMEN_32PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/working_attitude"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <com.example.xlhratingbar_lib.XLHRatingBar
+            android:id="@+id/ratingBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            xlhRatingBar:canEdit="false"
+            xlhRatingBar:countSelected="0"
+            xlhRatingBar:differentSize="false"
+            xlhRatingBar:dividerWidth="@dimen/DIMEN_20PX"
+            xlhRatingBar:starCount="5"
+            xlhRatingBar:stateResId="@drawable/start_rating_bar_full"
+            xlhRatingBar:widthAndHeight="@dimen/DIMEN_40PX" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_20PX"
+        android:layout_marginLeft="@dimen/DIMEN_24PX"
+        android:layout_marginRight="@dimen/DIMEN_24PX"
+        android:layout_marginTop="@dimen/DIMEN_32PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/work_performance"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <com.example.xlhratingbar_lib.XLHRatingBar
+            android:id="@+id/ratingBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_10PX"
+            xlhRatingBar:canEdit="false"
+            xlhRatingBar:countSelected="0"
+            xlhRatingBar:differentSize="false"
+            xlhRatingBar:dividerWidth="@dimen/DIMEN_20PX"
+            xlhRatingBar:starCount="5"
+            xlhRatingBar:stateResId="@drawable/start_rating_bar_full"
+            xlhRatingBar:widthAndHeight="@dimen/DIMEN_40PX" />
+    </LinearLayout>
+</LinearLayout>

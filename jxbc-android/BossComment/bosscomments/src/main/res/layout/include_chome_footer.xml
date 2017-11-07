@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_radios"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/head_height"
+    android:background="@color/home_radiogroup_bg_color"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/DIMEN_8PX">
+
+    <RadioButton
+        android:id="@+id/rb_tab_main"
+        style="@style/main_bottom_tab"
+        android:checked="false"
+        android:drawableTop="@drawable/c_home_tab_first_selector"
+        android:text="@string/chome_tab_company_opinion" />
+
+    <ImageView
+        android:id="@+id/go_to_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/DIMEN_15PX"
+        android:paddingBottom="@dimen/DIMEN_15PX"
+        android:layout_weight="1"
+        android:src="@drawable/ic_c_home_tab_add"/>
+
+    <RadioButton
+        android:id="@+id/rb_tab_person"
+        style="@style/main_bottom_tab"
+        android:drawableTop="@drawable/tab_third_selector"
+        android:text="@string/chome_tab_cpersonal" />
+</RadioGroup>

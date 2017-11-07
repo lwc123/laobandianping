@@ -1,0 +1,66 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}{$view.IsDimissionText}员工档案列表{/block}
+{block name="page-content"}
+<!--右侧内容部分-->
+<div class="com1-bg">
+    <div class="em-search">
+        <form action="" method="get">
+            <div class="search">
+                <i class="iconfont">&#xe63b;</i>
+                <input name="RealName" type="text" value="{$Think.get.RealName}" placeholder="请输入员工姓名">
+            </div>
+            <div class="search1">
+                <select name="DeptId">
+                    <option value="">所有部门</option>
+                    {volist name="Departments" id="vo"}
+                    <option value="{$vo.DeptId}" {if $Think.get.DeptId == $vo.DeptId } selected {/if}> {$vo.DeptName}</option>
+                    {/volist}
+                </select>
+            </div>
+            <input name="CompanyId" type="hidden" value="{$CompanyId}">
+            <input name="IsDimission" type="hidden" value="{$Think.get.IsDimission}">
+            <button>查询员工</button>
+        </form>
+    </div>
+    {if empty($list)}
+    <div class="em-mid">
+        <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+        <p>开始创建员工档案吧，创建后就可以对员工进行评价了</p>
+        <button><a href="create?CompanyId={$CompanyId}">创建档案</a></button>
+    </div>
+    {else}
+    <!--在职员工档案部分-->
+    <div class="em-info em1-info">
+        <p class="com-tt">{$view.IsDimissionText}员工档案</p>
+        {volist name="list" id="vo"}
+        <div class="em1-info1">
+            <a href="detail?ArchiveId={$vo.ArchiveId}&CompanyId={$vo.CompanyId}"><img src="{$vo.Picture}"></a>
+            <p class="nname"><a href="detail?ArchiveId={$vo.ArchiveId}&CompanyId={$vo.CompanyId}">{$vo.RealName}</a>
+            </p>
+            <p class="work">{$vo.WorkItem.PostTitle}</p>
+            <p class="time">
+                {if $Think.get.IsDimission==0}
+                {:toLocalDateTime($vo.EntryTime,'Y年m月d日')}入职
+                {else}
+                {:toLocalDateTime($vo.EntryTime,'Y年m月d日')}入职  |   {:toLocalDateTime($vo.DimissionTime,'Y年m月d日')}离职
+                {/if}
+            </p>
+            <span>{if $vo.CommentsNum>0}已评价（{$vo.CommentsNum}条）{else}未评价{/if}</span>
+        </div>
+        {/volist}
+        <div class="em-page">
+            {$page}
+        </div>
+    </div>
+    {/if}
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script>
+    jQuery(function ($) {
+
+    });
+</script>
+{/block}

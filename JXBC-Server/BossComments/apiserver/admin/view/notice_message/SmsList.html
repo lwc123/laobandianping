@@ -1,0 +1,51 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">短信列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center"> <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号ID</th>
+                    <th class="col-xs-1">发送时间</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <th class="col-xs-1">手机号码</th>
+                    <th class="col-xs-1">发送状态</th>
+                    <th >发送内容模板</th>
+                    <th class="col-xs-1">操作</th>
+                </tr>
+                </thead>
+                {foreach( name="SmsList" item="item")}
+                <tbody>
+                <tr class="center">
+                    <td>{$item['MessageId']}</td>
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{$item['MobilePhone']}</td>
+                    <td>{if($item['SendStatus']=="Success" || $item['SendStatus']=="True" || null==$item['SendStatus'])}成功{else}失败：{$item['FailedReason']} {/if}</td>
+                    <td>{$item['Content']}</td>
+                    <td>
+                        <a href="#">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: {$TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {$pageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

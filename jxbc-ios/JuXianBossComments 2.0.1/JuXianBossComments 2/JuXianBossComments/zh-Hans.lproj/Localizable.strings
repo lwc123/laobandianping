@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  JuXianBossComments
+
+  Created by juxian on 16/11/7.
+  Copyright © 2016年 jinghan. All rights reserved.
+*/
+
+"phone number can not be empty" = "手机号不能为空";
+"phone number format is not correct" = "手机号码格式不正确";
+"phone number less than 11" = "手机号码不足11位";
+"phone number more than 11" = "手机号码超过11位";
+"enter the password" = "请输入密码";
+"password length must be 6-24 bit character" = "密码长度必须是6-24位字符";
+"login successfully" = "登录成功";
+"enter the name of the enterprise" = "请输入企业名称";
+"enter the name of the legal person" = "请输入法人姓名";
+"company name lenth than two charachers" = "企业名称长度必须大于两位字符";
+"corporate name length must be greater than 1 characters" = "法人姓名长度必须大于1位字符";
+"verification code length must be 6 bit" = "验证码长度必须为6位";
+"already registered" = "手机号已经注册";
+"password can not be empty" = "密码不能为空";
+"confirm password cannot be empty" = "确认密码不能为空";
+"two times the password is not consistent" = "两次输入的密码不一致";
+"password length must be 6-24 bit character" = "密码长度必须是6-24位字符";
+"set success" = "设置成功";
+"feedback content can not be empty" = "反馈内容不能为空";
+"feedback content should not be more than 200 characters in length" = "反馈内容长度不能大于200个字符";
+
+"password can only be composed of letters and numbers, please re-enter" = "密码只能由字母和数字组成，请重新输入";

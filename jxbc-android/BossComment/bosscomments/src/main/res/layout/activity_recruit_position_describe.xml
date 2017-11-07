@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:background="@color/main_background"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.juxian.bosscomments.widget.EditText
+        android:id="@+id/feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="@string/position_describe"
+        android:minHeight="@dimen/DIMEN_300PX"
+        android:paddingBottom="@dimen/DIMEN_22PX"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        android:paddingRight="@dimen/DIMEN_30PX"
+        android:paddingTop="@dimen/DIMEN_22PX"
+        android:textColor="@color/menu_color"
+        android:textColorHint="@color/menu_color"
+        android:textSize="@dimen/DIMEN_24PX"/>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"/>
+</LinearLayout>

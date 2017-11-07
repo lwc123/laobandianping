@@ -1,0 +1,62 @@
+﻿@using JXBC.WebCore;
+@{
+    ViewBag.Title = "举贤令";
+}
+<!--面包屑-->
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="#">首页</a>
+        </li>
+        <li class="active">业务管理</li>
+        <li class="active">业务管理</li>
+    </ul>
+</div>
+<!--结果列表-->
+<!--内容-->
+<div class="yewuControl_index">
+    <div class="panel warning">
+        <div class="panel-heading">猎头审核</div>
+        @if (ViewBag.ConsultanApplyCount > 0)
+        {
+            <div class="panel-body"><em class="active"><a href="/ApplyManager/ConsultantApplyList?leftFrom=ApplyManager_Consultant&headerFrom=BizManager&leftNav=BizManager">@ViewBag.ConsultanApplyCount</a></em></div>
+            <i class="icon-circle" style="display: inline;"></i>
+        }
+        else
+        {
+            <div class="panel-body"><em>0</em></div>
+            <i class="icon-circle"></i>
+        }
+    </div>
+    <div class="panel warning">
+        <div class="panel-heading">服务审核</div>
+        @if (ViewBag.SubmitedServiceCount > 0)
+        {
+            <div class="panel-body"><em class="active"><a href="/ApplyManager/ServiceApplyList?leftFrom=ApplyManager_Service&headerFrom=BizManager&leftNav=BizManager">@ViewBag.SubmitedServiceCount</a></em></div>
+            <i class="icon-circle" style="display: inline;"></i>
+        }
+        else
+        {
+            <div class="panel-body"><em>0</em></div>
+            <i class="icon-circle"></i>
+        }
+    </div>
+    <div class="panel warning">
+        <div class="panel-heading">高见审核</div>
+        @if (ViewBag.SubmitedAdviceCount > 0)
+        {
+            <div class="panel-body"><em class="active"><a href="/ApplyManager/AdviceApplyList?leftFrom=ApplyManager_Advice&headerFrom=BizManager&leftNav=BizManager">@ViewBag.SubmitedAdviceCount</a></em></div>
+            <i class="icon-circle" style="display: inline;"></i>
+        }
+        else
+        {
+            <div class="panel-body"><em>0</em></div>
+            <i class="icon-circle"></i>
+        }
+    </div>
+    <p>
+        <strong>猎头审核：</strong>猎头已提交身份认证信息，待审核<br />
+        <strong>服务审核：</strong>猎头提交的服务，待审核<br />
+        <strong>高见审核：</strong>猎头提交的高见，待审核<br />
+    </p>
+</div>

@@ -1,0 +1,88 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">意见反馈</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr > <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号ID</th>
+                    <th class="center col-xs-2">时间</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <th class="center col-xs-1">姓名</th>
+                    <th class="center col-xs-1">手机号码</th>
+                    <th class="center col-xs-2">企业名称</th>
+                    <th class="center col-xs-1">身份</th>
+                    <th class="center col-xs-1">权限</th>
+                    <th class="center col-xs-2" >反馈内容</th>
+                    <th class="center col-xs-1" >操作</th>
+                </tr>
+                </thead>
+                  {foreach($feedbackList  as $key=> $item)}
+                <tbody>
+                <tr class="center" >
+                    <td>{$item['FeedbackId']}</td>
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{$item['CompanyMember']['RealName']}</td>
+                    <td>{$item['CompanyMember']['MobilePhone']}</td>
+                    <td>{$item['Company']['CompanyName']}</td>
+                    <td>{$item['CompanyMember']['JobTitle']}</td>
+                    <td>
+                        {if($item['CompanyMember']['Role']==1)}
+                        老板
+                        {elseif($item['CompanyMember']['Role']==2)}
+                        管理员
+                        {elseif($item['CompanyMember']['Role']==3)}
+                        高管
+                        {else/}
+                        建档员
+                        {/if}
+                    </td>
+                    <td  >{$item['Content']}</td>
+                    <td  pid="{$item['FeedbackId']}">
+                        {if($item['IsProcess']==0)}
+                        <a href="javascript:void(0);" class="IsRead" ><span class="label label-sm label-purple"> 未读</span></a>
+                        {else/}
+                        已读
+                        {/if}
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total:{$TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                          {$pageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+{block name="resources-footer"}
+
+<script>
+    jQuery(function($) {
+            $('.IsRead').click(function(){
+               var  _this = $(this);
+                var FeedbackId = _this.parent().attr('pid');
+                $.get('IsRead',{FeedbackId:FeedbackId},function(msg){
+                    if(msg==true){
+                        _this.parent().html('已读');
+                    }
+                })
+            })
+    })
+</script>
+{/block}

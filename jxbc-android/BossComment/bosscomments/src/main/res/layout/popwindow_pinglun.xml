@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lin_circle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_91PX"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rela_boss_circle_comment"
+    >
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="#c7c7c7"/>
+
+    <include
+        layout="@layout/include_boss_circle_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/line"/>
+
+</RelativeLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="OpenPayCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D36-dH-PUm">
+                        <rect key="frame" x="10" y="0.0" width="90" height="45"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="ZgF-YR-YB5"/>
+                            <constraint firstAttribute="width" constant="90" id="n1c-YD-M4L"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="产品演示"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkX-LK-ASS">
+                        <rect key="frame" x="110" y="0.0" width="200" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="JS3-14-BIv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="下一步">
+                            <color key="titleColor" red="0.81568627449999997" green="0.71372549019999998" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付后可开发票，请准确填写公司名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH5-5H-2vZ">
+                        <rect key="frame" x="15" y="55" width="295" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="YR8-kr-UX2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ET4-xq-qnA">
+                        <rect key="frame" x="15" y="70" width="295" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="bT5-6t-wLv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="如需帮助，请联系我们">
+                            <color key="titleColor" red="0.39215686274509803" green="0.66274509803921566" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="BkX-LK-ASS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="96k-sP-RD2"/>
+                    <constraint firstItem="ET4-xq-qnA" firstAttribute="top" secondItem="BH5-5H-2vZ" secondAttribute="bottom" constant="5" id="C9E-sP-gZB"/>
+                    <constraint firstItem="D36-dH-PUm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D5t-ln-uzx"/>
+                    <constraint firstItem="BH5-5H-2vZ" firstAttribute="top" secondItem="D36-dH-PUm" secondAttribute="bottom" constant="10" id="De9-M2-8rX"/>
+                    <constraint firstItem="ET4-xq-qnA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="E4p-yG-lXH"/>
+                    <constraint firstItem="BkX-LK-ASS" firstAttribute="leading" secondItem="D36-dH-PUm" secondAttribute="trailing" constant="10" id="H95-Fx-WDo"/>
+                    <constraint firstAttribute="trailing" secondItem="BH5-5H-2vZ" secondAttribute="trailing" constant="10" id="HX3-pL-S5Y"/>
+                    <constraint firstAttribute="trailing" secondItem="BkX-LK-ASS" secondAttribute="trailing" constant="10" id="KFQ-Fl-LNO"/>
+                    <constraint firstItem="BH5-5H-2vZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="UB8-OM-ibx"/>
+                    <constraint firstAttribute="trailing" secondItem="ET4-xq-qnA" secondAttribute="trailing" constant="10" id="gyC-EA-uhP"/>
+                    <constraint firstItem="D36-dH-PUm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tNt-lw-nhh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="contactUsButton" destination="ET4-xq-qnA" id="QUD-rT-GYh"/>
+                <outlet property="demoBtn" destination="D36-dH-PUm" id="WXz-G4-Nct"/>
+                <outlet property="instructionLabel" destination="BH5-5H-2vZ" id="SzN-FX-1JZ"/>
+                <outlet property="payBtn" destination="BkX-LK-ASS" id="Zr9-ex-f7w"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

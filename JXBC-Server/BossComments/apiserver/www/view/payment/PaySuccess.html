@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>支付成功</title>
+		{include file="-public/resources_single_header" /} 	
+	</head>
+	<body>
+	<div class="com-width">
+	   <div class="com-top">
+	   	 <img src="{$Think.config.resources_site_root}/pc/img/40.png">
+	   </div>
+	   <div class="pay-content">   
+	   	   <!--支付跳转页面-->
+	   	   <div class="success">
+	   	   	  <img src="{$Think.config.resources_site_root}/pc/img/face.png">
+	   	   	  <p>恭喜您，支付成功</p>
+	   	   	  <p class="hide"><span id="seconds">2</span>秒后将自动跳转到“<span class="gold">企业认证</span>”页面，请稍后...</p>
+	   	   </div>
+	   </div>
+	</div>
+	</body>
+	{include file="-public/resources_fullscreen_footer" /} 
+	<script>  
+	function seconds(){
+		var s=document.getElementById("seconds").innerHTML;
+		s--;
+		document.getElementById("seconds").innerHTML=s;
+		if(s==0){
+		    var bizSource=getUrlParam('BizSource');
+            var bizCode=getUrlParam('BizCode');
+            var returnUrl=getUrlParam('ReturnUrl');
+			if(bizSource.indexOf(AppEnvironment.bizSources.OpenEnterpriseService)>-1){
+                returnUrl = "/CompanyAudit/AuditStepFirst?CompanyId="+bizCode;
+			}
+            window.location.href=returnUrl;
+		}
+	}
+	setInterval("seconds()",1000);	
+	</script>
+</html>

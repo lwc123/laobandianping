@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>开通老板点评服务</title>
+        {include file="-public/resources_fullscreen_header" /}
+    </head>
+    <body>
+       <div class="open-body">
+          <img class="com-logo open-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" >
+          <div class="open-bg1"></div>
+          <div class="open-bg">
+               <p class="com-title">开通老板点评服务</p>
+               <div class="com-left">
+                   <div class="open-price">
+                   	   <img class="price_img"src="{$PriceStrategy.ActivityHeadFigure}">
+                       {if($PriceStrategy.IsActivity >0)}
+                       <div class="open-word price_word">
+                           <i class="iconfont open-img"><img src="{$PriceStrategy.ActivityIcon}" alt=""/></i>
+                           <p>开户原价：<del>{$PriceStrategy.AndroidOriginalPrice}元</del></p>
+                           <p>{$PriceStrategy.ActivityName}：{$PriceStrategy.AndroidPreferentialPrice}元</p>
+                           <!--<p class="open-w1">{$PriceStrategy.ActivityDescription}</p>-->
+                       </div>
+                       {else/}
+                       <div class="open-word">
+                           <p>开户原价：{$PriceStrategy.AndroidOriginalPrice}元</p>
+                       </div>
+                       {/if}
+               		</div>
+               		<!--活动说明-->
+               		<div class="open-price price_explain">
+                       <!--{if($PriceStrategy.IsActivity >0)}
+                       <i class="iconfont open-img"><img src="{$PriceStrategy.ActivityIcon}" alt=""/></i>
+                       <div class="open-word">
+                           <p>开户原价：<del>{$PriceStrategy.AndroidOriginalPrice}元</del></p>
+                           <p>{$PriceStrategy.ActivityName}：{$PriceStrategy.AndroidPreferentialPrice}元</p>
+                           <p class="open-w1">{$PriceStrategy.ActivityDescription}</p>
+                       </div>
+                       {else/}
+                       <div class="open-word">
+                           <p>开户原价：{$PriceStrategy.AndroidOriginalPrice}元</p>
+                           <p class="open-w1">{$PriceStrategy.ActivityDescription}</p>
+                       </div>
+                       {/if}-->
+                       <h2>开通说明</h2>
+                       <p style="white-space: pre-wrap;word-wrap:break-word;">{$PriceStrategy.ActivityDescription}
+                       </p>
+               		</div>
+               		<div class="Renewal">
+               			<button id="openservice_back">返回工作台</button>
+	               		<button id="btnSubmit" class="openservice_btn" type="submit">去支付</button><br>
+		                <p class="open-p free-p">支付后可开发票，请准确填写公司名称</p>
+	                </div>
+                   <input type="hidden" value="{$Company.CompanyName}"  id="company" required >
+                   <input type="hidden" value="{$Member.RealName}"  id="name" required >
+                   <input type="hidden" value="{$Member.JobTitle}" id="duties" required >
+                </div>
+            </div>
+            <div class="com-footer"></div>
+       </div>
+       <div class="phone"></div>
+    </body>
+    {include file="-public/resources_fullscreen_footer" /}
+    <script type="text/javascript">
+        var mobilePhone=encodeURIComponent("{$Member.MobilePhone}");
+        var companyName=encodeURIComponent("{$Company.CompanyName}");
+        var realName=encodeURIComponent("{$Member.RealName}");
+        var jobTitle=encodeURIComponent("{$Member.JobTitle}");
+        var InviteCode=getUrlParam('InviteCode');
+        if(InviteCode==null){
+            InviteCode="";
+        };
+        
+
+        $("#btnSubmit").click(function(){
+            window.location.href="choicepay?CompanyId="+AppEnvironment.companyId+"&company="+companyName+"&JobTitle="+jobTitle+"&RealName="+realName+"&tel="+mobilePhone+"&InviteCode="+InviteCode;
+        });
+
+        $('#openservice_back').click(function(){
+            window.location.href= "/Home/console?CompanyId="+AppEnvironment.companyId;
+        })
+
+    </script>
+</html>

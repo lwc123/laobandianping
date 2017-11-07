@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="BossCommentRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into boss_comment (EmployeId, CommentEntId, CommentatorId, CommentatorName, CommentatorJobTitle, TargetJobTitle, WorkAbility, WorkManner, WorkAchievement, Text, Voice, VoiceLength, Images, CreatedTime, ModifiedTime)
+      values (@EmployeId, @CommentEntId, @CommentatorId, @CommentatorName, @CommentatorJobTitle, @TargetJobTitle, @WorkAbility, @WorkManner, @WorkAchievement, @Text, @Voice, @VoiceLength, @Images, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY; 
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update boss_comment set EmployeId = @EmployeId, CommentEntId=@CommentEntId, CommentatorId=@CommentatorId, CommentatorName=@CommentatorName, CommentatorJobTitle=@CommentatorJobTitle, TargetJobTitle=@TargetJobTitle, WorkAbility=@WorkAbility, WorkManner=@WorkManner, WorkAchievement=@WorkAchievement, Text=@Text, Voice=@Voice, VoiceLength=@VoiceLength, Images=@Images, ModifiedTime=@ModifiedTime where CommentId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from boss_comment where CommentId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from boss_comment where CommentId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from boss_comment
+    </sqlWrap>
+    
+
+    <sqlWrap sqlName="SelectByEmployeId" supportDBType="SqlServer, MySql">
+      select * from boss_comment where EmployeId = @EmployeId
+      order by CommentId
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByCommentEntId" supportDBType="SqlServer, MySql">
+      select * from boss_comment where CommentEntId = @CommentEntId
+      order by CommentId
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByCommentatorId" supportDBType="SqlServer, MySql">
+      select * from boss_comment where CommentatorId = @CommentatorId
+      order by CommentId
+    </sqlWrap>
+  </module>
+</root>

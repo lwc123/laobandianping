@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/DIMEN_22PX"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/auditor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:gravity="center_vertical"
+        android:textColor="@color/main_text_color"
+        android:text="李然（老板）"/>
+    <ImageView
+        android:id="@+id/delete_auditor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/auditor_name"
+        android:layout_marginTop="@dimen/DIMEN_10PX"
+        android:src="@drawable/delete"/>
+</RelativeLayout>

@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  JuXianBossComments
+
+  Created by juxian on 16/11/7.
+  Copyright © 2016年 jinghan. All rights reserved.
+*/
+"phone number can not be empty" = "phone number can not be empty";
+"phone number format is not correct" = "phone number format is not correct";
+"phone number less than 11" = "phone number less than 11";
+"phone number more than 11" = "phone number more than 11";
+"enter the password" = "enter the password";
+"password length must be 6-24 bit character" = "password length must be 6-24 bit character";
+"login successfully" = "login successfully";
+"enter the name of the enterprise" = "enter the name of the enterprise";
+"enter the name of the legal person" = "enter the name of the legal person";
+"company name lenth than two charachers" = "company name lenth than two charachers";
+"corporate name length must be greater than 1 characters" = "corporate name length must be greater than 1 characters";
+"verification code length must be 6 bit" = "verification code length must be 6 bit";
+"already registered" = "already registered";
+"password can not be empty" = "password can not be empty";
+"confirm password cannot be empty" = "confirm password cannot be empty";
+"two times the password is not consistent" = "two times the password is not consistent";
+"password length must be 6-24 bit character" = "password length must be 6-24 bit character";
+"set success" = "set success";
+"feedback content can not be empty" = "feedback content can not be empty";
+"feedback content should not be more than 200 characters in length" = "feedback content should not be more than 200 characters in length";
+
+"password can only be composed of letters and numbers, please re-enter" = "password can only be composed of letters and numbers, please re-enter";

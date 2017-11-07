@@ -1,0 +1,51 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">app站内信列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center"> <!- 表格总宽度=12 ->
+                    <th class="center col-xs-2">编号ID</th>
+                    <th class="col-xs-2">发送时间</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <th class="col-xs-2">接收人姓名</th>
+                    <th class="col-xs-2">接收人手机号</th>
+                    <th class="col-xs-2">发送内容</th>
+                    <th class="col-xs-2">操作</th>
+                </tr>
+                </thead>
+                {foreach( name="MsgList" item="item")}
+                <tbody>
+                <tr class="center">
+                    <td>{$item['MessageId']}</td>
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{$item['Member']['RealName']}</td>
+                    <td>{$item['Member']['MobilePhone']}</td>
+                    <td>{$item['Content']}</td>
+                    <td>
+                        <a href="#">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: {$TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {$pageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

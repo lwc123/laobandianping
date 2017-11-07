@@ -1,0 +1,75 @@
+﻿@using M2SA.AppGenome.Data;
+@using JXBC.Workplace;
+@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@{
+    ViewBag.Title = "举贤令";
+
+    var list = (IList<CareerAdviceEntity>)Model;
+
+    var getStatusText = new Func<AttestationStatus, string>((status) =>
+    {
+        if (status == AttestationStatus.Submited)
+            return "待审核";
+        else if (status == AttestationStatus.Passed)
+            return "认证通过";
+        else if (status == AttestationStatus.Rejected)
+            return "认证未通过";
+
+        return "--";
+    });
+}
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="/">首页</a>
+        </li>
+        <li class="active">业务管理</li>
+        <li class="active">高见审核</li>
+    </ul>
+</div>
+
+<div>
+    快速筛选：
+    <a href="@Request.Url.PathAndQuery.Replace("&status="+ViewBag.AttestationStatus,"")&status=Submited">待审核</a>&ensp;&ensp;
+    <a href="@Request.Url.PathAndQuery.Replace("&status="+ViewBag.AttestationStatus,"")&status=Passed">认证通过</a>&ensp;&ensp;
+    <a href="@Request.Url.PathAndQuery.Replace("&status="+ViewBag.AttestationStatus,"")&status=Rejected">认证未通过</a>
+</div>
+
+@if (null != list && list.Count > 0)
+{
+    <div class="table-common">
+        <table class="table-bordered" align="center" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="table-td-2 th-header">ID</th>
+                    <th class="table-td-3 th-header">提交时间</th>
+                    <th class="table-td-7 th-header">高见简介</th>
+                    <th class="table-td-4 th-header">猎头姓名</th>
+                    <th class="table-td-2 th-header">状态</th>
+                    <th class="table-td-2 th-header">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in list)
+                {
+                    <tr>
+                        <td class="textalign-center">@item.AdviceId</td>
+                        <td class="textalign-center">@item.ModifiedTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td class="">@item.Subject</td>
+                        <td class="textalign-center">
+                            @item.Profile.RealName <br/>
+                            @for (var i = 0; i < item.Profile.ConsultantGrade; i++)
+                            { @Html.Raw("<i class='img-grade'></i>")}
+                        </td>
+                        <td class="textalign-center">@getStatusText(item.AttestationStatus)</td>
+                        <td class="textalign-center"><a href="AdviceApplyDetail/@item.AdviceId" target="_blank">查看详情</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<div class="fenye">
+    @Html.Partial("_common_Pagination_Numbers", new Tuple<Pagination, Func<int, string>>((Pagination)ViewBag.Pagination, null))
+</div>

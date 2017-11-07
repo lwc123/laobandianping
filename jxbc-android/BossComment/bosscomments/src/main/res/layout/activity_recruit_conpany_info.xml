@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_hint_bg_color"/>
+
+    <LinearLayout
+        android:id="@+id/activity_company_info_modify"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_60PX"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="@string/modify_to_mine"
+            android:textColor="@color/top_hint_text_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/DIMEN_16PX"
+            android:src="@drawable/xiangyou"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_company_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:text="@string/companysfield"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_text_field"
+            android:layout_width="@dimen/DIMEN_350PX"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_52PX"
+            android:layout_toRightOf="@+id/company_info"
+            android:background="@null"
+            android:gravity="right"
+            android:hint=""
+            android:paddingLeft="@dimen/DIMEN_52PX"
+            android:textColor="@color/main_text_color"
+            android:textColorHint="@color/menu_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/activity_company_info"
+        android:background="@color/main_line_color"/>
+
+    <RelativeLayout
+        android:id="@+id/activity_company_info_abbr"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_abbr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:text="@string/simpleName_company"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_text_abbr"
+            android:layout_width="@dimen/DIMEN_350PX"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_52PX"
+            android:layout_toRightOf="@+id/company_info_abbr"
+            android:background="@null"
+            android:gravity="right"
+            android:hint=""
+            android:paddingLeft="@dimen/DIMEN_52PX"
+            android:textColor="@color/main_text_color"
+            android:textColorHint="@color/menu_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/activity_company_info"
+        android:background="@color/main_line_color"/>
+
+    <RelativeLayout
+        android:id="@+id/activity_company_info_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:text="@string/company_size"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_text_size"
+            android:layout_width="@dimen/DIMEN_350PX"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_52PX"
+            android:layout_toRightOf="@+id/company_info_size"
+            android:background="@null"
+            android:gravity="right"
+            android:hint=""
+            android:paddingLeft="@dimen/DIMEN_52PX"
+            android:textColor="@color/main_text_color"
+            android:textColorHint="@color/menu_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/activity_company_info"
+        android:background="@color/main_line_color"/>
+
+    <RelativeLayout
+        android:id="@+id/activity_company_info_city"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:text="@string/company_city"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_info_text_city"
+            android:layout_width="@dimen/DIMEN_350PX"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_52PX"
+            android:layout_toRightOf="@+id/company_info_city"
+            android:background="@null"
+            android:gravity="right"
+            android:hint=""
+            android:paddingLeft="@dimen/DIMEN_52PX"
+            android:textColor="@color/main_text_color"
+            android:textColorHint="@color/menu_color"
+            android:textSize="@dimen/DIMEN_30PX"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

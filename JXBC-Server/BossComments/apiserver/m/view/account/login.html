@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>登录老板点评</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+	<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+</head>
+<body>
+	<div class="wrapper login login-bg">
+		<div class="inner">
+			<img src="{$Think.config.resources_site_root}/mobile/img/logo.png">
+			<img class="slogan" src="{$Think.config.resources_site_root}/mobile/img/slogan.png">
+			<form class="boss-form" id="login-form" method="post">
+				<div class="marginb-2">
+					<input class="inp phone" id="num" name="MobilePhone" type="text" placeholder="请输入您的手机号"  value="{$Think.get.phone}">
+				</div>
+				<div class="marginb-12">
+					<input class="inp pass" id="pass" name="Password" type="password" placeholder="请输入密码">
+				</div>
+				<a href="/m/Account/changePassword" class="forget fr">忘记密码？</a>
+				<div class="btn marginb-40">
+					<button type="button" id="login">登录</button>
+					<input type="hidden" value="{$Think.get.InviteCode}" name="InviteCode">
+				</div>
+			</form>	
+			<div class="register">
+				<a href="/m/Account/signUp">企业用户注册</a>
+			</div>
+		</div>
+	</div>
+	<!-- 错误提示 -->
+	<div class="error" id="error">手机号不能为空</div>
+<script src="/api/appbase/WebBridge/LoadAccountInfo"></script>
+{include file="-public/resources__footer" /}
+<script type="text/javascript">
+	$(function(){
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]);return null;
+		}
+		$('#login').bind('click',function(){
+			var num=$('#num').val();
+			var pass=$('#pass').val();
+			var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+			if(num==''){
+				$('#error').show().text('手机号码格式错误');
+				setTimeout(function(){
+					$('#error').hide();
+				},2000);	
+			}else if(num.length !=11){
+				$('#error').show().text('手机号码格式错误');
+				setTimeout(function(){
+					$('#error').hide();
+				},2000);
+			} else if(!pattern.test(num)){
+				$('#error').show().text('手机号码格式错误');
+				setTimeout(function(){
+					$('#error').hide();
+				},2000);
+			}else if(pass==''){
+				$('#error').show().text('请输入密码');
+				setTimeout(function(){
+					$('#error').hide();
+				},2000);					
+			}else{
+				var loginUrl=AppEnvironment.apiRoot+'/appbase/Account/signIn';
+				$.ajax({
+					type:'post',
+					url:loginUrl,
+					data:$('#login-form').serialize(),
+					success:function(data){
+						console.log(data);
+						if(data.SignStatus==109){
+							$('#error').show().text('用户账号或密码错误');
+							setTimeout(function(){
+								$('#error').hide();
+							},2000);	
+						}else{
+                            /*上次登录身份是个人身份*/
+                            if(data.Account.MultipleProfiles ==1 ||  data.Account.UserProfile.CurrentProfileType==1  ){
+                                window.location.href="/m/Account/share";
+                                return false;
+                            }
+							/*是否有企业身份*/
+							var comUrl=AppEnvironment.apiRoot+'/workplace/User/myRoles';
+							$.get(comUrl,function(data){
+								var inviteCode=getUrlParam('InviteCode');
+								if(inviteCode==null){
+									inviteCode='';
+								}
+								if(data==""){
+									window.location.href="/m/EnterpriseService/OpenService?InviteCode="+inviteCode;
+								}else{
+									window.location.href="/m/Account/select?InviteCode="+inviteCode;
+								}
+							})
+						}
+						
+					},
+					error:function(data){
+						console.log(data);
+					}
+				})
+			}
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            添加专题
+        </div>
+        <form id="addActivity" action="addTopicRequest" method="post" enctype="multipart/form-data">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+
+            <tr> <!- 表格总宽度=12 ->
+                <th class="col-xs-3" style='text-align:center'>专题名称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                <td><input type="text"  name="TopicName" value=""/></td>
+            </tr>
+            <tr> <!- 表格总宽度=12 ->
+                <th class="col-xs-3" style='text-align:center'>专题顺序</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                <td><input type="text"  name="TopicOrder" value=""/></td>
+            </tr>
+
+
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>专题头图</th>
+                <td> <input type="file" name="HeadFigure" value=""/></td>
+            </tr>
+            <tr>
+                <th class="col-xs-3" style='text-align:center'>专题Banner图</th>
+                <td><input type="file" name="BannerPicture" value=""/></td>
+            </tr>
+        </table>
+            <center>
+            <input type="submit" style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;" value="保存"/>
+            </center>
+        </form>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="resources-footer"}
+
+<script>
+    jQuery(function($) {
+        $("#addActivity").validate({
+            errorElement: 'label',
+			focusInvalid: false,            
+            rules: {
+                'ActivityName':"required",
+                'ActivityHeadFigure':"required",
+                'IosActivityHeadFigure':"required",
+                'ActivityIcon':"required",
+                'AndroidOriginalPrice': { required:true, number:true },
+                'AndroidPreferentialPrice': { required:true, number:true },
+                'IosOriginalPrice': { required:true, number:true },
+                'IosPreferentialPrice':{ required:true,number:true },
+                'ActivityStartTime': 'required',
+                'ActivityEndTime': 'required',
+                'ActivityDescription': { required: true,maxlength: 300 },
+                'AndroidActivityDescription':{ required: true,maxlength: 300 },
+                'IosActivityDescription':{ required: true,maxlength: 300 },
+            },
+            messages: {
+                'ActivityName': {
+                    required: "请输入活动名称",
+                },
+                'AndroidOriginalPrice': {
+                    required: "请输入安卓—原价",
+                    number: "非法的数字格式"
+                },
+                'AndroidPreferentialPrice': {
+                    required: "请输入活动价格",
+                    number: "非法的数字格式"
+                },
+                'IosOriginalPrice': {
+                    required: "请输入IOS—原价",
+                    number: "非法的数字格式"
+                },
+                'IosPreferentialPrice': {
+                    required: "请输入活动价格",
+                    number: "非法的数字格式"
+                },
+                'ActivityStartTime':"请输入活动开始时间",
+                'ActivityEndTime':"请输入活动结束时间",
+                'ActivityDescription': {
+                	required: "请输入PC活动说明",
+                	maxlength: "最多300个字"
+                },
+                'AndroidActivityDescription': {
+                	required: "请输入安卓活动说明",
+                	maxlength: "最多300个字"
+                },
+                'IosActivityDescription': {
+                	required: "请输入IOS活动说明",
+                	maxlength: "最多300个字"
+                },
+                'ActivityHeadFigure':"请上传安卓活动图标",
+                'IosActivityHeadFigure':"请上传IOS活动图标",
+                'ActivityIcon':"请上传活动图标"
+            },
+            success: function (e) {
+                $(e).closest('tr').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+			},             
+            errorPlacement: function (error, element) {
+            	if(element.is('.date-picker')){
+            		error.insertAfter(element.parent(".input-group"));
+            	}
+            	else{
+            		error.insertAfter(element);
+            	}
+            	error.addClass("help-block");
+                error.parents("tr").addClass("has-error");
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            },
+        });
+    });
+  
+</script>
+{/block}

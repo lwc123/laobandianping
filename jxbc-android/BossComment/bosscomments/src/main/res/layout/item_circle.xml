@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/DIMEN_30PX">
+
+        <com.juxian.bosscomments.widget.RoundAngleImageView
+            android:id="@+id/item_circle_cp_head_img"
+            android:layout_width="@dimen/DIMEN_100PX"
+            android:layout_height="@dimen/DIMEN_100PX"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:scaleType="fitXY"
+            app:roundHeight="5dp"
+            app:roundTag="0"
+            app:roundWidth="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/DIMEN_30PX"
+            >
+
+            <TextView
+                android:id="@+id/item_circle_cp_boss_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/luxury_gold_color"
+                android:textSize="@dimen/DIMEN_28PX"/>
+
+            <LinearLayout
+                android:id="@+id/item_circle_cp_boss_lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_circle_cp_boss_name"
+                android:layout_marginTop="@dimen/DIMEN_5PX"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_circle_cp_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_24PX"/>
+
+                <TextView
+                    android:id="@+id/item_circle_cp_boss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/DIMEN_24PX"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_circle_cp_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_circle_cp_boss_lin"
+                android:layout_marginRight="@dimen/DIMEN_30PX"
+                android:layout_marginTop="@dimen/DIMEN_15PX"
+                android:gravity="left"
+                android:text=""
+                android:textColor="@color/main_text_color"/>
+
+            <com.juxian.bosscomments.widget.NoScrollGridView
+                android:id="@+id/item_circle_pic_gv"
+                android:layout_width="@dimen/DIMEN_494PX"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_circle_cp_comment"
+                android:layout_marginTop="@dimen/DIMEN_24PX"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/DIMEN_10PX"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/DIMEN_10PX"
+                />
+
+
+            <LinearLayout
+                android:id="@+id/item_circle_img_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/item_circle_img_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/DIMEN_24PX"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/default_pic"
+                    />
+
+            </LinearLayout>
+
+            <!-- 地址、时间 、删除 、点赞、 评论 -->
+            <LinearLayout
+                android:id="@+id/item_circle_like_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_circle_pic_gv"
+                android:layout_marginTop="@dimen/DIMEN_24PX"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_circle_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/DIMEN_6PX"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_24PX"/>
+
+                <TextView
+                    android:id="@+id/item_circle_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/DIMEN_6PX"
+                    android:layout_marginLeft="10dip"
+                    android:text="删除"
+                    android:textColor="@color/luxury_gold_color"
+                    android:textSize="@dimen/DIMEN_24PX"
+                    android:visibility="gone"/>
+
+                <View
+                    android:layout_width="0dip"
+                    android:layout_height="1dip"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/item_circle_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/black_like"/>
+
+                <TextView
+                    android:id="@+id/item_circle_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/DIMEN_14PX"
+                    android:layout_marginRight="10dp"
+                    android:paddingRight="3dp"
+                    android:text=""
+                    android:textSize="12sp"/>
+
+                <ImageView
+                    android:id="@+id/item_circle_comment_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/DIMEN_14PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/circle_comment"/>
+
+                <TextView
+                    android:id="@+id/item_circle_comment_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:paddingRight="3dp"
+                    android:text=""
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/item_circle_comment_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_background"
+        android:visibility="gone"/>
+
+    <com.juxian.bosscomments.widget.ResultListView
+        android:id="@+id/comment_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_19PX"
+        android:layout_marginLeft="@dimen/DIMEN_150PX"
+        android:layout_marginTop="@dimen/DIMEN_19PX"
+        android:divider="@color/white"
+        android:dividerHeight="0dp"
+        android:paddingRight="@dimen/DIMEN_20PX"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/boss_circle_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_10PX"
+        android:background="@color/main_background"/>
+</LinearLayout>

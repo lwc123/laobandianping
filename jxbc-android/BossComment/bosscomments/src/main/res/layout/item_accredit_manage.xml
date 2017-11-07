@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_144PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/DIMEN_22PX">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_22PX"
+            android:layout_marginBottom="@dimen/DIMEN_22PX"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_accredit_manager_person"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/luxury_gold_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <TextView
+                android:id="@+id/item_accredit_manager_role"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_below="@+id/item_accredit_manager_person"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/DIMEN_12PX"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_accredit_manager_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/DIMEN_10PX"
+                android:text="修改"
+                android:textColor="@color/juxian_red"
+                android:textSize="@dimen/DIMEN_22PX"/>
+
+            <TextView
+                android:id="@+id/item_accredit_manager_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_10PX"
+                android:padding="@dimen/DIMEN_10PX"
+                android:text="删除"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_22PX"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

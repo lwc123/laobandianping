@@ -1,0 +1,161 @@
+<div class="com-top">
+	<!--<img src="{$Think.config.resources_site_root}/pc/img/40.png">-->
+	<div class="top-father">
+		<span id="company-name">老板点评</span>
+		<div class="com-top1">
+		<!--	<p><a href="/MyArchive/Index">工作台</a></p>-->
+			<div class="em-a"><a href="/PrivatenessWallet/InviteRegister">邀请企业注册</a><div class="com-loss"><div class="com-tr"></div><span>有奖</span></div></div>
+            <p class="top-ma">
+                <a href="/app/download" target="_blank">下载手机客户端</a>
+                <img src="{$Think.config.resources_site_root}/pc/images/download_url.png">
+            </p>
+                <div class="com-administrator">
+                    <a class="com-manager">{$MyMobilePhone}
+                        <img src="{$Think.config.resources_site_root}/pc/img/ic_lower.png">
+                    </a>
+                    <ul class="header_change" style="display: none;">
+                        {if($myCompanys==0)}
+						<li><a class="com-new" href='/EnterpriseService/openservice'>创建新公司</a></li>
+                        {else/}
+						<li><a class="com-other" href="javascript:void(0);">我的公司</a></li>
+                        {/if}
+						<li><a class="com-exit" href="/Account/signout">退出</a></li>
+					</ul>
+				<!--<a class="com-exit hide" href="/Account/signout">退出</a>-->
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹窗代码-->
+<div id="change_layer">
+	<!--<div class="change-content">
+		 <div class="change-title">
+		 	<span>我的其他公司</span>
+		 	<b class="change-close">×</b>
+		 </div>
+		 <ul class="company-list">
+		 	<li>小米科技<a href="">2条待审核评价<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a href="">2条待审核评价<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a href="">2条待审核评价<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a href="">2条待审核评价<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a href=""><span class="list_icon">></span></a></li>
+		 	<li>小米科技<a class="join-in" href="">未提交认证<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a class="join-in" href="">审核中<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a class="join-in" href="">审核不通过<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a class="join-in" href="">剩余13天<span class="list_icon">></span></a></li>
+		 	<li>小米科技<a class="danger_red" href="">服务到期<span class="list_icon">></span></a></li>
+		 </ul>
+		 <button type="button" class="creat-company">创建新公司 </button>
+		 <button type="button" class="com-close">关闭</button>
+	</div>-->
+	
+</div>
+<div id="select_commit">
+	<h3>企业认证审核不通过</h3>
+	<p>通过后将以短信形式告知企业法人，请耐心等待。</p>
+	<div id="select_commit_zhezhao"></div>
+</div>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-1.12.4.min.js"></script>
+<script>
+    $(".header_change .com-other").click(function(){
+        //alert(11111)
+        var  myRolesUrl = AppEnvironment.apiRoot+'workplace/User/myRoles';
+        $.ajax({
+            type: 'get',
+            url: myRolesUrl,
+            dataType: 'json',
+            success:function(data) {
+                console.log(data)
+                var str = ' <div class="change-content"> <div class="change-title"> <span>我的公司</span> <b class="change-close">×</b> </div><div id="ddddd"> <ul class="company-list">';
+                for(i=0;i<data.length;i++){
+                    status=data[i].myCompany.AuditStatus;
+                    if(status==0){
+                        str +='<li class="uncommit" data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a  class="join-in">未提交认证<span class="list_icon">></span></a></li>';
+                    }else if(status==1){
+                        str +='<li class="committing" data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a  class="join-in">审核中<span class="list_icon">></span></a></li>';
+                    }else if(status==2){
+                        ServiceEndTime=data[i]['myCompany'].ServiceEndTime;
+                        EndTime =  new Date(ServiceEndTime).getTime();
+                        var timestamp=new Date().getTime();
+                        days= Math.ceil((EndTime-timestamp)/86400000);
+                        if(days>30|| ServiceEndTime==null){
+                            if(data[i]['UnreadMessageNum'] ==0){
+                                str +='<li data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a  ><span class="list_icon">></span></a></li>';
+                            }else{
+                                str +='<li data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a  >'+data[i]['UnreadMessageNum']+'条待审核评价<span class="list_icon">></span></a></li>';
+                            }
+
+                        }
+                        else if(days>0 && days<=30){
+                            str +='<li data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a  class="join-in">剩余'+days+'天<span class="list_icon">></span></a></li>';
+                        }else{
+                            str +='<li data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a class="danger_red">服务到期<span class="list_icon">></span></a></li>';
+                        }
+                    }else if(status==9){
+                        str +='<li class="commitNoPass" data-id="'+data[i].CompanyId +'">'+data[i]['myCompany'].CompanyName+'<a  class="join-in">审核不通过<span class="list_icon">></span></a></li>';
+                    }
+                }
+                str += '</ul></div> <button type="button" class="creat-company" >创建新公司 </button> <button type="button" class="com-close">关闭</button> </div> ';
+
+                $("#change_layer").show().html(str);
+                $(".change-content").css({"margin-top": ($('.change-content').height())/-2});
+                $("#ddddd").panel({iWheelStep:32});
+                $("#change_layer .change-close,#change_layer .com-close").click(function(){
+                    $("#change_layer").hide();
+                })
+                $('#change_layer li').bind('click',function(){
+                    var  num=$('#change_layer li').index(this)
+                    var status=data[num].myCompany.AuditStatus;
+                    var CompanyId=$(this).attr('data-id');
+                    if(status==2){
+                        var  ChangePriseServiceUrl = AppEnvironment.apiRoot+'/appbase/User/ChangeCurrentToOrganizationProfile';
+                        $.ajax({
+                            type: 'post',
+                            url: ChangePriseServiceUrl,
+                            data:{CurrentOrganizationId:data[num].CompanyId},
+                            dataType: 'json',
+                            success:function(data) {
+                                window.location.href='/Home/console?CompanyId='+CompanyId;
+                            }
+                        })
+
+                    }else if(status!==2){
+                        window.location.href="/CompanyAudit/AuditStepFirst?CompanyId="+CompanyId;
+                    }
+                })
+                $('.uncommit,.committing,.commitNoPass').unbind('click');
+                $('.uncommit').click(function () {
+                    $('#select_commit h3').text('尚未提交认证');
+                    $('#select_commit p').text('请重新登录后，再次选择此企业提交认证信息。');
+                    commitShow()
+
+                })
+                $('.committing').click(function () {
+                    $('#select_commit h3').text('企业认证审核中');
+                    $('#select_commit p').text('通过后将以短信形式告知企业法人，请耐心等待。');
+                    commitShow()
+                })
+                $('.commitNoPass').click(function () {
+                    $('#select_commit h3').text('企页认证审核不通过');
+                    $('#select_commit p').text('请重新登录后，再次选择此企业提交认证信息。');
+                    commitShow()
+                })
+
+                function commitShow() {
+                    $('#select_commit').show()
+                    setTimeout(function () {
+                        $('#select_commit').hide()
+                    },3000)
+                }
+                $(document).on("click",".creat-company",function(){
+                    window.location.href="/enterprise_service/openservice"
+                })
+            }
+        })
+    })
+
+
+</script>
+
+
+

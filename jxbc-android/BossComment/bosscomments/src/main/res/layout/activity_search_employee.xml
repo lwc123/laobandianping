@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_100PX"
+        android:background="@color/white">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/activity_search_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/DIMEN_17PX"
+            android:padding="@dimen/DIMEN_16PX"
+            android:text="@string/search"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <RelativeLayout
+            android:id="@+id/activity_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:layout_marginRight="@dimen/DIMEN_17PX"
+            android:layout_marginTop="@dimen/DIMEN_15PX"
+            android:layout_marginBottom="@dimen/DIMEN_15PX"
+            android:layout_toLeftOf="@+id/activity_search_clean"
+            android:background="@drawable/search_bg_white_radiu">
+
+            <com.juxian.bosscomments.widget.EditText
+                android:id="@+id/activity_search_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/DIMEN_20PX"
+                android:background="#eeeeee"
+                android:layout_toRightOf="@+id/activity_search_img"
+                android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:textColor="#4a4a4a"
+                android:textColorHint="@color/discount_gray"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <ImageView
+                android:id="@+id/activity_search_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:layout_marginRight="@dimen/DIMEN_20PX"
+                android:background="@drawable/sousuo" />
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/DIMEN_24PX"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:src="@drawable/delete" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

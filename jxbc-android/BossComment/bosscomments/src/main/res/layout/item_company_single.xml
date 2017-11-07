@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <com.juxian.bosscomments.widget.RoundAngleImageView
+        android:id="@+id/company_logo"
+        android:layout_width="@dimen/DIMEN_120PX"
+        android:layout_height="@dimen/DIMEN_120PX"
+        android:layout_marginRight="@dimen/DIMEN_6PX"
+        android:layout_marginTop="@dimen/DIMEN_26PX"
+        android:layout_marginLeft="@dimen/DIMEN_26PX"
+        android:scaleType="fitXY"
+        android:src="@drawable/company_logo"
+        app:roundHeight="5dp"
+        app:roundTag="0"
+        app:roundWidth="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/company_information"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:layout_marginRight="@dimen/DIMEN_20PX"
+        android:layout_marginBottom="@dimen/DIMEN_20PX"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_20PX"
+        android:layout_toRightOf="@+id/company_logo">
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/DIMEN_30PX"
+            android:textColor="@color/main_text_color"
+            tools:text="1234546" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/MyRatingBarOne"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/DIMEN_36PX"
+            android:layout_alignParentRight="true"
+            android:isIndicator="true"
+            android:numStars="5" />
+        <TextView
+            android:id="@+id/company_industry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_22PX"
+            android:layout_below="@+id/company_name"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_text_color"
+            tools:text="1234546" />
+        <TextView
+            android:id="@+id/company_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_industry"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_text_color"
+            tools:text="1234546" />
+        <TextView
+            android:id="@+id/company_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_address"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_text_color"
+            tools:text="1234546" />
+        <com.juxian.bosscomments.widget.TagFlowLayout
+            android:id="@+id/tag_flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_scale"
+            android:layout_marginBottom="@dimen/DIMEN_10PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX">
+
+        </com.juxian.bosscomments.widget.TagFlowLayout>
+
+        <TextView
+            android:id="@+id/company_content_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tag_flow"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/DIMEN_22PX"
+            android:textColor="@color/menu_color"
+            tools:text="1234546" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/company_information"
+        android:background="@color/line_color"/>
+</RelativeLayout>

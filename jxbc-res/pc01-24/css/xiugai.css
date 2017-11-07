@@ -1,0 +1,282 @@
+/*初始化配置*/
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: white;
+}
+a,a:hover,a:active,a:link,a:visited{
+    text-decoration: none;
+
+}
+html{
+    background-color: #E4E5E9;
+    font-family: "微软雅黑";
+    color: #E4E5E9;
+}
+body{
+    -moz-user-select:none;/*火狐*/
+    -webkit-user-select:none;/*webkit浏览器*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*早期浏览器*/
+    user-select:none;
+    color: white;
+}
+
+@media only screen and (min-width:1920px){
+    .wrap{
+        width: 1920px;
+    }
+    #header{
+        width: 1920px;
+    }
+    .footerB{
+        width: 1920px;
+    }
+}
+@media only screen and (min-width:1200px) and (max-width:1920px){
+    .wrap{
+        width: 100%;
+    }
+    #header{
+        width: 100%;
+    }
+    .footerB{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:1200px){
+    .wrap{
+        width: 1200px;
+    }
+    #header{
+        width: 1200px;
+    }
+    .footerB{
+        width: 1200px;
+    }
+}
+.wrap{
+    margin: 0 auto;
+    height: 600px;
+}
+.header{
+    font-weight: 300;
+}
+.header h1{
+    margin-top: 10px;
+    font-size: 20px;
+
+    color: white;
+}
+.header h1 img{
+    margin-right: 10px;
+}
+#download_url{
+    position: absolute;
+    width: 360px;
+    height: 230px;
+    background: url("../images/download_url.png") no-repeat;
+    background-size: 360px 230px;
+    top: 45px;
+    left: -160px;
+    display: none;
+    z-index: 999;
+}
+
+
+/*swiper*/
+.swiper-container{
+    width: 100%;
+}
+.swiper-container img{
+    width: 100%;
+    height: 100%;
+}
+.swiper-pagination-bullet{
+    background-color: transparent;
+    border: 2px solid white;
+}
+.swiper-pagination-bullet-active{
+    background-color: white;
+}
+
+
+/*movie*/
+.movie{
+    position: relative;
+    width: 100%;
+}
+.contact{
+    display: none;
+    position: fixed;
+    z-index: 996;
+    left: 0;
+    background: url("../images/pup_bg.png") no-repeat;
+    background-size:164px 105px;
+    width: 164px;
+    height: 105px;
+    box-sizing: border-box;
+    padding-right: 25px;
+}
+.contact .wechat{
+    border-bottom: 1px solid black;
+}
+.contact div{
+
+    padding: 9px 0 9px 12px;
+}
+.contact div img{
+    vertical-align: middle;
+}
+.contact div span{
+    vertical-align: middle;
+    color: white;
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+/*dibu*/
+.footerT{
+    width: 100%;
+    /*height: 140px;*/
+    padding: 30px 0 30px 80px;
+    background-color: black;
+    /*margin-bottom: 74px;     !* 到位置的时候出现   close的时候关闭*!*/
+}
+.footerT>div{
+    display: inline-block;
+    width: 32%;
+    vertical-align: top;
+}
+.footerT span{
+    font-size: 14px;
+    line-height: 1.4;
+}
+.ftTitle{
+    box-sizing: border-box;
+    padding: 10px 3% 0 6%;
+}
+.ftTitle img{
+    vertical-align: middle;
+}
+.ftTitle div{
+    padding-top: 8px;
+}
+.ftTitle span:last-child{
+    vertical-align: middle;
+    color: #debe58;
+}
+.ftAdd{
+    box-sizing: border-box;
+    padding: 10px 3% 10px 3%;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+#icp,#beibao{
+    font-size: 12px;
+}
+.ftCall{
+    box-sizing: border-box;
+    padding: 10px 0 0 4%;
+}
+.ftCall img{
+    vertical-align: middle;
+}
+.ftCall span{
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+
+/*logobanner*/
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 75%;
+    background: url("../img/home1200/home_pic6.jpg") no-repeat center 0;
+    background-size:100% auto;
+    overflow: hidden;
+    bottom: 60px;
+}
+.picban {
+    width: 1005px;
+    margin: 150px auto 0 auto;
+    overflow: hidden;
+}
+.picban ul {
+    height: 192px;
+    display: block;
+    width: 300%;     /*多少个li 就是百分之几百*/
+    overflow: hidden;
+    transition: 1s;
+}
+.picban li {
+    float: left;
+    width: 1000px;
+    box-sizing: border-box;
+    margin-right: 5px;
+}
+.picban li span {
+    display: inline-block;
+    width: 196px;
+    height: 190px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.picban img{
+    width: 196px;
+}
+.btnl{
+    position: absolute;
+    top: 190px;
+    left: 0;
+}
+.btnr{
+    position: absolute;
+    top: 190px;
+    right: 0;
+}
+/*最底部*/
+.footerB{
+    position: fixed;
+    z-index: 555;
+    display: none;
+    bottom: 0;
+    background: url("../images/pc_last.png") no-repeat;
+    height: 180px;
+    background-size:100% 180px;
+}
+.ftClose{
+    position: absolute;
+    top: 30px;
+    left: 80%;
+    width: 80px;
+    height: 80px;
+}
+.ftClose img {
+    width: 100%;
+}
+.ftLeft{
+    width: 90%;
+    position: absolute;
+    top: 100px;
+
+}
+.ftLeft .number{
+    display: inline-block;
+    margin-left: 14%;
+}
+.ftLeft .number span{
+    font-size: 30px;
+    color: #221404;
+}
+.ftLeft .number b{
+    font-size: 30px;
+    color: #221404;
+}
+.footerB{
+    width: 100%;
+}

@@ -1,0 +1,206 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="page-header">
+    <h1>Form</h1>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form id="testForm" method="post" class="form-horizontal" role="form">
+                                                            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-text"> Text Label </label>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-text" name="form-field-text" placeholder="text" class="col-xs-10 col-sm-7">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-digits"> digits Label </label>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-digits" name="form-field-digits" placeholder="digits" class="col-xs-10 col-sm-7">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-number"> number Label </label>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-number" name="form-field-number" placeholder="number" class="col-xs-10 col-sm-7">
+                    </div>
+                </div>
+            </div>             
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-date"> date Label </label>
+                <div class="col-sm-9">
+                    <div class="input-group col-xs-10 col-sm-7">
+                        <span class="input-group-addon">
+                            <i class="ace-icon fa fa-calendar"></i>
+                        </span>
+                        <input type="text" id="form-field-date" name="form-field-date" class="date-picker hasDatepicker  col-xs-12">                        
+                    </div>
+                </div>
+            </div>             
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-select">select</label>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <select class="col-xs-10 col-sm-7" id="form-field-select" name="form-field-select">
+                            <option value="">  </option>
+                            <option value="AAA">AAA</option>
+                            <option value="BBB">BBB</option>
+                            <option value="CCC">CCC</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">checkbox</label>
+                <div class="col-sm-9">     
+                    <div>
+                        <label>
+                            <input name="form-field-checkbox" value="1" type="checkbox" class="ace" />
+                            <span class="lbl"> AAAAAAAAAAA</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input name="form-field-checkbox" value="2" type="checkbox" class="ace" />
+                            <span class="lbl"> BBBBBBBBBBBB</span>
+                        </label>
+                    </div>     
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">radio</label>
+                <div class="col-sm-9">
+                    <div>
+                        <label>
+                            <input name="form-field-radio" value="1" type="radio" class="ace" />
+                            <span class="lbl"> AAAAAAAAAAA</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input name="form-field-radio" value="2" type="radio" class="ace" />
+                            <span class="lbl"> BBBBBBBBBBBB</span>
+                        </label>
+                    </div>
+                </div>
+            </div>    
+           <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-textarea"> textarea Label </label>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <textarea class="col-xs-10 col-sm-7 limited" id="form-field-textarea" name="form-field-textarea" placeholder="textarea text"></textarea>
+                    </div>
+                </div>
+            </div>
+           <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-file"> file Label </label>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <input name="form-field-file" type="file" multiple="" />
+
+                    </div>
+                </div>
+            </div>            
+            <div class="clearfix form-actions">
+                <div class="col-md-offset-3 col-md-9">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Submit
+                    </button>
+
+                    &nbsp; &nbsp; &nbsp;
+                    <button class="btn" type="reset">
+                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>    
+
+{/block}
+
+{block name="resources-footer"}
+
+<script type="text/javascript">
+    jQuery(function($) {
+        $("#testForm").validate({
+            errorElement: 'div',
+			focusInvalid: false,            
+            rules: {
+                'form-field-text': { required:true, minlength:3, maxlength:10 },
+                'form-field-digits': { required:true, digits:true },
+                'form-field-number': { required:true, number:true },
+                'form-field-date': 'required',
+                'form-field-select': 'required',
+                'form-field-checkbox': 'required',
+                'form-field-radio': 'required',
+                'form-field-textarea': { required: true, minlength: 3, maxlength: 100 },
+                email: {
+							required: true,
+							email:true
+						},
+            },
+            messages: {
+                'form-field-text': {
+                    required: "请输入text",
+                    minlength: "至少包含3个字符",
+                    maxlength: "不能大于10个字符"
+                },
+                'form-field-digits': {
+                    required: "请输入digits",
+                    digits: "请输入整数"
+                },
+                'form-field-number': {
+                    required: "请输入number",
+                    number: "非法的数字格式"
+                },
+                'form-field-date': "请输入日期",
+                'form-field-date': "请输入日期",
+                'form-field-select': "请选择select",
+                'form-field-checkbox': "请选择checkbox",
+                'form-field-radio': "请选择radio",
+                'form-field-textarea': {
+                    required: "请输入text",
+                    minlength: "至少包含3个字符",
+                    maxlength: "不能大于10个字符"
+                }
+            },
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+			},             
+            errorPlacement: function (error, element) {
+                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                    var controls = element.closest('div[class*="col-"]');
+                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                }
+                else if(element.is('.select2')) {
+                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                }
+                else if(element.is('.chosen-select')) {
+                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                }
+                else error.insertAfter(element.parent());
+                error.addClass("help-block");
+                error.parents(".form-group").addClass("has-error");
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            },
+        });
+    });
+</script>
+
+{/block}

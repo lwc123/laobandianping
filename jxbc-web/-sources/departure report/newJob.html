@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #alert{
+            position: fixed;
+            font-family: "微软雅黑";
+            top:50%;
+            left:50%;
+            margin-left: -200px;
+            margin-top: -200px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #dbdedf;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+
+        }
+        .alertT{
+            font-size: 20px;
+            box-sizing: border-box;
+            height: 48px;
+            width: 100%;
+            background-color: #dbdedf;
+            padding: 10px;
+        }
+        .alertT b{
+            float: right;
+            font-size: 25px;
+        }
+        .alertB{
+            padding: 20px 45px;
+        }
+        .bForm>div{
+            margin-top: 25px;
+            position: relative;
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .bForm>div input{
+            position: absolute;
+            width: 180px;
+            height: 24px;
+            left: 120px;
+            top:-6px;
+            border-radius: 5px;
+            border:1px solid #babdbf;
+            outline: none;
+            text-indent: 7px;
+        }
+        .newJobSaveBtn{
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            width: 300px;
+            height: 40px;
+            margin-left: 50px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 400;
+            border-style: none;
+            font-size: 20px;
+            font-family: 微软雅黑;
+        }
+        #zhezhao{
+            position: fixed;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            filter:alpha(opacity =40);
+        }
+        a:hover, a:visited, a:link, a:active {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="zhezhao">
+    <form id="alert">
+        <div class="alertT">
+            <a href=""><b id="alertClose">×</b></a>
+            <span>添加职务</span>
+        </div>
+        <div class="alertB">
+            <div class="bForm">
+
+                <div><label for="job">离任职务<input type="text" id="job" placeholder="人力资源总监" name="job"></label>
+                    <br>
+                </div>
+
+                <div><label for="timestart">任职开始时间<input type="datetime" id="timestart" placeholder="2010年11月20日" class="date_picker" name="timestart"></label>
+                    <br></div>
+
+                <div> <label for="timeover">任职结束时间<input type="text" id="timeover" placeholder="请选择" name="timeover"></label>
+                    <br>
+                </div>
+
+                <div><label for="jobparent">离任部门<input type="text" id="jobparent" placeholder="人事部" name="jobparent"></label>
+                    <br>
+                </div>
+
+                <div><label for="salary">离任薪资<input type="text" id="salary" placeholder="2000" name="salary"></label>
+
+                </div>
+
+            </div>
+        </div>
+        <button class="newJobSaveBtn" >保存</button>
+    </form>
+</div>
+<button id="alertOpen">开启</button>
+
+
+
+<script type="text/javascript">
+    var alertOpen = document.getElementById('alertOpen');
+    var zhezhao = document.getElementById('zhezhao');
+    var alertClose = document.getElementById('alertClose');
+    alertOpen.onclick = function(){
+        zhezhao.style.display='block';
+        zhezhao.style.width = document.documentElement.clientWidth+'px';
+        zhezhao.style.height = document.documentElement.clientHeight+'px';
+    }
+    alertClose.onclick = function () {
+        zhezhao.style.display='none';
+    }
+    window.onresize=function(){
+        zhezhao.style.width = document.documentElement.clientWidth+'px';
+        zhezhao.style.height = document.documentElement.clientHeight+'px';
+    }
+
+</script>
+</body>
+</html>

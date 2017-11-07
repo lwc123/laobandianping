@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>开通老板点评服务</title>
+    <meta name="description" content=""/>
+    <!--清理缓存 start-->
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+    <script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+</head>
+<body>
+<div class="pay-detail">
+    <div class="yuanbao"> <img src="{$PriceStrategy.ActivityHeadFigure}"></div>
+    <div class="inner">
+        <h3 class="font34">开通老板点评服务</h3>
+        <div class="service">
+            <p class="open">开户费：<span>{$PriceStrategy.AndroidOriginalPrice}元</span></p>
+            <p class="discount">
+                <img src="{$PriceStrategy.ActivityIcon}">
+                {$PriceStrategy.ActivityName}：
+                <b>{$PriceStrategy.AndroidPreferentialPrice}元</b>&nbsp;
+            </p>
+            <span class="dis-date">{$PriceStrategy.ActivityDescription}</span>
+
+        </div>
+        <h3>请填写开户信息</h3>
+        <form>
+            <ul class="detail">
+                <li>
+                    <label>公司名称：</label>
+                    <input type="text" id="company" placeholder="请输入和营业执照一致的企业名称">
+                </li>
+                <li>
+                    <label>您的姓名：</label>
+                    <input type="text" id="name" placeholder="请输入您的姓名">
+
+                </li>
+                <li>
+                    <label>您的身份：</label>
+                    <input type="text" id="duties" placeholder="请输入您的职务,如：总经理">
+                </li>
+            </ul>
+            <div class="pay-btn">
+                <button id="pay" type="button">去支付</button>
+                <span><a href="/m/BossComments/ContactUs">如需帮助请联系我们</a></span>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- 错误提示 -->
+<div class="error" id="error">手机号不能为空</div>
+{include file="-public/resources__footer" /}
+<script type="text/javascript">
+    $(function(){
+        $('#pay').bind('click',function(){
+            var company=$('#company').val();
+            var name=$('#name').val();
+            var duties=$('#duties').val();
+            var pattern=/^([A-Za-z]|[\u4E00-\u9FA5])+$/;
+            if(company==""){
+                $('#error').show().text('请输入公司名称');
+                setTimeout(function(){
+                    $('#error').hide();
+                },1000);
+            }else if(name==""){
+                $('#error').show().text('请输入您的姓名');
+                setTimeout(function(){
+                    $('#error').hide();
+                },1000);
+            }else if(duties==""){
+                $('#error').show().text('请输入您的职务,如：总经理');
+                setTimeout(function(){
+                    $('#error').hide();
+                },1000);
+            }else if(!pattern.test(duties)){
+                $('#error').show().text('请正确填写您担任的职务');
+                setTimeout(function(){
+                    $('#error').hide();
+                },1000);
+            }else{
+                var company=$('#company').val();
+                var payUrl=AppEnvironment.apiRoot+'/workplace/User/existsCompany?CompanyName='+company;
+                $.ajax({
+                    type:'post',
+                    url:payUrl,
+                    dataType:'json',
+                    success:function(data){
+                        if(data==true){
+                            $('#error').show().html('您输入的公司已开通服务!<br>请联系该公司管理员');
+                            setTimeout(function(){
+                                $('#error').hide();
+                            },1000);
+                        }else{
+                            var InviteCode=getUrlParam('InviteCode');
+                            if(InviteCode==null){
+                                InviteCode='';
+                            }
+                            window.location.href="choicepay?InviteCode="+InviteCode+"&company="+encodeURI(company)+"&JobTitle="+encodeURI(duties)+"&RealName="+encodeURI(name);
+                        }
+                    },
+                    error:function(data){
+                        $('#error').show().text('未登录，请登录！');
+                        setTimeout(function(){
+                            $('#error').hide();
+                        },2000);
+                        window.location.href="/m/Account/login";
+                    }
+                })
+            }
+        })
+    })
+</script>
+</body>
+</html>

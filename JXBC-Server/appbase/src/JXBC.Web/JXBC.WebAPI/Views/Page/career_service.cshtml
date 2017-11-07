@@ -1,0 +1,49 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@{
+    var isAuthenticated = MvcContext.Current.IsAuthenticated;
+    var fromPreview = Request["preview"] == "1" || Request["from"] == "preview";
+    var fromShare = Request["jxl_from"] == "share" || Request["from"] == "share";
+    var entity = (CareerServiceEntity)Model;
+    var oid = Request.QueryString["oid"];
+
+    ViewBag.Title = "服务详情";
+    ViewBag.BodyId = "service-details";
+}
+
+<div class="container service-details">
+
+    <div class="about-info">
+        <dl class="about-card">
+            <dt class="avton"><img class="headPicture" src="@(entity.Profile.Avatar)" 
+                @if (false == fromShare && false == fromPreview) { @Html.Raw("data-target=\"app:gotoNativePage\" data-page-name=\"HunterPage\" data-page-params='{\"oid\":" + entity.Profile.PassportId + "}'")  }/></dt>
+            <dd class="con">
+                <div class="name ellipsis">
+                    @(entity.Profile.RealName)<span>|</span><span>@(entity.Profile.Identity)</span>
+                </div>
+                @if (entity.BuyerCount > 0) 
+                {
+                    <div class="infor ellipsis">@(entity.BuyerCount)人买过</div>
+                }
+            </dd>
+        </dl>
+        <div class="about-detail">
+            <span class="icon"></span>
+            @for (var i = 0; i < entity.Contents.Length; i++)
+            {
+                @entity.Contents[i]
+            }        
+        </div>            
+    </div>    
+    <div class="about-person">
+        <h2 class="about-person-tl">关于猎人</h2>
+        <div class="about-person-pic"><img src="@(entity.Picture)" class="personPicture"></div>
+        <div class="about-person-con">
+            <p>@Html.Raw(entity.Profile.SelfIntroduction.Replace("\n", "<br/>"))</p>
+        </div>
+        @if (entity.RateCount > 0)
+            {
+            <a id="commentList" data-target="app:gotoNativePage" data-page-name="ServiceComments" data-page-params='{"oid":@(entity.ServiceId)}' class="to-assessList">查看别人对他的@(entity.RateCount)条评价</a>
+        }
+    </div>
+</div><!-- /.container -->

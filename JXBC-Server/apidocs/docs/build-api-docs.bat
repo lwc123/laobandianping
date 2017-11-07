@@ -1,0 +1,1 @@
+cmd /k Swagger ..\..\BossComments\apiserver -o bc-api.json

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/select_login_register"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_78PX"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/DIMEN_192PX"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/DIMEN_96PX"
+        android:layout_marginRight="@dimen/DIMEN_96PX"
+        android:orientation="horizontal">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/login"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/login"
+            android:background="@drawable/button_bg"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/DIMEN_44PX"
+            android:textSize="@dimen/DIMEN_28PX"
+            android:textStyle="bold" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/register"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/button_bg"
+            android:layout_marginLeft="@dimen/DIMEN_44PX"
+            android:text="@string/company_register"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_28PX"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/person_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/DIMEN_15PX"
+        android:layout_marginBottom="@dimen/DIMEN_25PX"
+        android:text="@string/person_register"/>
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>核心功能——老板点评</title>
+    <link rel="stylesheet" type="text/css" href="{$Think.config.resources_site_root}/pc/css/index-mobile.css"/>
+    <script>
+        //适配方案
+        (function(){
+            var width = document.documentElement.clientWidth;
+            var html = document.querySelector("html");
+            html.style.fontSize=width/16+"px";
+        })();
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="headerT">中国人才诚信建设工作委员会</div>
+    <div class="header-content header-font-size">
+        <div class="header-menu">
+            <a href="/index/index-mobile.html"><span>首页</span></a>
+            <a href="/index/functionality-mobile.html"><span class="hactive">核心功能</span></a>
+            <a href="/app/download"><span>下载APP</span></a>
+        </div>
+        <div class="header-call">
+            <a href="tel:18334726615"><i><img src="{$Think.config.resources_site_root}/pc/images/index750/ic_phone.png" alt=""></i><span>400-815-9166</span></a>
+        </div>
+    </div>
+</div>
+<div class="top-img">
+    <img src="{$Think.config.resources_site_root}/pc/images/index750/banner_pic1.png"/>
+    <img src="{$Think.config.resources_site_root}/pc/images/index750/bitmap1.jpg"/>
+    <img src="{$Think.config.resources_site_root}/pc/images/index750/bitmap2.jpg"/>
+    <img src="{$Think.config.resources_site_root}/pc/images/index750/bitmap3.jpg"/>
+    <img src="{$Think.config.resources_site_root}/pc/images/index750/bitmap4.jpg"/>
+    <img src="{$Think.config.resources_site_root}/pc/images/index750/bitmap5.jpg"/>
+</div>
+
+{include file="-public/mobile_footer" /}
+</body>
+</html>

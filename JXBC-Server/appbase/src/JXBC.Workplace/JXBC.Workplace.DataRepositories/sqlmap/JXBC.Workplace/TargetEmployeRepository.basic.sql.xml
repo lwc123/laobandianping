@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="TargetEmployeRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into target_employe (PassportId, RealName, IDCard, Tags, CreatedTime, ModifiedTime)
+      values (@PassportId, @RealName, @IDCard, @Tags, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY; 
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update target_employe set PassportId = @PassportId, RealName=@RealName, IDCard=@IDCard, Tags=@Tags, ModifiedTime=@ModifiedTime where EmployeId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from target_employe where EmployeId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from target_employe where EmployeId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from target_employe
+    </sqlWrap>
+    
+    <sqlWrap sqlName="SelectByPassportId" supportDBType="SqlServer, MySql">
+      select * from target_employe where PassportId = @PassportId
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByIDCard" supportDBType="SqlServer, MySql">
+      select * from target_employe where IDCard = @IDCard
+    </sqlWrap>
+
+  </module>
+</root>

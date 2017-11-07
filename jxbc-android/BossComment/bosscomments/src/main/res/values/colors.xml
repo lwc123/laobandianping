@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="main_color">#232427</color>
+    <color name="minor_color">#F56262</color>
+    <color name="transparency_color">#00ffffff</color>
+
+    <color name="white">#ffffff</color>
+    <color name="main_background">#f8f8f8</color>
+    <color name="set_pwd_text_color">#d7d7d7</color>
+    <color name="list_color">#b3b3b3</color>
+    <color name="first_page_buy_num_color">#cccccc</color>
+
+    <color name="main_head_bg_color">#8f755e</color>
+    <color name="main_line_color">#eeeeee</color>
+    <color name="line_color_write">#f4f4f4</color>
+    <color name="white_item">#ffffff</color>
+    <color name="press_item">#ffeee6</color>
+    <color name="main_text_color">#4a4a4a</color>
+
+    <color name="above_proof">#d0021b</color>
+    <color name="menu_color">#999999</color>
+
+    <color name="red">#ff0000</color>
+    <color name="home_radiogroup_bg_color">#232427</color>
+    <color name="discount_gray">#cccccc</color>
+    <color name="search_bg">#d8d8d8</color>
+    <color name="pulltorefresh_title_color">#a8a8a8</color>
+    <color name="accredit_manage_bt_color">#50a7ff</color>
+
+    <color name="tag_flow_tv_bg_one">#ffb4c5</color>
+    <color name="tag_flow_tv_bg_two">#a3e0e5</color>
+    <color name="tag_flow_tv_bg_three">#facc80</color>
+    <color name="tag_flow_tv_bg_four">#dcd8d8</color>
+    <color name="tag_flow_tv_bg_five">#d9c8e8</color>
+
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="juxian_red">#c10414</color>
+    <color name="label_bg_color">#f6f3ea</color>
+    <color name="luxury_gold_color">#d0b676</color>
+    <color name="main_gold_color">#D4BA77</color>
+    <color name="square_border_gold_color">#ae9251</color>
+    <color name="top_hint_bg_color">#f9e6d8</color>
+    <color name="top_hint_text_color">#f29434</color>
+
+
+    <color name="audit_popwindow_color">#888888</color>
+    <color name="seekbar_oval_gray">#e5e5e5</color>
+
+    <color name="audit_result">#555</color>
+    <color name="audit_pass_by_who">#ffe4a8</color>
+    <color name="voice_camera_background">#fcfcfc</color>
+    <color name="boss_circle_bg">#fafafa</color>
+    <color name="boss_circle_send">#cccccc</color>
+    <color name="partTranslucent">#00000000</color>
+
+    <color name="head_title_register_bg">#49525d</color>
+    
+    <color name="round_progress_bar_recommend_color">#C4B2A2</color>
+    <color name="round_progress_bar_prospect_color">#A4CAF7</color>
+    <color name="round_progress_bar_support_color">#F39CA3</color>
+
+    <color name="company_reputation_color">#708694</color>
+</resources>

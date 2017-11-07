@@ -1,0 +1,266 @@
+//
+//  BossComments-Prefix.pch
+//  JuXianBossComments
+//
+//  Created by juxian on 16/10/13.
+//  Copyright © 2016年 jinghan. All rights reserved.
+//
+
+//#ifndef BossComments_Prefix_pch
+//#define BossComments_Prefix_pch
+//
+//// Include any system framework and library headers here that should be included in all compilation units.
+//// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//
+//#endif /* BossComments_Prefix_pch */
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <CoreText/CoreText.h>
+#import <CommonCrypto/CommonDigest.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
+#import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AlipaySDK/AlipaySDK.h>
+
+//自定义的文件
+#import "JXAPIs.h"
+#import "Head.h"
+#import "SignStatus.h"
+#import "ApiEnvironment.h"
+#import "PublicUseMethod.h"
+#import "SuccessAndFail.h"
+#import "AppDelegate.h"
+#import "UserAuthentication.h"
+#import "JXBasedNavigationController.h"
+#import "JXBasedViewController.h"
+#import "JXFooterView.h"
+#import "JXBecomeHunterView.h"
+#import "WebAPIClient.h"
+#import "NilView.h"
+#import "WorkHeaderView.h"
+#import "WorkbentchView.h"
+#import "SeachView.h"
+#import "JHMenuView.h"
+#import "SignInMemberPublic.h"
+#import "JsBridge.h"
+#import "UIWebView+Extension.h"
+
+//字典
+#import "DictionaryRepository.h"
+
+
+//Request
+#import "MineRequest.h"
+#import "WorkbenchRequest.h"
+#import "MineDataRequest.h"
+#import "UserWorkbenchRequest.h"
+#import "UserOpinionRequest.h"//新增C口碑
+
+//Category
+#import "UILabel+Extension.h"
+#import "UIButton+Extension.h"
+#import "UIView+JKPicker.h"
+#import "UIView+Extension.h"
+#import "JXJhDate.h"
+
+
+
+//Third
+#import <AFNetworking.h>
+#import <MJRefresh.h>
+#import <JSONModel.h>
+#import <UIImageView+WebCache.h>
+#import <SVProgressHUD.h>
+#import <MBProgressHUD.h>
+#import <IQKeyboardReturnKeyHandler.h>
+#import <IQKeyboardManager.h>
+
+
+//Molde
+#import "TradeJournalEntity.h"
+#import "TargetEmploye.h"
+#import "CompanyAuditEntity.h"
+#import "EmployeArchiveEntity.h"
+#import "EmployeArchiveListEntity.h"
+#import "CompanyMembeEntity.h"
+#import "PayRecodeEntity.h"//SC.XJH.12.19
+#import "JXMessageEntity.h"
+
+// Masonry
+#import <Masonry.h>
+//define this constant if you want to use Masonry without the 'mas_' prefix
+#define MAS_SHORTHAND
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+
+
+#define KDicLoadSuccess                                                   @"KDicLoadSuccess"
+#define APPDELEGATE     ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+
+
+
+//控制器自我销毁的通知
+#define Notification_ClearSelf                                            @"clearSelf"
+//抽取自己的通知中心
+#define IWNotificationCenter [NSNotificationCenter defaultCenter]
+//表情键盘删除按钮点击
+#define IWEmotionDeleteBtnClickNoti @"IWEmotionDeleteBtnClickNoti"
+
+
+//企业认证填写的公司名称
+#define CompanyNameKey @"CompanyName"
+//认证成功之后保存的id
+#define CompanyAuditIdKey @"CompanyAuditId"
+#define CompanyChoiceKey @"CompanyChoice"
+
+#define WEAKSELF(object)   __weak typeof(object) weak##object = object;
+
+//分享配置信息
+
+#define WX_APP_KEY          @"wxae2889dd481d4049"
+#define UMeng_APIKey        @"5811d11bf29d986a020036a1"
+#define WX_APP_SECRET       @"20a0c14cee553f601f76c41da6458ebd"
+
+//分享的title
+
+#define CompanyShare_title   @"嗨，再也不怕捣蛋的员工了,这个神器大赞!"
+#define Company_Conten   @"老板点评，让员工对职业保持敬畏，让离职员工继续创造价值。"
+
+#define UserShare_title   @"嗨，提升现有员工工作效率，改善员工风貌，有这个就够了!"
+#define User_Conten   @"老板点评，为职业诚信者点赞背书，让职业失信者受到约束。"
+
+
+//微信支付
+#import "WXApi.h"
+#import "WXApiObject.h"
+//支付宝
+#import <AlipaySDK/AlipaySDK.h>
+//友盟
+#import <UMSocialCore/UMSocialCore.h>
+#import "UMMobClick/MobClick.h"
+
+//点击事件
+#define UMNewRegister @"NewRegister"
+//事件 分为： 点击事件和点击事件之后操作(支付，聊天...)成功
+//微信分享
+#define UMShare_wx @"share_wx"
+#define UMShare_wx_Event(dic) [MobClick event:UMShare_wx attributes:dic]
+
+//点击开户
+#define UMOpenService @"OpenService"
+#define UMOpenServiceEvent [MobClick event:UMOpenService]
+
+//开户成功
+
+#define UMApplePaySuccess @"ApplePay"
+#define UMApplePaySuccessEvent(dic)  [MobClick event:UMApplePaySuccess attributes:dic]
+
+//购买背景调查成功
+#define UMBuyBackgoundSuccess @"BuyBackgoundSurvey"
+#define UMBuyBackgoundSuccessEvent(dic)  [MobClick event:UMBuyBackgoundSuccess attributes:dic]
+
+#define DemoPhone @"18700000000"
+#define RealyPhoneNum @"realyPhoneNum"
+#define RealyPasswordStr @"realyPasswordStr"
+
+
+
+#define Default_Image  [UIImage imageNamed:@"yelldefault"]
+
+#define Company_LOGO_Image  [UIImage imageNamed:@"企业默认logo"]
+#define LOADing_Image  [UIImage imageNamed:@"加载图片"]
+#define StaffPahoto  [UIImage imageNamed:@"员工照片默认图"]
+
+#define UserImage  [UIImage imageNamed:@"个人头像"]
+
+//----------------------
+//颜色
+
+//主色调
+#define KColor_MainColor         @"F56262"
+#define KColor_RedColor         @"C10414"
+//字金色
+#define KColor_GoldColor         @"D0B676"
+#define KColor_CBlackColor         @"D0B676"
+
+#define KColor_TabbarColor         @"D4BA77"
+
+//辅助色
+#define KColor_SubColor          @"ec8b70"
+
+#define KColor_CodeColor        @"CBCBCB"
+
+//猎人等级
+#define KColor_HunterGradeColor  @"F5A623"
+//边框颜色
+#define KColor_LineColor         @"E5E5E5"
+//背景色
+#define KColor_BackgroundColor   @"F4F4F4"
+//搜索背景颜色
+#define KColor_SeachColor   @"D8D8D8"
+//字体颜色
+//tabBar 的颜色
+#define KColor_Tabbar_BlackColor    @"232427"
+#define KColor_Alert_View    @"666666"
+
+
+//菜单 灰色深
+#define KColor_Text_EumeColor    @"999999"
+//texlie 背景
+#define KColor_FeildBack_Color    @"CCCCCC"
+
+//列表 灰色浅
+#define KColor_Text_ListColor    @"B3B3B3"
+//黑色
+#define KColor_Text_BlackColor   @"4a4a4a"
+//白色
+#define KColor_Text_WhiterColor  @"ffffff"
+//天蓝色
+#define KColor_Text_BlueColor    @"66c3e6"
+//行业选择的浅黄色
+#define KColor_Background_YellowColor    @"F6F3EB"
+
+//50a7ff
+#define KColor_Add_BlueColor    @"50a7ff"
+
+
+#define ColorWithHex(colorStr) [PublicUseMethod setColor:colorStr]
+
+//标签云的颜色
+#define KColor_Add_Fen    @"FFB4C5"
+#define KColor_Add_Lan    @"A3E0E5"
+#define KColor_Add_Huang  @"FACC80"
+#define KColor_Add_Hui    @"DCD8D8"
+#define KColor_Add_Zi     @"D9C8E8"
+//标签
+#define KColor_tags     @"D1D1D1"
+#define KColor_Add_BlckBlueColor    @"708694"
+//消息 自定义消息（同意，拒绝） 深绿
+#define KColor_Text_messageColor @"48D1CC"
+#define KColor_Text_WalletColor  @"7ED321"
+
+
+//横线颜色 分割线
+#define KColor_CellColor [UIColor colorWithRed:52.0f/255.0f green:53.0f/255.0f blue:61.0f/255.0f alpha:0.1]
+
+#define KColor_LightYellowColor [UIColor colorWithRed:246.0f/255.0f green:243.0f/255.0f blue:234.0f/255.0f alpha:0.1]
+
+#define KColor_BgColor [UIColor colorWithRed:143.0f/255.0f green:117.0f/255.0f blue:94.0f/255.0f alpha:1]
+
+// 打印
+//'可以打印哪个类  第几行'
+#ifdef DEBUG
+#define Log(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define Log(...)
+#endif
+
+
+
+#endif

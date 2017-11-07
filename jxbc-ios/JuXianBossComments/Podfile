@@ -1,0 +1,16 @@
+platform :ios, ‘7.0’
+
+target 'JuXianBossComments' do
+    pod "AFNetworking"
+    pod "SDWebImage"
+    pod "MJRefresh"
+    pod "SVProgressHUD"
+    pod "MBProgressHUD"
+    pod "MJPhotoBrowser"
+    pod "JSONKit-NoWarning"
+    pod 'IQKeyboardManager'
+    pod 'JSONModel', '~> 1.1.2'
+    pod 'JCTagListView'
+    pod 'Masonry', '~> 1.0.2'
+    pod 'UMengAnalytics'
+end

@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>运营后台 - 老板点评</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="/admin/css/bootstrap.css" />
+		<link rel="stylesheet" href="/admin/css/font-awesome.css" />
+
+		<!-- page specific plugin styles -->
+        <link rel="stylesheet" href="/admin/css/jquery-ui.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/admin/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/admin/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+        <link rel="stylesheet" href="/admin/css/chosen.css" />
+		<link rel="stylesheet" href="/admin/css/datepicker.css" />
+		<link rel="stylesheet" href="/admin/css/bootstrap-timepicker.css" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="/admin/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="/admin/css/ace-ie.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="/admin/js/ace-extra.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="/admin/js/html5shiv.js"></script>
+		<script src="/admin/js/respond.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-leaf"></i>
+							老板点评-运营后台
+						</small>
+					</a>
+
+					<!-- /section:basics/navbar.layout.brand -->
+
+					<!-- #section:basics/navbar.toggle -->
+
+					<!-- /section:basics/navbar.toggle -->
+				</div>
+
+				<!-- #section:basics/navbar.dropdown -->
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<!-- #section:basics/navbar.user_menu -->
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="/admin/avatars/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Welcome,</small>
+									passportName
+								</span>
+
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										Settings
+									</a>
+								</li>
+
+								<li>
+									<a href="profile.html">
+										<i class="ace-icon fa fa-user"></i>
+										Profile
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-power-off"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<!-- /section:basics/navbar.user_menu -->
+					</ul>
+				</div>
+
+				<!-- /section:basics/navbar.dropdown -->
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container main-container-fixed" id="main-container">
+			<!-- #section:basics/sidebar -->
+			<div id="sidebar" class="sidebar sidebar-fixed responsive">
+
+
+				<ul id="menu-sidebar" class="nav nav-list">
+					<li>
+						<a href="/admin-sample/console.html">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> 控制台 </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="/admin-sample/list.html">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text">用户管理</span>
+						</a>
+					</li>
+                    
+					<li class="Comnpany/ComnpanyList">
+						<a href="#">
+							<i class="menu-icon fa fa-address-card"></i>
+							<span class="menu-text">企业管理</span>
+						</a>
+					</li>                    
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-check-square"></i>
+							<span class="menu-text">审核管理 </span>
+                            <span class="badge badge-primary">5</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="" id="lform">
+								<a href="/admin-sample/form.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">认证审核</span>  
+                                    <span class="badge badge-primary">5</span>                                    
+								</a>
+                                
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">提现审核</span>  
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+                    
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-child"></i>
+							<span class="menu-text"> 渠道管理 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="tables2.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">渠道列表</span>  
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid2.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">新建渠道</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+                            
+							<li class="">
+								<a href="jqgrid3.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">渠道对账单</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid4.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">总代对账单</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>                              
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-cogs"></i>
+							<span class="menu-text"> 系统设置 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="aaa.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">业务字典</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="bbb.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">用户管理</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>                          
+						</ul>
+					</li>                    
+				</ul><!-- /.nav-list -->
+
+				<!-- #section:basics/sidebar.layout.minimize -->
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+					
+                       <ul id="breadcrumb" class="breadcrumb" data-action="autoFixed">
+                            <li>
+                                <a href="/"><i class="ace-icon fa fa-home home-icon"></i></a>
+                            </li>
+                        </ul>  
+                    
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content" id="page-content">
+					
+
+<div class="row">
+    <div class="widget-box">
+        <div class="widget-header">
+            <h5 class="widget-title">Sample Pages</h5>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <ul>
+                    <li>
+                        <a href="/admin-sample/list.html">list</a>
+                    </li>                    
+                    <li>
+                        <a href="/admin-sample/form.html">form</a>
+                    </li>
+                    <li>
+                        <a href="/admin-sample/details.html">details</a>
+                    </li>
+                    <li>
+                        <a href="/admin-sample/console.html">console</a>
+                    </li> 
+                    <li>
+                        <a href="/admin-sample/login.html">login</a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="widget-box">
+        <div class="widget-header">
+            <h5 class="widget-title">Sample Modals</h5>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <ul>                
+                    <li>
+                        <button id="btnConfirm" class="btn btn-xs btn-danger">
+                            <i class="ace-icon fa fa-remove bigger-120"></i>
+                            confirm modal
+                        </button>
+                    </li>
+                    <li>
+                        <a id="linkMessage" href="#">message modal</a>
+                    </li>
+                    <li>
+                        <a id="linkForm" href="#">linkForm modal</a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" class="hide">
+    <div class="alert alert-info bigger-110">
+        将要操作****,操作后不可恢复
+    </div>
+
+    <div class="space-6"></div>
+
+    <p class="bigger-110 bolder center grey">
+        <i class="ace-icon fa fa-hand-o-right blue bigger-120"></i>
+        是否确定?
+    </p>
+</div>
+
+<div id="dialog-message" class="hide">
+    <p>
+        This is the default dialog which message.
+    </p>
+
+    <div class="hr hr-12 hr-double"></div>
+
+    <p>
+        Currently using
+        <b>36% of your storage space</b>.
+    </p>
+</div>
+
+<div id="dialog-Form" class="hide">
+    <div class="col-xs-12">
+        <div>
+        </div>
+        <form id="testForm" method="post" role="form">                                                            
+            <div class="form-group">
+                <label class="control-label no-padding-right" for="form-field-text"> Text Label </label>
+                <div class="">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-text" name="form-field-text" placeholder="text" class="col-xs-12">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="control-label no-padding-right" for="form-field-digits"> digits Label </label>
+                <div class="">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-digits" name="form-field-digits" placeholder="digits" class="col-xs-12">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>    
+</div>
+
+
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">						
+					</div>
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/admin/js/jquery.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='/admin/js/jquery1x.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='/admin/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+		<script src="/admin/js/bootstrap.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="/admin/js/excanvas.js"></script>
+		<![endif]-->
+		<script src="/admin/js/jquery-ui.js"></script>
+		<script src="/admin/js/jquery.ui.touch-punch.js"></script>        
+		<script src="/admin/js/jquery-ui.custom.js"></script>
+		<script src="/admin/js/jquery.ui.touch-punch.js"></script>
+		<script src="/admin/js/jquery.easypiechart.js"></script>
+		<script src="/admin/js/jquery.sparkline.js"></script>
+        <script src="/admin/js/jquery.validate.js"></script>
+        <script src="/admin/js/chosen.jquery.js"></script>
+		<script src="/admin/js/date-time/bootstrap-datepicker.js"></script>        
+		<script src="/admin/js/flot/jquery.flot.js"></script>
+		<script src="/admin/js/flot/jquery.flot.pie.js"></script>
+		<script src="/admin/js/flot/jquery.flot.resize.js"></script>        
+        
+		<!-- ace scripts -->
+		<script src="/admin/js/ace/elements.scroller.js"></script>
+		<script src="/admin/js/ace/elements.colorpicker.js"></script>
+		<script src="/admin/js/ace/elements.fileinput.js"></script>
+		<script src="/admin/js/ace/elements.typeahead.js"></script>
+		<script src="/admin/js/ace/elements.wysiwyg.js"></script>
+		<script src="/admin/js/ace/elements.spinner.js"></script>
+		<script src="/admin/js/ace/elements.treeview.js"></script>
+		<script src="/admin/js/ace/elements.wizard.js"></script>
+		<script src="/admin/js/ace/elements.aside.js"></script>
+		<script src="/admin/js/ace/ace.js"></script>
+		<script src="/admin/js/ace/ace.ajax-content.js"></script>
+		<script src="/admin/js/ace/ace.touch-drag.js"></script>
+		<script src="/admin/js/ace/ace.sidebar.js"></script>
+		<script src="/admin/js/ace/ace.sidebar-scroll-1.js"></script>
+		<script src="/admin/js/ace/ace.submenu-hover.js"></script>
+		<script src="/admin/js/ace/ace.widget-box.js"></script>
+		<script src="/admin/js/ace/ace.settings.js"></script>
+		<script src="/admin/js/ace/ace.settings-rtl.js"></script>
+		<script src="/admin/js/ace/ace.settings-skin.js"></script>
+		<script src="/admin/js/ace/ace.widget-on-reload.js"></script>
+		<script src="/admin/js/ace/ace.searchbox-autocomplete.js"></script>
+        <script src="/admin/js/admin/common.js"></script>
+        
+<script>
+jQuery(function($) {
+    $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+        _title: function(title) {
+            var $title = this.options.title || '&nbsp;'
+            if( ("title_html" in this.options) && this.options.title_html == true )
+                title.html($title);
+            else title.text($title);
+        }
+    }));
+    $( "#btnConfirm" ).on('click', function(e) {
+        e.preventDefault();
+    
+        $( "#dialog-confirm" ).removeClass('hide').dialog({
+            resizable: false,
+            modal: true,
+            title: "<div class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-exclamation-triangle red'></i> Empty the recycle bin?</h4></div>",
+            title_html: true,
+            buttons: [
+                {
+                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Delete all items",
+                    "class" : "btn btn-danger btn-xs",
+                    click: function() {
+                        alert('delete completed.');
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancel",
+                    "class" : "btn btn-xs",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+    });
+    
+    $( "#linkMessage" ).on('click', function(e) {
+        e.preventDefault();
+    
+        $( "#dialog-message" ).removeClass('hide').dialog({
+            resizable: false,
+            modal: true,
+            title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> jQuery UI Dialog</h4></div>",
+            title_html: true,
+            buttons: [
+                {
+                    text: "Cancel",
+                    "class" : "btn btn-xs",
+                    click: function() {                        
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    text: "Ok",
+                    "class" : "btn btn-primary btn-xs",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+    });
+    $( "#linkForm" ).on('click', function(e) {
+        e.preventDefault();
+    
+        $( "#dialog-Form" ).removeClass('hide').dialog({
+            resizable: false,
+            modal: true,
+            title: "<div class='widget-header widget-header-small'><h4 class='smaller'>Form Title</h4></div>",
+            title_html: true,
+            width:"400px",
+            buttons: [
+                {
+                    text: "Cancel",
+                    "class" : "btn btn-xs",
+                    click: function() {                        
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    text: "确认提交",
+                    "class" : "btn btn-primary btn-xs",
+                    click: function() {
+                        $("#testForm").submit();
+                    }
+                }
+            ]
+        });
+    });
+
+    $("#testForm").validate({
+        errorElement: 'div',
+        focusInvalid: false,            
+        rules: {
+            'form-field-text': { required:true, minlength:3, maxlength:10 },
+            'form-field-digits': { required:true, digits:true }
+        },
+        messages: {
+            'form-field-text': {
+                required: "请输入text",
+                minlength: "至少包含3个字符",
+                maxlength: "不能大于10个字符"
+            },
+            'form-field-digits': {
+                required: "请输入digits",
+                digits: "请输入整数"
+            }
+        },
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },         
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+            error.addClass("help-block");
+            error.parents(".form-group").addClass("has-error");
+        },
+
+        submitHandler: function (form) {
+            form.submit();
+        },            
+    });
+});    
+</script>
+        
+	</body>
+</html>

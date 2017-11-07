@@ -1,0 +1,1 @@
+include ':netjuxianappgenome', ':social_sdk_library_project', ':bosscomments', ':htmltest', ':htmltest2', ':lamelibrary', ':wheelview', ':PushSDK', ':multi-image-selector'

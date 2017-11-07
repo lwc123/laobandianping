@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{block name="page-title"}运营后台 - 老板点评{/block}</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		{include file="_public/resources_header" /}
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-leaf"></i>
+							老板点评-运营后台
+						</small>
+					</a>
+
+					<!-- /section:basics/navbar.layout.brand -->
+
+					<!-- #section:basics/navbar.toggle -->
+
+					<!-- /section:basics/navbar.toggle -->
+				</div>
+
+				<!-- #section:basics/navbar.dropdown -->
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<!-- #section:basics/navbar.user_menu -->
+						{include file="_public/menu-passport" /}
+						<!-- /section:basics/navbar.user_menu -->
+					</ul>
+				</div>
+
+				<!-- /section:basics/navbar.dropdown -->
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container main-container-fixed" id="main-container">
+			<!-- #section:basics/sidebar -->
+			<div id="sidebar" class="sidebar sidebar-fixed responsive">
+
+				{include file="_public/menu-sidebar" /}
+
+				<!-- #section:basics/sidebar.layout.minimize -->
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">					
+                        <ul id="breadcrumb" class="breadcrumb" data-action="autoFixed">
+                            <li>
+                                <a href="/"><i class="ace-icon fa fa-home home-icon"></i></a>
+                            </li>
+                            {block name="breadcrumb-active"}{/block}
+                        </ul>
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content" id="page-content">
+					{block name="page-content"}
+                        <!-- this is page-content -->
+                    {/block}
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">						
+					</div>
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		{include file="_public/resources_footer" /}
+        {block name="resources-footer"}
+            <!-- this is page-content -->
+        {/block}
+        <script>            
+            $(document).ready(function () {
+                window.onPageLoading = function(text) {
+                    if(typeof(text)!="string") text = "Loading...";
+                    window.modalDialog = bootbox.dialog({message:"<div class='center'><div style='padding-top:48px;font-size:64px;'><i class='fa fa-spinner fa-spin'></i></div><div>"+text+"</div></div>",closeButton:false});
+                };
+                window.onPageLoadCompleted = function() {
+                    if(window.modalDialog)
+                        window.modalDialog.modal("hide");
+                };
+            
+                $(".page-loading a").click(function(){
+                    onPageLoading($(this).data("page-loading-text"));
+                });
+                $(".pagination a").click(function(){
+                    onPageLoading($(this).data("page-loading-text"));
+                });
+            });
+        </script>
+        
+	</body>
+</html>

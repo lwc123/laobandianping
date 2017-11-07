@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/search"
+        layout="@layout/include_automatic_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_100PX"
+        android:layout_below="@+id/head" />
+
+    <include
+        layout="@layout/include_refresh_listview_one_line"
+        android:layout_below="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/content_is_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search"
+        android:gravity="center_horizontal"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:paddingTop="@dimen/DIMEN_150PX"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/personal_unhappy"/>
+        <TextView
+            android:id="@+id/null_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_36PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/menu_color"
+            android:text="暂无收录此公司，您可以创建此公司"/>
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/DIMEN_60PX"
+            android:paddingLeft="@dimen/DIMEN_40PX"
+            android:paddingRight="@dimen/DIMEN_40PX"
+            android:gravity="center"
+            android:text="点击创建"
+            android:textColor="@color/accredit_manage_bt_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+    </LinearLayout>
+</RelativeLayout>

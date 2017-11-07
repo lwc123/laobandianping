@@ -1,0 +1,105 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@using JXBC.Workplace;
+@{
+    var entity = (UserPageEntity)Model;
+
+    ViewBag.Title = "用户主页";
+}
+
+<div class="jxm">
+    <!--jxm-head-hunter begin-->
+    <header class="jxm-head-hunter">
+        <div class="jxm-btn-back" data-target="app:gotoNativePage" data-page-name="back" data-page-params=""><a></a></div>
+        <dl class="jxm-per-hunter">
+            <dt class="avton"><a><img src="@entity.Profile.Avatar" alt="" /></a></dt>
+            <dd class="con">
+                <div class="name ellipsis">
+                    <a href="" title="">@entity.Profile.Nickname</a>
+                </div>
+                <div class="class ellipsis">@(entity.Profile.CurrentCompany) @(entity.Profile.CurrentJobTitle)</div>
+            </dd>
+        </dl>
+    </header>
+    <!--jxm-head-hunter end-->
+    <!--jxm-con-hunter begin-->
+    <section class="jxm-con-seeker">
+        @if (null != entity.ExpectWorks && entity.ExpectWorks.Count > 0)
+        {
+            <section class="jxm-coner-seeker hope">
+                <h2 class="caption">TA的工作愿望</h2>
+                @for (var i = 0; i < entity.ExpectWorks.Count; i++)
+                {
+                    var item = entity.ExpectWorks[i];
+
+                    <article>
+                        <div class="flag">愿望@(i + 1)</div>
+                        <div>
+                            <a class="tl">@item.JobTitle</a>
+                        </div>
+                        <div>
+                            <span class="salary">@item.SalaryRange</span>
+                            <span class="location">@item.Location</span>
+                            <span class="industry">@item.IndustryText @item.JobCategoryText</span>
+                        </div>
+                        @if(false==string.IsNullOrEmpty(item.Other))
+                        {
+                            <p class="other ellipsis">其他期望：@item.Other</p>
+                        }
+                    </article>
+                }
+            </section>
+        }
+        @if (null != entity.Resume && null != entity.Resume.EmploymentHistory && entity.Resume.EmploymentHistory.Count > 0)
+        {
+            <section class="jxm-coner-seeker exp">
+                <h2 class="caption">TA的工作经历</h2>
+                @foreach (var item in entity.Resume.EmploymentHistory)
+                {
+                    var endDate = item.EndDate.Year>=2999 ? "至今": item.EndDate.Year.ToString();
+                    <article>
+                        <div>
+                            <span class="year fr">@item.StartDate.Year.ToString()-@endDate</span>
+                            <a class="tl">@item.CompanyName</a>
+                        </div>
+                        <p class="other ellipsis">@item.JobTitle</p>
+                    </article>
+                }
+            </section>
+        }
+        @if (null != entity.Resume && null != entity.Resume.EucationalHistory && entity.Resume.EucationalHistory.Count > 0)
+            {
+            <section class="jxm-coner-seeker edu">
+                <h2 class="caption">教育经历</h2>
+                @foreach (var item in entity.Resume.EucationalHistory)
+                {
+                    var endDate = item.EndDate.Year >= 2999 ? "至今" : item.EndDate.Year.ToString();
+                    <article>
+                        <div>
+                            <a class="tl">@item.SchoolName</a>
+                        </div>
+                        <div>
+                            <span class="salary">@item.StartDate.Year.ToString()-@endDate</span>
+                            <span class="location">@item.SpecialtyName</span>
+                            <span class="year">@item.Education</span>
+                        </div>
+                    </article>
+                }
+            </section>
+        }
+        @if (null != entity.Resume && null != entity.Resume.PersonalTags && entity.Resume.PersonalTags.Length > 0)
+        {
+            <section class="jxm-coner-seeker tag">
+                <h2 class="caption">个人标签</h2>
+                <div class="tag">
+                    @foreach (var item in entity.Resume.PersonalTags)
+                    {
+                        <span>@(item)</span>
+                    }
+                </div>
+            </section>
+        }
+    </section>
+    <!--jxm-con-hunter end-->
+    <!--跟他聊聊 由APP做-->
+</div>

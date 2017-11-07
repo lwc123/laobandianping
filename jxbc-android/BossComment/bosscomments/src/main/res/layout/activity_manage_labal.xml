@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/head"
+            layout="@layout/include_head_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/edit_labels"
+            android:layout_below="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_90PX"
+                android:background="@null"
+                android:hint="请输入标签"
+                android:paddingLeft="@dimen/DIMEN_30PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <EditText
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_90PX"
+                android:layout_below="@+id/textView"
+                android:background="@null"
+                android:hint="请输入标签"
+                android:paddingLeft="@dimen/DIMEN_30PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <EditText
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_90PX"
+                android:layout_below="@+id/textView1"
+                android:background="@null"
+                android:hint="请输入标签"
+                android:paddingLeft="@dimen/DIMEN_30PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <EditText
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_90PX"
+                android:layout_below="@+id/textView2"
+                android:background="@null"
+                android:hint="请输入标签"
+                android:paddingLeft="@dimen/DIMEN_30PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_1PX"
+                android:background="@color/line_color" />
+
+            <EditText
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_90PX"
+                android:layout_below="@+id/textView3"
+                android:background="@null"
+                android:hint="请输入标签"
+                android:paddingLeft="@dimen/DIMEN_30PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/text_hint"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_90PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/menu_color"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/edit_labels"
+            android:paddingLeft="@dimen/DIMEN_40PX"
+            android:text="保存成功后，公司详情页的标签将立即变更为最新标签"/>
+        <include
+            layout="@layout/include_button_text34_gold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_hint"
+            android:layout_marginBottom="@dimen/DIMEN_80PX"
+            android:layout_marginLeft="@dimen/DIMEN_90PX"
+            android:layout_marginRight="@dimen/DIMEN_90PX"
+            android:layout_marginTop="@dimen/DIMEN_50PX"/>
+    </RelativeLayout>
+</RelativeLayout>

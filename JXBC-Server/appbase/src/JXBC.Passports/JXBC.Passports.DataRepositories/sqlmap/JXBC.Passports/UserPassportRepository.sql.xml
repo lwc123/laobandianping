@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="UserPassportRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into user_passport (UserName, Email, MobilePhone, PassportStatus, ProfileType, MultipleProfiles, CreatedTime, ModifiedTime)
+      values (@UserName, @Email, @MobilePhone, @PassportStatus, @ProfileType, @MultipleProfiles, @CreatedTime, @ModifiedTime);
+      select @@identity
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update user_passport set UserName = @UserName, Email=@Email, MobilePhone=@MobilePhone, ProfileType=@ProfileType, MultipleProfiles=@MultipleProfiles
+      , ModifiedTime=@ModifiedTime where PassportId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      update user_passport set PassportStatus=999 where PassportId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from user_passport where PassportId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByIds" supportDBType="SqlServer, MySql">
+      select * from user_passport where PassportId in (@ids);
+      select * from user_profile where PassportId in (@ids);
+      select * from user_profile a inner join organization_profile b on a.PassportId=b.PassportId where a.PassportId in (@ids);
+    </sqlWrap>
+    <sqlWrap sqlName="UpdateSignStatus" supportDBType="SqlServer, MySql">
+      update user_profile set LastSignInTime=@LastSignInTime,LastActivityTime=@LastActivityTime where PassportId = @Id;
+      update user_security set IsLocked = @IsLocked, LastLockedTime=@LastLockedTime, FailedPasswordAttemptCount=@FailedPasswordAttemptCount
+      where PassportId = @Id and IsLocked = 1
+    </sqlWrap>
+    <sqlWrap sqlName="SelectPassportIdByEmail" supportDBType="SqlServer, MySql">
+      select PassportId from user_passport where Email = @Email;
+    </sqlWrap>
+    <sqlWrap sqlName="SelectPassportIdByMobilePhone" supportDBType="SqlServer, MySql">
+      select PassportId from user_passport where MobilePhone = @MobilePhone;
+    </sqlWrap>
+    <sqlWrap sqlName="SelectPassportIdByUserName" supportDBType="SqlServer, MySql">
+      select PassportId from user_passport where UserName = @UserName;
+    </sqlWrap>
+    <sqlWrap sqlName="SelectUserWithSecurityById" supportDBType="SqlServer, MySql">
+      select * from user_passport where PassportId = @Id;
+      select * from user_security where PassportId = @Id;
+    </sqlWrap>
+  </module>
+</root>

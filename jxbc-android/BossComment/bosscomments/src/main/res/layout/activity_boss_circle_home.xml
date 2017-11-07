@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/ll_parent"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/boss_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/include_refresh_listview_circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/viewPop"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/content_is_null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/circle_bg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_head"/>
+
+            <RelativeLayout
+                android:id="@+id/photo"
+                android:layout_width="@dimen/DIMEN_200PX"
+                android:layout_height="@dimen/DIMEN_200PX"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:layout_marginTop="@dimen/DIMEN_80PX"
+                android:background="@drawable/btn_alpha_head_bg">
+
+                <com.juxian.bosscomments.widget.RoundAngleImageView
+                    android:id="@+id/circle_user_head1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/DIMEN_15PX"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/user_head"
+                    app:roundHeight="5dp"
+                    app:roundTag="0"
+                    app:roundWidth="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/DIMEN_30PX"
+                    android:layout_marginRight="@dimen/DIMEN_30PX"
+                    android:src="@drawable/compile_my_message"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/circle_cp_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_36PX"
+            android:src="@drawable/personal_unhappy"/>
+
+        <TextView
+            android:id="@+id/null_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_36PX"
+            android:text="老板们都还在来这里的路上"
+            android:textSize="@dimen/DIMEN_24PX"/>
+    </LinearLayout>
+
+</LinearLayout>

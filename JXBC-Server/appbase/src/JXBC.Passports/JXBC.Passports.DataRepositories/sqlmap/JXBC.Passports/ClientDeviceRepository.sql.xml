@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+	<module moduleName="ClientDeviceRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into client_device ( DeviceKey, SdkVersion, Device,Brand,Product
+      , CreatedTime,ModifiedTime)
+      values (@DeviceKey, @SdkVersion, @Device, @Brand, @Product
+      , @CreatedTime,@ModifiedTime);
+      select @@identity
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update client_device set SdkVersion=@SdkVersion,Device=@Device,Brand=@Brand,Product=@Product
+      , ModifiedTime=@ModifiedTime
+      where DeviceId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from client_device where DeviceId = @Id
+    </sqlWrap>
+    
+    <sqlWrap sqlName="SelectByDeviceKey" supportDBType="SqlServer, MySql">
+      select * from client_device where DeviceKey = @DeviceKey
+    </sqlWrap>
+  </module>
+</root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.juxian.bosscomments.fragment.MainFragment">
+
+    <TextView
+        android:id="@+id/invite"
+        android:layout_width="@dimen/DIMEN_600PX"
+        android:layout_height="@dimen/DIMEN_400PX"
+        android:layout_centerHorizontal="true"
+        android:text="invite"
+        android:layout_marginTop="@dimen/DIMEN_120PX"/>
+</RelativeLayout>

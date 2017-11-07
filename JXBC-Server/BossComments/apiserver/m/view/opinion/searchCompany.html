@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索公司</title>
+		<!--清理缓存 start-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+		<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+		<div id="pageHead">
+			<svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3073"><path d="M738.145103 170.248828 663.234207 95.337931 313.114483 445.457655 312.937931 445.298759 238.768552 519.450483 238.945103 519.627034 238.768552 519.785931 313.679448 594.696828 313.838345 594.537931 658.996966 939.696552 733.166345 865.509517 388.007724 520.368552Z" p-id="3074"></path></svg>
+			<b class="font34">搜索公司</b>
+		</div>
+		<div class="comments searchComapny">
+			<div>
+				<svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5158"><path d="M960.207092 862.34525 742.483348 644.618437c98.31926-144.359852 83.48439-342.713432-44.557822-470.756667-144.853086-144.855132-379.704928-144.855132-524.555967 0-144.856156 144.856156-144.856156 379.715161 0 524.56006C301.410748 826.466088 499.762281 841.299935 644.12725 742.974535l217.72272 217.720673L960.207092 862.34525zM222.539422 649.240711c-117.688399-117.684306-117.688399-308.503283 0-426.198845 117.698632-117.694539 308.513516-117.694539 426.209078 0 117.691469 117.694539 117.691469 308.513516 0 426.198845C531.052938 766.93525 340.239078 766.93525 222.539422 649.240711z" p-id="5159"></path></svg>
+				<input id="searchShop" type="text" placeholder="搜索您感兴趣的公司">
+				<img class="fr" src="{$Think.config.resources_site_root}/mobile/img/sClose.png">
+			</div>
+			<ul id="searchResult" class="searchResult">
+           </ul>
+		</div>
+	</body>
+    <input type="hidden" id="search" value="{$Think.get.data}"/>
+	<script src="{$Think.config.resources_site_root}/mobile/js/jquery-2.0.3.min.js"></script>
+	<script>
+		var isHasnextPage = false;//是否有下一页数据
+		var searchItem = '';//搜索框内容
+		var pageNum = 1;//默认page
+		
+		//监听搜索框输入事件，有内容的话就进行查询
+		$('#searchShop').keyup (function () {
+			var _v = $.trim($(this).val());
+			$('#searchResult').empty();
+			if (_v != '') {
+		        searchItem = _v;
+		        searchShopFn(_v, pageNum);
+		    }
+		});
+		
+		//模糊查询ajax请求数据  keyWord就是关键词，pageNum是对应的页码
+		function searchShopFn(keyWord, pageNum) {
+		    $.ajax({
+		        url: "/api/apppage/Opinion/search",//请求数据的地址，
+		        dataType: "json",
+		        data: {
+                    Keyword: keyWord,
+		            page: pageNum || 1,
+		            size: 15
+		        },
+		        success: function (res) {
+                    //alert(res)
+                    console.log(res)
+		            var m = '';
+                    var search = $('#search').val()
+
+		            $.each(res, function (i, v) {
+		                m += '<li >';
+                        if(search=='search'){
+                            m += "<a href='/m/Opinion/create?CompanyId="+v.CompanyId+"'>"+v.CompanyName+"</a>";
+                        }else{
+                            m += "<a href='/m/Opinion/CompanyDetail?CompanyId="+v.CompanyId+"'>"+v.CompanyName+"</a>";
+                        }
+
+                        m += '</li>';
+
+		            });
+		            $('#searchResult').append(m);
+		
+		        }, error: function (res) {
+		
+		        }
+		
+		    })
+		}
+	</script>
+</html>

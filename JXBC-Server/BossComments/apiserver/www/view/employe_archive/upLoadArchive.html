@@ -1,0 +1,8 @@
+{extend name="-public:layout_console-enterprise" /} 
+{block name="page-title"}批量上传{/block} 
+{block name="page-content"}
+<form action="upLoadArchiveRequest1?CompanyId={$Think.get.CompanyId}" method="post" enctype="multipart/form-data">
+    <input type="file" name="archive"/>
+    <input type="submit" value="上传"/>
+</form>
+{/block}

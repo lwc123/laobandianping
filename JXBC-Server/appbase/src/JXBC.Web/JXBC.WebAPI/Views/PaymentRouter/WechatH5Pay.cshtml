@@ -1,0 +1,61 @@
+﻿@using JXBC.TradeSystem;
+
+@using JXBC.WebCore;
+@{
+    Layout = null;
+
+    var entity = (Payment)Model;
+    var signedParams = JXBC.TradeSystem.JsonExtension.ConvertEntity<IDictionary<string, string>>((string)ViewBag.SignedParams);
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>微信支付</title>
+    <script type="text/javascript">
+        var payParams = {
+            "appId"     : "@signedParams["appId"]",
+            "timeStamp" : "@signedParams["timeStamp"]",
+            "nonceStr"  : "@signedParams["nonceStr"]",
+            "package"   : "@signedParams["package"]",
+            "signType"  : "@signedParams["signType"]",
+            "paySign"   : "@signedParams["paySign"]"
+        };
+
+        function onBridgeReady() {
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest', payParams,
+                function(res){
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                        alert("支付成功");
+                        var url = "WechatPaidRedirect?out_trade_no=@ViewBag.TradeCode";
+                        setTimeout("window.location.href='"+url+"'",1500);
+                    } else {
+                        alert("支付失败");
+                        window.history.go(-2);
+                    }
+                }
+            );
+        }
+
+        if (typeof (WeixinJSBridge) == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+
+    </script>
+</head>
+<body>
+    <div style="position: absolute;top: 50%;left: 50%;
+    margin-top: -8rem;margin-left: -8rem;
+    width: 16rem;height: 16rem;background-size: 16rem 16rem;
+    background: #fff url(@(AppEnvironment.ResourcesSiteRoot)/mobile/img/bossloading.gif)center no-repeat;"></div>
+</body>
+</html>

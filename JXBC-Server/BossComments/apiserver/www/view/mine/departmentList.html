@@ -1,0 +1,141 @@
+{extend name="-public:layout_console-enterprise" /} {block name="page-title"}部门管理{/block} {block name="page-content"}
+<div id="zhezhao">
+	<form id="alert" method="post">
+		<div class="alertT">
+			<b class="alertClose">×</b>
+			<span></span>
+		</div>
+		<div class="alertB">			
+		</div>
+		<input type="hidden" name="CompanyId" value="{$CompanyId}" />
+		<button type="submit" class="newJobSaveBtn">保存</button>
+        <div class="btnwrap hide">
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">取消</a>
+            <a id="departmentlist_delete" href="javascript:void (0)" class="button db_btn_style">确认</a>
+        </div>
+	</form>
+</div>
+<div id="departmentList" class="pocket-con hide">
+	部门名称：
+	<input type="text" name="DeptName" required placeholder="请输入部门名称" value="" maxlength="20">
+	<br>
+</div>
+
+<!--档案详情部分-->
+<div class="com1-bg em-info">
+	<!--员工档案详情部分-->
+	<div class="em3-info1">
+		<p class="com-tt">部门管理<a class="table_creat_department" href="javascript:void (0)" DeptId="" DeptName="">创建新的部门</a></p>
+		<table class="em_content_table" width="300" border="1" cellspacing="0">
+			<tr>
+				<th width="250" height="40">部门</th>
+				<th width="650">操作</th>
+			</tr>
+			{foreach($Department as $value)}
+			<tr>
+				<td height="40">{$value.DeptName}</td>
+				<td><span class="table_creat_department" DeptId="{$value.DeptId}" DeptName="{$value.DeptName}">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete" DeptId="{$value.DeptId}">删除</span></td>
+			</tr>
+			{/foreach}
+		</table>
+	</div>
+
+</div>
+<div class="phone"></div>
+{/block} {block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script type="text/javascript">
+	var CompanyId = "{$CompanyId}";
+	
+	var submitHandler = function(){alert(00);};
+	$.validator.setDefaults({
+		submitHandler:function(){submitHandler();}
+	});
+	
+	$(document).ready(function() {
+		//创建新部门departmentList
+		$(".table_creat_department").click(function() {
+               var DeptId = $(this).attr('DeptId');
+               var DeptName = $(this).attr('DeptName');
+                if(!DeptId){
+                    $("#alert>.alertT>span").text("创建新部门");
+                    $(".alertB").html($("#departmentList").show().html());
+                    $(".newJobSaveBtn").show().html("保存")
+                }else{
+                    $("#alert>.alertT>span").text("修改部门");
+                    $(".alertB").html($("#departmentList").show().html());
+                    $(".newJobSaveBtn").show().html("修改部门")
+                }
+            $('.btnwrap').hide();
+            $("#departmentList").hide();
+               $(".alertB [name='DeptName']").val(DeptName);
+				alertwin();
+				submitHandler = function() {
+                    DeptName= $('input[name=DeptName]').val();
+					$.post('adddepartment', {
+						CompanyId: CompanyId,
+						DeptName: DeptName,
+                        DeptId: DeptId
+					}, function(data) {
+						console.log(data)
+						if (data.Success == true) {
+                            var actionText = DeptId>0?"修改":"新增";
+							$("#alert>.alertT>span").text(actionText+"部门");
+							$(".alertB").html('<div class="bcontent">'+actionText+'成功</div>');
+							$(".newJobSaveBtn").hide();
+                            $('.btnwrap').hide();
+							alertwin();
+							setTimeout(function() {
+								$("#zhezhao").css("display", "none");
+								location.href = "departmentList?CompanyId=" + CompanyId;
+							}, 1000)
+						} else {
+//							$("#alert>.alertT>span").text("温馨提示");
+//							$(".alertB").html('<div class="bcontent">' + data.ErrorMessage + '</div>');
+//                            $(".newJobSaveBtn").hide();
+//                            $('.btnwrap').hide();
+//							alertwin();
+                            $(".phone").show().text(data.ErrorMessage );
+                            setTimeout(function(){
+                                $(".phone").hide();
+                            },2000);
+						}
+					})
+					return false;
+			}
+		})
+			//删除
+        $(".table_delete").unbind().click(function () {
+            var DeptId = $(this).attr('DeptId');
+            $("#alert>.alertT>span").text("温馨提示");
+            $(".alertB").html('<div class="bcontent">确认要删除吗？</div>');
+            $(".newJobSaveBtn").hide();
+            $(".btnwrap").show();
+            $(".power_person_details").hide()
+            alertwin();
+			      $("#departmentlist_delete").unbind().click(function () {
+			          $.post('deletedepartment', {CompanyId: CompanyId, DeptId: DeptId}, function (data) {
+			              if (data.Success == true) {
+			                  $("#alert>.alertT>span").text("温馨提示");
+			                  $(".alertB").html('<div class="bcontent">删除成功</div>');
+			                  $(".newJobSaveBtn").hide();
+                              $('.btnwrap').hide();
+			                  alertwin();
+			                  setTimeout(function () {
+			                      $("#zhezhao").css("display", "none");
+			                      location.href = "departmentList?CompanyId=" + {$CompanyId};
+			                  }, 1500)
+			              } else {
+			                  $("#alert>.alertT>span").text("温馨提示");
+			                  $(".alertB").html('<div class="bcontent">' + data.ErrorMessage + '</div>');
+                              $(".newJobSaveBtn").hide();
+                              $('.btnwrap').hide();
+			                  alertwin();
+			              }
+			          })
+			      })
+        })
+	})
+</script>
+{/block}

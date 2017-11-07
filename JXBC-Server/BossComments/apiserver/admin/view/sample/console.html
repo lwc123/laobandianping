@@ -1,0 +1,253 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="widget-box">
+        <div class="widget-header">
+            <h5 class="widget-title">Sample Pages</h5>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <ul>
+                    <li>
+                        <a href="/sample/list">list</a>
+                    </li>                    
+                    <li>
+                        <a href="/sample/form">form</a>
+                    </li>
+                    <li>
+                        <a href="/sample/details">details</a>
+                    </li>
+                    <li>
+                        <a href="/sample/console">console</a>
+                    </li> 
+                    
+                     <li>
+                        <a href="/sample/login" target="loginPage">login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="widget-box">
+        <div class="widget-header">
+            <h5 class="widget-title">Sample Modals</h5>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <ul>                
+                    <li>
+                        <button id="btnConfirm" class="btn btn-xs btn-danger">
+                            <i class="ace-icon fa fa-remove bigger-120"></i>
+                            confirm modal
+                        </button>
+                    </li>
+                    <li>
+                        <a id="linkMessage" href="#">message modal</a>
+                    </li>
+                    <li>
+                        <a id="linkForm" href="#">linkForm modal</a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" class="hide">
+    <div class="alert alert-info bigger-110">
+        将要操作****,操作后不可恢复
+    </div>
+
+    <div class="space-6"></div>
+
+    <p class="bigger-110 bolder center grey">
+        <i class="ace-icon fa fa-hand-o-right blue bigger-120"></i>
+        是否确定?
+    </p>
+</div>
+
+<div id="dialog-message" class="hide">
+    <p>
+        This is the default dialog which message.
+    </p>
+
+    <div class="hr hr-12 hr-double"></div>
+
+    <p>
+        Currently using
+        <b>36% of your storage space</b>.
+    </p>
+</div>
+
+<div id="dialog-Form" class="hide">
+    <div class="col-xs-12">
+        <div>
+        </div>
+        <form id="testForm" method="post" role="form">                                                            
+            <div class="form-group">
+                <label class="control-label no-padding-right" for="form-field-text"> Text Label </label>
+                <div class="">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-text" name="form-field-text" placeholder="text" class="col-xs-12">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="control-label no-padding-right" for="form-field-digits"> digits Label </label>
+                <div class="">
+                    <div class="clearfix">
+                        <input type="text" id="form-field-digits" name="form-field-digits" placeholder="digits" class="col-xs-12">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>    
+</div>
+
+{/block}
+
+{block name="resources-footer"}
+
+
+<script>
+jQuery(function($) {
+
+    $( "#btnConfirm" ).on('click', function(e) {
+        e.preventDefault();
+    
+        $( "#dialog-confirm" ).removeClass('hide').dialog({
+            resizable: false,
+            modal: true,
+            title: "<div class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-exclamation-triangle red'></i> Empty the recycle bin?</h4></div>",
+            title_html: true,
+            buttons: [
+                {
+                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Delete all items",
+                    "class" : "btn btn-danger btn-xs",
+                    click: function() {
+                        alert('delete completed.');
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancel",
+                    "class" : "btn btn-xs",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+    });
+    
+    $( "#linkMessage" ).on('click', function(e) {
+        e.preventDefault();
+    
+        $( "#dialog-message" ).removeClass('hide').dialog({
+            resizable: false,
+            modal: true,
+            title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> jQuery UI Dialog</h4></div>",
+            title_html: true,
+            buttons: [
+                {
+                    text: "Cancel",
+                    "class" : "btn btn-xs",
+                    click: function() {                        
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    text: "Ok",
+                    "class" : "btn btn-primary btn-xs",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+    });
+    $( "#linkForm" ).on('click', function(e) {
+        e.preventDefault();
+    
+        $( "#dialog-Form" ).removeClass('hide').dialog({
+            resizable: false,
+            modal: true,
+            title: "<div class='widget-header widget-header-small'><h4 class='smaller'>Form Title</h4></div>",
+            title_html: true,
+            width:"400px",
+            buttons: [
+                {
+                    text: "Cancel",
+                    "class" : "btn btn-xs",
+                    click: function() {                        
+                        $( this ).dialog( "close" );
+                    }
+                }
+                ,
+                {
+                    text: "确认提交",
+                    "class" : "btn btn-primary btn-xs",
+                    click: function() {
+                        $("#testForm").submit();
+                    }
+                }
+            ]
+        });
+    });
+
+    $("#testForm").validate({
+        errorElement: 'div',
+        focusInvalid: false,            
+        rules: {
+            'form-field-text': { required:true, minlength:3, maxlength:10 },
+            'form-field-digits': { required:true, digits:true }
+        },
+        messages: {
+            'form-field-text': {
+                required: "请输入text",
+                minlength: "至少包含3个字符",
+                maxlength: "不能大于10个字符"
+            },
+            'form-field-digits': {
+                required: "请输入digits",
+                digits: "请输入整数"
+            }
+        },
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },         
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+            error.addClass("help-block");
+            error.parents(".form-group").addClass("has-error");
+        },
+
+        submitHandler: function (form) {
+            form.submit();
+        },            
+    });
+});    
+</script>
+{/block}
+

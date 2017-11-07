@@ -1,0 +1,91 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}Execl模板说明{/block}
+{block name="page-content"}
+<!--档案详情部分-->
+<div class="com1-bg em-info">
+    <!--员工档案详情部分-->
+    <div class="em3-info1">
+        <p class="com-tt">Excel模板格式说明 <a class="button download-excel">下载excel模板</a></p>
+    </div>
+    <div class="em1-info1 em3">
+        <table class="em_content_table table_excel" width="300" border="1" cellspacing="0">
+            <tbody>
+                <tr>
+                    <th width="200" height="30">列项</th>
+                    <th width="800" height="30"></th>
+                </tr>
+                <tr>
+                    <td height="30">目前状态</td>
+                    <td>必填，包括两项在职、离任</td>
+                </tr>
+                <tr>
+                    <td height="30">员工姓名</td>
+                    <td>必填，不能超过5个汉字</td>
+                </tr>
+                <tr>
+                    <td height="30">身份证号</td>
+                    <td>必填，<span class="excel-red">系统会自动校验身份证合法性，请准确填写</span></td>
+                </tr>
+                <tr>
+                    <td height="30">手机号码</td>
+                    <td>必填</td>
+                </tr>
+                <tr>
+                    <td height="30">入职日期</td>
+                    <td>必填，日期格式包括年月日</td>
+                </tr>
+                <tr>
+                    <td height="30">离职日期</td>
+                    <td>日期格式包括年月日，<span class="excel-red">如果在职可不填</span></td>
+                </tr>
+                <tr>
+                    <td height="30">毕业学校</td>
+                    <td>必填，最多30个汉字</td>
+                </tr>
+                <tr>
+                    <td height="30">学历</td>
+                    <td>必填，包括五项大专以下、大专、本科、硕士、博士·</td>
+                </tr>
+                <tr>
+                    <td height="30">职务名称</td>
+                    <td> 必填，最多30个汉字</td>
+                </tr>
+                <tr>
+                    <td height="30">担任职务开始时间</td>
+                    <td>必填，日期格式包括年月日</td>
+                </tr>
+                <tr>
+                    <td height="30">担任职务结束时间</td>
+                    <td>必填，日期格式包括年月日</td>
+                </tr>
+                <tr>
+                    <td height="30">年薪收入（万元）</td>
+                    <td><span class="excel-red">可不填</span>，3-999的两位小数</td>
+                </tr>
+                <tr>
+                    <td height="30">所在部门</td>
+                    <td>必填，最多20个汉字</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="resources-footer"}
+<script>
+    jQuery(function ($) {
+        $(".download-excel").click(function(){
+            location.href='downLoadModel?CompanyId='+{$Think.get.CompanyId};
+        })
+    });
+</script>
+<link href="{$Think.config.resources_site_root}/mobile/css/photoswipe.css?v=0" rel="stylesheet">
+<link href="{$Think.config.resources_site_root}/mobile/css/default-skin/default-skin.css?v=0" rel="stylesheet">
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe-ui-default.min.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/boss.js"></script>
+{/block}

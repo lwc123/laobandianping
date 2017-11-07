@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_100PX"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/current_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/total_img_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/current_img"
+            android:text="/9"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <com.juxian.bosscomments.widget.MyRoundProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progress="120"
+        android:max="120"
+        app:progressbar_radius="60dp"
+        app:progressbar_reach_color="#f456c5"
+        app:progressbar_text_color="#f456c5"
+        app:progressbar_text_size="18sp"
+        app:progressbar_unreach_color="#f194e1" />
+</LinearLayout>

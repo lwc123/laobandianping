@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{194F6C77-8341-4AB1-A976-464516DDEE10}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXBC.BOSS.WebSite</RootNamespace>
+    <AssemblyName>JXBC.BOSS.WebSite</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JXTB.CommonData">
+      <HintPath>..\..\..\..\..\Libs\JuXian4.0\JXTB.CommonData.dll</HintPath>
+    </Reference>
+    <Reference Include="M2SA.AppGenome">
+      <HintPath>..\..\..\..\..\Libs\M2SA.AppGenome\M2SA.AppGenome.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\JXBC.Web\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\Libs\Newtonsoft.Json\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Helpers">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Http.WebHost" />
+    <Reference Include="System.Web.Mvc">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\MvcController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ApplyManagerController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appgenome.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_common_resources_footer.cshtml" />
+    <Content Include="Views\Shared\_common_Resources_Header.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_common_Header.cshtml" />
+    <Content Include="Views\Shared\_common_Footer.cshtml" />
+    <Content Include="Views\Shared\_common_Left.cshtml" />
+    <Content Include="Views\Shared\_common_Pagination_Numbers.cshtml" />
+    <Content Include="Views\ApplyManager\ConsultantApplyList.cshtml" />
+    <Content Include="Views\ApplyManager\ConsultantApplyDetail.cshtml" />
+    <Content Include="Views\ApplyManager\ServiceApplyList.cshtml" />
+    <Content Include="Views\ApplyManager\ServiceApplyDetail.cshtml" />
+    <Content Include="Views\ApplyManager\AdviceApplyList.cshtml" />
+    <Content Include="Views\ApplyManager\AdviceApplyDetail.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\User\Talentes.cshtml" />
+    <Content Include="Views\User\Consultantes.cshtml" />
+    <Content Include="Views\CareerService\List.cshtml" />
+    <Content Include="Views\CareerService\Detail.cshtml" />
+    <Content Include="Views\CareerService\Edit.cshtml" />
+    <Content Include="Views\CareerAdvice\Detail.cshtml" />
+    <Content Include="Views\CareerAdvice\Edit.cshtml" />
+    <Content Include="Views\CareerAdvice\List.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\JXBC.Packages\JXBC.Packages\JXBC.Packages.csproj">
+      <Project>{90ececf0-4a87-4a50-9584-7a0123935f45}</Project>
+      <Name>JXBC.Packages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.Passports\JXBC.Passports\JXBC.Passports.csproj">
+      <Project>{b2959860-6a53-4b8e-900d-6bb2cbee561d}</Project>
+      <Name>JXBC.Passports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.TradeSystem\JXBC.TradeSystem\JXBC.TradeSystem.csproj">
+      <Project>{a3f7b65c-e3b1-491e-bfc8-321f4a49aaf2}</Project>
+      <Name>JXBC.TradeSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.Web\JXBC.WebCore\JXBC.WebCore.csproj">
+      <Project>{b6c11390-dc4d-4ed7-806f-ca5f3aa48886}</Project>
+      <Name>JXBC.WebCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JXBC.Workplace\JXBC.Workplace\JXBC.Workplace.csproj">
+      <Project>{672b54ec-da09-4b30-9032-45dcc6fdba95}</Project>
+      <Name>JXBC.Workplace</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>30100</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:30100/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /s /y /r /d $(ProjectDir)..\..\..\..\..\Libs\M2SA.AppGenome\*.* $(TargetDir)
+xcopy /s /y /r /d $(ProjectDir)..\..\..\libs\JXBC.*.DataRepositories.* $(TargetDir)
+xcopy /s /y /r /d $(ProjectDir)..\..\..\libs\JXBC.*.Providers.* $(TargetDir)
+md $(TargetDir)\sqlmap
+xcopy /s /y /r /d $(ProjectDir)..\..\..\libs\sqlmap $(TargetDir)\sqlmap</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

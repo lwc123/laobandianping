@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/build_new_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/DIMEN_40PX"
+        android:layout_marginBottom="@dimen/DIMEN_80PX"
+        android:gravity="center"
+        android:background="@drawable/btn_accredit"
+        android:paddingLeft="@dimen/DIMEN_36PX"
+        android:paddingRight="@dimen/DIMEN_36PX"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/DIMEN_90PX"
+            android:src="@drawable/gold_add"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_text_color"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:text="创建新公司"
+            android:textSize="@dimen/DIMEN_30PX"/>
+    </LinearLayout>
+</LinearLayout>

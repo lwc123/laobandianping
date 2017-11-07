@@ -1,0 +1,66 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - IQKeyboardManager (3.3.7)
+  - JCTagListView (0.1.1)
+  - JSONKit-NoWarning (1.2)
+  - JSONModel (1.1.2)
+  - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
+  - MJPhotoBrowser (1.0.2):
+    - SDWebImage
+    - SVProgressHUD
+    - YLGIFImage
+  - MJRefresh (3.1.12)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SVProgressHUD (2.0.3)
+  - UMengAnalytics (4.1.0)
+  - YLGIFImage (0.11)
+
+DEPENDENCIES:
+  - AFNetworking
+  - IQKeyboardManager
+  - JCTagListView
+  - JSONKit-NoWarning
+  - JSONModel (~> 1.1.2)
+  - Masonry (~> 1.0.2)
+  - MBProgressHUD
+  - MJPhotoBrowser
+  - MJRefresh
+  - SDWebImage
+  - SVProgressHUD
+  - UMengAnalytics
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  JCTagListView: 184ee1252a07164e3a1ac31d67b175561b1c608e
+  JSONKit-NoWarning: 3d27e6f9e6846ecf741e8c64dcadd7d5aa7193cb
+  JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJPhotoBrowser: f55e8490231f44a78ca6455105a1c798a142c95f
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  UMengAnalytics: 19b28253793d77dff10fb7d502faad1fb6b8ce4a
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
+
+PODFILE CHECKSUM: aed4f3c1dfe3b64a7f0d96a97844372751a187c1
+
+COCOAPODS: 1.0.1

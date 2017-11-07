@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/public_bank_info_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_22PX"
+        android:text=""
+        android:textColor="@color/menu_color"/>
+
+    <TextView
+        android:id="@+id/public_bank_info_bank_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/public_bank_info_company_name"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_22PX"
+        android:text=""
+        android:textColor="@color/main_text_color"/>
+
+    <TextView
+        android:id="@+id/public_bank_info_bank_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/public_bank_info_bank_count"
+        android:layout_marginBottom="@dimen/DIMEN_14PX"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_marginTop="@dimen/DIMEN_22PX"
+        android:text=""
+        android:textColor="@color/main_text_color"/>
+
+    <CheckBox
+        android:id="@+id/isselected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:textColor="@color/main_text_color"
+        android:background="@null"
+        android:button="@null"
+        android:layout_marginRight="@dimen/DIMEN_34PX"
+        android:drawableLeft="@drawable/check_record_status_selector"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/DIMEN_18PX"/>
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+
+<div class="row">
+    <div class="col-xs-10">
+        <h3 class="header smaller lighter blue">认领公司列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center"> <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号</th>
+                    <th class="col-xs-2">申请时间</th>
+                    <th  class="col-xs-3">认领公司</th>
+                    <th class="col-xs-1">认领人</th>
+                    <th class="col-xs-2">认领人所在公司</th>
+                    <th class="col-xs-2">操作</th>
+                </tr>
+                </thead>
+                {foreach( name="ClaimList" item="item")}
+                <tbody>
+                <tr>
+                    <td class="center">{$item['RecordId']}</td>
+                    <td class="center">     {:toLocalDateTime($item.CreatedTime,'Y-m-d H:i:s')}</td>
+                    <td>{$item.company.CompanyName}</td>
+                    <td>{$item.CompanyMember.RealName}</td>
+                    <td> {$item.workplaceCompany.CompanyName}</td>
+
+                    <td class="center">
+                        <a href="OpinionClaim?OpinionCompanyId={$item.company.CompanyId}&CompanyId={$item.workplaceCompany.CompanyId}&CompanyName={$item.company.CompanyName}&OpinionCompanyName={$item.company.CompanyName}&RealName={$item.CompanyMember.RealName}&PassportId={$item.CompanyMember.PassportId}">审核认领</a>
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{/block}

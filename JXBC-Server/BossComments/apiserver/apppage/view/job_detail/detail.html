@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>职位详情公司</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta content="telephone=no" name="format-detection" />
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	{include file="public/resources_header" /}
+</head>
+
+<body id="detail">
+	<!-- 缓冲动画 -->
+	<div class="loader-bg">
+		<div class="loader">
+    	</div>
+	</div>
+	<div class="isShow">
+		<!-- 个人详情 -->
+		<div class="job-wrapper" id="person" style="display:none;">
+			<!-- 头部 -->
+			<section class="caption">
+				<ul>
+					<li class="overflow">
+						<p class="job-name fl font30">{{list.JobName}}</p><p class="job-money fr font30"><span class="SalaryRangeMin"></span>K-<span class="SalaryRangeMax"></span>K</p>
+					</li>
+					<li>
+						<span>{{list.Company.CompanyAbbr}}</span><span class="ago">{{list.CreatedTime | moment}}</span>
+					</li>
+					<li>
+						<span class="appearance">{{list.ExperienceRequire}}</span><span class="edu">{{list.EducationRequire}}</span>
+					</li>
+					<li>
+						<span class="address">{{list.JobLocation}}</span>
+					</li>
+				</ul>
+			</section>
+			<!-- 离任报告 -->
+			<section>
+				<p class="title font30">职位详情</p>
+				<!-- 岗位职责 -->
+				<div class="area">
+					<div class="con">
+						{{{list.JobDescription}}}
+					</div>
+				</div>
+			</section>
+			<!-- 公司介绍 -->
+			<section class="margin-b5">
+				<p class="title font30">公司介绍 </p>
+				<div class="intro overflow">
+					<div class="pic fl">
+						<img v-bind:src="list.Company.CompanyLogo">
+					</div>
+					<div class="intro-txt fl">
+						<p>{{list.Company.CompanyName}}</p>
+						<p>
+							<span>{{list.Company.Industry}}</span> &nbsp;&nbsp;<span>{{list.Company.CompanySize}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="intro-detail">
+					<p>{{list.JobLocation}}</p>
+				</div>
+				<div class="blockheight"></div>
+			</section>
+			<!-- 投递简历 -->
+			<div class="resume po-fixed">
+				<p class="tou font30">投递简历到</p>
+				<div class="resume-detail">
+					<p>邮箱：{{list.ContactEmail}}</p>
+					<p>电话：<span v-if="list.ContactNumber">{{list.ContactNumber}}</span> <span v-else="list.ContactNumber==''">--</span></p>
+				</div>
+
+			</div>
+		</div>
+		<!-- 企业详情 -->
+		<!--<div class="job-wrapper" id="company" style="display:none;">
+			&lt;!&ndash; 头部 &ndash;&gt;
+			<section class="caption">
+				<ul>
+					<li class="overflow">
+						<p class="job-name fl font30">{{list.JobName}}</p><p class="job-money fr font30"><span class="SalaryRangeMin"></span>K-<span class="SalaryRangeMax"></span>K</p>
+					</li>
+					<li>
+						<span>{{list.Company.CompanyAbbr}}</span><span class="ago">{{list.CreatedTime | moment}}</span>
+					</li>
+					<li>
+						<span class="appearance">{{list.ExperienceRequire}}</span><span class="edu">{{list.EducationRequire}}</span>
+					</li>
+					<li>
+						<span class="address">{{list.JobLocation}}</span>
+					</li>
+				</ul>
+			</section>
+			&lt;!&ndash; 离任报告 &ndash;&gt;
+			<section>
+				<p class="title font30">职位详情</p>
+				&lt;!&ndash; 岗位职责 &ndash;&gt;
+				<div class="area">
+					<div class="con description">
+						{{{list.JobDescription}}}
+					</div>
+				</div>
+			</section>
+			&lt;!&ndash; 公司介绍 &ndash;&gt;
+			<section class="margin-b5" id="margin">
+				<p class="title font30">公司介绍 </p>
+				<div class="intro overflow">
+					<div class="pic fl">
+                        <img v-bind:src="list.Company.CompanyLogo">
+					</div>
+					<div class="intro-txt fl">
+						<p>{{list.Company.CompanyName}}</p>
+						<p>
+							<span>{{list.Company.Industry}}</span><span>{{list.Company.CompanySize}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="intro-detail">
+					<p>{{list.JobCity}}</p>
+					<p>{{list.Company.CompanyAbbr}}</p>
+				</div>
+			</section>
+			&lt;!&ndash; 投递简历 &ndash;&gt;
+			<div class="resume margin-b1">
+				<p class="tou font30">投递简历到</p>
+				<div class="resume-detail">
+					<p>邮箱：{{list.ContactEmail}}</p>
+					<p>电话：{{list.ContactNumber}}</p>
+				</div>
+			</div>
+		</div>-->
+	</div>
+	{include file="public/resources_footer" /}
+	<script type="text/javascript">
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]);return null;
+		}
+		var detail=new Vue({
+			el:'#detail',
+			data:{
+				list:{}
+			},
+			ready:function() {
+				var isPersonal=getUrlParam('isPersonal');
+				var CompanyId=getUrlParam('CompanyId');
+				var JobId=getUrlParam('JobId');
+				/*alert(JobId)*/
+				var url=AppEnvironment.apiRoot+'/workplace/JobQuery/Detail?JobId='+JobId;
+				if(isPersonal==1){
+					$('#person').show();
+				}else{
+					$('#person').show();
+					//$('#margin').removeClass('margin-b5');
+				}
+				$('.loader-bg').show();	
+					$('.isShow').hide();	
+				this.$http.get(url).then(function (response) {
+					response.data.JobDescription=response.data.JobDescription.replace(/\n/g,'<br/>');
+					this.list = response.data;
+					$('.loader-bg').hide();	
+					$('.isShow').show();
+					var SalaryRangeMin=(response.data.SalaryRangeMin/1000);
+					var SalaryRangeMax=(response.data.SalaryRangeMax/1000);
+					// var reg=/^-?//d+$/;
+					function isInteger(obj) {
+					 return obj%1 === 0
+					}
+					if(isInteger(SalaryRangeMin)){
+						SalaryRangeMin=SalaryRangeMin;
+					}else{
+						SalaryRangeMin=(response.data.SalaryRangeMin/1000).toFixed(2);
+					}
+					if(isInteger(SalaryRangeMax)){
+						SalaryRangeMax=SalaryRangeMax;
+					}else{
+						SalaryRangeMax=(response.data.SalaryRangeMax/1000).toFixed(2);
+					}
+					$('.SalaryRangeMin').text(SalaryRangeMin);
+					$('.SalaryRangeMax').text(SalaryRangeMax);
+				},function(error){
+					console.log('aaa')
+				})
+			}
+		})
+		Vue.filter('moment', function (value, formatString) {
+		    formatString = formatString || 'YYYY年MM月DD日';
+		    return moment(value).format(formatString);
+		});
+	</script>
+
+	
+</body>
+</html>

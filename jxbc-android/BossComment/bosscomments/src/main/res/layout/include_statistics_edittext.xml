@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.juxian.bosscomments.widget.EditText
+        android:id="@+id/feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top"
+        android:minHeight="@dimen/DIMEN_300PX"
+        android:paddingBottom="@dimen/DIMEN_22PX"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        android:paddingRight="@dimen/DIMEN_22PX"
+        android:paddingTop="@dimen/DIMEN_22PX"
+        android:text=""
+        android:textColor="@color/menu_color"
+        android:textColorHint="@color/menu_color"
+        android:textSize="@dimen/DIMEN_24PX"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/feedback_content"
+        android:layout_alignRight="@+id/feedback_content"
+        android:layout_marginBottom="@dimen/DIMEN_20PX"
+        android:layout_marginRight="@dimen/DIMEN_20PX">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/total_content_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/total_content_number_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/total_content_number"
+            tools:text="/1000"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"/>
+    </RelativeLayout>
+</RelativeLayout>

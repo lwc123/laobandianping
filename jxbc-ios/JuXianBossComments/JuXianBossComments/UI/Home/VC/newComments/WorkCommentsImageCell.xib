@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="WorkCommentsImageCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldadd" translatesAutoresizingMaskIntoConstraints="NO" id="lve-yF-FJv">
+                        <rect key="frame" x="15" y="5" width="34" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="Cqn-g1-d5v"/>
+                            <constraint firstAttribute="width" constant="34" id="tfp-lY-ki4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择员工档案" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1j-dq-ide">
+                        <rect key="frame" x="59" y="0.0" width="100" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Jtn-tM-FXz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好名字啊啊" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkN-Pw-H9p">
+                        <rect key="frame" x="210" y="0.0" width="100" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="sd5-VZ-PaI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qkN-Pw-H9p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FU9-ta-eCa"/>
+                    <constraint firstItem="m1j-dq-ide" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FWq-Ef-Fih"/>
+                    <constraint firstAttribute="trailing" secondItem="qkN-Pw-H9p" secondAttribute="trailing" constant="10" id="J8T-wl-f2I"/>
+                    <constraint firstAttribute="bottom" secondItem="qkN-Pw-H9p" secondAttribute="bottom" id="Nbn-nu-wdC"/>
+                    <constraint firstItem="m1j-dq-ide" firstAttribute="leading" secondItem="lve-yF-FJv" secondAttribute="trailing" constant="10" id="iFr-js-gAX"/>
+                    <constraint firstAttribute="bottom" secondItem="m1j-dq-ide" secondAttribute="bottom" id="jrk-9F-e0n"/>
+                    <constraint firstItem="lve-yF-FJv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="qjT-oh-GbO"/>
+                    <constraint firstItem="lve-yF-FJv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="zpC-da-Vjc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkRecodeLabel" destination="m1j-dq-ide" id="LQz-dy-v7e"/>
+                <outlet property="iconImageView" destination="lve-yF-FJv" id="8FR-WH-4zi"/>
+                <outlet property="nameLabel" destination="qkN-Pw-H9p" id="QsC-YW-YwJ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="goldadd" width="146" height="36"/>
+    </resources>
+</document>

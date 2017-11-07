@@ -1,0 +1,149 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+
+@{
+    var isAuthenticated = MvcContext.Current.IsAuthenticated;
+    var fromPreview = Request["preview"] == "1" || Request["from"] == "preview";
+    var fromShare = Request["jxl_from"] == "share" || Request["from"] == "share";
+    var entity = (CareerAdviceEntity)Model;
+    var oid = Request.QueryString["oid"];
+
+    ViewBag.Title = "高见详情";
+}
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="service-information career" style="background: url(@(entity.Picture)) 0 0 no-repeat;background-size:cover;">
+            <p class="serviceBrief text-center"><em>[</em><span>@(entity.Subject)</span><em>]</em></p>
+            <p>
+                @if (entity.FavoriteCount > 0)
+                {
+                    <span class="CollCount pull-left"><i class="iconfont-collection"></i>@(entity.FavoriteCount)收藏</span>
+                }
+                @if (entity.ReadCount > 0)
+                {
+                    <span class="CollCount pull-right"><i class="iconfont-read"></i>@(entity.ReadCount)阅读</span>
+                }
+            </p>
+        </div>
+        <div class="personal-information">
+            <img id="headPicture" src="@(entity.Profile.Avatar)" alt="头像" class="headPicture"
+                 @if (false == fromShare && false == fromPreview) { @Html.Raw("data-target=\"app:gotoNativePage\" data-page-name=\"HunterPage\" data-page-params='{\"oid\":" + entity.Profile.PassportId + "}'")    } />
+            <label class="personalName">
+                @(entity.Profile.RealName)
+                @for (var i = 0; i < entity.Profile.ConsultantGrade; i++)
+                {<i class="iconfont-shield"></i>}
+            </label>
+            @if (false == string.IsNullOrEmpty(entity.Profile.Identity))
+            {
+                <p class="personalBrief">@(entity.Profile.Identity)</p>
+            }
+
+        </div>
+    </div>
+    <div class="panel panel-default font-lessimportant career-content">
+        @Html.Raw(entity.Content.Replace("\n", "<br/>"))
+    </div>
+
+@if (fromPreview == false)
+{
+    <div class="panel career-reward font-lessimportant">
+
+        @if (false == fromShare && false == fromPreview && entity.PassportId != MvcContext.Current.PassportId)
+            {
+            <img id="btnPayGratuity" src="@(AppEnvironment.ResourcesSiteRoot)/appH5/common/img/career-reward.png" alt="打赏" width="55" height="55" data-target="app:gotoNativePage" data-page-name="PayGratuity" data-page-params='{"sourceType":"CareerAdvice","sourceId":@(entity.AdviceId)}' /><br />
+        }
+
+        @if (null != entity.GratuityHistory && entity.GratuityHistory.Count > 0)
+            {
+            <ul class="career-rewardlist" id="btnBuyers" data-target="app:gotoNativePage" data-page-name="CareerAdvice:DonorList" data-page-params='{"oid":@(entity.AdviceId)}'>
+                @foreach (var item in entity.GratuityHistory)
+                {
+                    <li><img src="@item.Profile.Avatar" alt="" width="23" height="23" /></li>
+                }
+                <li><img src="@(AppEnvironment.ResourcesSiteRoot)/appH5/common/img/career-reward-tonext.png" alt="" width="6" height="14" /></li>
+            </ul>
+                <p class="people-numsum">共@(entity.GratuityCount)人打赏</p>
+        }
+
+    </div>
+    <div class="panel panel-primary @if (null == entity.CommentHistory || entity.CommentHistory.Count < 1) {@("hidden")}">
+        <h3 class="career-commentlist-tltle"><i class="iconfont-command"></i>评论</h3>
+        @if (null != entity.CommentHistory && entity.CommentHistory.Count > 0)
+        {
+            foreach (var item in entity.CommentHistory)
+            {
+                <dl class="career-commentlist">
+                    <dt><img src="@item.Profile.Avatar" class="avton" /></dt>
+                    <dd class="name"><em>@item.Profile.Nickname</em>&nbsp;@item.Profile.CurrentCompany@item.Profile.CurrentJobTitle&nbsp;<i class="iconfont-v"></i></dd>
+                    <dd class="comment">@item.Content</dd>
+                    <dd class="datetime">@item.ModifiedTime.ToString("yyyy年-MM月-d日HH:mm")</dd>
+                </dl>
+            }
+        }
+    </div>
+    if (false == fromShare && entity.PassportId != MvcContext.Current.PassportId)
+    {
+        <div class="career-commentsubmit">
+            <input type="text" id="comment-content" />
+            <a class="submit" id="comment-submit"></a>
+            <div style="clear:both;"></div>
+        </div>
+    }
+}
+</div><!-- /.container -->
+<div style="clear:both;"></div>
+        
+@section _resources_footer {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".career-commentsubmit input").focus(function(){
+                $(".career-commentsubmit .submit").addClass("active");
+                console.log($(".career-commentsubmit .submit").attr("class"));
+            });
+            $(".career-commentsubmit input").blur(function(){
+                $(".career-commentsubmit .submit").removeClass("active");
+            });
+        });
+    </script>
+
+    @if (false == isAuthenticated)
+    {
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#comment-submit").click(function () {
+                    AppBridge.gotoNativePage("SignIn", null);
+                });
+            });
+        </script>
+    }
+    @if (true == isAuthenticated)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {                
+                $("#comment-submit").click(function () {                    
+                    var content = $("#comment-content").val();
+                    if (content.length < 1) {
+                        return;
+                    }
+                    
+                    var btn = $(this);
+                    btn.attr("disabled", true);
+                    $.ajax({
+                        type: "post",
+                        url: "../CareerAdvice/Comment",
+                        data: { AdviceId: AppBridge.getQueryParam("oid"), Content: content },
+                        dataType: "json",
+                        success: function (data) {
+                            btn.attr("disabled", false);
+                            location.reload();
+                        },
+                        error: function (data) {
+                            btn.attr("disabled", false);
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+}

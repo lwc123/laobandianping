@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="OrganizationProfileRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      update user_profile set CurrentProfileType=@CurrentProfileType, Nickname=@Nickname, RealName=@RealName, Gender=@Gender, Avatar=@Avatar, Birthday=@Birthday, Email=@Email, Signature=@Signature
+      , CurrentCompany=@CurrentCompany, CurrentJobTitle=@CurrentJobTitle
+      , LastSignedInTime=@LastSignedInTime, LastActivityTime=@LastActivityTime, ModifiedTime=@ModifiedTime
+      where PassportId = @PassportId;
+
+      insert into organization_profile (PassportId, CurrentOrganizationId, AttestationStatus, AttestationTime, Identity, SelfIntroduction, AuthenticationImages
+      , CreatedTime,ModifiedTime)
+      values (@PassportId, @CurrentOrganizationId, @AttestationStatus, @AttestationTime, @Identity, @SelfIntroduction, @AuthenticationImages
+      , @CreatedTime,@ModifiedTime);
+
+      select @PassportId;
+    </sqlWrap>
+
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update user_profile set CurrentProfileType=@CurrentProfileType, Nickname=@Nickname, RealName=@RealName, Gender=@Gender, Avatar=@Avatar, Birthday=@Birthday, Email=@Email, Signature=@Signature
+      , CurrentCompany=@CurrentCompany, CurrentJobTitle=@CurrentJobTitle
+      , LastSignedInTime=@LastSignedInTime, LastActivityTime=@LastActivityTime, ModifiedTime=@ModifiedTime
+      where PassportId = @Id;
+
+      update organization_profile set CurrentOrganizationId=@CurrentOrganizationId, Identity=@Identity, SelfIntroduction=@SelfIntroduction, AuthenticationImages=@AuthenticationImages
+      , ModifiedTime=@ModifiedTime
+      , AttestationStatus=@AttestationStatus, AttestationTime=@AttestationTime
+      where PassportId = @Id;
+    </sqlWrap>
+
+    <sqlWrap sqlName="ChangeAttestationStatus" supportDBType="SqlServer, MySql">
+      update organization_profile set AttestationStatus=@AttestationStatus, AttestationTime=@AttestationTime
+      , ConsultantGrade=@ConsultantGrade, AttestationRejectedReason=@AttestationRejectedReason
+      where PassportId = @PassportId;
+    </sqlWrap>
+    
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from user_profile a inner join organization_profile b on a.PassportId=b.PassportId where a.PassportId=@Id
+    </sqlWrap>
+  </module>
+</root>

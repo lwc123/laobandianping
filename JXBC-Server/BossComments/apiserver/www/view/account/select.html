@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>选择身份</title>
+       {include file="-public/resources_fullscreen_header" /} 
+    </head>
+    <body>
+       <div id="com-body">
+            <div class="com-a">
+                <img class="com-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" >
+                <div class="com-form"></div>
+                <form>
+                    <p class="com-title">选择公司</p>
+                    <div class="sel-bg" id="company">
+                      <!--  <p class="sel-title" >企业身份</p>-->
+                        <div id="scroll">
+	                        <ul class="sel-list">
+	                          
+	                        </ul>
+                        </div>
+                    </div>
+                    <div class="person-bg hide" id="person">
+                        <p class="sel-title">个人身份</p>
+                        <p><a class="sel-a" href="/MyArchive/index">进入个人工作台</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="com-footer"></div>
+        </div>
+        </div>
+    </body>
+    {include file="-public/resources_fullscreen_footer" /} 
+    <script type="text/javascript">
+        $(function(){
+           /*
+           var SelectedProfileType=getUrlParam('SelectedProfileType');
+            if(SelectedProfileType==1){
+                $('#person').show();
+                $('#company').hide();
+                setTimeout(function(){
+                       window.location.href='/Sample/console';
+                },1000);  
+            }else if(SelectedProfileType==2){
+                $('#company').show();
+                $('#person').hide();
+            }// */
+            var comUrl=AppEnvironment.apiRoot+'/workplace/User/myRoles?t='+Math.random();
+            var comLi="";
+            $.ajax({
+                type:'get',
+                url:comUrl,
+                dataType:'json',
+                success:function(data){
+                    if(data!=null&&data.length>0){
+                        $.each(data,function(i){
+                            comLi="<li data-id='"+data[i].CompanyId +"'>";
+                            status=data[i].myCompany.AuditStatus;
+                            if(status==0){
+                                comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>未提交认证<label class='list_icon'>></label></span></a>";
+                            }else if(status==1){
+                                comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>审核中<label class='list_icon'>></label></span></a>";
+                            }else if(status==2){
+                                    ServiceEndTime=data[i]['myCompany'].ServiceEndTime;
+                                    EndTime =  new Date(ServiceEndTime).getTime();
+                                    var timestamp=new Date().getTime();
+                                    days= Math.ceil((EndTime-timestamp)/86400000);
+                                    if(days>30 || ServiceEndTime==null){
+                                        if(data[i]['UnreadMessageNum'] ==0){
+                                            comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_blue'><label class='list_icon'>></label></span></a>";
+                                        }else{
+                                            comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_blue'>"+data[i].UnreadMessageNum+"条待审核评价<label class='list_icon'>></label></span></a>";
+                                        }
+                                    }else if(days>0 && days<=30){
+                                        comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>剩余"+days+"天<label class='list_icon'>></label></span></a>";
+                                    }else{
+                                        comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='danger_red'>服务到期<label class='list_icon'>></label></span></a>";
+                                    }
+                            }else if(status==9){
+                                comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>审核不通过<label class='list_icon'>></label></span></a>";
+                            }
+
+                            comLi+="</li>";
+                            $('.sel-list').append(comLi);
+                            $('.sel-list li').bind('click',function(){
+                                var  num=$('.sel-list li').index(this)
+                                var status=data[num].myCompany.AuditStatus;
+                                var CompanyId=$(this).attr('data-id');
+                                if(status==2){
+                                     window.location.href='/Home/console?CompanyId='+CompanyId;
+                                 }else if(status!==2){
+                                    window.location.href="/CompanyAudit/AuditStepFirst?CompanyId="+CompanyId;
+                                 }
+                            })
+
+                        })
+                    }else{
+                        window.location.href="/enterprise_service/openservice?CompanyId="+CompanyId;
+                    }
+                                        
+                },
+                error:function(){
+                    $('#error').show().text('暂无数据！');
+                    setTimeout(function(){
+                        $('#error').hide();
+                    },2000);    
+                }
+            })
+            function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);return null;
+            }
+            var InviteCode=getUrlParam('InviteCode');
+            if(InviteCode==null){
+                InviteCode='';
+            }
+        })
+        $("#scroll").panel({iWheelStep:32});
+    </script>
+</html>

@@ -1,0 +1,76 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}我的评价列表{/block}
+{block name="page-content"}
+
+<!--右侧内容部分-->
+<div class="com1-bg em-btm">
+
+    <!--在职员工档案部分-->
+    <div class="em-info em1-info">
+        <div class="em-selectType">
+            <ul >
+                <li><a href="myListByAudit?CompanyId={$Think.get.CompanyId}&AuditStatus=0"><button  class="{if $Think.get.AuditStatus == 0 }active{else}{/if}">全部</button></a></li>
+                <li><a href="myListByAudit?CompanyId={$Think.get.CompanyId}&AuditStatus=1"><button class="{if $Think.get.AuditStatus == 1 }active{else}{/if}" >等待审核</button></a></li>
+                <li><a href="myListByAudit?CompanyId={$Think.get.CompanyId}&AuditStatus=9"><button class="{if $Think.get.AuditStatus == 9 }active{else}{/if}">未通过审核</button></a></li>
+                <li><a href="myListByAudit?CompanyId={$Think.get.CompanyId}&AuditStatus=2"><button class="{if $Think.get.AuditStatus == 2 }active{else}{/if}">已通过的评价</button></a></li>
+            </ul>
+        </div>
+        <input type="hidden" name="CompanyId" value="{$Think.get.CompanyId}"/>
+        {if(!empty($myCommentList))}
+        {foreach  $myCommentList as $value}
+        <div class="em1-info1">
+            <img src="{$value.EmployeArchive['Picture']}">
+            <p class="nname"><a href="#">{$value.EmployeArchive['RealName']}</a></p>
+            <p class="work">{$value.PostTitle}</p>
+            <p class="time">创建时间：{:toLocalDateTime($value.CreatedTime,'Y-m-d H:i:s')}</p>
+            <span><a href="/ArchiveComment/comment?CompanyId={$CompanyId}&oid={$value.CommentId}&CommentType={$value.CommentType}&AuditStatus={$value.AuditStatus}&MessageId=1" class="blue">
+                {if $value.CommentType ==0}
+                {$value.StageYear}{$value.StageSection}工作评价
+                {else}
+                离职报告
+                {/if}
+            </a><br><br>
+                   <a class="warnning" href="/ArchiveComment/comment?CompanyId={$CompanyId}&oid={$value.CommentId}&CommentType={$value.CommentType}&AuditStatus={$value.AuditStatus}&MessageId=1">
+                       {if($value.AuditStatus==1)}
+                           {if ($PassportId==$value.PresenterId)}
+                           审核中
+                           {else}
+                           待我审核
+                           {/if}
+                       {elseif($value.AuditStatus==2)}
+                       已通过{elseif($value.AuditStatus==9)}
+                           {if ($PassportId==$value.PresenterId)}
+                            未通过</a><br><br><a class="black" href="/ArchiveComment/commentupdate?CompanyId={$CompanyId}&CommentId={$value.CommentId}&CommentType={$value.CommentType}">重新提交
+                           {else}
+                           未通过
+                           {/if}
+                       {/if}
+                   </a>
+            </span>
+            {if($value.AuditStatus==9)}
+            <p class="warnning"><i class='iconfont'>&#xe640;</i> 退回原因：{$value.RejectReason}</p>
+            {/if}
+        </div>
+        {/foreach}
+        <div class="em-page">
+            {$page}
+        </div>
+        {else/}
+        <div style="text-align: center;margin-top:30px">
+         	<img src="{$Think.config.resources_site_root}/pc/img/none.png"><br>
+         	<button style="margin-left:0">暂无信息</button>
+         </div>
+       
+        {/if}
+    </div>
+</div>
+
+{/block}
+{block name="resources-footer"}
+<script>
+    jQuery(function($) {
+
+    });
+</script>
+{/block}

@@ -1,0 +1,29 @@
+﻿@using JXBC.WebCore.ViewModels;
+@{
+    var entity = (ActivityEntity)Model;
+
+    ViewBag.Title = "活动详情";
+}
+
+
+<div class="jxm">
+    <header class="jxm-head-active">
+        <h1><span class="in ellipsis">@entity.Subject</span></h1>
+        <ul class="jxm-tips-active">
+            <li class="time"><span>活动时间</span>@entity.StartTime.ToString("yyyy年M月dd日 HH：mm")</li>
+            <li class="location"><span>活动地点</span>@entity.Location</li>
+            <li class="person"><span>报名人数</span>@(entity.JoinedCount) 人</li>
+            <li class="tel"><span>咨询电话</span>@entity.ContactPhone</li>
+        </ul>
+    </header>
+    <section class="jxm-con-active">
+        <section class="jxm-coner-active">
+            <h2>活动介绍</h2>
+            <article>@Html.Raw(entity.Summary.Replace("\n", "<br/>"))</article>
+        </section>
+        <section class="jxm-coner-active">
+            <h2>活动流程</h2>
+            <article>@Html.Raw(entity.Content.Replace("\n", "<br/>"))</article>
+        </section>
+    </section>
+</div>

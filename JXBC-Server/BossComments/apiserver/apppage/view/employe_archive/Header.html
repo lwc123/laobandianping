@@ -1,0 +1,25 @@
+ <header class="overflow">
+  <div class="pic fl">
+    <div class="over"></div>
+   <div class="pic-outer amplifyImg">
+     <img src="{$archivedetail.Picture}">
+   </div>
+  </div>
+  <ul class="fl person">
+   <li>
+    <b class="name font34">{$archivedetail.RealName}</b>
+   </li>
+   <li class="font26">
+    <span>{$ArchivePostTitle.PostTitle}</span><span>|</span><span>{$ArchiveDepartment}</span>
+   </li>
+   <li class="font24">
+    <span>{$EntryTime|substr=0,12}入职</span>
+    {if condition="($archivedetail.IsDimission eq '离任') or ($archivedetail.IsDimission eq 1)  "}
+    <span>|</span>
+    <span>
+    {$DimissionTime|substr=0,12}离任
+      </span>
+    {/if}
+   </li>
+  </ul>
+ </header>

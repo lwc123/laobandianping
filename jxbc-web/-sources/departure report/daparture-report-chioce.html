@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>创建新离任报告</title>
+    <!--#include virtual="/-sources/-common/resources_header.html"-->
+</head>
+<body>
+    <!--左侧部分-->
+    <div class="com1-left">
+        <!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+    </div>
+    <!--#include virtual="/-sources/-common/header.html"-->
+    <!--修改离任报告页面部分-->
+    <div class="com1-bg em-btm">
+        <p class="ev-title">创建新离任报告<span>温馨提示：员工离任后，其他企业查看该人才的阶段评价，您公司可获得15元收益</span></p>
+        <div class="em-info">
+            <form class="ev-info">
+            	<div class="ev-select ev-leave">
+                    <p class="select-title">选择员工</p>
+                    <div class="person leave-p">
+                        <img src="http://bc-res.jx.io:8000/pc/img/p4.png">
+                        <p class="nname1"><a href="#">岳新林</a></p>
+                        <p class="work1">人力资源总监 </p>
+                        <p class="time1">2011年11月加入公司</p>
+                    </div>
+                    <div class="em-name">
+                        <span>入职日期</span>
+                        <input type="text" name="EntryTime" placeholder="2011-01-01" class="selectDate">
+                    </div>
+                    <div class="em-name">
+                        <span>离任薪资</span>
+                        <input type="text" name="DimissionSalary" placeholder="11万" class="selectSalary">
+                    </div>
+                </div>
+                <!--离任原因-->
+                <p class="com-tt select-tt new-title">离任原因</p>
+                <ul class="sel-stage">
+                    <li data-stage-id="1">自愿离任</li>
+                    <li data-stage-id="2" class="selected">合同到期</li>
+                    <li data-stage-id="3">劝退</li>
+                    <li data-stage-id="4">开除</li>
+                    <li data-stage-id="5">裁员</li>
+                    <li data-stage-id="6">其它</li>
+                </ul>
+                <input id="txt-sel-stage" name="DimissionReason" value=""  class="hide" type="text"  role="sel-stage"/> 
+                <div class="select-sm">
+                    <p >补充说明：</p>
+                    <br>
+                    <textarea cols="75" rows="5" name="DimissionSupply" placeholder="选填，对离任原因进行更详细的描述..."></textarea>
+                </div>
+                <!--工作评价开始-->
+                <p class="com-tt select-tt">工作综合评价</p>
+                <div class="slider-grade content-padding-left">
+                    <span class="title">工作能力</span>
+                    <span id="ev">极差</span>
+                    <div class="scale" id="bar0">
+                        <div></div>
+                        <span id="btn0"><span id="title0">0</span></span>
+                    </div>
+                    <span class="bars_10">100分</span>
+                    <input class="hide" name="WorkAbility" type="text" value="0" id="txt0">
+                </div>
+                <div class="slider-grade content-padding-left">
+                    <span class="title">工作态度</span>
+                    <span id="ev1">极差</span>
+                    <div class="scale" id="bar1">
+                        <div></div>
+                        <span id="btn1"><span id="title1">0</span></span>
+                    </div>
+                    <span class="bars_10">100分</span>
+                    <input class="hide" name="WorkAttitude" type="text" value="0" id="txt1">
+                </div>
+                <div class="slider-grade content-padding-left">
+                    <span class="title">工作业绩</span>
+                    <span id="ev2">极差</span>
+                    <div class="scale" id="bar2">
+                        <div></div>
+                        <span id="btn2"><span id="title2">0</span></span>
+                    </div>
+                    <span class="bars_10">100分</span>
+                    <input class="hide" name="WorkPerformance" type="text" value="0" id="txt2">
+                </div>
+                <!--工作交接情况-->
+                <p class="com-tt select-tt">工作交接情况</p>
+                <div class="slider-grade content-padding-left">
+                    <span class="title">及时性</span>
+                    <span id="ev3">极差</span>
+                    <div class="scale" id="bar3">
+                        <div></div>
+                        <span id="btn3"><span id="title3">0</span></span>
+                    </div>
+                    <span class="bars_10">100分</span>
+                    <input class="hide" name="HandoverTimely" type="text" value="0" id="txt3">
+                </div>
+                <div class="slider-grade content-padding-left">
+                    <span class="title">全面性</span>
+                    <span id="ev4">极差</span>
+                    <div class="scale" id="bar4">
+                        <div></div>
+                        <span id="btn4"><span id="title4">0</span></span>
+                    </div>
+                    <span class="bars_10">100分</span>
+                    <input class="hide" name="HandoverOverall" type="text" value="0" id="txt4">
+                </div>
+                <div class="slider-grade content-padding-left">
+                    <span class="title">后续支持</span>
+                    <span id="ev5">极差</span>
+                    <div class="scale" id="bar5">
+                        <div></div>
+                        <span id="btn5"><span id="title5">0</span></span>
+                    </div>
+                    <span class="bars_10">100分</span>
+                    <input class="hide" name="WantRecall" type="text" value="0" id="txt5">
+                </div>
+                <!--工作评语部分-->
+                <p class="com-tt select-tt">工作评语</p>
+                <div class="ev-comment">
+                    <textarea name="WorkComment" class="ev-say"></textarea>
+                    <p><span class="count">0</span>/500</p>
+                    <img  class="ev-pic" src="http://bc-res.jx.io:8000/pc/img/camera.png"><span>上传纸质评语照片</span>
+                    <div class="comment-pic"></div>
+                </div>
+
+                <!--返聘意愿-->
+                <p class="com-tt select-tt">返聘意愿</p>
+                <ul class="sel-stage">
+                    <li data-want-id="1">强烈期望</li>
+                    <li data-want-id="2" class="selected">期望返聘</li>
+                    <li data-want-id="3">可以考虑</li>
+                    <li data-want-id="4">不会返聘</li>
+                    <li data-want-id="5">永不叙用</li>
+                    <li data-want-id="6">其它</li>
+                </ul>
+                <input id="txt-wantRecall" value="期望返聘"  name="WantRecall" class="hide" type="text"  role="sel-stage"/> 
+                <!--添加审核部分-->
+                <p class="com-tt select-tt">添加评价审核人<span>（一人通过即生效）</span></p>
+                <div class="ev-person content-padding-left">
+                    <input id="txt-audit-persons" name="audit-persons" type="text" class="hide" role="ev-person"/>
+                    <p>王小仙<span class="position">(老板)</span><span class="del"><i class="iconfont">&#xe600;</i></span></p>
+                    <ul></ul>
+                    <p class="rect"><i class="iconfont">&#xe64a;</i></p>
+                </div>
+                <button>保存修改并提交审核</button>
+            </form>
+            <!--添加审核人弹框-->
+            <div class="person-add"></div>
+            <div class="person2">
+                <p class="person-tt">添加评价审核人<i class="iconfont close1">&#xe600;</i></p>
+		   		<div class="pp">
+		   			<span data-person-id="1">岳晓琳<label class="position">(管理员、高管)</label></span>
+		   			<span data-person-id="2">林大<label class="position">(高管)</label></span><br>
+		   			<span data-person-id="3">林二<label class="position">(高管)</label></span>
+		   		</div>
+		   		<button type="button">确定</button>
+            </div>
+        </div>
+    </div>
+</body>
+<!--#include virtual="/-sources/-common/resources_footer.html"-->
+</html>

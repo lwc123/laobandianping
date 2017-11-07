@@ -1,0 +1,71 @@
+﻿@using M2SA.AppGenome.Data;
+@using JXBC.Workplace;
+@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@{
+    ViewBag.Title = "服务列表-举贤令";
+
+    var list = (IList<CareerServiceEntity>)Model;
+    var query = (CareerServiceQuery)ViewBag.Query;
+}
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="/">首页</a>
+        </li>
+        <li class="active">业务管理</li>
+        <li class="active">服务列表</li>
+    </ul>
+</div>
+<div class="search">
+    <form class="form-search" action="List">
+        <div class="form-group">
+            <label class="control-label">关键字</label>
+            <input type="text" class="form-control" name="Keyword" placeholder="请输入关键字" value="@query.Keyword" />
+        </div>
+        <div class="form-group submit textalign-center">
+            <button type="submit" class="btn btn-highlight btn-regular">搜索</button>&emsp;
+        </div>
+    </form>
+</div>
+
+@if (null != list && list.Count > 0)
+{
+    <div class="table-common">
+        <table class="table-bordered" align="center" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="table-td-2 th-header">ID</th>
+                    <th class="table-td-3 th-header">提交时间</th>
+                    <th class="table-td-6 th-header">服务简介</th>
+                    <th class="table-td-2 th-header">服务价格</th>
+                    <th class="table-td-4 th-header">猎头姓名</th>
+                    <th class="table-td-2 th-header">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in list)
+                {
+                    <tr>
+                        <td class="textalign-center">@item.ServiceId</td>
+                        <td class="textalign-center">@item.ModifiedTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@item.Subject</td>
+                        <td style="text-align:right">@item.Price.ToString("C") / 月</td>
+                        <td class="textalign-center">
+                            @item.Profile.RealName <br />
+                            @for (var i = 0; i < item.Profile.ConsultantGrade; i++)
+                            { @Html.Raw("<i class='img-grade'></i>")}
+                        </td>
+                        <td class="textalign-center">
+                            <a href="Detail/@item.ServiceId" target="_blank">详情</a>
+                            <a href="Edit/@item.ServiceId" target="_blank">编辑</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<div class="fenye">
+    @Html.Partial("_common_Pagination_Numbers", new Tuple<Pagination, Func<int, string>>(query.Pagination, null))
+</div>

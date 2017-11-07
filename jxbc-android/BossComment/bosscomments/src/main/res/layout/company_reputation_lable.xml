@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.juxian.bosscomments.widget.TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lable"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/lable_company_reputation"
+    android:paddingLeft="@dimen/DIMEN_30PX"
+    android:gravity="center"
+    android:paddingRight="@dimen/DIMEN_30PX"
+    android:paddingTop="@dimen/DIMEN_6PX"
+    android:layout_marginRight="@dimen/DIMEN_10PX"
+    android:layout_marginBottom="@dimen/DIMEN_10PX"
+    android:paddingBottom="@dimen/DIMEN_6PX"
+    tools:text="123454"
+    android:textColor="@color/company_reputation_color"
+    android:textSize="@dimen/DIMEN_24PX" />

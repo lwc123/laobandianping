@@ -1,0 +1,12 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}消息详情{/block}
+{block name="page-content"}
+		<div class="com1-bg info-bg">
+			<p class="com-tt">消息</p>
+			<div class="infomation-details">
+				<p class="detail-name">{php}echo nl2br($detail['Content']){/php}</p>
+				<p class="detail-num">{$detail.time}</p>
+			</div>
+		</div>
+{/block}

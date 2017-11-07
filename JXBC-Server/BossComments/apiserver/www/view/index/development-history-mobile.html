@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no" />
+		<title>发展历程——老板点评</title>
+        <link rel="stylesheet" type="text/css" href="{$Think.config.resources_site_root}/pc/css/index-mobile.css"/>
+        <script>
+	        //适配方案
+	        (function(){
+	            var width = document.documentElement.clientWidth;
+	            var html = document.querySelector("html");
+	            html.style.fontSize=width/16+"px";
+	        })();
+        </script>
+	</head>
+	<body>
+	{include file="-public/mobile_header" /}
+    <div class="top-img">
+        <img src="{$Think.config.resources_site_root}/pc/images/index750/banner_pic1.png"/>
+    </div>
+	<div class="com-content">
+		<ul class="moblie-tabNav">
+		   <li><a href="/index/company-intr-mobile.html">公司简介</a></li>
+		   <li><a class="moblie-active-on" href="/index/development-history-mobile.html">发展历程</a></li>
+		   <li><a href="/index/committe-mobile.html">中国人才诚信建设工作委员会</a></li>
+		</ul>
+		<div class="company-content ">
+			<img src="{$Think.config.resources_site_root}/pc/images/index750/ic_pic.png"/>
+		</div>
+	</div>
+	{include file="-public/mobile_footer" /}
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/employee_record_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_160PX"
+        android:padding="@dimen/DIMEN_20PX">
+        <!--<com.juxian.bosscomments.widget.RoundImageView-->
+        <!--android:id="@+id/activity_employee_photo"-->
+        <!--android:layout_width="@dimen/DIMEN_130PX"-->
+        <!--android:layout_height="@dimen/DIMEN_130PX"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:src="@drawable/user_head"-->
+        <!--app:round_civ_border_color="@color/white"-->
+        <!--app:round_civ_border_width="0dp" />-->
+
+        <!--<com.juxian.bosscomments.widget.RoundAngleImageView-->
+            <!--android:id="@+id/activity_employee_photo"-->
+            <!--android:layout_width="@dimen/DIMEN_100PX"-->
+            <!--android:layout_height="@dimen/DIMEN_100PX"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/default_head"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--app:roundHeight="5dp"-->
+            <!--app:roundTag="0"-->
+            <!--app:roundWidth="5dp" />-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/activity_employee_photo"
+            android:layout_width="@dimen/DIMEN_100PX"
+            android:layout_height="@dimen/DIMEN_100PX"
+            android:src="@drawable/employee_avatar"
+            android:layout_centerVertical="true"
+            app:border_width="0dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:layout_toRightOf="@+id/activity_employee_photo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/employee_name"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/luxury_gold_color"
+                android:textSize="@dimen/DIMEN_28PX"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/employee_position"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/employee_entry_time"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/menu_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/evaluate_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/menu_color"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="已评价（0条）" />
+    </RelativeLayout>
+</LinearLayout>

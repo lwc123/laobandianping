@@ -1,0 +1,317 @@
+/*初始化配置*/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,span,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button,i{
+    margin:0;
+    padding:0;
+    font-family: "微软雅黑";
+    font-size: 14px;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+ul,ol{
+    list-style: none;
+}
+button{
+    background:linear-gradient(to right,#af8f4d,#dac07d,#af8f4d);
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='#af8f4d',endColorstr='#dac07d')";
+    border:none;
+    border-radius:5px;
+    color:#fff;
+    cursor: pointer;
+    outline:none;
+}
+.left{
+    padding-right:13px;
+    font-size: 24px;
+    vertical-align: middle;
+}
+.ss a{
+    padding-top:16px!important;
+}
+.ll{
+    font-size: 27px;
+    padding-right: 10px;
+    display: inline-block;
+    margin-top:-5px;
+}
+.l1{
+    font-size: 34px;
+    padding-right:6px;
+    margin-left: -3px;
+}
+.l2{
+    font-size: 25px;
+    margin-left: 1px;
+}
+.l3{
+    font-size: 27px;
+}
+.l4{
+    font-size: 20px;
+    margin-left: 2px;
+}
+.l5{
+    font-size: 30px;
+    font-weight: bold;
+    padding-right: 10px;
+    margin-left: -2px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+html{
+    background-color: white;
+    font-family: "微软雅黑";
+    color: white;
+}
+body{
+    -moz-user-select:none;/*火狐*/
+    -webkit-user-select:none;/*webkit浏览器*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*早期浏览器*/
+    user-select:none;
+}
+
+@media only screen and (min-width:1920px){
+    .wrap{
+        width: 1920px;
+    }
+    #header{
+        width: 1920px;
+    }
+    .footerT{
+        width: 1920px;
+    }
+}
+@media only screen and (min-width:1200px) and (max-width:1920px){
+    .wrap{
+        width: 100%;
+    }
+    #header{
+        width: 100%;
+    }
+    .footerT{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:1200px){
+    .wrap{
+        width: 1200px;
+    }
+    #header{
+        width: 1200px;
+    }
+    .footerT{
+        width: 1200px;
+    }
+}
+.wrap{
+    margin: 0 auto;
+
+    background-color: white;
+}
+
+
+/*头部*/
+#header{
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(0,0,0,1);
+    height: 60px;
+}
+.headerR{
+    float: right;
+    padding-right: 60px;
+}
+.headerR span{
+    display: inline-block;
+    padding: 20px 20px;
+    font-size: 17px;
+}
+.key{
+    position: absolute;
+    right: 28px;
+    top: 50px;
+    display: none;
+    box-sizing: border-box;
+    padding: 15px 10px 0 10px;
+    width: 250px;
+    height: 160px;
+    background: url("../img/home1200/home_banner_pup_bg_aboutus.png") no-repeat;
+    background-size:250px 160px ;
+}
+.keyTop{
+    color: black;
+    padding: 8px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.btmL{
+    float: left;
+    width: 84px;
+    height: 84px;
+    padding: 9px;
+}
+.btmR{
+    float: left;
+    padding: 9px 0;
+}
+.btmR div{
+    margin-top: 9px;
+    width: 126px;
+    height: 29px;
+    background: url("../img/home1200/home_banner_pup_btn.png") no-repeat;
+}
+.btmR img{
+    padding: 4px 8px;
+    vertical-align: middle;
+}
+.btmR span{
+    font-size: 15px;
+    position: relative;
+    top: -45px;
+    left: 10px;
+    vertical-align: middle;
+}
+
+.headerL{
+    float: left;
+    padding-left: 5%;
+}
+
+.logo>a>img{
+    width: 44px;
+    height: 44px;
+    padding: 8px 20px 8px 20px;
+    vertical-align: middle;
+}
+.logo>em>img{
+    padding: 8px 20px 8px 20px;
+    vertical-align: middle;
+}
+.logo span{
+    vertical-align: middle;
+}
+.logo .headerTitle{
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
+}
+
+/*content*/
+#content{
+    padding: 80px 100px;
+    margin-bottom: 160px;
+
+}
+#content span{
+    font-size: 35px;
+    color: #dac07d;
+}
+#content p{
+    text-indent: 2em;
+    font-size: 20px;
+    line-height: 35px;
+    color: black;
+    margin-top: 30px;
+}
+#content a{
+    color: black;
+}
+
+
+/*底部信息*/
+.footPar{
+    width: 100%;
+    overflow: hidden;
+}
+.footerT{
+    position: fixed;
+    bottom: 0;
+    /*height: 140px;*/
+    padding: 30px 0;
+    background-color: black;
+    /*margin-bottom: 74px;     !* 到位置的时候出现   close的时候关闭*!*/
+}
+.footerT>div{
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+}
+.footerT span{
+    font-size: 14px;
+    line-height: 1.4;
+}
+.ftTitle{
+    box-sizing: border-box;
+    padding: 10px 3% 0 6%;
+}
+.ftTitle img{
+    vertical-align: middle;
+}
+.ftTitle div{
+    padding-top: 8px;
+}
+.ftTitle span:last-child{
+    vertical-align: middle;
+    color: #debe58;
+}
+.ftAdd{
+    width: 40%;
+    box-sizing: border-box;
+    padding: 10px 0% 10px 3%;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+#icp,#beibao{
+    font-size: 12px;
+}
+.ftCall{
+    box-sizing: border-box;
+    padding: 10px 0 0 4%;
+}
+.ftCall img{
+    vertical-align: middle;
+}
+.ftCall span{
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.btmR .Android{
+    padding-right: 0;
+}
+
+#registerAlert{
+    width: 800px;
+    height: 650px;
+    position: fixed;
+    z-index: 998;
+    top:20%;
+    left: 29%;
+    display: none;
+
+}
+#registerAlert img{
+    width: 800px;
+    height: 650px;
+}
+.registerAlertClose{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 15px;
+    left: 625px;
+}

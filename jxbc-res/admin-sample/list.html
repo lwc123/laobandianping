@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>运营后台 - 老板点评</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="/admin/css/bootstrap.css" />
+		<link rel="stylesheet" href="/admin/css/font-awesome.css" />
+
+		<!-- page specific plugin styles -->
+        <link rel="stylesheet" href="/admin/css/jquery-ui.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/admin/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/admin/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+        <link rel="stylesheet" href="/admin/css/chosen.css" />
+		<link rel="stylesheet" href="/admin/css/datepicker.css" />
+		<link rel="stylesheet" href="/admin/css/bootstrap-timepicker.css" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="/admin/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="/admin/css/ace-ie.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="/admin/js/ace-extra.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="/admin/js/html5shiv.js"></script>
+		<script src="/admin/js/respond.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-leaf"></i>
+							老板点评-运营后台
+						</small>
+					</a>
+
+					<!-- /section:basics/navbar.layout.brand -->
+
+					<!-- #section:basics/navbar.toggle -->
+
+					<!-- /section:basics/navbar.toggle -->
+				</div>
+
+				<!-- #section:basics/navbar.dropdown -->
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<!-- #section:basics/navbar.user_menu -->
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="/admin/avatars/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Welcome,</small>
+									passportName
+								</span>
+
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										Settings
+									</a>
+								</li>
+
+								<li>
+									<a href="profile.html">
+										<i class="ace-icon fa fa-user"></i>
+										Profile
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-power-off"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<!-- /section:basics/navbar.user_menu -->
+					</ul>
+				</div>
+
+				<!-- /section:basics/navbar.dropdown -->
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container main-container-fixed" id="main-container">
+			<!-- #section:basics/sidebar -->
+			<div id="sidebar" class="sidebar sidebar-fixed responsive">
+
+
+				<ul id="menu-sidebar" class="nav nav-list">
+					<li>
+						<a href="/admin-sample/console.html">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> 控制台 </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="/admin-sample/list.html">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text">用户管理</span>
+						</a>
+					</li>
+                    
+					<li class="Comnpany/ComnpanyList">
+						<a href="#">
+							<i class="menu-icon fa fa-address-card"></i>
+							<span class="menu-text">企业管理</span>
+						</a>
+					</li>                    
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-check-square"></i>
+							<span class="menu-text">审核管理 </span>
+                            <span class="badge badge-primary">5</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="" id="lform">
+								<a href="/admin-sample/form.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">认证审核</span>  
+                                    <span class="badge badge-primary">5</span>                                    
+								</a>
+                                
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">提现审核</span>  
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+                    
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-child"></i>
+							<span class="menu-text"> 渠道管理 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="tables2.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">渠道列表</span>  
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid2.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">新建渠道</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+                            
+							<li class="">
+								<a href="jqgrid3.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">渠道对账单</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="jqgrid4.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">总代对账单</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>                              
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-cogs"></i>
+							<span class="menu-text"> 系统设置 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="aaa.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">业务字典</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="bbb.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text">用户管理</span> 
+								</a>
+
+								<b class="arrow"></b>
+							</li>                          
+						</ul>
+					</li>                    
+				</ul><!-- /.nav-list -->
+
+				<!-- #section:basics/sidebar.layout.minimize -->
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+					
+                       <ul id="breadcrumb" class="breadcrumb" data-action="autoFixed">
+                            <li>
+                                <a href="/"><i class="ace-icon fa fa-home home-icon"></i></a>
+                            </li>
+                        </ul>  
+                    
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content" id="page-content">
+					
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box ui-sortable-handle">
+            <!-- #section:custom/widget-box.options.collapsed -->
+            <div class="widget-header widget-header-small">
+                <h6 class="widget-title">
+                    用户搜索
+                </h6>
+
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div>
+                        <form id="form-search" method="get" class="form-inline" role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10">  
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-4">
+                                            <label for="RealName">姓　　名：</label>
+                                            <input type="text" id="RealName" name="RealName">
+                                        </div>                        
+                                        <div class="form-group col-xs-12 col-sm-8">
+                                            <label>注册时间：</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" id="MaxSignUpDate" name="MaxSignUpDate" class="date-picker hasDatepicker">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-calendar"></i>
+                                                </span>
+											</div>
+                                            <span>至</span>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" id="MinSignUpDate" name="MinSignUpDate" class="date-picker hasDatepicker">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-calendar"></i>
+                                                </span>
+											</div>
+                                        </div>
+                                    </div> 
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-4">
+                                            <label for="MobilePhone">手机号码：</label>
+                                            <input type="text" id="MobilePhone" name="MobilePhone">
+                                        </div>                        
+                                        <div class="form-group col-xs-12 col-sm-8">
+                                            <label>注册类型：</label>
+                                            <select id="InvitedType" data-placeholder="选择身份类型">
+                                                <option value="">全部</option>
+                                                <option value="0">主动注册</option>
+                                                <option value="1">邀请注册</option>                                            
+                                            </select>
+                                        </div>
+                                    </div>                             
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    <button class="btn btn-app btn-purple btn-sm pull-right">
+                                        <i class="ace-icon fa fa-search bigger-200"></i>
+                                        搜索
+                                    </button>
+                                </div>   
+                            </div>  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">用户列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                    <tr> <!- 表格总宽度=12 ->
+                        <th class="center col-xs-1">#</th>
+                        <th>Domain</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                        <th class="col-xs-2">Price</th>
+                        <th class="col-xs-2">Clicks</th>
+                        <th class="col-xs-2">状态</th>
+                        <th class="col-xs-2">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="center">1</td>
+                        <td>
+                            <a href="details.html">ace.com</a>
+                        </td>
+                        <td>$45</td>
+                        <td><a href="/admin-sample/form.html">3,330</a></td>
+                        <td>
+                            <span class="label label-sm label-success">success</span>
+                            <span class="label label-sm label-info">info</span>
+                            <span class="label label-sm label-warning">warning</span>                            
+                            <span class="label label-sm label-danger">danger</span>
+                        </td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <button class="btn btn-xs btn-success">
+                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                    审核
+                                </button>
+
+                                <button class="btn btn-xs btn btn-primary">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    编辑
+                                </button>
+
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="ace-icon fa fa-remove bigger-120"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="center">2</td>
+                        <td>
+                            <a href="details.html">ace.com</a>
+                        </td>
+                        <td>$45</td>
+                        <td><a href="/admin-sample/form.html">3,330</a></td>
+                        <td>
+                            <span class="label label-sm label-pink">pink</span>
+                            <span class="label label-sm label-purple">purple</span>
+                            <span class="label label-sm label-grey">grey</span>                            
+                            <span class="label label-sm label-yellow">yellow</span>
+                        </td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <button class="btn btn-xs btn-success">
+                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                    审核
+                                </button>
+
+                                <button class="btn btn-xs btn btn-primary">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    编辑
+                                </button>
+
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="ace-icon fa fa-remove bigger-120"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: 999</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="paginate_button previous disabled"><a href="#">Previous</a></li>
+                            <li class="paginate_button active"><a href="#">1</a></li>
+                            <li class="paginate_button "><a href="/admin-sample/list.html?__m__=$-1-4-1">2</a></li>
+                            <li class="paginate_button "><a href="/admin-sample/list.html?__m__=$-1-4-1">3</a></li>
+                            <li class="paginate_button next"><a href="/admin-sample/list.html?__m__=$-1-4-1">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">						
+					</div>
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/admin/js/jquery.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='/admin/js/jquery1x.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='/admin/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+		<script src="/admin/js/bootstrap.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="/admin/js/excanvas.js"></script>
+		<![endif]-->
+		<script src="/admin/js/jquery-ui.js"></script>
+		<script src="/admin/js/jquery.ui.touch-punch.js"></script>        
+		<script src="/admin/js/jquery-ui.custom.js"></script>
+		<script src="/admin/js/jquery.ui.touch-punch.js"></script>
+		<script src="/admin/js/jquery.easypiechart.js"></script>
+		<script src="/admin/js/jquery.sparkline.js"></script>
+        <script src="/admin/js/jquery.validate.js"></script>
+        <script src="/admin/js/chosen.jquery.js"></script>
+		<script src="/admin/js/date-time/bootstrap-datepicker.js"></script>        
+		<script src="/admin/js/flot/jquery.flot.js"></script>
+		<script src="/admin/js/flot/jquery.flot.pie.js"></script>
+		<script src="/admin/js/flot/jquery.flot.resize.js"></script>        
+        
+		<!-- ace scripts -->
+		<script src="/admin/js/ace/elements.scroller.js"></script>
+		<script src="/admin/js/ace/elements.colorpicker.js"></script>
+		<script src="/admin/js/ace/elements.fileinput.js"></script>
+		<script src="/admin/js/ace/elements.typeahead.js"></script>
+		<script src="/admin/js/ace/elements.wysiwyg.js"></script>
+		<script src="/admin/js/ace/elements.spinner.js"></script>
+		<script src="/admin/js/ace/elements.treeview.js"></script>
+		<script src="/admin/js/ace/elements.wizard.js"></script>
+		<script src="/admin/js/ace/elements.aside.js"></script>
+		<script src="/admin/js/ace/ace.js"></script>
+		<script src="/admin/js/ace/ace.ajax-content.js"></script>
+		<script src="/admin/js/ace/ace.touch-drag.js"></script>
+		<script src="/admin/js/ace/ace.sidebar.js"></script>
+		<script src="/admin/js/ace/ace.sidebar-scroll-1.js"></script>
+		<script src="/admin/js/ace/ace.submenu-hover.js"></script>
+		<script src="/admin/js/ace/ace.widget-box.js"></script>
+		<script src="/admin/js/ace/ace.settings.js"></script>
+		<script src="/admin/js/ace/ace.settings-rtl.js"></script>
+		<script src="/admin/js/ace/ace.settings-skin.js"></script>
+		<script src="/admin/js/ace/ace.widget-on-reload.js"></script>
+		<script src="/admin/js/ace/ace.searchbox-autocomplete.js"></script>
+        <script src="/admin/js/admin/common.js"></script>
+        
+            <!-- this is page-content -->
+        
+	</body>
+</html>

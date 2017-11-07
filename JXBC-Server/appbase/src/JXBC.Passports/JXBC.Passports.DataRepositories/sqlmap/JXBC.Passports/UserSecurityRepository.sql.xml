@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+	<module moduleName="UserSecurityRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into user_security (PassportId, Password, HashAlgorithm, PasswordSalt
+        , LastPasswordChangedTime,IsLocked,LastLockedTime,FailedPasswordAttemptCount)
+      values (@PassportId, @Password, @HashAlgorithm, @PasswordSalt
+        , @LastPasswordChangedTime,@IsLocked,@LastLockedTime,@FailedPasswordAttemptCount);
+      select @PassportId;
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update user_security set Password=@Password,HashAlgorithm=@HashAlgorithm,PasswordSalt=@PasswordSalt,LastPasswordChangedTime=@LastPasswordChangedTime
+      ,IsLocked = @IsLocked, LastLockedTime=@LastLockedTime, FailedPasswordAttemptCount=@FailedPasswordAttemptCount
+      where PassportId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from user_security where PassportId = @Id
+    </sqlWrap>
+	</module>
+</root>

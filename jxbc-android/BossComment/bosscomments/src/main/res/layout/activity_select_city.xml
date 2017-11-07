@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <include
+        layout="@layout/include_search"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
+            android:id="@+id/indexBar"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:paddingTop="@dimen/DIMEN_75PX"
+            app:indexBarTextColor="@color/accredit_manage_bt_color"
+            app:indexBarPressBackground="@color/partTranslucent"
+            app:indexBarTextSize="@dimen/DIMEN_26PX"/>
+
+        <TextView
+            android:id="@+id/tvSideBarHint"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_side_bar_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="48sp"
+            android:visibility="gone"
+            />
+
+    </FrameLayout>
+
+
+    <!--<com.juxian.bosscomments.widget.TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/DIMEN_78PX"-->
+    <!--android:textSize="@dimen/DIMEN_34PX"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:paddingLeft="@dimen/DIMEN_44PX"-->
+    <!--android:background="@color/white"-->
+    <!--android:textColor="@color/main_text_color"-->
+    <!--android:text="@string/hot_city"/>-->
+
+    <!--<GridView-->
+    <!--android:id="@+id/id_flowlayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginRight="@dimen/DIMEN_44PX"-->
+    <!--android:layout_marginLeft="@dimen/DIMEN_44PX"-->
+    <!--android:horizontalSpacing="@dimen/DIMEN_44PX"-->
+    <!--android:listSelector="@android:color/transparent"-->
+    <!--android:numColumns="3"-->
+    <!--android:scrollbars="none"-->
+    <!--android:verticalSpacing="@dimen/DIMEN_20PX">-->
+
+    <!--</GridView>-->
+
+    <!--<com.juxian.bosscomments.widget.TagFlowLayout-->
+    <!--android:id="@+id/id_flowlayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/DIMEN_22PX"-->
+    <!--android:layout_marginRight="@dimen/DIMEN_22PX"-->
+    <!--jxl:max_select="1">-->
+
+    <!--</com.juxian.bosscomments.widget.TagFlowLayout>-->
+</LinearLayout>

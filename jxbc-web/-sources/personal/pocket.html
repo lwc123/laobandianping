@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>口袋</title>
+		<!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+	<body>
+	<!--弹窗-->
+	<div id="zhezhao">
+		<form id="alert">
+			<div class="alertT">
+				<b id="alertClose">×</b>
+				<span>提现</span>
+			</div>
+			<div class="alertB">
+				<div class="moneyNum">
+				<p>我的口袋：5000元</p>
+				<p>可提现金额：3000元</p>
+				<p class="bank-title">提现金额</p>
+				<input type="text" name="MoneyNumber" placeholder="请输入提现金额">
+				</div>
+				<p class="bank-title">个人银行账号</p>
+				<div class="pocket-con">
+				         开户名&nbsp;&nbsp; ：<input type="text" required name="CompanyName"	placeholder="请输入银行开户名"><br>
+				</div>
+				<div class="pocket-con">
+				          开户银行：<input type="text" name="BankName" required placeholder="请输入银行营业网点"><br>
+				</div>
+				<div class="pocket-con">
+				         银行账号：<input type="text" name="BankCard" required placeholder="请输入银行账号"><br>
+				</div>
+			</div>
+			<button type="button" class="newJobSaveBtn hide" >提现</button>
+			<div class="file-tip">
+				<p>提现说明：</p>
+				<p>提现成功提交后，老板点评将在一周内打款</p>
+			</div>
+		</form>
+	</div>
+	<!--弹窗结束-->
+	<!--左侧部分-->
+    <div class="com1-left">
+		<!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+	</div>
+	<!--#include virtual="/-sources/-common/header.html"-->
+    <!--右侧内容开始-->
+    <div class="com1-bg pocket-content">
+    	<div class="pocket-top">
+    		<div class="myPocket">
+    			<p>我的口袋</p>
+    			<p>￥300000元</p>
+    		</div>
+    		<div class="withDraw-crash">
+    		    <p>可提现额度：240000元</p>
+    		    <input type="button" value="提现">
+    		</div>
+    	</div>
+    	<div class="trade-log">
+    		<p class="com-tt">交易记录</p>
+    		<div class="trade-list">
+    		   <div class="pocketButton">
+    		 	    <input class="active" type="button" value="全部">
+    		 	    <input type="button" value="收益记录">
+    		 	    <input type="button" value="提现记录">
+    		   </div>
+    		   <div class="log-list">
+    		 	   <p>提现</p>
+    		 	   <p>2011-11-11 14:35</p>
+    		 	   <span>-￥15.00</span>
+    		   </div>
+    		   <div class="log-list">
+    		 	   <p>邀请企业注册获得分成</p>
+    		 	   <p>2011-11-11 14:35</p>
+    		 	   <p>成功邀请东方高人顾问有限公司</p>
+    		 	   <span>￥2000.00</span>
+    		   </div>
+    		   <div class="log-list">
+    		 	   <p>开户费</p>
+    		 	   <p>2011-11-11 14:35</p>
+    		 	   <p>企业金库支付</p>
+    		 	   <span>-￥2000.00</span>
+    		   </div>
+    		</div>
+    	</div>
+    </div>
+    <!--#include virtual="/-sources/-common/resources_footer.html"-->
+	</body>
+</html>

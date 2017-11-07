@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.juxian.appgenome"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="21" />
+    
+    <meta-data android:name="upgrade:eforced" android:value="true" />
+    
+    
+    <application android:allowBackup="true"
+         >
+        <meta-data android:name="environment:runtime_mode" android:value="public" /> <!-- public:公开发行, beta:内测, test:封测 -->
+    </application>
+</manifest>

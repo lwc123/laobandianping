@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/select_login_register"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!--<include-->
+        <!--android:id="@+id/title"-->
+        <!--layout="@layout/include_head_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/title"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:scrollbars="none">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DIMEN_86PX"
+                android:src="@drawable/logo" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/DIMEN_34PX"
+                android:src="@drawable/slogan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:visibility="gone"
+                android:text="LAOBANDIANPING.COM"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:textColor="#d1d1d1"/>
+
+            <LinearLayout
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_88PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_74PX"
+                android:background="@drawable/edit_bt_transparency"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/DIMEN_24PX"
+                android:paddingRight="@dimen/DIMEN_24PX">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_34PX"
+                    android:layout_height="@dimen/DIMEN_34PX"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/sign_in_account" />
+
+                <com.juxian.bosscomments.widget.EditText
+                    android:id="@+id/signIn_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="@string/mobile_phone_is_empty"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:paddingLeft="@dimen/DIMEN_32PX"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/input_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_88PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_2PX"
+                android:background="@drawable/edit_bt_transparency"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/DIMEN_24PX">
+
+                <ImageView
+                    android:id="@+id/pwd_image"
+                    android:layout_width="@dimen/DIMEN_34PX"
+                    android:layout_height="@dimen/DIMEN_34PX"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_in_pwd" />
+
+                <com.juxian.bosscomments.widget.EditText
+                    android:id="@+id/signIn_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:layout_toRightOf="@+id/pwd_image"
+                    android:hint="@string/please_input_password"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:paddingLeft="@dimen/DIMEN_32PX"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/menu_color"
+                    android:textSize="@dimen/DIMEN_30PX" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/setting_password_timers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/verification_code_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/DIMEN_10PX"
+                    android:text="获取验证码"
+                    android:textColor="@color/luxury_gold_color"
+                    android:textSize="@dimen/DIMEN_22PX" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_80PX"
+                android:layout_marginRight="@dimen/DIMEN_80PX"
+                android:layout_marginTop="@dimen/DIMEN_2PX"
+                android:orientation="horizontal">
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_forget_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="@dimen/DIMEN_10PX"
+                    android:text="@string/lost_password"
+                    android:textColor="#d1d1d1"
+                    android:visibility="visible"
+                    android:textSize="@dimen/DIMEN_22PX" />
+
+                <com.juxian.bosscomments.widget.TextView
+                    android:id="@+id/activity_signin_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="left"
+                    android:padding="@dimen/DIMEN_10PX"
+                    android:visibility="gone"
+                    android:text="@string/immediately_sign_up"
+                    android:textColor="@color/accredit_manage_bt_color"
+                    android:textSize="@dimen/DIMEN_22PX" />
+            </RelativeLayout>
+
+            <com.juxian.bosscomments.widget.Button
+                android:id="@+id/include_button_button"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/DIMEN_88PX"
+                android:background="@drawable/login_bg"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_62PX"
+                android:text="登录"
+                android:textColor="@color/luxury_gold_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/login_method_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:padding="@dimen/DIMEN_20PX"
+                android:text="使用密码登录"
+                android:textColor="@color/accredit_manage_bt_color"
+                android:textSize="@dimen/DIMEN_24PX" />
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/register_bts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/DIMEN_66PX"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/company_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:padding="@dimen/DIMEN_20PX"
+            android:text="企业用户注册"
+            android:textColor="@color/accredit_manage_bt_color"
+            android:textSize="@dimen/DIMEN_24PX" />
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="@dimen/DIMEN_26PX"
+            android:background="@color/menu_color"/>
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/person_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:padding="@dimen/DIMEN_20PX"
+            android:text="个人用户注册"
+            android:textColor="@color/accredit_manage_bt_color"
+            android:textSize="@dimen/DIMEN_24PX" />
+    </LinearLayout>
+    <!--</ScrollView>-->
+</RelativeLayout>

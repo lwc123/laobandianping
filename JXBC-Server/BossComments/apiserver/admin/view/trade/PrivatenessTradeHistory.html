@@ -1,0 +1,112 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box ui-sortable-handle">
+            <!-- #section:custom/widget-box.options.collapsed -->
+            <div class="widget-header widget-header-small">
+                <h6 class="widget-title">
+                    交易记录
+                </h6>
+
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div>
+                        <form id="form-search" method="get" class="form-inline" role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10">
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-8">
+                                            <label>业务来源：</label>
+                                            <select id="ContractStatus" data-placeholder="选择业务来源" name="BizSource">
+                                                <option value="" {if empty($Think.get.BizSource)}selected {/if} >全部</option>
+                                                <option value="OpenPersonalService" {if ('OpenPersonalService'==$Think.get.BizSource)}selected {/if}>{:getBizSource('OpenPersonalService')}</option>
+                                                <option value="ShareIncomeForOpenEnterpriseService" {if ('ShareIncomeForOpenEnterpriseService'==$Think.get.BizSource)}selected {/if}>{:getBizSource('ShareIncomeForOpenEnterpriseService')}</option>
+                                                <option value="Deposit" {if ('Deposit'==$Think.get.BizSource)}selected {/if}>{:getBizSource('Deposit')}</option>
+                                                <option value="Withdraw" {if ('Withdraw'==$Think.get.BizSource)}selected {/if}>{:getBizSource('Withdraw')}</option>
+                                                <option value="WithdrawRefund" {if ('WithdrawRefund'==$Think.get.BizSource)}selected {/if}>{:getBizSource('WithdrawRefund')}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    <button class="btn btn-app btn-purple btn-sm pull-right">
+                                        <i class="ace-icon fa fa-search bigger-200"></i>
+                                        搜索
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">交易列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center">
+                    <th class="col-xs-1">交易编号</th>
+                    <th class="col-xs-1">关联交易编号</th>
+                    <th class="col-xs-4">商品标题</th>
+                    <th class="col-xs-1">业务来源</th>
+                    <th class="col-xs-1">订单创建时间</th>
+                    <th class="col-xs-1">支付方式</th>
+                    <th class="col-xs-1">订单金额</th>
+                    <th class="col-xs-1">实际支付金额</th>
+                    <th class="col-xs-1">实际支付时间</th>
+                </tr>
+                </thead>
+                {foreach( name="TradeHistroy" item="item")}
+                <tbody>
+                <tr>
+                    <td>{$item['TradeCode']}</td>
+                    <td>{$item['ParentTradeCode']}</td>
+                    <td>{$item['CommoditySubject']}</td>
+                    <td>{:getBizSource($item['BizSource'])}</td>
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{:getPayWayName($item['PayWay'],$item['PayRoute'])}</td>
+                    <td>{:sprintf("%.2f",floatval($item['TotalFee']))}</td>
+                    <td class="pull-right">
+                        {if (abs($item['TotalFee'])==abs($item['PaymentCredential']['TotalFee']))}
+                            <span class="label label-sm label-success">{:sprintf("%.2f",$item['PaymentCredential']['TotalFee'])}</span>
+                        {else}
+                            <b><span class="label label-sm label-warning">{:sprintf("%.2f",$item['PaymentCredential']['TotalFee'])}</span></b>
+                        {/if}
+                    </td>
+                    <td>{:toLocalDateTime($item['ModifiedTime'],'Y-m-d H:i:s')}</td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: {$Pagination->TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {$pageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

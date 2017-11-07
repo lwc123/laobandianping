@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2959860-6A53-4B8E-900D-6BB2CBEE561D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXBC.Passports</RootNamespace>
+    <AssemblyName>JXBC.Passports</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\libs\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\libs\JXBC.Passports.xml</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\..\R&amp;D\CodeStandard\CodeDesign_Rules_For_JuXian.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\libs\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\libs\JXBC.Passports.xml</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\..\R&amp;D\CodeStandard\CodeDesign_Rules_For_JuXian.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JXTB.CommonData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\JXTB.CommonData.dll</HintPath>
+    </Reference>
+    <Reference Include="M2SA.AppGenome">
+      <HintPath>..\..\..\..\..\Libs\M2SA.AppGenome\M2SA.AppGenome.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Libs\Newtonsoft.Json\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountBuilder.cs" />
+    <Compile Include="AnonymousAccount.cs" />
+    <Compile Include="AttestationStatus.cs" />
+    <Compile Include="ClientDevice.cs" />
+    <Compile Include="CodeAnalysis\ArgumentExtension.cs" />
+    <Compile Include="DataRepositories\IAnonymousAccountRepository.cs" />
+    <Compile Include="DataRepositories\IClientDeviceRepository.cs" />
+    <Compile Include="DataRepositories\ISignedUpInfoRepository.cs" />
+    <Compile Include="DataRepositories\ISignInLogRepository.cs" />
+    <Compile Include="DataRepositories\IThirdIMAccountRepository.cs" />
+    <Compile Include="DataRepositories\IThirdPassportRepository.cs" />
+    <Compile Include="DataRepositories\IUserPassportManagerRepository.cs" />
+    <Compile Include="DataRepositories\IUserPassportRepository.cs" />
+    <Compile Include="DataRepositories\IUserProfileRepository.cs" />
+    <Compile Include="DataRepositories\IUserSecurityRepository.cs" />
+    <Compile Include="CodeAnalysis\GlobalSuppressions.cs" />
+    <Compile Include="MessageResult.cs" />
+    <Compile Include="OrganizationProfile.cs" />
+    <Compile Include="HttpDecorator.cs" />
+    <Compile Include="MemberShip.cs" />
+    <Compile Include="ModuleEnvironment.cs" />
+    <Compile Include="PassportStatus.cs" />
+    <Compile Include="ProfileType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\EasemobProvider.cs" />
+    <Compile Include="Providers\IIMProvider.cs" />
+    <Compile Include="Security\BCrypt.cs" />
+    <Compile Include="Security\BCryptSecurityStrategy.cs" />
+    <Compile Include="Security\EncryptProvider.cs" />
+    <Compile Include="Security\HashHelper.cs" />
+    <Compile Include="Security\IPassportSecurityStrategy.cs" />
+    <Compile Include="Security\MD5SecurityStrategy.cs" />
+    <Compile Include="Security\PassportSecurityProvider.cs" />
+    <Compile Include="Security\PasswordStrength.cs" />
+    <Compile Include="Security\PasswordStrengthMarker.cs" />
+    <Compile Include="Security\SaltParseException.cs" />
+    <Compile Include="SignedUpInfo.cs" />
+    <Compile Include="SignedInLog.cs" />
+    <Compile Include="SignUpStatus.cs" />
+    <Compile Include="ThirdIMAccount.cs" />
+    <Compile Include="ThirdPassport.cs" />
+    <Compile Include="UserPassport.cs" />
+    <Compile Include="UserPassportManager.cs" />
+    <Compile Include="UserProfile.cs" />
+    <Compile Include="UserQuery.cs" />
+    <Compile Include="UserSecurity.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

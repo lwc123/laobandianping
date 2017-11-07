@@ -1,0 +1,57 @@
+﻿@using JXTB.CommonData;
+@using JXBC.WebCore;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignIn</title>
+    <link rel="shortcut icon" href="@Resources.GetResourceUri("/images/juxian.ico")">
+</head>
+<body>    
+    <fieldset style="width:500px; margin:50px auto">
+        <legend>管理登录</legend>
+        <form method="post" action="SignIn">
+            账号: <input id="txtUserName" type="text" name="userName" value="" /> <br />
+            密码: <input id="txtPassword" type="password" name="password" value="" /> <br />
+            <input id="btnSignIn" type="button" value="登陆" style="width:100px" />
+        </form>
+        <p id="alertWrap" style="color:red"></p>
+    </fieldset>
+
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+        $('#btnSignIn').click(function () {
+            $("#alertWrap").html("");
+            var userName = $("#txtUserName").val();
+            var password = $("#txtPassword").val();
+
+            if(userName.length <1 || password.length <1 )
+            {
+                $("#alertWrap").html("请输入用户名和密码！");
+                return;
+            }
+
+            var $this = $(this);
+            $this.attr("disable", true);
+            $.post('SignIn'
+                , { 'userName': userName, 'password': password }
+                , function (res) {
+                    $this.attr("disable", false);
+                    if (res.success) {
+                        location.href = "/";
+                    } else {
+                        $("#alertWrap").html("登录失败");
+                    }
+                }, 'json');
+        });
+    });
+    </script>
+</body>
+</html>

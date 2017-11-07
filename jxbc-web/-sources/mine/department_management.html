@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	    <!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+	<body>
+		<div id="zhezhao">
+			<div id="alert">
+				<div class="alertT">
+					<b class="alertClose">×</b>
+					<span></span>
+				</div>
+				<form class="alertB">
+					<div class="bcontent">
+					</div>
+				</form>
+				<div class="btnwrap">
+					<!--<a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>-->
+					<!--<a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>-->
+				</div>
+				<!--<div class="patch">
+				</div>-->
+				<!--<div class="power_person_details">
+				</div>-->
+			</div>
+		</div>
+
+	   <!--左侧部分-->
+		<div class="com1-left">
+		  	  <!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+		</div>
+		<!--#include virtual="/-sources/-common/header.html"-->
+		 <!--档案详情部分-->
+		<div class="com1-bg em-info">
+		  <!--员工档案详情部分-->
+		  <div class="em3-info1">
+		  	   <p class="com-tt">部门管理<a class="table_creat_department" href="javascript:void (0)">创建新的部门</a></p>
+			  <table class="em_content_table"  width="300" border="1" cellspacing="0">
+				  <tr>
+					  <th width="250" height="40">部门</th>
+					  <th width="650">操作</th>
+				  </tr>
+				  <tr>
+					  <td height="40">产品部</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+				  </tr>
+
+				  <tr>
+					  <td height="40">运营部</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+
+				  </tr>
+				  <tr>
+					  <td height="40">市场部</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+
+				  </tr>
+				  <tr>
+					  <td height="40">营销部</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+
+				  </tr>
+			  </table>
+		   </div>
+
+	    </div>
+
+	</body>
+	<!--#include virtual="/-sources/-common/resources_footer.html"-->
+	<script type="text/javascript">
+		$(function () {
+            $(".table_creat_department").click(function () {
+                $("#alert>.alertT>span").text("创建新的部门");
+                $(".bcontent").html('<div class="pocket-con">部门名称：<input type="text" name="DeptName" required placeholder="请输入部门名称" value="{}"><br> </div>')
+                $(".btnwrap").html('<a id="save_department" href="javascript:void (0)" class="button newJobSaveBtn">保存</a>')
+                alertwin();
+                $("#save_department").click(function () {
+                    alert($("input[name=DeptName]").val())
+                })
+            })
+
+
+        })
+
+
+	</script>
+
+</html>
+	

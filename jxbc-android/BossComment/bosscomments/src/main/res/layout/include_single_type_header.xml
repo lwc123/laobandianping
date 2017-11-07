@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/header_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_310PX"
+        android:src="@drawable/the_god_of_wealth"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_76PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:layout_below="@+id/header_banner"
+        android:gravity="center_vertical"
+        android:background="@color/main_background"
+        android:paddingLeft="@dimen/DIMEN_20PX"
+        android:text="热门公司"/>
+</RelativeLayout>

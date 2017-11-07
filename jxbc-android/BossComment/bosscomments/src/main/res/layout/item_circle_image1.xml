@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/item_circle_img1_root"
+              android:orientation="horizontal"
+    >
+
+    <!--<com.juxian.bosscomments.widget.BossCircleImageView-->
+        <!--android:id="@+id/item_circle_img1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/default_pic"/>-->
+</LinearLayout>

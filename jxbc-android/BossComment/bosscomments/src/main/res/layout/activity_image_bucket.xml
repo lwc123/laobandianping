@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1eff5"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_bar_height"
+        android:background="#3bd7cd"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/image_bucket_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:src="@drawable/nav_icon_back" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/photo_album"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/nav_bar_title_size" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_margin"
+        android:horizontalSpacing="@dimen/DIMEN_45PX"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/DIMEN_45PX"
+        android:visibility="gone"></GridView>
+
+    <!-- <com.juxian.app.customs.XListView -->
+    <!-- android:id="@+id/pic_customsListView" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:cacheColorHint="#00000000" -->
+    <!-- android:divider="@null" -->
+    <!-- android:listSelector="@android:color/transparent" /> -->
+
+    <ListView
+        android:id="@+id/pic_customsListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"></ListView>
+
+</LinearLayout>

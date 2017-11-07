@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.juxian.bosscomments.widget.EditText
+        android:id="@+id/feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="@string/tell_something_boss"
+        android:maxLength="200"
+        android:minHeight="@dimen/DIMEN_300PX"
+        android:paddingBottom="@dimen/DIMEN_22PX"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        android:paddingRight="@dimen/DIMEN_30PX"
+        android:paddingTop="@dimen/DIMEN_22PX"
+        android:textColor="@color/menu_color"
+        android:textColorHint="@color/menu_color"
+        android:textSize="@dimen/DIMEN_24PX"/>
+
+    <ImageView
+        android:id="@+id/boss_circle_post_msg_addImg"
+        android:layout_width="@dimen/DIMEN_200PX"
+        android:layout_height="@dimen/DIMEN_200PX"
+        android:layout_marginLeft="@dimen/DIMEN_30PX"
+        android:layout_marginTop="@dimen/DIMEN_30PX"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_positive_photo"/>
+
+    <com.juxian.bosscomments.widget.NoScrollGridView
+        android:id="@+id/img_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_30PX"
+        android:layout_marginRight="@dimen/DIMEN_30PX"
+        android:numColumns="4"
+        android:visibility="gone">
+
+    </com.juxian.bosscomments.widget.NoScrollGridView>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"/>
+</LinearLayout>

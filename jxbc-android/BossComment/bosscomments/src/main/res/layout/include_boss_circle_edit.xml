@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_90PX"
+                android:layout_below="@+id/line"
+                android:background="@drawable/rela_boss_circle_comment"
+                android:paddingLeft="@dimen/DIMEN_16PX"
+                android:paddingRight="@dimen/DIMEN_16PX"
+                android:paddingTop="@dimen/DIMEN_16PX">
+
+    <EditText
+        android:id="@+id/edt_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/tv_circle"
+        android:background="@drawable/boss_circle_edit_bg"
+        android:gravity="center_vertical"
+        android:hint="说点什么..."
+        android:imeOptions="actionDone"
+        android:paddingLeft="@dimen/DIMEN_10PX"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <TextView
+        android:id="@+id/tv_circle"
+        android:layout_width="@dimen/DIMEN_94PX"
+        android:layout_height="@dimen/DIMEN_56PX"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/DIMEN_24PX"
+        android:background="@drawable/bt_send_boss_circle"
+        android:gravity="center"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:textSize="@dimen/DIMEN_30PX"/>
+</RelativeLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DepaartmentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhX-09-Rsn">
+                        <rect key="frame" x="10" y="0.0" width="120" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="QSy-My-JT9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWc-Hy-Ipa">
+                        <rect key="frame" x="266" y="0.0" width="53" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="53" id="Qhb-QT-SLc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="删除">
+                            <color key="titleColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="delagateBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ovi-Dg-8CF"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKd-8q-Uq7">
+                        <rect key="frame" x="203" y="0.0" width="53" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="53" id="BQ5-kg-Ctm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="修改">
+                            <color key="titleColor" red="0.75686274509803919" green="0.015686274509803921" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="upDateBnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f6M-pM-CT3"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="hWc-Hy-Ipa" secondAttribute="bottom" id="1a9-rb-XJa"/>
+                    <constraint firstAttribute="trailing" secondItem="hWc-Hy-Ipa" secondAttribute="trailing" constant="1" id="4EC-Md-6jZ"/>
+                    <constraint firstItem="hWc-Hy-Ipa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CJJ-xv-Ucj"/>
+                    <constraint firstItem="MhX-09-Rsn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XS4-OQ-2ih"/>
+                    <constraint firstItem="QKd-8q-Uq7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cSi-2f-tdN"/>
+                    <constraint firstAttribute="bottom" secondItem="QKd-8q-Uq7" secondAttribute="bottom" id="mZA-5H-7PY"/>
+                    <constraint firstAttribute="bottom" secondItem="MhX-09-Rsn" secondAttribute="bottom" id="pNT-dC-lZN"/>
+                    <constraint firstItem="hWc-Hy-Ipa" firstAttribute="leading" secondItem="QKd-8q-Uq7" secondAttribute="trailing" constant="10" id="qc9-Oj-Bg9"/>
+                    <constraint firstItem="MhX-09-Rsn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="xnx-Aa-Elc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dapartMentsLabel" destination="MhX-09-Rsn" id="xsz-wG-OZ4"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="EntInfoRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into ent_info (EntName, DisplayName, EntStatus, RegisterLocation, HomePage, LegalRepresentative, Description, CreatedTime, ModifiedTime)
+      values (@EntName, @DisplayName, @EntStatus, @RegisterLocation, @HomePage, @LegalRepresentative, @Description, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY; 
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update ent_info set EntName = @EntName, DisplayName=@DisplayName, EntStatus=@EntStatus, RegisterLocation=@RegisterLocation, HomePage=@HomePage, LegalRepresentative=@LegalRepresentative, Description=@Description, ModifiedTime=@ModifiedTime where EntId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from ent_info where EntId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from ent_info where EntId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from ent_info
+    </sqlWrap>
+    
+    <sqlWrap sqlName="SelectByEntName" supportDBType="SqlServer, MySql">
+      select * from ent_info where EntName = @EntName
+    </sqlWrap>
+
+  </module>
+</root>

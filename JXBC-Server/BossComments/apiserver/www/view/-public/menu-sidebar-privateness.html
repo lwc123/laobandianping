@@ -1,0 +1,17 @@
+
+{include file="-public/menu-header-privateness" /}
+<!--导航-->
+<ul id="menu-sidebar" class="com-nav sidebar">
+	<div>
+		<li class="archive1"><a href="/MyArchive/index">我的档案</a></li>
+	</div>
+	<div>
+		<li class="slider-pocket"><a href="/PrivatenessWallet/index">口袋</a></li>
+	</div>
+	<div>
+		<li class="information"><a href="/PrivatenessMessage/index?MessageType=1">消息{if($MyUnreadMessageNum !=0)}({$MyUnreadMessageNum}条未读)<span></span>{/if}</a></li>
+	</div>
+	<div>
+		<li class="slider-job"><a href="/JobQuery/index">求职</a></li>
+	</div>
+</ul>

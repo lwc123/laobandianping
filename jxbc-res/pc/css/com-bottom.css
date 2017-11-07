@@ -1,0 +1,175 @@
+.wrap-company{
+	width:100%;
+	background:#fff;
+	overflow: hidden;	
+}
+/*banner*/
+.wrap-company img{
+	width:100%;
+	vertical-align: bottom;
+}
+/*table选项卡*/
+.com-tab a{
+	color:#000;
+}
+.tab-nav{
+	border:1px solid #ccced0;
+	padding:40px 0 35px 140px;
+	overflow: hidden;
+}
+.tab-nav li{
+	float:left;
+	margin-right:70px;
+	font-size:22px;
+}
+.tab-nav a{
+	border-bottom: 4px solid #fff;
+	padding-bottom: 13px;
+}
+.active-on,.tab-nav a:hover{
+	color:#f4b802!important;
+	border-bottom: 4px solid #f4b802!important;
+}
+/*选项卡内容*/
+.tab-content,
+.company-content,
+.person-content{
+	font-size: 20px;
+	padding:70px 140px 50px 140px;
+}
+.tab-content p{
+	padding-bottom: 30px;
+}
+.company-content p,
+.person-content p{
+	padding-bottom: 10px;
+	text-indent: 40px;
+	padding-top:5px;
+}
+.tab-content h2,
+.company-content h2,
+.person-content h2{
+	font-size:22px;
+	padding-bottom: 10px;
+}
+.company-content .user-rules{
+	padding-top: 30px;
+}
+.company-content table{
+	padding-left: 40px;
+}
+.company-content table td{
+	padding-right:30px;
+}
+.commitee-name{
+	padding-left:40px;
+	font-weight: bold;
+}
+.tab-content p:last-child,
+.committe1{
+	padding-bottom: 200px;
+}
+/*常见问题页面*/
+.wrap-company .question-content {
+	padding:35px 140px;
+}
+.question-inner{
+	margin-top: 40px;
+}
+.question-inner p{
+	padding-bottom: 8px;
+}
+.question-inner h4{
+	font-size: 22px;
+	color:#c0a360;
+	padding-bottom: 12px;
+	border-bottom: 2px dashed #ccc;
+	margin-bottom: 20px;
+}
+.question-condition{
+	font-weight: bold;
+}
+.qu-condition1,
+.question-condition{
+	margin-top:20px;
+}
+/*发展历程*/
+.tab-content img{
+	margin-top:50px;
+	margin-bottom: 60px;
+}
+/*新闻报道*/
+.new-list li{
+	font-size: 18px;
+	border-bottom: 1px dashed #d2d2d2;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+.new-list li a{
+	background:url(../images/ic_o.png) no-repeat left;
+	padding-left:20px;
+}
+.new-list li span{
+	float:right;
+	color:#999;
+	font-size: 14px;
+}
+.new-list li:last-child{
+	margin-bottom: 100px;
+}
+/*咨询详情页面*/
+.wrap-consult{
+	margin-top:20px;
+}
+.consult-content{
+	padding:70px 140px;
+}
+.consult-content h2,
+.consult-time{
+	text-align: center;
+}
+.consult-time{
+	display:block;
+	color:#999;
+	padding-top:23px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #999;
+}
+.consult-content .con-text{
+   text-indent: 40px;
+}
+.consult-content>p{
+	margin-top: 35px;
+}
+.consult-content p:last-child{
+	padding-bottom: 30px;
+}
+#allmap {
+	width: 600px;
+	height: 400px;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+.contact-button{
+	width:110px;
+	height:32px;
+	text-align: center;
+	line-height:32px;
+	font-size: 16px;
+}
+.new-list a:hover{
+	color:#f4b802!important;
+	background:url(../images/ic_o1.png) no-repeat left;
+	
+}
+/*咨询详情页图片*/
+.imgmother{
+	width: 100%;
+	text-align: center;
+}
+.consult-content img{
+	display: block;
+	width:60%;
+	margin:0 auto
+
+}

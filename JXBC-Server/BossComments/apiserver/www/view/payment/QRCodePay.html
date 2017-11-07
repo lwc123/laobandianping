@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>支付</title>
+	{include file="-public/resources_single_header" /}
+</head>
+<body>
+<div class="com-width">
+	<div class="com-top">
+		<img src="{$Think.config.resources_site_root}/pc/img/40.png">
+	</div>
+	<div class="pay-content">
+		<div class="pay-method">
+		{if $Payment.PayWay == "Wechat"}
+			<!--微信支付部分-->
+			<div class="weixin">
+				<p class="code">订单编号：{$Payment.TradeCode}</p>
+				<p class="content">订单内容：{$Payment.CommoditySubject}</p>
+				<p class="money">应付金额：<span>{:abs($Payment.TotalFee)}元</span></p>
+				<img src="{$Think.config.resources_site_root}/pc/img/p1.png">
+				<span>微信支付</span>
+				<div class="img-pic">
+					<div class="img-code">
+						<img class="erweima" src="http://www.kuaizhan.com/common/encode-png?large=true&data={:urlencode($Think.get.QRCode)}">
+						<p>请使用微信扫描二维码完成支付</p>
+					</div>
+					<img src="{$Think.config.resources_site_root}/pc/img/iPhone-WeChat.png">
+				</div>
+			</div>
+		{elseif $Payment.PayWay == "Alipay"/}
+			<!--支付宝支付部分-->
+			<div class="zhi">
+				<p class="code">订单编号：{$Payment.TradeCode}</p>
+				<p class="content">订单内容：{$Payment.CommoditySubject}</p>
+				<p class="money">应付金额：<span>{:abs($Payment.TotalFee)}金币</span></p>
+				<img src="{$Think.config.resources_site_root}/pc/img/p2.png">
+				<span>支付宝支付</span>
+				<div class="img-pic">
+					<div class="img-code">
+						<img class="erweima" src="http://www.kuaizhan.com/common/encode-png?large=true&data={:urlencode($Think.get.QRCode)}">
+						<p>请使用支付宝扫描二维码完成支付</p>
+					</div>
+					<img src="{$Think.config.resources_site_root}/pc/img/iPhone-Alipay.png">
+				</div>
+			</div>
+		{/if}
+
+		</div>
+	</div>
+</div>
+</body>
+{include file="-public/resources_fullscreen_footer" /}
+<script>
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);return null;
+    }
+    //判断是否支付成功
+    var isApi=AppEnvironment.apiRoot+'/appbase/Payment/queryTrade?tradeCode={$Payment.TradeCode}';
+    setInterval(function(){
+        $.ajax({
+            type:'get',
+            url:isApi,
+            dataType: 'json',
+            success:function(data){
+                if(data.Success==true){
+                    var targetBizTradeCode=data.TargetBizTradeCode;
+                    var returnUrl="PaySuccess?ReturnUrl={:urlencode($Payment.ReturnUrl)}&BizSource={$Payment.BizSource}&BizCode="+targetBizTradeCode;
+                    var CompanyId=getUrlParam('CompanyId')
+					if("{$Payment.BizSource}" == AppEnvironment.bizSources.BuyBackgroundSurvey) {
+                        returnUrl = "/BackgroundSurvey/BoughtDetail?RecordId=" + targetBizTradeCode + "&CompanyId=" + CompanyId;
+                    }
+                    else if("{$Payment.BizSource}" == 'OpenPersonalService'){
+                        returnUrl = "/MyArchive/index?success=true";
+                    }
+		            window.location.href=returnUrl;
+                }else if(data.Success==false){
+                    console.log('支付失败。。。')
+                }
+            }
+        })
+    },10000);
+</script>
+</html>

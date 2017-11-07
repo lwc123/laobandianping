@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="GratuityJournalRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into gratuity_journal (BizType, BizId, BuyerId, SellerId, TotalFee, CreatedTime, ModifiedTime)
+      values (@BizType, @BizId, @BuyerId, @SellerId, @TotalFee, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY; 
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update gratuity_journal set BizType = @BizType, BizId=@BizId, BuyerId=@BuyerId, SellerId=@SellerId, TotalFee=@TotalFee, ModifiedTime=@ModifiedTime where JournalId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from gratuity_journal where JournalId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal where JournalId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByIds" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal where JournalId in (@Ids)
+    </sqlWrap>
+
+
+    <sqlWrap sqlName="SelectByBizType" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal where BizType = @BizType
+      order by JournalId desc
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByBuyerId" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal where BuyerId = @BuyerId
+      order by JournalId desc
+    </sqlWrap>
+    <sqlWrap sqlName="SelectBySellerId" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal where SellerId = @SellerId
+      order by JournalId desc
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByBizId" supportDBType="SqlServer, MySql">
+      select * from gratuity_journal where BizType=@BizType and BizId=@BizId
+      order by JournalId desc
+    </sqlWrap>
+  </module>
+</root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/DIMEN_30PX">
+
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:textColor="@color/main_text_color"
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/archive_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:layout_marginTop="@dimen/DIMEN_18PX"
+        android:layout_below="@+id/company_name"
+        android:textColor="@color/main_text_color"
+        android:text=""/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/DIMEN_16PX"
+        android:src="@drawable/xiangyou" />
+</RelativeLayout>

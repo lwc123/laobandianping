@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_78PX"
+        android:text="@string/personal_look_hint"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX" />
+
+    <RelativeLayout
+        android:id="@+id/activity_edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_22PX">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/activity_phone_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/employee_identity_number"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX" />
+
+        <com.juxian.bosscomments.widget.EditText
+            android:id="@+id/identity_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/DIMEN_52PX"
+            android:layout_toRightOf="@+id/activity_phone_title"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="@string/employee_identity_number_not_empty"
+            android:singleLine="true"
+            android:textColor="@color/main_text_color"
+            android:textColorHint="@color/menu_color"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/DIMEN_30PX" />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:text="@string/personal_identity_check_hint"
+        android:textColor="@color/menu_color"
+        android:textSize="@dimen/DIMEN_24PX" />
+</LinearLayout>

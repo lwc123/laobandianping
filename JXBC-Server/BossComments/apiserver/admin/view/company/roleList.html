@@ -1,0 +1,50 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">授权管理员列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center">
+                    <th class="col-xs-2" >注册时间</th>
+                    <th class="col-xs-2">姓名</th>
+                    <th class="col-xs-2">职务</th>
+                    <th class="col-xs-3">授权管理角色</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {foreach( name="RoleList" item="item")}
+
+                <tr class="center">
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{$item['RealName']}</td>
+                    <td>{$item['JobTitle']}</td>
+                    <td>
+                        {if($item['Role']==1)}
+                        老板
+                        {elseif($item['Role']==2)}
+                        管理员
+                        {elseif($item['Role']==3)}
+                        高管
+                        {else /}
+                        建档员
+                        {/if}
+                    </td>
+                </tr>
+                {/foreach}
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{/block}

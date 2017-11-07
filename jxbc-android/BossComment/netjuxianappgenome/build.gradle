@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+dependencies {
+    compile project(':social_sdk_library_project')
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    //        compile files('libs/android-support-v7-cardview.jar')
+    //        compile files('libs/volley.jar')
+    //        compile files('libs/xUtils-2.6.13.jar')
+    //        compile files('libs/org.apache.http.legacy.jar')
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':PushSDK')
+    compile project(':multi-image-selector')
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_404PX"
+        android:background="@drawable/company_detail_bg"/>
+    
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_235PX"
+        android:layout_marginLeft="@dimen/DIMEN_20PX"
+        android:layout_marginRight="@dimen/DIMEN_20PX"
+        android:descendantFocusability="blocksDescendants"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+        <include
+            layout="@layout/include_cardview_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/photo"
+        android:layout_width="@dimen/DIMEN_130PX"
+        android:layout_height="@dimen/DIMEN_130PX"
+        android:layout_marginLeft="@dimen/DIMEN_40PX"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_170PX"
+        android:elevation="5dp"
+        android:background="@drawable/gold_line_pic">
+        <com.juxian.bosscomments.widget.RoundAngleImageView
+            android:id="@+id/user_photo"
+            app:roundHeight="5dp"
+            app:roundTag="0"
+            app:roundWidth="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/DIMEN_6PX"
+            android:scaleType="fitXY"
+            android:src="@drawable/company_logo" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/DIMEN_32PX"
+        android:layout_marginTop="@dimen/DIMEN_130PX"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/attention_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/DIMEN_20PX"
+            android:paddingRight="@dimen/DIMEN_20PX"
+            android:paddingTop="@dimen/DIMEN_6PX"
+            android:paddingBottom="@dimen/DIMEN_6PX"
+            android:background="@drawable/circular_arc_bg"
+            android:gravity="center"
+            android:textColor="@color/luxury_gold_color"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="关注"/>
+        <TextView
+            android:id="@+id/claim_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/accredit_manage_bt_color"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="认领企业"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/all_number"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_76PX"
+        android:textSize="@dimen/DIMEN_24PX"
+        android:textColor="@color/menu_color"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_30PX"
+        tools:text="总阅读 51561   共56条点评    来自156位员工"
+        android:layout_below="@+id/cardview"/>
+</RelativeLayout>

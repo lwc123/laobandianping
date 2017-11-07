@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/include_refresh_listview_one_line" />
+
+    <TextView
+        android:id="@+id/archive_is_null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_80PX"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:visibility="gone"
+        android:textColor="@color/main_text_color"
+        android:text="未发现您的工作档案" />
+</LinearLayout>

@@ -1,0 +1,138 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box ui-sortable-handle">
+            <!-- #section:custom/widget-box.options.collapsed -->
+            <div class="widget-header widget-header-small">
+                <h6 class="widget-title">
+                    企业审核列表
+                </h6>
+
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <!--搜索-->
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div>
+                        <form id="form-search" method="get" class="form-inline" role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10">
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-8">
+                                            <label>提交时间：</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" id="MinSignedUpTime" name="MinSignedUpTime" class="date-picker hasDatepicker" value="{$Think.get.MinSignedUpTime}">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <span>至</span>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" id="MaxSignedUpTime" name="MaxSignedUpTime" class="date-picker hasDatepicker" value="{$Think.get.MaxSignedUpTime}">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-4">
+                                            <label for="CompanyAbbr">企业名称（简称）：</label>
+                                            <input type="text" id="CompanyAbbr" name="CompanyName" value="{$Think.get.CompanyName}">
+                                        </div>
+                                        <div class="form-group col-xs-12 col-sm-4">
+                                            <label>审核状态：</label>
+                                            <select id="AuditStatus" data-placeholder="选择身份类型" name="AuditStatus">
+
+                                                <option value=""   {if(!isset($AuditStatus) || strlen($AuditStatus)==0)} selected {/if}>全部</option>
+                                                <option value="0"  {if($AuditStatus !='' && $AuditStatus==0)} selected {/if}>未提交</option>
+                                                <option value="1" {if($AuditStatus==1)} selected {/if}>审核中</option>
+                                                <option value="2" {if($AuditStatus==2)} selected {/if}>审核通过</option>
+                                                <option value="9" {if($AuditStatus==9)} selected {/if}>被拒绝</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    <button class="btn btn-app btn-purple btn-sm pull-right">
+                                        <i class="ace-icon fa fa-search bigger-200"></i>
+                                        搜索
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--搜索-->
+        </div>
+    </div>
+</div>
+<!--企业列表-->
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">企业列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                <tr class="center"> <!- 表格总宽度=12 ->
+                    <th class="center col-xs-1">编号ID</th>
+                    <th class="col-xs-2">提交的时间</th>
+                    <th class="col-xs-2">开户时间</th>
+                    <th class="col-xs-2">企业名称</th>
+                    <th class="col-xs-2">公司简称</th>
+                    <th class="col-xs-2">审核状态</th>
+                    <th class="col-xs-2">操作</th>
+                </tr>
+                </thead>
+                {foreach( name="CompanyList" item="item")}
+                <tbody>
+                <tr class="center">
+                    <td>{$item['CompanyId']}</td>
+                    <td>{:toLocalDateTime($item['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{:toLocalDateTime($item['Company']['CreatedTime'],'Y-m-d H:i:s')}</td>
+                    <td>{$item['Company']['CompanyName']}</td>
+                    <td>{$item['Company']['CompanyAbbr']}</td>
+                    <td>
+                        {if($item['AuditStatus'] == 0)}
+                        <span class="label label-sm label-warning">未提交</span>
+                        {elseif($item['AuditStatus'] == 1)}
+                        <span class="label label-sm label-info">未审核</span>
+                        {elseif($item['AuditStatus'] == 2)}
+                        <span class="label label-sm label-success">已通过</span>
+                        {else /}
+                        <span class="label label-sm label-danger">未通过</span>
+                        {/if}
+                    </td>
+                    <td>
+                        <span class="label label-sm label-yellow">   <a href="/company/Detail?CompanyId={$item['CompanyId']}" class="ace-icon fa fa-pencil bigger-120" >去查看</a></span>
+                    </td>
+                </tr>
+                </tbody>
+                {/foreach}
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: {$TotalCount}</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {$pageHtml}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--企业列表-->
+{/block}

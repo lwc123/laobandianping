@@ -1,0 +1,125 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}背景调查查询{/block}
+
+{block name="page-content"}
+
+		<!--右侧内容开始-->
+	<div class="com1-bg">
+		<div class="backgroundsurvey fr"id="buy">
+			<div class="background-inner">
+				<h2>背景调查</h2>
+				<form>
+					<div class="inp">
+						姓名:
+						<input type="text" name="name" id="check-name">
+					</div>
+					<div class="inp mar-50">
+						身份证号:
+						<input type="text" name="idcard" id="idcard">
+					</div>
+					<button type="button"  @click="openUrl" id="search-btn" >查询</button>
+				</form>
+				<p class="txt">
+					在老板点评中，只要被标记为在职人员，<br>
+					则其信息不能被查询
+				</p>
+				<div class="search-result">
+					<h3>已购买的背景调查报告</h3>
+					<ul>
+						<li class="already-list" v-for="item in buyData" data-companyid='{{item.CompanyId}}' data-archiveid="{{item.ArchiveId}}">
+							<div class="fl">
+								<span>{{item.RealName}}</span>
+								<span>{{item.ArchiveCompanyName}}</span>
+							</div>
+							<div class="fr">
+								<a href="javascript:;">查看背调报告</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="phone" style="width:auto;height:auto;"></div>
+	</div>
+{/block}
+
+{block name="resources-footer"}
+<script src="{$Think.config.resources_site_root}/mobile/js/vue.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/vue-resource.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/moment.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+    <script>
+    jQuery(function($) {
+//  	var w=document.body.clientWidth;
+//	 	$('.backgroundsurvey').css('width',w-230+'px');
+	 	function getUrlParam(name){
+			var reg=new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r=window.location.search.substr(1).match(reg);
+			if(r!=null)return unescape(r[2]); return null;
+		}
+	 	var demo=new Vue({
+	 		el:'#buy',
+	 		data:{
+	 			buyData:[]
+	 		},
+	 		ready:function(){
+	 			var CompanyId=getUrlParam('CompanyId');
+	 			var apiUrl=AppEnvironment.apiRoot+'/workplace/BackgroundSurvey/BoughtList?CompanyId='+CompanyId;
+	 			this.$http.get(apiUrl).then(function(response){
+	 				this.buyData=response.data;
+	 			},function(response){
+	 				alert('请求失败！')
+	 			})
+
+	 		},
+	 		methods:{
+	 			openUrl:function(){
+	 				var CompanyId=getUrlParam('CompanyId');
+	 				var name=encodeURI($('#check-name').val());
+	 				var idcard=$('#idcard').val();
+	 				var url="detail?CompanyId="+CompanyId+"&IDCard="+idcard+"&RealName="+encodeURI(name);
+	 				var checkName=$('#check-name').val();
+                    this.$http.get(AppEnvironment.apiRoot+'/thirdapis/sinoway/sendQueryRequest?IDCard='+idcard+'&RealName='+checkName).then(function (response) {
+                        console.log('伯乐分查询成功')
+                    },function (response) {
+                        console.log('伯乐分查询失败')
+                    })
+	 				var regNum = /^(\d{3})(\d{3})(\d{4})(\d{2})(\d{2})(?:\d{2})(\d)(?:\d|X)$/;
+					var regName=/^[\u4e00-\u9fa5]{2,5}$/;
+					if(checkName==''){
+						AppBase.toast('姓名不能为空');
+					}else if(!regName.test(checkName)){
+                        AppBase.toast('姓名格式错误');
+					}else if(idcard==''){
+                        AppBase.toast('身份证不能为空');
+					}else if(!regNum.test(idcard)){
+                        AppBase.toast('身份证格式不正确');
+					}else{
+						var errorurl = AppEnvironment.apiRoot+'/workplace/BackgroundSurvey/Search?CompanyId=' + CompanyId + '&IDCard=' + idcard + '&RealName=' + decodeURI(name);
+						$.get(errorurl,function(data){
+							if(data.ErrorMessage){
+                                AppBase.toast('发现身份证号匹配的员工档案姓名与您输入的姓名不一致',3000);
+							}else{
+								window.location.href=url;
+							}
+						})
+
+					}
+	 			}
+	 		}
+	 	})
+		demo.$watch('buyData',function(){
+			$('.already-list').unbind('click').bind('click',function(){
+				var CompanyId=$(this).attr('data-companyid');
+				var ArchiveId=$(this).attr('data-archiveid');
+				var url="SingleDetail?CompanyId="+CompanyId+"&ArchiveId="+ArchiveId;
+				window.location.href=url;
+			})
+		})
+    });
+    </script>
+{/block}
+
+	
+ 

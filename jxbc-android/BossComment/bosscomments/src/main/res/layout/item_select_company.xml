@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/DIMEN_24PX"
+        android:paddingLeft="@dimen/DIMEN_24PX"
+        android:paddingRight="@dimen/DIMEN_24PX"
+        android:paddingTop="@dimen/DIMEN_24PX">
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="举贤网科技（北京）股份有限公司"
+            android:textSize="@dimen/DIMEN_30PX"
+            android:textColor="@color/main_text_color" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/jiantou"
+            android:layout_centerVertical="true"
+            android:text="2条待审核评价"
+            android:textSize="@dimen/DIMEN_22PX"
+            android:textColor="@color/juxian_red" />
+
+        <TextView
+            android:id="@+id/login_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/jiantou"
+            android:text="2条待审核评价"
+            android:visibility="gone"
+            android:textSize="@dimen/DIMEN_30PX"
+            android:textColor="@color/menu_color" />
+
+        <ImageView
+            android:id="@+id/jiantou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/xiangyou"/>
+    </RelativeLayout>
+</LinearLayout>

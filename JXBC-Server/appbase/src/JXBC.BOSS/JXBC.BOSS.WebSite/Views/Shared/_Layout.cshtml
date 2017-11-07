@@ -1,0 +1,44 @@
+﻿@using JXBC.WebCore;
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>    
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="@(AppEnvironment.ResourcesSiteRoot)/juxianling.ico?v=0">
+    @Html.Partial("_common_resources_header")
+    @RenderSection("_resources_header", false)
+</head>
+<body>
+    @Html.Partial("_common_Header")
+
+    <div class="main-container" @if (false == string.IsNullOrEmpty(ViewBag.ContainerId)) { @Html.Raw("id=\"" + @ViewBag.ContainerId + "\"")      ; }>
+        @if (!string.IsNullOrEmpty(Request["leftNav"]))
+        {
+            try
+            {
+                @Html.Partial(string.Format("~/Views/{0}/_common_Left.cshtml", Request["leftNav"]));
+            }
+            catch
+            {
+                @Html.Partial("_common_Left");
+            }
+
+        }
+        else
+        {
+            @Html.Partial("_common_Left");
+        }
+
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Html.Partial("_common_Footer")
+
+    @Html.Partial("_common_resources_footer")
+    @RenderSection("_resources_footer", false)
+</body>
+</html>

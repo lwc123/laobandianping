@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>公司口碑——专题详情 </title>
+		<meta name="description" content=""/>
+		<!--清理缓存 start-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+		<link href="{$Think.config.resources_site_root}/mobile/css/dropload.css?v=0" rel="stylesheet">
+		<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+        <!--{if(!empty($Think.get.Code))}
+		<div id="pageHead" class="listHead" style="text-align: center;">
+					<svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3073"><path d="M738.145103 170.248828 663.234207 95.337931 313.114483 445.457655 312.937931 445.298759 238.768552 519.450483 238.945103 519.627034 238.768552 519.785931 313.679448 594.696828 313.838345 594.537931 658.996966 939.696552 733.166345 865.509517 388.007724 520.368552Z" p-id="3074"></path></svg>
+			<b class="font34">热门公司</b>
+		</div>
+        {/if}-->
+	   <div class="headPic topicalPic">
+	   	  <img src="{$TopicDetail.BannerPicture}">
+	   </div>
+		<div class="comments">
+			<h2 class="hotTitle">{$TopicDetail.TopicName}</h2>
+			<div class="content">
+				<ul class="companyList">
+                    {foreach( name="TopicDetail.Companys" item="item")}
+
+                    <li class="padding" data-src="/m/Opinion/CompanyDetail?CompanyId={$item.CompanyId}">
+                        <img class="fl" src="{$item.CompanyLogo}">
+                        <div class="companyComment">
+                            <div class="bottom">
+                                <b class="font30">{$item.CompanyName}</b>
+                                <div class="orangStar fr padding">
+                                    <span tip="{$item.Score}"></span>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                </div>
+                            </div>
+                            <p>行业：{$item.Industry}</p>
+                            <p>地区：{$item.Region}</p>
+                            <p>规模：{$item.CompanySize}</p>
+                            <div class="userLabel">
+                                {foreach($item.Labels as $key=>$vals)}
+                                <span>{$vals}</span>
+                                {/foreach}
+
+                            </div>
+                            <p class="grey">总阅读 {$item.ReadCount}&nbsp;&nbsp;&nbsp;&nbsp;共{$item.CommentCount}条点评&nbsp;&nbsp;&nbsp;&nbsp;来自{$item.StaffCount}位员工</p>
+                        </div>
+                    </li>
+
+                    {/foreach}
+
+				</ul>
+		    </div>
+		</div>
+	</body>
+	<script src="{$Think.config.resources_site_root}/mobile/js/jquery-2.0.3.min.js"></script>
+	<script src="{$Think.config.resources_site_root}/mobile/js/dropload.min.js"></script>
+    <script src="{$Think.config.resources_site_root}/-common/js/AppEnvironment.js?v=1.2"></script>
+	<script>
+	$(function(){
+		/*显示分数*/
+		function show(){
+			$(".orangStar span").each(function(){
+				var num=$(this).attr("tip");
+				if(num.length>1){
+					var decimal=parseInt(num.charAt(num.length - 1));
+			        if(decimal<3){
+			        	num=Math.floor(num);
+			        	$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+			        }else if(decimal>=3&&decimal<=9){
+			        	num=Math.floor(num);
+			        	$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+			        	$(this).parent(".orangStar").children('a:eq('+num+')').addClass("showHalfBg");
+			        }else{
+			        	num=Math.ceil(num);
+			        	$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+			        }
+				}else{
+					$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+				}
+			})
+		}
+		show();
+		/*跳转到应用市场*/
+		$("#floatTip span").click(function(){
+			location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.juxian.bosscomments";
+		})
+		$("#floatTip .floatClose").click(function(){
+			$(this).parent().hide();
+		})
+		
+		/*上滑加载*/
+		var counter = 0;
+        // 每页展示15个
+	    var num = 15;
+	    var pageStart = 0,pageEnd = 0;
+        var requestNum=2;
+	    // dropload
+	    $('.content').dropload({
+	        scrollArea : window,
+	        loadDownFn : function(me){
+	            $.ajax({
+	                type: 'GET',
+	                url:AppEnvironment.apiRoot+'/m/Opinion/topicDetail?Page='+requestNum+'&Size='+num,
+	                dataType: 'json',
+	                success: function(data){
+	                	console.log(data);
+	                    var result = '';
+	                    counter++;
+
+	                    pageEnd = num * counter;
+	                    pageStart = pageEnd - num;
+
+                           for(var i = pageStart; i < pageEnd; i++){
+                               if(data[i]){
+
+                               result+='<li class="padding" data-src="/m/Opinion/CompanyDetail?CompanyId="'+data[i].CompanyId+'"><img class="fl" src="'+data[i].CompanyLogo+'"><div class="companyComment"><div class="bottom">';
+                               result+='<b class="font30">'+data[i].CompanyName+'</b><div class="orangStar fr padding"><span tip="'+data[i].Score+'"></span><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a></div></div>';
+                               result+=' <p>行业：'+data[i].Industry+'</p><p>地区：'+data[i].Region+'</p><p>规模：'+data[i].CompanySize+'</p><div class="userLabel">'
+                               var labels=data[i].Labels;
+                               if(labels){
+                                   for(var j=0;j<labels.length;j++){
+
+                                       result+='<span>'+labels[j]+'</span>';
+                                   }
+                               }
+                               result+='<div><p class="grey">总阅读'+data[i].ReadCount+'&nbsp;&nbsp;&nbsp;&nbsp;共'+data[i].CommentCount+'条点评&nbsp;&nbsp;&nbsp;&nbsp;来自'+data[i].StaffCount+'位员工</p></div></li>'
+                               if((i + 1) >= data.length) {
+                                   // 锁定
+                                   me.lock();
+                                   // 无数据
+                                   me.noData();
+                                   break;
+                               }
+                           }else{
+                                   // 无数据
+                                   me.noData();
+                               }
+                       }
+                            $('.companyList').append(result);
+                            //点击跳转
+                            $(".companyList li").click(function(){
+					        	var src=$(this).attr("data-src");
+					        	location.href=src;
+					        })
+                            // 每次数据加载完，必须重置
+                            me.resetload();
+                            /*显示分数*/
+                            show();
+                        requestNum++;
+	                },
+	                error: function(xhr, type){
+	                    // 即使加载出错，也得重置
+	                    me.resetload();
+	                }
+	            });
+	        }
+	    });
+        $(".searchArea").click(function(){
+            location.href="/m/Opinion/searchCompany";
+        })
+        $(".companyList li").click(function(){
+        	var src=$(this).attr("data-src");
+        	location.href=src;
+        })
+	})    
+	</script>
+</html>

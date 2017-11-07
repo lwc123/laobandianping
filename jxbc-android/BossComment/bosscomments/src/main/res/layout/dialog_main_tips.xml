@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_white"
+    android:orientation="vertical">
+
+    <com.juxian.bosscomments.widget.TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/DIMEN_20PX"
+        android:text="企业认证信息审核中"
+        android:textColor="@color/black"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/dialog_tips_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/DIMEN_20PX"
+        android:paddingBottom="@dimen/DIMEN_60PX"
+        android:paddingLeft="@dimen/DIMEN_40PX"
+        android:paddingRight="@dimen/DIMEN_40PX"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_24PX" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/dialog_tips_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DIMEN_116PX"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/close_dialog"
+            android:textColor="#000000"
+            android:textSize="@dimen/DIMEN_32PX" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="@dimen/DIMEN_116PX"
+            android:background="@color/line_color" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:id="@+id/dialog_tips_ok"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/DIMEN_116PX"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="#000000"
+            android:textSize="@dimen/DIMEN_32PX" />
+    </LinearLayout>
+</LinearLayout>

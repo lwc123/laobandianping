@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MIS_NO_ACTIONBAR" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="common_line_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/common_actionbar_line_height</item>
+        <item name="android:background">@color/common_actionbar_line</item>
+    </style>
+
+    <style name="horizontal_slide" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>

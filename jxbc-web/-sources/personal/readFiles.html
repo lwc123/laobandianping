@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>查看档案</title>
+		<!--#include virtual="/-sources/-common/resources_header.html"-->
+</head>
+<body>
+<!--马上查看的弹框-->
+
+<div id="zhezhao">
+	<form id="alert">
+		<div class="alertT">
+		   <b class="alertClose">×</b>
+		   <span></span>
+		</div>
+		<div class="alertB">
+		</div>
+		<button class="newJobSaveBtn" ></button>
+		<div class="file-tip"></div>
+	</form>
+</div>
+<!--弹框结束-->
+<!--左侧部分-->
+<div class="com1-left">
+	<!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+</div>
+	<!--#include virtual="/-sources/-common/header.html"-->
+<!--右侧内容开始-->
+<div class="com1-bg">
+	<div class="files-bg">
+	    <div class="files-identity">
+			<h3 class="files-title">为了查询更精准及保护隐私，请校验身份</h3>
+			<span>身份证号</span><input type="text" value="" name="IDCard" placeholder="请输入您的身份证号"><br>
+			<button id="file-identity" type="button">立即校验</button>
+		</div>
+		<div class="files-detail">
+		    <p class="com-tt">该身份证号下的评价</p>
+		    <div class="em1-info1">
+		  		<p class="detail-name">北京东方高人管理顾问有限公司</p>
+		  		<p class="detail-num">有5份工作评价 1份离任报告</p>
+		  		<span><a href="#" class="see blue">马上查看</a></span>
+		  	</div>
+		  	<div class="em1-info1">
+		  		<p class="detail-name">北京东方高人管理顾问有限公司</p>
+		  		<p class="detail-num">有5份工作评价 1份离任报告</p>
+		  		<span><a href="#" class="see blue">马上查看</a></span>
+		  	 </div>
+		</div>
+		<!--开通服务但无数据和未开通无数据-->
+		<div class="open-nodata">
+		    <img src="http://bc-res.jx.io:8000/pc/img/face.png">
+		    <p>暂无老板对您进行评价。</p>
+		    <p>邀请老板对你点评，建立你的职业诚信标签，同时还可获得现金奖励！</p>
+	   </div>
+		<!--未开通有数据-->
+		<div class="noopen-data">
+		    <img src="http://bc-res.jx.io:8000/pc/img/face.png">
+		    <p>通过手机号判定，发现您名下有来自3位老板的8条工作评价、2份离任报告。</p>
+		    <button>查看评的是什么</button>
+		</div>
+    </div>	
+</body>
+	<!--#include virtual="/-sources/-common/resources_footer.html"-->
+</html>

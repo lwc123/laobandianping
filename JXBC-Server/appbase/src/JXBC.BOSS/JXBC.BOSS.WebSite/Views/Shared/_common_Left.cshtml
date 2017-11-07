@@ -1,0 +1,80 @@
+﻿@using JXTB.CommonData;
+@using JXBC.WebCore;
+@{
+    var style = "style=background-image:url(" + Resources.GetResourceUri("boss", "/img/img-open.png");
+}
+<div class="sidebar">
+    <div class="sidebar-content">
+        <h2><span>用户</span><i class="get-option"></i></h2>
+        <div class="moreOptions">
+            <!--隐藏部分-->
+            <ul>
+                <li @(ViewBag.LeftActive == "User_Talentes" ? "class=active" : "")>
+                    <a href="/User/Talentes?leftFrom=User_Talentes&headerFrom=BizManager&leftNav=BizManager">
+                        用户列表
+                    </a>
+                </li>
+                <li @(ViewBag.LeftActive == "User_Consultantes" ? "class=active" : "")>
+                    <a href="/User/Consultantes?leftFrom=User_Consultantes&headerFrom=BizManager&leftNav=BizManager">
+                        猎头列表
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <h2><span>服务</span><i class="get-option"></i></h2>
+        <div class="moreOptions">
+            <!--隐藏部分-->
+            <ul>
+                <li @(ViewBag.LeftActive == "Service_List" ? "class=active" : "")>
+                    <a href="/CareerService/List?leftFrom=Service_List&headerFrom=BizManager&leftNav=BizManager">
+                        服务列表
+                    </a>
+                </li>
+                <li @(ViewBag.LeftActive == "Service_List" ? "class=active" : "")>
+                    <a href="#">
+                        订单列表
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <h2><span>高见</span><i class="get-option"></i></h2>
+        <div class="moreOptions">
+            <!--隐藏部分-->
+            <ul>
+                <li @(ViewBag.LeftActive == "Advice_List" ? "class=active" : "")>
+                    <a href="/CareerAdvice/List?leftFrom=Advice_List&headerFrom=BizManager&leftNav=BizManager">高见列表</a>
+                </li>
+                <li @(ViewBag.LeftActive == "Advice_List" ? "class=active" : "")>
+                    <a href="#">打赏列表</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <h2><span>信息审核</span><i class="get-option"></i></h2>
+        <div class="moreOptions">
+            <!--隐藏部分-->
+            <ul>
+                <li @if (ViewBag.LeftActive == "ApplyManager_Consultant") { @Html.Raw("class='active'")  ; }>
+                    <a href="/ApplyManager/ConsultantApplyList?leftFrom=ApplyManager_Consultant&headerFrom=BizManager&leftNav=BizManager">
+                        猎头认证
+                    </a>
+                </li>
+                <li @if (ViewBag.LeftActive == "ApplyManager_Service") { @Html.Raw("class='active'")   ; }>
+                    <a href="/ApplyManager/ServiceApplyList?leftFrom=ApplyManager_Service&headerFrom=BizManager&leftNav=BizManager">
+                        服务审核
+                    </a>
+                </li>
+                <li @if (ViewBag.LeftActive == "ApplyManager_Advice") { @Html.Raw("class='active'")    ; }>
+                    <a href="/ApplyManager/AdviceApplyList?leftFrom=ApplyManager_Advice&headerFrom=BizManager&leftNav=BizManager">
+                        高见审核
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> <!-- /.col-md-3 -->

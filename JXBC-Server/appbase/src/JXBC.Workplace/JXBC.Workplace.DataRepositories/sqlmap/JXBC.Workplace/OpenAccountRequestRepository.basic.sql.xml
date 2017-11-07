@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="OpenAccountRequestRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into open_account_request (PassportId, EntName, LegalRepresentative, AttestationImages, AttestationStatus, AttestationTime, CreatedTime, ModifiedTime)
+      values (@PassportId, @EntName, @LegalRepresentative, @AttestationImages, @AttestationStatus, @AttestationTime, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY; 
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update open_account_request set PassportId = @PassportId, EntName=@EntName, LegalRepresentative=@LegalRepresentative, AttestationImages=@AttestationImages, AttestationStatus=@AttestationStatus, AttestationTime=@AttestationTime, ModifiedTime=@ModifiedTime where RequestId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from open_account_request where RequestId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from open_account_request where RequestId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from open_account_request
+    </sqlWrap>
+    
+    <sqlWrap sqlName="SelectByPassportId" supportDBType="SqlServer, MySql">
+      select * from open_account_request where PassportId = @PassportId
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByEntName" supportDBType="SqlServer, MySql">
+      select * from open_account_request where EntName = @EntName
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByAttestationStatus" supportDBType="SqlServer, MySql">
+      select * from open_account_request where AttestationStatus = @AttestationStatus
+    </sqlWrap>
+
+  </module>
+</root>

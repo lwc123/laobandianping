@@ -1,0 +1,39 @@
+﻿@using JXBC.WebCore;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignIn</title>
+</head>
+<body>    
+    <fieldset style="width:500px; margin:50px auto">
+        <legend>密码登录</legend>
+        <form method="post" action="SignIn">
+            手机: <input type="text" name="phone" value="" /> <br />
+            密码: <input type="password" name="password" value="123456" /> <br />
+            <input type="submit" value="登陆" style="width:100px" />
+        </form>
+    </fieldset>    
+   
+    <fieldset style="width:500px; margin:50px auto">
+        <legend>快捷登录</legend>
+        <form method="post" action="ShortcutSignIn">
+            手机号: <input type="text" name="phone" value="" /> <br />
+            验证码: <input type="text" name="code" value="@AppEnvironment.TestValidationCode" /> <br />
+            <input type="submit" value="快捷登录" style="width:100px" />
+        </form>
+    </fieldset>
+
+    <fieldset style="width:500px; margin:50px auto">
+        <legend>手机号</legend>
+        18210145561 <br />
+        18236592275 <br />
+        18200110022 <br />
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,127 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}修改企业信息{/block}
+{block name="page-content"}
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+            <a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<!--loading pic-->
+<div id="loadingpic">
+    <img  src="{$Think.config.resources_site_root}/pc/img/loadingpic.gif">
+</div>
+<!--企业信息修改部分-->
+<div class="com1-bg">
+    <form id="employe_create" class="em-info reverse-form" action="" enctype="multipart/form-data" method="post">
+        <div class="reverse-title">
+            <div class="reverse-pic company-img" id="previewPicture">
+               <img src="{$CompanyInfo['CompanyLogo']}"  width="80px">
+                <input type="file" name="CompanyLogo" class="em-btn" accept="image/jpeg,image/x-png,image/png" data-img-preview="previewPicture"/>
+            </div>
+            <p>{$CompanyInfo['CompanyName']}<br>{$CompanyInfo['LegalName']} &nbsp; 公司法人</p>
+        </div>
+        <div class="com-put">
+            <i class="iconfont img">&#xe643;</i>
+            <input type="text" value="{$CompanyInfo['CompanyAbbr']}" name="CompanyAbbr" placeholder="请输入企业简称" required>
+        </div>
+        <div class="com-put">
+            <i class="iconfont img">&#xe606;</i>
+            <select name="Industry" required>
+                <option value="">请选择企业行业</option>
+                {foreach $DictionaryIndustry['industry'] as $item}
+                <option value="{$item['Name']}" {if($CompanyInfo['Industry']==$item['Name'])} selected {/if}>{$item['Name']}</option>
+                {/foreach}
+            </select>
+        </div>
+        <div class="com-put">
+            <i class="iconfont img">&#xe605;</i>
+            <select name="CompanySize" required>
+                <option value="">请选择企业规模</option>
+                {foreach $DictionaryCompanySize['CompanySize'] as $item}
+                <option value="{$item['Code']}" {if($CompanyInfo['CompanySize']==$item['Code'])} selected {/if}>{$item['Name']}</option>
+                {/foreach}
+            </select>
+        </div>
+        <div class="com-put">
+            <i class="iconfont img">&#xe607;</i>
+            <select name="Region">
+                <option value="">请选择企业所在城市</option>
+                {foreach $DictionaryRegion as $item}
+                <option value="{$item['Code']}" {if($CompanyInfo['Region']==$item['Code'])} selected {/if}>{$item['Name']}</option>
+                {/foreach}
+            </select>
+        </div>
+        <input type="hidden" name="CompanyId" value="{$CompanyId}"/>
+        <button id="submit" >保存并生效</button>
+    </form>
+</div>
+{/block}
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    $.validator.setDefaults({
+        submitHandler: function() {
+            $("#alert>.alertT>span").text("修改公司信息");
+            $(".alertB").html('<div class="bcontent">确认要修改吗？</div>');
+            $(".btnwrap").html('<a id="employe_create_confirm"  href="javascript:void (0)" class="button db_btn_style alertClose">确认</a><a id="employe_create_cancel"  href="javascript:void (0)" class="button db_btn_style alertClose">取消</a>');
+            alertwin();
+            $("#employe_create_confirm").click(function () {
+                var apiUrl="updateCompanyRequest?CompanyId="+{$CompanyId};
+                var formData = new FormData($("#employe_create")[0]);
+                console.log(formData);
+                $.ajax({
+                    type:'post',
+                    contentType: false,
+                    url:apiUrl,
+                    data:formData,
+                    processData: false,
+                    beforeSend:alertLoading(),
+                    success:function(data){
+                    	removeLoading();
+                        console.log(data)
+                        if(data==true){
+                        	$('.alertClose').hide();
+                            $("#alert>.alertT>span").text("");
+                            $(".alertB").html('<div class="bcontent">修改企业信息成功</div>');
+                            $(".btnwrap").remove();
+                            alertwin();
+                            setTimeout(function(){
+                                $("#zhezhao").css("display","none");
+                                location.href="/Mine/companyUpdate?CompanyId="+{$CompanyId};
+                            },3000)
+
+                        }else{
+                            $("#alert>.alertT>span").text("错误提示");
+                            $(".alertB").html('<div class="bcontent">修改失败</div>');
+                            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data)
+                    }
+                });
+            });
+        }
+    });
+</script>
+{/block}

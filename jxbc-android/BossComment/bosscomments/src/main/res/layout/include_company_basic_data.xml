@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/update_company_data"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_220PX"
+    android:background="@color/main_head_bg_color"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/photo"
+        android:layout_width="@dimen/DIMEN_130PX"
+        android:layout_height="@dimen/DIMEN_130PX"
+        android:layout_marginLeft="@dimen/DIMEN_22PX"
+        android:layout_centerVertical="true"
+        android:background="@drawable/gold_line_pic">
+        <com.juxian.bosscomments.widget.RoundAngleImageView
+            android:id="@+id/user_photo"
+            app:roundHeight="5dp"
+            app:roundTag="0"
+            app:roundWidth="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/DIMEN_6PX"
+            android:scaleType="fitXY"
+            android:src="@drawable/company_logo" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_30PX"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/photo"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未填写"
+                android:textColor="@color/luxury_gold_color"
+                android:textSize="@dimen/DIMEN_34PX" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/legal_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="未填写"
+                android:textColor="@color/white"
+                android:textSize="@dimen/DIMEN_28PX" />
+            <TextView
+                android:layout_width="@dimen/DIMEN_1PX"
+                android:layout_height="@dimen/DIMEN_28PX"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:layout_marginRight="@dimen/DIMEN_20PX"
+                android:background="@color/first_page_buy_num_color"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/corporate_juridical_person"
+                android:textColor="@color/white"
+                android:textSize="@dimen/DIMEN_28PX"/>
+
+            <TextView
+                android:id="@+id/authentication"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_10PX"
+                android:layout_marginTop="@dimen/DIMEN_2PX"
+                android:visibility="gone"
+                android:text="认证审核中"
+                android:textColor="@color/juxian_red"
+                android:textSize="@dimen/DIMEN_22PX" />
+
+            <ImageView
+                android:id="@+id/authentication_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_10PX"
+                android:visibility="gone"
+                android:src="@drawable/already_authentication"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/employee_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="在职员工：0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/DIMEN_22PX" />
+            <TextView
+                android:layout_width="@dimen/DIMEN_1PX"
+                android:layout_height="@dimen/DIMEN_24PX"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"
+                android:layout_marginRight="@dimen/DIMEN_20PX"
+                android:background="@color/first_page_buy_num_color"/>
+            <TextView
+                android:id="@+id/leave_office_employee_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="离任员工：0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/DIMEN_22PX" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/jiantou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/DIMEN_24PX"
+        android:src="@drawable/xiangyou" />
+</RelativeLayout>

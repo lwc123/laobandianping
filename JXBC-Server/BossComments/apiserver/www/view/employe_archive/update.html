@@ -1,0 +1,211 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}修改员工档案{/block}
+{block name="page-content"}
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<!--loading pic-->
+<div id="loadingpic">
+    <img  src="{$Think.config.resources_site_root}/pc/img/loadingpic.gif">
+</div>
+<!--右侧内容部分-->
+<!--右侧内容部分开始-->
+<div class="com1-bg">
+    <form class="em-info" id="employe_create" action="" enctype="multipart/form-data" method="post">
+        <p class="com-tt">修改员工档案资料</p>
+        <div class="em-info1">
+            <div class="info-pic">
+                <p class="info-p">员工照片</p>
+                <p class="em-rec" id="previewPicture"><i class="iconfont"><img src="{$Detail.Picture}"  width="80px"></i></p>
+                <p class="file-btn">	<input type="file" name="Picture" class="em-btn" data-img-preview="previewPicture"/>选择照片</p><br>
+                <p class="em-p">支持JPG，PNG格式，不超过2M</p>
+            </div>
+            <div class="em-state">
+                <p><span class="em-red">*</span>目前状态</p>
+                <div class="radio">
+                    <input id="checked1" type="radio" value="0"  name="IsDimission" required {if $Detail.IsDimission == 0 }checked{/if}>
+                    <label for="checked1">在职</label>
+                    <input id="checked"   type="radio" value="1" name="IsDimission" {if $Detail.IsDimission == 1 }checked{/if}>
+                    <label for="checked">离职</label>
+                </div>
+            </div>
+            <div class="em-name">
+                <span><span class="em-red">*</span>员工姓名</span>
+                <input type="text" name="RealName" value="{$Detail.RealName}" required>
+            </div>
+            <div class="em-name">
+                <span><span class="em-red">*</span>身份证号</span>
+                <input type="text" name="IDCard" value="{$Detail.IDCard}" readonly= "true" id="idcard">
+            </div>
+            <div class="em-name">
+                <span><span class="em-red">*</span>手机号码</span>
+                <input type="text" name="MobilePhone" value="{$Detail.MobilePhone}" required>
+            </div>
+            <div class="em-name">
+                <span><span class="em-red">*</span>入职日期</span>
+                <input type="text" data-end-date='DimissionTime' class="selectDate entrytime"  value="{:toLocalDateTime($Detail.EntryTime,'Y-m-d')}" name="EntryTime" required>
+            </div>
+            <div class="em-name">
+                <span><span class="em-red">*</span>离职日期</span>
+                <input type="text"  data-start-date='EntryTime' class="selectDate dimisstime"  value="{:toLocalDateTime($Detail.DimissionTime,'Y-m-d')}" name="DimissionTime" >
+            </div>
+            <div class="em-name">
+                <span><span class="em-red">*</span>毕业学校</span>
+                <input type="text" name="GraduateSchool"  value="{$Detail.GraduateSchool}" required>
+            </div>
+            <div class="em-name">
+                <span class="name-title"><span class="em-red">*</span>学历</span>
+                <select name="Education" required>
+                    {volist name="Education" id="vo"}
+                    <option value="{$vo.Code}" {if $Detail.Education ==$vo.Code} selected {/if}>{$vo.Name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <!--员工职务信息部分-->
+        <div class="employee-info">
+            <div class="depinfo" id="depinfo1">
+                {volist name="$Detail.WorkItems" id="vo" key="k"}
+                <p class="com-tt new-title">员工职务信息<span class="count gold">{$k}</span></p>
+                <div class="em-info1 em-details">
+                    <div class="em-name name-first">
+                        <span><span class="em-red">*</span>职务名称</span>
+                        <input type="text" name="PostTitle{$k}"  value="{$vo.PostTitle}" required>
+                    </div>
+                    <div class="em-name">
+                        <span><span class="em-red">*</span>开始时间</span>
+                        <input type="text"  class="selectDate starttime" value="{:toLocalDateTime($vo.PostStartTime,'Y-m-d')}" name="PostStartTime{$k}" required>
+                    </div>
+                    <div class="em-name">
+                        <span><span class="em-red">*</span>结束时间</span>
+                        <input type="text"  class="selectDate postEnd" value="{if strstr($vo.PostEndTime,'3000')}至今{else}{:toLocalDateTime($vo.PostEndTime,'Y-m-d')}{/if}" name="PostEndTime{$k}" >
+                        <input type="checkbox" class="now"> 至今
+                    </div>
+                    <div class="em-name">
+                        <span class="salary">年薪收入（万元）</span>
+                        <input type="text" class="per-salary" name="Salary{$k}" value="{$vo.Salary}"><br>
+                        <span class="salary-tip hide"><i class='iconfont'>&#xe640;</i>请输入正确的年薪收入哦~</span>
+                    </div>
+                    <div class="em-name">
+                        <span><span class="em-red">*</span>所在部门</span>
+                        <input type="text" class="dep-Id" name="Department{$k}" value="{$vo.Department}" required>
+                    </div>
+                </div>
+                <input type="hidden" value="{$vo.ItemId}" name="ItemId{$k}">
+                {/volist}
+            </div>
+            <p id="addDept" class="em-add"><i class="iconfont">&#xe651;</i>添加职务信息</p>
+        </div>
+        <input type="hidden" value="{$CompanyId}" name="CompanyId">
+        <input type="hidden" value="{$k}" name="deptCount" id="deptCount">
+        <input type="hidden" value="{$Detail.ArchiveId}" name="ArchiveId">
+        <button id="submit" >保存</button>
+    </form>
+    <div class="txt-department">
+        <div id="alertzhe1">
+            <div class="dep-bg">
+                <div class="dep-add">
+                    <p class="person-tt">选择部门<i class="iconfont close1">&#xe647;</i></p>
+                    <div class="new-dep">
+                        <p>添加部门</p>
+                        <input type="text" placeholder="根据需要，您可以新加部门，最多10个字">
+                        <p class="red"><i class="iconfont">&#xe640;</i>请添加部门</p>
+                    </div>
+                    <button type="button">添加</button>
+                    <div class="dep-con">
+                        <p>选择已有部门</p>
+                        {volist name="Departments" id="vo"}
+                        <span>{$vo.DeptName}</span> {/volist}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/employee_archive.js"></script>
+<script>
+    $("input[name='MobilePhone'],input[name='IDCard']").focus(function(){
+    	$(this).parent(".em-name").prev().children("label").hide();
+    })
+     $("input[name='IDCard']").blur(function(){
+    	$(this).parent(".em-name").children("label").hide();
+    })
+    $.validator.setDefaults({
+        submitHandler: function() {
+                var apiUrl="replace?CompanyId="+{$CompanyId};
+                var formData = new FormData($("#employe_create")[0]);
+                var Dimission =$('input:radio[name="IsDimission"]:checked').val();
+                $.ajax({
+                    type:'post',
+                    contentType: false,
+                    url:apiUrl,
+                    data:formData,
+                    processData: false,
+                    beforeSend:function(){
+                    	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+                    },
+                    success:function(data){
+                       // alert(data)
+//                     removeLoading();
+						$("#submit").html("保存").removeAttr("disabled");
+                        if(data.Success==true){
+                        	$('.alertClose').hide();
+                            $("#alert>.alertT>span").text("温馨提示");
+                            $(".alertB").html('<div class="bcontent">操作成功，您可以在档案列表查看。</div>');
+                            if(Dimission==0){
+                                $(".btnwrap").html('<a  href="index?CompanyId='+{$CompanyId}+'&IsDimission=0" class="button db_btn_style">关闭</a><a href="/ArchiveComment/commentcreate?CompanyId='+{$CompanyId}+'&CommentType=0" class="button db_btn_style">添加阶段评价</a>');
+                            }
+                            else{
+                                $(".btnwrap").html('<a  href="index?CompanyId='+{$CompanyId}+'&IsDimission=1" class="button db_btn_style">关闭</a><a href="/ArchiveComment/commentcreate?CompanyId='+{$CompanyId}+'&CommentType=1" class="button db_btn_style">添加离职报告</a>');
+                            }
+                            alertwin();
+                        }else{
+                            $("#alert>.alertT>span").text("温馨提示");
+                            $(".alertB").html('<div class="bcontent">'+data.ErrorMessage+'</div>');
+                            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data)
+                    }
+                });
+        }
+    });
+
+    $(document).on("blur",".dep-Id",function(){
+   		$(this).parent(".em-name").children("label").hide();
+    })
+
+</script>
+
+
+
+{/block}

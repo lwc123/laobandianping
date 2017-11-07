@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="InvitedRelationshipRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into invited_relationship (PassportId, InviteCode, CreatedTime, ModifiedTime)
+      values (@PassportId, @InviteCode, @CreatedTime, @ModifiedTime);
+      select @@IDENTITY;
+    </sqlWrap>
+
+  </module>
+</root>

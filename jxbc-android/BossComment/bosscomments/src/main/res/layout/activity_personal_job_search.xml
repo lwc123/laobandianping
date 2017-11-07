@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.juxian.bosscomments.widget.EditText
+        android:id="@+id/company_info"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white"
+        android:hint="请输入职位"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/main_background"/>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/company_field"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white"
+        android:hint="请选择行业"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:gravity="center_vertical"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/main_background"/>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/company_city"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white"
+        android:hint="请选择城市"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/main_background"/>
+
+    <com.juxian.bosscomments.widget.TextView
+        android:id="@+id/company_salary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/excel_height_90px"
+        android:background="@color/white"
+        android:hint="请选择薪资"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/DIMEN_22PX"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <include
+        layout="@layout/include_button_text34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_90PX"
+        android:layout_marginRight="@dimen/DIMEN_90PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"/>
+
+</LinearLayout>

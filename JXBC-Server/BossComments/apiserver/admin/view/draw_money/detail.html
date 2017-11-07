@@ -1,0 +1,107 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+{if($DrawMoneyDetail['AuditStatus']==1)}
+<div class="page-header">
+    <button style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;" id="ConfirmPayment"><font color="#f0f8ff">确认已打款</font></button>
+</div>
+{else /}
+<div class="page-header"  >
+    <button style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;" id="ConfirmPaymentPass"><font color="#f0f8ff">已确认</font></button>
+</div>
+{/if}
+<!--企业信息-->
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            企业信息
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <tbody>
+            <input name="ApplyId" type="hidden" value="{$DrawMoneyDetail['ApplyId']}"/>
+            <tr>
+                <td>企业名称：{$DrawMoneyDetail['CompanyName']}<a href="#">消费记录</a></td>
+            </tr>
+            <tr>
+                <td>提现金额：{$DrawMoneyDetail['MoneyNumber']} 元</td>
+            </tr>
+
+            <tbody>
+        </table>
+    </div>
+</div>
+<!--企业信息-->
+<!--银行账户信息-->
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            银行账户信息
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <tbody>
+            <tr>
+                <td>开户银行：{$DrawMoneyDetail['BankName']}</td>
+            </tr>
+            <tr>
+                <td>银行账户：{$DrawMoneyDetail['BankCard']}</td>
+            </tr>
+
+            <tbody>
+        </table>
+    </div>
+</div>
+<!--银行账户信息-->
+<!--操作成功-->
+<div id="success-Form" class="hide">
+
+    <form  role="form" >
+        <div class="form-group">
+            <!--   <label class="control-label no-padding-right" > 未通过理由 </label>-->
+            <div class="">
+                <div class="clearfix">
+                    <h3> <i class="ace-icon fa fa-check bigger-120"></i>操作成功</h3>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!--操作成功-->
+{/block}
+
+{block name="resources-footer"}
+
+<script>
+    jQuery(function($) {
+      $('#ConfirmPayment').click(function(){
+          ApplyId = $('input[name=ApplyId]').val()
+          $.get('ConfirmPaymentState',{ApplyId:ApplyId},function(msg){
+                    if(msg==1){
+                        $( "#success-Form" ).removeClass('hide').dialog({
+                            resizable: false,
+                            modal: true,
+                            title: "<div class='widget-header widget-header-small'><h4 class='smaller'>提示</h4></div>",
+                            title_html: true,
+                            width:"400px",
+                            buttons: [
+                                {
+                                    text: "关闭",
+                                    //"class" : "btn btn-xs",
+                                    click: function() {
+                                        $( this ).dialog( "close" );
+                                        history.go(0);
+                                    }
+                                }
+                            ]
+                        });
+
+                    }
+
+          })
+      })
+    })
+
+</script>
+{/block}

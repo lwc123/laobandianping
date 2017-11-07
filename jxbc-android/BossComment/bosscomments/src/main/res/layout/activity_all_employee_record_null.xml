@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/data_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/include_company_basic_data"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_220PX" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_90PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:text="已离任"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/DIMEN_22PX"
+                android:text="0人"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/build_staff_on_active_duty_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_80PX"
+            android:layout_marginRight="@dimen/DIMEN_80PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:background="@drawable/square_border_gold"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/DIMEN_30PX">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:src="@drawable/staff_on_active_duty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_30PX"
+                android:text="建立在职员工档案"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:text="进行阶段工作评价，对员工更多鼓励，督促"
+                android:textColor="@color/menu_color"
+                android:textSize="@dimen/DIMEN_24PX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/build_separated_employees_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_80PX"
+            android:layout_marginRight="@dimen/DIMEN_80PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:background="@drawable/square_border_gold"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/DIMEN_30PX">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10PX"
+                android:src="@drawable/separated_employees" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_30PX"
+                android:text="建立离任员工档案"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:text="让老板点评员工，让优秀员工树立口碑，让无良员工无处遁形。"
+                android:textColor="@color/menu_color"
+                android:textSize="@dimen/DIMEN_24PX" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

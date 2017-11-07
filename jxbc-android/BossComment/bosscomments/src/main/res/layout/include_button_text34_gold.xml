@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+    <com.juxian.bosscomments.widget.Button
+        android:id="@+id/include_button_button"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/DIMEN_88PX"
+        android:background="@drawable/login_bg"
+        android:text=""
+        android:textColor="@color/luxury_gold_color"
+        android:textSize="@dimen/DIMEN_30PX" />
+</LinearLayout>

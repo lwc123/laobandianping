@@ -1,0 +1,166 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="page-header">
+    <h1>用户详情</h1>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8">
+
+        <div class="profile-user-info profile-user-info-striped">
+            <div class="profile-info-row">
+                <div class="profile-info-name">手机号码</div>
+                <div class="profile-info-value">{$userDetail['MobilePhone']}</div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">注册时间</div>
+                <div class="profile-info-value">{:toLocalDateTime($userDetail['CreatedTime'],'Y-m-d H:i:s')}</div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">用户身份</div>
+                <div class="profile-info-value">
+                    {if($userDetail['ProfileType'] == 1)}
+                       个人
+                    {else/}
+                       企业
+                    {/if}
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">注册类型</div>
+                <div class="profile-info-value">
+                    {if(empty($userDetail['SignedUpInfo']['InviteCode']))}
+                    主动注册
+                    {else/}
+                       {if($userDetail['ExistInviterCode']==false)}
+                       渠道邀请注册
+                       {else/}
+                       企业邀请注册
+                      {/if}
+                    {/if}
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">邀请他的企业</div>
+                <div class="profile-info-value">
+                    {if(empty($userDetail['SignedUpInfo']['InviteCode']))}
+                       无
+                    {else/}
+                        {if(isset($userDetail['ExistInviterCode'])  && $userDetail['ExistInviterCode']==true)}
+                            {if(isset($userDetail['ExistCompany']) && $userDetail['ExistCompany']==true)}
+                                <a href="/company/Detail?CompanyId={$userDetail['Company']['CompanyId']}">{$userDetail['Company']['CompanyName']}(企业)</a>
+                            {else/}
+                               <a href="/user/Detail?uid={$userDetail['UserPassport']['PassportId']}">{$userDetail['UserPassport']['MobilePhone']}（个人）</a>
+                            {/if}
+                        {else/}
+                         {$userDetail['Channel']['ChannelName']}
+                        {/if}
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--所属企业-->
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            所属企业
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+            <tr> <!- 表格总宽度=12 ->
+                <th class="col-xs-3">用户名称</th>
+                <th class="col-xs-3">企业名称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                <th class="col-xs-1">认证状态</th>
+                <th class="col-xs-1">职务</th>
+                <th class="col-xs-2">授权管理角色</th>
+                <th class="col-xs-2">开户时间</th>
+            </tr>
+            </thead>
+            {if(!empty($myCompany))}
+                {foreach name="myCompany" item="vo" }
+                <tbody>
+                <tr>
+                    <td>{$vo['RealName']}</td>
+                    <td><a href="/company/Detail?CompanyId={$vo['Company']['CompanyId']}">{$vo['Company']['CompanyName']}</a></td>
+                    <td>
+
+                        {if condition="$vo['Company']['AuditStatus'] eq 0"}未提交
+                        {elseif($vo['Company']['AuditStatus']==1) /} 审核中
+                        {elseif($vo['Company']['AuditStatus']==2) /} 已认证
+                        {elseif($vo['Company']['AuditStatus']==9) /} 被拒绝
+                        {/if}
+                    </td>
+                    <td>{$vo['JobTitle']}</td>
+                    <td>
+                        {if condition="$vo['Role'] eq 1"}老板
+                        {elseif($vo['Role']==2) /} 管理员
+                        {elseif($vo['Role']==3) /} 高管
+                        {elseif($vo['Role']==4) /} 建档员
+                        {/if}
+                    </td>
+                    <td>{:toLocalDateTime($vo['Company']['CreatedTime'],'Y-m-d H:i:s')}</td>
+                </tr>
+                </tbody>
+                {/foreach}
+            {else /}
+                <tr><td colspan="6" class="center"><h3>暂无数据！</h3></td></tr>
+            {/if}
+
+        </table>
+    </div>
+</div>
+<!--所属企业-->
+
+<!--他邀请的企业-->
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        <div class="table-header">
+            他邀请的企业
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable no-footer" style="text-align:center;">
+            <thead>
+            <tr > <!- 表格总宽度=12 ->
+                <th class="col-xs-4">企业名称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                <th class="col-xs-4">认证状态</th>
+                <th class="col-xs-4">开户时间</th>
+            </tr>
+            </thead>
+            {if(!empty($InvitedCompany))}
+            {foreach name="InvitedCompany" item="vo" }
+            <tbody>
+            <tr>
+                <td><a href="/company/Detail?CompanyId={$vo['CompanyId']}">{$vo['CompanyName']}</a></td>
+                <td>
+
+                    {if condition="$vo['AuditStatus'] eq 0"}未提交
+                    {elseif($vo['AuditStatus']==1) /} 审核中
+                    {elseif($vo['AuditStatus']==2) /} 已认证
+                    {elseif($vo['AuditStatus']==9) /} 被拒绝
+                    {/if}
+                </td>
+                <td>{:toLocalDateTime($vo['CreatedTime'],'Y-m-d H:i:s')}</td>
+            </tr>
+            </tbody>
+            {/foreach}
+            {else /}
+            <tr><td colspan="3" class="center"><h3>暂无数据！</h3></td></tr>
+            {/if}
+
+        </table>
+    </div>
+</div>
+<!--他邀请的企业-->
+
+
+{/block}
+138466

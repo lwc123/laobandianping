@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no" />
+		<title>新闻报道——老板点评</title>
+		<link rel="stylesheet" type="text/css" href="{$Think.config.resources_site_root}/pc/css/index-mobile.css"/>
+        <script>
+	        //适配方案
+	        (function(){
+	            var width = document.documentElement.clientWidth;
+	            var html = document.querySelector("html");
+	            html.style.fontSize=width/16+"px";
+	        })();
+        </script>
+	</head>
+	<body>
+	{include file="-public/mobile_header" /}
+    <div class="top-img">
+        <img src="{$Think.config.resources_site_root}/pc/images/index750/banner_pic1.png"/>
+    </div>
+	<div class="com-content">
+		<ul class="moblie-tabNav">
+		   <li><a class="moblie-active-on" href="javascript:void(0);">新闻报道</a></li>
+		   <li><a href="/index/topic-mobile.html">专题聚焦</a></li>
+		   <li><a href="/index/policy-mobile.html">政策法规</a></li>
+		</ul>
+		<div class="company-content ">
+			<ul class="new-list">
+			   {include file="news/report_list" /}
+		   </ul>
+		</div>
+	</div>
+	{include file="-public/mobile_footer" /}
+	</body>
+</html>

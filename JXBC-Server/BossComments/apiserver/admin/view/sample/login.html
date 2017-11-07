@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>运营后台 - 老板点评</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		{include file="_public/resources_header" /}
+	</head>
+
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<i class="ace-icon fa fa-leaf green"></i>
+									<span class="red">老板点评</span>
+									<span class="white" id="id-text2">后台管理系统</span>
+								</h1>
+								<h4 class="blue" id="id-company-text">&copy; 举贤网</h4>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="ace-icon fa fa-coffee green"></i>
+												请输入您的用户信息
+											</h4>
+
+											<div class="space-6"></div>
+											<form id="loginForm" method="post">
+											<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input id="MobilePhone" name="MobilePhone" type="text" class="form-control" placeholder="用户名" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input id="Password" name="Password" type="password" class="form-control" placeholder="密码" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<label class="inline">
+															<input type="checkbox" class="ace" />
+															<span class="lbl">记住登录状态</span>
+														</label>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+											<button id="btnLogin" type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+												<i class="ace-icon fa fa-key"></i>
+												<span class="bigger-110">登录</span>
+											</button>
+										</div><!-- /.widget-main -->
+
+
+									</div><!-- /.widget-body -->
+								</div><!-- /.login-box -->
+
+							</div><!-- /.position-relative -->
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.main-content -->
+		</div><!-- /.main-container -->
+
+		{include file="_public/resources_footer" /}
+		<script src="{$Think.config.resources_site_root}/admin/js/jquery.md5.js"></script>
+
+		<script type="text/javascript">
+            jQuery(function($) {
+                $("#loginForm").validate({
+                    errorElement: 'div',
+                    focusInvalid: false,
+                    rules: {
+                        'UserName': 'required',
+                        'Password': 'required'
+                    },
+                    messages: {
+                        'UserName': "请输入UserName",
+                        'Password': "请输入Password"
+                    }
+                });
+            });
+        </script>
+		<script>
+            $(function() {
+                $('#btnLogin').on('click', function() {
+
+                    if($('#MobilePhone').val() == ''){
+
+                        return 0;
+
+                    }else if($('#Password').val() == ''){
+
+                        return 0;
+
+                    }else{
+
+                        $.ajax({
+
+                            url: '/Public/login',
+                            type : 'POST',
+                            data: {
+
+                                "MobilePhone": $('#MobilePhone').val(),
+                                "Password": $.md5($('#Password').val())
+                            },
+                            dataType: 'JSON',
+                            success: function (data) {
+                               if(data==1){
+                                   window.location.href = '/admin/Company/auditList';
+                               }else if(data==2){
+                                    alert('帐号不存在');
+                                }else if(data==3){
+                                    alert('密码错误')
+                                }
+
+                            }
+                        });
+					}
+                });
+            });
+		</script>
+	</body>
+</html>

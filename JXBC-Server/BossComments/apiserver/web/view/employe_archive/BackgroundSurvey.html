@@ -1,0 +1,112 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>员工档案详情</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta content="telephone=no" name="format-detection" />
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="http://tb-dev.unijx.net/boss-comments/common/css/style.css?v=0" rel="stylesheet">
+	<link href="http://tb-dev.unijx.net/boss-comments/common/css/photoswipe.css?v=0" rel="stylesheet">
+	<link href="http://tb-dev.unijx.net/boss-comments/common/css/default-skin/default-skin.css?v=0" rel="stylesheet">
+	<script src="http://tb-dev.unijx.net/boss-comments/common/js/flexible.js"></script>
+	<script src="http://tb-dev.unijx.net/boss-comments/common/js/photoswipe.min.js"></script>
+	<script src="http://tb-dev.unijx.net/boss-comments/common/js/photoswipe-ui-default.min.js"></script>
+</head>
+<body>
+    <div>
+        <pre>
+
+            var pageName = "BuyArchiveComment";
+            var payment = {
+                OwnerId:101,    //CompanyId
+                TradeType:4,    //OrganizationToOrganization
+                TradeMode:2,
+                BizSource:"BuyArchiveComment",
+                TotalFee:0.01,
+                CommodityCode:1,
+                CommoditySubject:"购买背景调查.....",
+                CommodityExtension:[
+                                        {
+                                            "PassportId":196,
+                                            "ArchiveId":113,
+                                            "BoughtStageEvaluation":true,
+                                            "BoughtDepartureReport":false,
+                                            "ArchiveCompanyId":7,
+                                            "CompanyId":99
+                                        },
+                                        {
+                                            "PassportId":196,
+                                            "ArchiveId":113,
+                                            "BoughtStageEvaluation":true,
+                                            "BoughtDepartureReport":false,
+                                            "ArchiveCompanyId":7,
+                                            "CompanyId":99
+                                        },
+                                        {
+                                            "PassportId":196,
+                                            "ArchiveId":114,
+                                            "BoughtStageEvaluation":true,
+                                            "BoughtDepartureReport":false,
+                                            "ArchiveCompanyId":5,
+                                            "CompanyId":99
+                                        }
+                                    ]
+            };
+        </pre>
+        <input id="btnBuy" type="button" value="test buy" />
+    </div>
+	<script src="http://tb-dev.unijx.net/boss-comments/common/js/jquery-2.0.3.min.js"></script>
+	<script src="http://tb-dev.unijx.net/boss-comments/common/js/boss.js"></script>
+	<script src="http://tb-dev.unijx.net/boss-comments/common/js/AppBridge.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#btnBuy").click(function(){
+            var pageName = "BuyArchiveComment";
+            var payment = {
+                OwnerId:101,    //CompanyId
+                TradeType:4,    //OrganizationToOrganization
+                TradeMode:2,
+                BizSource:"BuyArchiveComment",
+                TotalFee:0.01,
+                CommodityCode:1,
+                CommoditySubject:"购买背景调查.....",
+                CommodityExtension:[
+                                        {
+                                            "PassportId":196,
+                                            "ArchiveId":113,
+                                            "BoughtStageEvaluation":true,
+                                            "BoughtDepartureReport":false,
+                                            "CompanyId":99
+                                        },
+                                        {
+                                            "PassportId":196,
+                                            "ArchiveId":113,
+                                            "BoughtStageEvaluation":true,
+                                            "BoughtDepartureReport":false,
+                                            "ArchiveCompanyId":7,
+                                            "CompanyId":99
+                                        },
+                                        {
+                                            "PassportId":196,
+                                            "ArchiveId":114,
+                                            "BoughtStageEvaluation":true,
+                                            "BoughtDepartureReport":false,
+                                            "ArchiveCompanyId":5,
+                                            "CompanyId":99
+                                        }
+                                    ]
+            };
+			var pageParams = JSON.stringify(payment);
+			alert("JsBridge:gotoNativePage:('"+pageName+"',"+pageParams+")"); //test
+			AppBridge.gotoNativePage(pageName,pageParams);
+        });
+    });    
+    </script>
+</body>
+</html>

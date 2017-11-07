@@ -1,0 +1,100 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}工作台{/block}
+
+{block name="page-content"}
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+            <a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--右侧内容开始-->
+<div class="com1-bg">
+    <div class="files-bg">
+        {if $ArchiveSummary.ArchiveNum>0}
+        <!--未开通有数据-->
+        <div class="noopen-data">
+            <img src="{$Think.config.resources_site_root}/pc/img/face.png">
+            <p>
+                通过手机号判定，发现您名下有来自{$ArchiveSummary.ArchiveNum}位老板的{$ArchiveSummary.StageEvaluationNum}条工作评价、{$ArchiveSummary.DepartureReportNum}份离职报告。</p>
+            <button>查看评的是什么</button>
+        </div>
+        <div class="files-identity">
+            <form id="employe_create" action="" enctype="multipart/form-data" method="post">
+                <h3 class="files-title">为了查询更精准及保护隐私，请校验身份</h3>
+                <span>身份证号</span><input type="text" value="" name="IDCard" placeholder="请输入您的身份证号"><br>
+                <button id="file-identity" >立即校验</button>
+            </form>
+        </div>
+        {else}
+        <!--开通服务但无数据和未开通无数据-->
+        <div class="open-nodata">
+            <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+            <p>暂无老板对你进行评价。</p>
+            <p>邀请老板对你点评，建立你的职业诚信标签，同时还可获得现金奖励！</p>
+        </div>
+        {/if}
+    </div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    $.validator.setDefaults({
+        submitHandler: function () {
+                var apiUrl = "BindingIDCard";
+                var formData = new FormData($("#employe_create")[0]);
+                var Dimission = $('input:radio[name="IsDimission"]:checked').val();
+                // console.log(formData);
+                //alert(formData['Picture']);
+                $.ajax({
+                    type: 'post',
+                    cache : false,
+                    contentType: false,
+                    url: apiUrl,
+                    data: formData,
+                    processData: false,
+                    success: function (data) {
+                        if (data.Success == true) {
+                            $("#alert>.alertT>span").text("操作成功");
+                            $(".alertB").html('<div class="bcontent">绑定成功</div>');
+                            $(".btnwrap").html('<a  href="index" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        } else {
+                            $("#alert>.alertT>span").text("错误提示");
+                            $(".alertB").html('<div class="bcontent">' + data.ErrorMessage + '</div>');
+                            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data)
+                    }
+                });
+                return false;
+
+        }
+    });
+</script>
+
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/files.js"></script>
+{/block}

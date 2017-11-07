@@ -1,0 +1,134 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="ActivityAnimiationHome" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/default_activity_animiation_home</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <style name="default_activity_animiation_home" parent="@android:style/Animation.Activity">
+        <item name="android:activityCloseEnterAnimation">@anim/move_out</item>
+        <item name="android:activityCloseExitAnimation">@anim/drawer_top_2_out</item>
+    </style>
+
+    <style name="horizontal_slide" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="HomeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="default_slide" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowAnimationStyle">@style/default_activity_in_out_animation</item>
+    </style>
+
+    <style name="default_activity_in_out_animation" parent="@android:style/Animation.Activity">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
+        <!--<item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>-->
+        <item name="android:activityCloseExitAnimation">@anim/top_bottom</item>
+    </style>
+
+    <!--主页tabs样式-->
+    <style name="main_bottom_tab">
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">0.0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/DIMEN_22PX</item>
+        <item name="android:textColor">@color/main_bottom_tab_textcolor</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">@dimen/DIMEN_6PX</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingTop">@dimen/main_bottom_tab_padding_top</item>
+    </style>
+
+    <style name="post_opinion_label_style">
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/DIMEN_22PX</item>
+        <item name="android:textColor">@color/post_opinion_label_color_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">@dimen/DIMEN_6PX</item>
+        <item name="android:paddingTop">@dimen/DIMEN_6PX</item>
+        <item name="android:paddingBottom">@dimen/DIMEN_6PX</item>
+        <item name="android:paddingLeft">@dimen/DIMEN_16PX</item>
+        <item name="android:paddingRight">@dimen/DIMEN_16PX</item>
+        <item name="android:background">@drawable/post_opinion_label_selector</item>
+    </style>
+
+    <style name="add_boss_comment_tab">
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0.0dp</item>
+        <item name="android:layout_height">@dimen/DIMEN_80PX</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/DIMEN_22PX</item>
+        <item name="android:textColor">@color/main_bottom_tab_textcolor</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="style_progressbar">
+        <item name="android:indeterminateDrawable">@anim/rotate_progressbar</item>
+        <item name="android:minWidth">14dip</item>
+        <item name="android:maxWidth">14dip</item>
+        <item name="android:minHeight">14dip</item>
+        <item name="android:maxHeight">14dip</item>
+    </style>
+
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item> <!--Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否漂现在activity上-->
+        <item name="android:windowIsTranslucent">true</item><!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item><!-- dim:模糊的 阴影效果 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- 可以用来给启动页加动画 -->
+    <style name="default_dialog_animation" parent="@android:style/Animation.Translucent">
+        <item name="@android:windowEnterAnimation">@anim/bottom_top</item>
+        <item name="@android:windowExitAnimation">@anim/top_bottom</item>
+        <!--<item name="android:activityOpenEnterAnimation">@anim/bottom_top</item>-->
+        <!--<item name="android:activityOpenExitAnimation">@anim/top_bottom</item>-->
+        <!--<item name="android:activityCloseEnterAnimation">@anim/bottom_top</item>-->
+        <!--<item name="android:activityCloseExitAnimation">@anim/top_bottom</item>-->
+        <!--<item name="android:taskCloseExitAnimation">@anim/top_bottom</item>-->
+    </style>
+
+    <style name="MyRatingBarOne" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/start_rating_bar_one</item>
+    </style>
+
+    <style name="MyRatingBarTwo" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/start_rating_bar_two</item>
+    </style>
+
+    <style name="MyRatingBarThree" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/start_rating_bar_three</item>
+    </style>
+</resources>

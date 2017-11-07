@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <View
+        android:id="@+id/headcolor"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_40PX"
+        android:background="@color/main_color" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/headcolor"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/include_personal_information_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_360PX"/>
+
+                <RelativeLayout
+                    android:id="@+id/activity_modify_cp_info_companyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/excel_height_90px"
+                    android:layout_marginTop="@dimen/DIMEN_20PX"
+                    android:background="@color/white_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/DIMEN_22PX">
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_cp_info_simpleName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="公司"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/activity_modify_cp_info_simpleName"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/DIMEN_52PX"
+                        android:paddingRight="@dimen/DIMEN_22PX"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@color/menu_color"
+                        android:textColorHint="@color/menu_color"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/DIMEN_30PX" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_1PX"
+                    android:background="@color/line_color" />
+
+                <RelativeLayout
+                    android:id="@+id/activity_modify_cp_info_company_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/excel_height_90px"
+                    android:background="@color/white_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/DIMEN_22PX">
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_cp_info_field"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="职位"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_field_real"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/activity_modify_cp_info_field"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/DIMEN_52PX"
+                        android:paddingRight="@dimen/DIMEN_22PX"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@color/menu_color"
+                        android:textColorHint="@color/menu_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_1PX"
+                    android:background="@color/line_color" />
+
+                <RelativeLayout
+                    android:id="@+id/activity_modify_cp_info_company_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/excel_height_90px"
+                    android:background="@color/white_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/DIMEN_22PX">
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_cp_info_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="角色"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/activity_modify_cp_info_size"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/DIMEN_52PX"
+                        android:paddingRight="@dimen/DIMEN_22PX"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@color/menu_color"
+                        android:textColorHint="@color/menu_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/activity_modify_cp_info_company_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/excel_height_90px"
+                    android:layout_marginTop="@dimen/DIMEN_20PX"
+                    android:background="@color/white_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/DIMEN_22PX">
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_cp_info_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="手机"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+
+                    <com.juxian.bosscomments.widget.TextView
+                        android:id="@+id/activity_modify_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/activity_modify_cp_info_city"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/DIMEN_52PX"
+                        android:paddingRight="@dimen/DIMEN_22PX"
+                        android:singleLine="true"
+                        android:textColor="@color/menu_color"
+                        android:textColorHint="@color/menu_color"
+                        android:textSize="@dimen/DIMEN_30PX" />
+                </RelativeLayout>
+
+                <!--<include-->
+                    <!--layout="@layout/include_button_text34"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="@dimen/DIMEN_180PX"-->
+                    <!--android:layout_marginLeft="@dimen/DIMEN_90PX"-->
+                    <!--android:layout_marginRight="@dimen/DIMEN_90PX"-->
+                    <!--android:layout_marginTop="@dimen/DIMEN_50PX" />-->
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:layout_marginTop="@dimen/DIMEN_55PX"
+                android:padding="@dimen/DIMEN_15PX"
+                android:src="@drawable/nav_icon_back1" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

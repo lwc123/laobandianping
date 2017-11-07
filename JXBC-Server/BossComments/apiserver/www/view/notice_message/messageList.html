@@ -1,0 +1,109 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}消息列表{/block}
+{block name="page-content"}
+		<!--右侧内容开始-->
+		<div class="com1-bg info-bg">
+			<div class="files-detail">
+				<p class="com-tt">消息</p>
+				<div class="info-content">
+
+					<div class="list_title active-bg">待处理事项 {if($messageCount>0)}<span ></span>{/if} </div>
+					<div class="message_title">通知   {if($noticeCount>0)}<span ></span>{/if}</div>
+					<ul class="todo_list">
+                         {if(empty($list))}
+                            <div class="detail-none" >
+                                <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+                                <p>暂无待处理事项</p>
+                            </div>
+                        {else/}
+                            {foreach($list as $value)}
+                            <li class="info-list">
+                                {if($value.IsRead==0)}
+                                <p class="detail-name name-weight">{php}echo nl2br($value['Content']){/php}</p>
+                                {else/}
+                                <p class="detail-name">{php}echo nl2br($value['Content']){/php}</p>
+                                {/if}
+                                <p class="detail-num">{$value.time}</p>
+                                {if($value.BizType==0)}
+                                {elseif($value.BizType==2)}
+                                <!--离职报告-->
+                                <span ><a href="/ArchiveComment/comment?oid={$value.BizId}&CompanyId={$value.ToCompanyId}&CommentType=1&MessageId={$value.MessageId}" class="blue">去查看</a></span>
+                                <!--离职报告-->
+                                {else/}
+                                <!--阶段评价-->
+                                <span ><a href="/ArchiveComment/comment?oid={$value.BizId}&CompanyId={$value.ToCompanyId}&CommentType=0&MessageId={$value.MessageId}" class="blue">去查看</a></span>
+                                <!--阶段评价-->
+                                {/if}
+                            </li>
+                            {/foreach}
+                            <div class="em-page">
+                                {$pagination}
+                            </div>
+                        {/if}
+					</ul>
+					<ul class="message_list hide">
+                        {if(empty($list))}
+                        <div class="detail-none" >
+                            <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+                            <p>暂无通知</p>
+                        </div>
+                        {else/}
+                        {foreach($list as $value)}
+                        <li class="info-list">
+                            {if($value.IsRead==0)}
+                            <p class="detail-name name-weight"> <a href="/NoticeMessage/noticeDetail?CompanyId={$CompanyId}&MessageId={$value.MessageId}">{php}echo nl2br($value['Content']){/php}</a></p>
+                            {else/}
+                            <p class="detail-name"> <a href="/NoticeMessage/noticeDetail?CompanyId={$CompanyId}&MessageId={$value.MessageId}">{php}echo nl2br($value['Content']){/php}</a></p>
+                            {/if}
+                            <p class="detail-num">{$value.time}</p>
+                           <!-- {if($value.BizType==0)}
+                            {elseif($value.BizType==2)/}
+                            &lt;!&ndash;离职报告&ndash;&gt;
+                            <span ><a href="/ArchiveComment/comment?oid={$value.BizId}&CompanyId={$value.ToCompanyId}&CommentType=1&MessageId={$value.MessageId}" class="blue">去查看</a></span>
+                            &lt;!&ndash;离职报告&ndash;&gt;
+                            {else/}
+                            &lt;!&ndash;阶段评价&ndash;&gt;
+                            <span ><a href="/ArchiveComment/comment?oid={$value.BizId}&CompanyId={$value.ToCompanyId}&CommentType=0&MessageId={$value.MessageId}" class="blue">去查看</a></span>
+                            &lt;!&ndash;阶段评价&ndash;&gt;
+                            {/if}-->
+                        </li>
+
+                        {/foreach}
+                        <div class="em-page">
+                            {$pagination}
+                        </div>
+                        {/if}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+{/block}
+{block name="resources-footer"}
+	<script type="text/javascript">
+		$(document).ready(function(){
+            var MessageType;
+            MessageType ={$Think.get.MessageType};
+            var CompanyId ={$Think.get.CompanyId};
+
+            if(MessageType==1){
+                $('.message_title').addClass("active-bg").prev().removeClass("active-bg");
+                $(".message_list").show().prev(".todo_list").hide();
+            }else{
+                $('.list_title').addClass("active-bg").prev().removeClass("active-bg");
+                $(".todo_list").show().next(".message_list").hide();
+
+            }
+
+
+			$(".list_title").click(function(){
+                location.href='/NoticeMessage/messageList?CompanyId='+CompanyId+'&MessageType=0';
+	        });
+	       $(".message_title").click(function(){
+               location.href='/NoticeMessage/messageList?CompanyId='+CompanyId+'&MessageType=1';
+		    })
+			
+	   })
+	</script>
+{/block}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>公司口碑——热门公司</title>
+		<meta name="description" content=""/>
+		<!--清理缓存 start-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+		<link href="{$Think.config.resources_site_root}/mobile/css/dropload.css?v=0" rel="stylesheet">
+		<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+		<div id="pageHead" class="listHead" style="text-align: center;">
+			<b class="font34">公司口碑——热门公司</b>
+		</div>
+		<div class="companySearch">
+			<div class="searchArea">
+				<input type="text" placeholder="搜索您感兴趣的公司">
+				<svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4356"><path d="M934.505733 934.856727c-32.824593 32.830733-86.054935 32.830733-118.884644 0L667.245783 786.476305c-61.003376 39.10667-133.11474 62.454424-210.963783 62.454424-216.658482 0-392.303874-175.640276-392.303874-392.303874S239.623519 64.322981 456.282001 64.322981c216.669738 0 392.303874 175.640276 392.303874 392.303874 0 77.843926-23.341614 149.95529-62.449307 210.969922l148.369166 148.369166C967.336466 848.796676 967.336466 902.025994 934.505733 934.856727zM456.282001 176.409802c-154.75255 0-280.211936 125.458363-280.211936 280.217053s125.458363 280.217053 280.211936 280.217053c154.763806 0 280.217053-125.458363 280.217053-280.217053S611.045807 176.409802 456.282001 176.409802z" p-id="4357"></path></svg>
+			</div>
+		</div>
+		<div class="comments" id="companys">
+			<h2 class="hotTitle">热门公司</h2>
+			<div class="content">
+				<ul class="companyList">
+                    {foreach( name="CompanyList" item="item")}
+
+                    <li class="padding" data-src="{$Think.config.site_root_api}/apppage/Opinion/CompanyDetail?CompanyId={$item.CompanyId}">
+                        <img class="fl" src="{$item.CompanyLogo}">
+                        <div class="companyComment">
+                            <div class="bottom">
+                                <b class="font30">{$item.CompanyName}</b>
+                                <div class="orangStar fr padding">
+                                    <span tip="{$item.Score}"></span>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                    <a herf="javascript:void(0)"></a>
+                                </div>
+                            </div>
+                            <div class="userLabel">
+                                {if(!empty($item.Labels))}
+                                    {foreach($item.Labels as $key=>$vals)}
+                                    <span>{$vals}</span>
+                                    {/foreach}
+                                {/if}
+                            </div>
+                            <p class="grey">总阅读 {$item.ReadCount}&nbsp;&nbsp;&nbsp;&nbsp;共{$item.CommentCount}条点评&nbsp;&nbsp;&nbsp;&nbsp;来自{$item.StaffCount}位员工</p>
+                        </div>
+                    </li>
+
+                    {/foreach}
+
+				</ul>
+		    </div>
+		</div>
+		<div id="floatTip">
+			<img class="fl" src="{$Think.config.resources_site_root}/mobile/img/ping.png">
+			<span class="font28">下载老板点评看劲爆内幕</span>
+            <img class="floatClose fr" src="{$Think.config.resources_site_root}/mobile/img/close.png">
+		</div>
+	</body>
+	<script src="{$Think.config.resources_site_root}/mobile/js/jquery-2.0.3.min.js"></script>
+	<script src="{$Think.config.resources_site_root}/mobile/js/dropload.min.js"></script>
+    <script src="{$Think.config.resources_site_root}/-common/js/AppEnvironment.js?v=1.2"></script>
+	<script>
+	$(function(){
+		/*显示分数*/
+		function show(){
+			$(".orangStar span").each(function(){
+				var num=$(this).attr("tip");
+				if(num.length>1){
+					var decimal=parseInt(num.charAt(num.length - 1));
+			        if(decimal<3){
+			        	num=Math.floor(num);
+			        	$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+			        }else if(decimal>=3&&decimal<=9){
+			        	num=Math.floor(num);
+			        	$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+			        	$(this).parent(".orangStar").children('a:eq('+num+')').addClass("showHalfBg");
+			        }else{
+			        	num=Math.ceil(num);
+			        	$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+			        }
+				}else{
+					$(this).parent(".orangStar").children('a:lt('+num+')').addClass("showBg");
+				}
+			})
+		}
+		show();
+		/*跳转到应用市场*/
+		$("#floatTip span").click(function(){
+			location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.juxian.bosscomments";
+		})
+		$("#floatTip .floatClose").click(function(){
+			$(this).parent().hide();
+		})
+		
+		/*上滑加载*/
+		var counter = 0;
+        // 每页展示15个
+	    var num = 15;
+	    var pageStart = 0,pageEnd = 0;
+        var requestNum=2;
+	    // dropload
+	    $('.content').dropload({
+	        scrollArea : window,
+	        loadDownFn : function(me){
+	            $.ajax({
+	                type: 'GET',
+	                url:AppEnvironment.apiRoot+'/apppage/Opinion/Companylist?Page='+requestNum+'&Size='+num,
+	                dataType: 'json',
+	                success: function(data){
+	                	console.log(data);
+	                	if(data.length==0){
+                        	$(".dropload-down").hide();
+                        }else if(data.length<5){
+                        	$(".dropload-down").hide();
+                        }else{
+                        	$(".dropload-down").show();
+		                    var result = '';
+		                    counter++;
+	
+		                    pageEnd = num * counter;
+		                    pageStart = pageEnd - num;
+	
+	                           for(var i = pageStart; i < pageEnd; i++){
+	                               if(data[i]){
+	
+	                               result+='<li class="padding" data-src="{$Think.config.site_root_api}/apppage/Opinion/CompanyDetail?CompanyId='+data[i].CompanyId+'"><img class="fl" src="'+data[i].CompanyLogo+'"><div class="companyComment"><div class="bottom">';
+	                               result+='<b class="font30">'+data[i].CompanyName+'</b><div class="orangStar fr padding"><span tip="'+data[i].Score+'"></span><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a><a herf="javascript:void(0)"></a></div></div><div class="userLabel">';
+	                               var labels=data[i].Labels;
+	                               if(labels){
+	                                   for(var j=0;j<labels.length;j++){
+	
+	                                       result+='<span>'+labels[j]+'</span>';
+	                                   }
+	                               }
+	                               result+='<div><p class="grey">总阅读'+data[i].ReadCount+'&nbsp;&nbsp;&nbsp;&nbsp;共'+data[i].CommentCount+'条点评&nbsp;&nbsp;&nbsp;&nbsp;来自'+data[i].StaffCount+'位员工</p></div></li>'
+	                               if((i + 1) >= data.length) {
+	                                   // 锁定
+	                                   me.lock();
+	                                   // 无数据
+	                                   me.noData();
+	                                   break;
+	                               }
+	                           }else{
+	                                   // 无数据
+	                                   me.noData();
+	                               }
+	                       }
+	                            $('.companyList').append(result);
+	                            //点击跳转
+	                            $(".companyList li").click(function(){
+						        	var src=$(this).attr("data-src");
+						        	location.href=src;
+						        })
+	                            // 每次数据加载完，必须重置
+	                            me.resetload();
+	                            /*显示分数*/
+	                            show();
+	                        requestNum++;
+	                    }
+	                },
+	                error: function(xhr, type){
+	                    // 即使加载出错，也得重置
+	                    me.resetload();
+	                }
+	            });
+	        }
+	    });
+        $(".searchArea").click(function(){
+            location.href="{$Think.config.site_root_api}/apppage/Opinion/searchCompany";
+        })
+        $(".companyList li").click(function(){
+        	var src=$(this).attr("data-src");
+        	location.href=src;
+        })
+	})    
+	</script>
+</html>

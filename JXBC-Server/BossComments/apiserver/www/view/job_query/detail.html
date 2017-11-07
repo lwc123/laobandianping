@@ -1,0 +1,46 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}职位详情 - 老板点评{/block}
+{block name="page-content"}
+		<div class="com1-bg">
+			<div class="position-title">
+			  <span class="position-pos">{$Detail.JobName}</span>
+			  <span class="pos-salary">{$Detail.SalaryRangeMin}-{$Detail.SalaryRangeMax}</span>
+			  <p>{$Detail.Company['CompanyAbbr']}  <span class="pos-time">{$Detail.time}</span></p>
+			  <span>经验{$Detail.ExperienceRequire}/ {$Detail.EducationRequire} / {$Detail.JobLocation}</span>
+			</div>
+			<div class="position-details">
+				<p class="com-tt">职位详情</p>
+                <br/>
+                <br/>
+                <div class="pos-duty" style="white-space: pre-wrap;word-wrap:break-word;">{$Detail.JobDescription}
+                   <!-- <textarea name="JobDescription" id="ev-say" class="ev-say"  wrap="physical">{$Detail.JobDescription}</textarea>-->
+                </div>
+				<p class="com-tt pos-title">公司介绍</p>
+				<div class="pos-company">
+					<div class="pos-logo">
+                        <img src="{$Detail.Company['CompanyLogo']}" alt="" style="width: 100%;height: 100%"/>
+					</div>
+					<div class="pos-companydetail">
+						<p>{$Detail.Company['CompanyName']}</p>
+						<p>{$Detail.Company['Industry']}   {$Detail.Company['CompanySize']}</p>
+						<p><img src="{$Think.config.resources_site_root}/pc/img/add.jpg" >{$Detail.JobLocation}</p>
+					</div>
+				</div>
+			</div>
+			<div class="pos-email">
+				<p class="com-tt">投递简历到</p>
+                <p>邮箱：{$Detail.ContactEmail}</p>
+                <p>电话：{if(!empty($Detail.ContactNumber))}{$Detail.ContactNumber}{else/}--{/if}</p>
+			</div>
+		</div>
+{/block}
+
+{block name="resources-footer"}
+<script>
+    $(function () {
+
+    })
+</script>
+
+{/block}

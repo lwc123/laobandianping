@@ -1,0 +1,1002 @@
+{extend name="-public:layout_console-enterprise" /} {block name="page-title"}背景调查{/block} {block name="page-content"}
+<!--右侧内容开始-->
+<div class="com1-bg" id="detail">
+	<!-- 个人信息 -->
+	<div class="em3-info1 files-info">
+		<p class="com-tt files-tt">背景调查报告</p>
+		<div class="em1-info1 em3">
+			<img v-bind:src="list.Picture">
+			<p class="nname"><a href="#">{{list.RealName}}</a></p>
+		</div>
+		<div class="em3-info11">
+			<p>性别：<span>{{list.Gender}}</p>
+		  	    <p>年龄：<span>{{list.Age}}（{{list.Birthday | moment}}）</span></p>
+			<p>毕业学校：<span>{{list.GraduateSchool}}</span></p>
+			<p>学历：<span>{{list.Education}}</span></p>
+		</div>
+	</div>
+	<div v-if="comment==null">
+		<div v-for="item in list.Comments">
+			<div v-if="list.BoughtCommentType==0">
+				<!-- 阶段工作评价 -->
+				<div class="files-reporte">
+					<p class="com-tt files-tt">阶段工作评价</p>
+					<div class="em3-info11 em3-info21">
+						<p>所在公司：<span>{{list.CompanyName}}</span></p>
+						<p class="reporte-year">{{item.StageYear}}度</p>
+						<p class="em3-tt"><i class="iconfont">&#xe641;</i>{{item.StageSection}}工作评价</p>
+						<ul class="em3-block">
+							<li>
+								<span class="top-t">工作能力</span>
+								<div class="block-left">
+									<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+									<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+									<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+									<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+									<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+								</div>
+								<span class="block-right">{{item.WorkAbility}}<br>分</span>
+							</li>
+							<li>
+								<span class="top-t">工作态度</span>
+								<div class="block-left">
+									<span v-if="item.WorkAttitude>89 && item.WorkAttitude<=100">非常<br>优秀</span>
+									<span v-if="item.WorkAttitude>79 && item.WorkAttitude<=89">良好</span>
+									<span v-if="item.WorkAttitude>59 && item.WorkAttitude<=79">一般</span>
+									<span v-if="item.WorkAttitude>29 && item.WorkAttitude<=59">差</span>
+									<span v-if="item.WorkAttitude>=0 && item.WorkAttitude<=29">极差</span>
+								</div>
+								<span class="block-right">{{item.WorkAttitude}}<br>分</span>
+							</li>
+							<li>
+								<span class="top-t">工作业绩</span>
+								<div class="block-left">
+									<span v-if="item.WorkPerformance>89 && item.WorkPerformance<=100">非常<br>优秀</span>
+									<span v-if="item.WorkPerformance>79 && item.WorkPerformance<=89">良好</span>
+									<span v-if="item.WorkPerformance>59 && item.WorkPerformance<=79">一般</span>
+									<span v-if="item.WorkPerformance>29 && item.WorkPerformance<=59">差</span>
+									<span v-if="item.WorkPerformance>=0 && item.WorkPerformance<=29">极差</span>
+								</div>
+								<span class="block-right">{{item.WorkPerformance}}<br>分</span>
+							</li>
+						</ul>
+						<div class="em3-say files-comment">
+							<div class="say-content">
+								<p>老板点评</p>
+								<div class="say-word">
+									{{{item.WorkComment}}}
+								</div>
+								<div class="remark-img overflow demo-gallery" data-pswp-uid="1" v-show="img!==null">
+									<figure class="img" v-for="img in item.WorkCommentImages">
+										<div>
+											<a href="{{img}}" ata-med-size="1024x1024" data-size="100x100"><img v-bind:src="img"></a>
+										</div>
+									</figure>
+
+								</div>
+								<!-- 收听语音 -->
+								<div class="audio animate pad-b" v-show="item.WorkCommentVoice!==null">
+									<div class="audio-inner play">
+										<div class="circle fl"></div>
+										<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+										<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+									</div>
+									<div class="audio-inner pause hidden">
+										<div class="circle fl"></div>
+										<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+										<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="reporte-time">
+							<p>以上报告由{{list.CompanyName}}提交</p>
+							<p>提交时间{{item.CreatedTime | moment}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div v-if="list.BoughtCommentType==1">
+				<!-- 离任报告 -->
+				<div class="files-reporte">
+					<p class="com-tt files-tt">离任报告{{item.CommentCode}}</p>
+					<div class="em3-info11 em3-info21">
+						<p>离任公司：<span>{{list.CompanyName}}</span></p>
+						<p>离任职务：<span>{{list.PostTitle}}</span></p>
+					  	    <p>所在部门：<span>{{list.DeptName}}</span></p>
+						<p>入职时间：<span>{{list.EntryTime | moment}}</span></p>
+						<p>离任时间：<span>{{list.DimissionTime | moment}}</span></p>
+						<p v-if='item.DimissionSalary'>离任薪资：年薪<span>{{item.DimissionSalary}}</span>万元</p>
+						<p v-else>离任薪资：<span>--</span></p>
+						
+						
+						<p>离任原因：<span>{{item.DimissionReason}}</span></p>
+						<p>离任原因补充说明：</p>
+						<p><span>{{item.DimissionSupply}}</span></p>
+						<p class="em3-tt"><i class="iconfont">&#xe641;</i>在职期间工作评价</p>
+						<ul class="em3-block">
+							<li>
+								<span class="top-t">工作能力</span>
+								<div class="block-left">
+									<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+									<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+									<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+									<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+									<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+								</div>
+								<span class="block-right">{{item.WorkAbility}}<br>分</span>
+							</li>
+							<li>
+								<span class="top-t">工作态度</span>
+								<div class="block-left">
+									<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+									<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+									<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+									<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+									<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+								</div>
+								<span class="block-right">{{item.WorkAttitude}}<br>分</span>
+							</li>
+							<li>
+								<span class="top-t">工作业绩</span>
+								<div class="block-left">
+									<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+									<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+									<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+									<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+									<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+								</div>
+								<span class="block-right">{{item.WorkPerformance}}<br>分</span>
+							</li>
+						</ul>
+						<div class="em3-ev">
+							<p class="em3-tt"><i class="iconfont">&#xe641;</i>工作交接情况</p>
+							<ul class="em3-block">
+								<li>
+									<span class="top-t">及时性</span>
+									<div class="block-left">
+										<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+										<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+										<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+										<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.HandoverTimely}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">全面性</span>
+									<div class="block-left">
+										<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+										<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+										<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+										<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.HandoverOverall}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">后续支持</span>
+									<div class="block-left">
+										<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+										<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+										<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+										<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.HandoverSupport}}<br>分</span>
+								</li>
+							</ul>
+						</div>
+						<div class="em3-say files-comment">
+							<div class="say-content">
+								<p>老板点评</p>
+								<div class="say-word">
+									{{{item.WorkComment}}}
+								</div>
+								<div class="remark-img overflow demo-gallery" data-pswp-uid="1" v-show="img!==null">
+									<figure class="img" v-for="img in item.WorkCommentImages">
+										<div>
+											<a href="{{img}}" ata-med-size="1024x1024" data-size="100x100"><img v-bind:src="img"></a>
+										</div>
+									</figure>
+								</div>
+								<div class="audio animate" v-show="item.WorkCommentVoice!==null">
+									<div class="audio-inner play">
+										<div class="circle fl"></div>
+										<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+										<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+									</div>
+									<div class="audio-inner pause hidden">
+										<div class="circle fl"></div>
+										<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+										<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+									</div>
+								</div>
+								<p>返聘意愿：<span>{{item.WantRecall}}</span></p>
+							</div>
+						</div>
+						<div class="reporte-time">
+							<p>以上报告由{{list.CompanyName}}提交</p>
+							<p>提交时间{{item.CreatedTime | moment}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div v-if="list.BoughtCommentType==2">
+				<!-- 阶段工作评价 -->
+				<div v-if="item.CommentType==0">
+					<div class="files-reporte">
+						<p class="com-tt files-tt">阶段工作评价</p>
+						<div class="em3-info11 em3-info21">
+							<p>所在公司：<span>{{list.CompanyName}}</span></p>
+							<p class="reporte-year">{{item.StageYear}}年度</p>
+							<p class="em3-tt"><i class="iconfont">&#xe641;</i>{{item.StageSection}}工作评价</p>
+							<ul class="em3-block">
+								<li>
+									<span class="top-t">工作能力</span>
+									<div class="block-left">
+					  			      <span  v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+					  			      <span  v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+					  			      <span  v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+					  			      <span  v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+					  			      <span  v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+					  			    </div>
+									<span class="block-right">{{item.WorkAbility}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作态度</span>
+									<div class="block-left">
+					  			      <span  v-if="item.WorkAttitude>89 && item.WorkAttitude<=100">非常<br>优秀</span>
+					  			      <span  v-if="item.WorkAttitude>79 && item.WorkAttitude<=89">良好</span>
+					  			      <span  v-if="item.WorkAttitude>59 && item.WorkAttitude<=79">一般</span>
+					  			      <span  v-if="item.WorkAttitude>29 && item.WorkAttitude<=59">差</span>
+					  			      <span  v-if="item.WorkAttitude>=0 && item.WorkAttitude<=29">极差</span>
+					  			    </div>
+									<span class="block-right">{{item.WorkAttitude}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作业绩</span>
+									<div class="block-left">
+					  			      <span  v-if="item.WorkPerformance>89 && item.WorkPerformance<=100">非常<br>优秀</span>
+					  			      <span  v-if="item.WorkPerformance>79 && item.WorkPerformance<=89">良好</span>
+					  			      <span  v-if="item.WorkPerformance>59 && item.WorkPerformance<=79">一般</span>
+					  			      <span  v-if="item.WorkPerformance>29 && item.WorkPerformance<=59">差</span>
+					  			      <span  v-if="item.WorkPerformance>=0 && item.WorkPerformance<=29">极差</span>
+					  			    </div>
+									<span class="block-right">{{item.WorkPerformance}}<br>分</span>
+								</li>
+							</ul>
+							<div class="em3-say files-comment">
+								<div class="say-content">
+									<p>老板点评</p>
+									<div class="say-word">
+										{{{item.WorkComment}}}
+									</div>
+									<div class="remark-img overflow demo-gallery" data-pswp-uid="1" v-show="img!==null">
+										<figure class="img" v-for="img in item.WorkCommentImages">
+											<div>
+												<a href="{{img}}" ata-med-size="1024x1024" data-size="100x100"><img v-bind:src="img"></a>
+											</div>
+										</figure>
+
+									</div>
+									<!-- 收听语音 -->
+									<div class="audio animate pad-b" v-show="item.WorkCommentVoice!==null">
+										<div class="audio-inner play">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+										<div class="audio-inner pause hidden">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="reporte-time">
+								<p>以上报告由{{list.CompanyName}}提交</p>
+								<p>提交时间{{item.CreatedTime | moment}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 离任报告 -->
+				<div v-if="item.CommentType==1">
+					<div class="files-reporte">
+						<p class="com-tt files-tt">离任报告{{item.CommentCode}}</p>
+						<div class="em3-info11 em3-info21">
+							<p>离任公司：<span>{{list.CompanyName}}</span></span></p>
+							<p>离任职务：<span>{{list.PostTitle}}</span></p>
+						  	    <p>所在部门：<span>{{list.DeptName}}</span></p>
+							<p>入职时间：<span>{{list.EntryTime | moment}}</span></p>
+							<p>离任时间：<span>{{list.DimissionTime | moment}}</span></p>
+							
+							<p v-if='item.DimissionSalary'>离任薪资：年薪<span>{{item.DimissionSalary}}</span>万元</p>
+							<p v-else>离任薪资：<span>--</span></p>
+							<p>离任原因：<span>{{item.DimissionReason}}</span></p>
+							<p>离任原因补充说明：</p>
+							<p><span>{{item.DimissionSupply}}</span></p>
+							<p class="em3-tt"><i class="iconfont">&#xe641;</i>在职期间工作评价</p>
+							<ul class="em3-block">
+								<li>
+									<span class="top-t">工作能力</span>
+									<div class="block-left">
+										<span  v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+										<span  v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+										<span  v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+										<span  v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+										<span  v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkAbility}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作态度</span>
+									<div class="block-left">
+										<span v-if="item.WorkAttitude>89 && item.WorkAttitude<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAttitude>79 && item.WorkAttitude<=89">良好</span>
+										<span v-if="item.WorkAttitude>59 && item.WorkAttitude<=79">一般</span>
+										<span v-if="item.WorkAttitude>29 && item.WorkAttitude<=59">差</span>
+										<span v-if="item.WorkAttitude>=0 && item.WorkAttitude<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkAttitude}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作业绩</span>
+									<div class="block-left">
+										<span v-if="item.WorkPerformance>89 && item.WorkPerformance<=100">非常<br>优秀</span>
+										<span v-if="item.WorkPerformance>79 && item.WorkPerformance<=89">良好</span>
+										<span v-if="item.WorkPerformance>59 && item.WorkPerformance<=79">一般</span>
+										<span v-if="item.WorkPerformance>29 && item.WorkPerformance<=59">差</span>
+										<span v-if="item.WorkPerformance>=0 && item.WorkPerformance<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkPerformance}}<br>分</span>
+								</li>
+							</ul>
+							<div class="em3-ev">
+								<p class="em3-tt"><i class="iconfont">&#xe641;</i>工作交接情况</p>
+								<ul class="em3-block">
+									<li>
+										<span class="top-t">及时性</span>
+										<div class="block-left">
+											<span v-if="item.HandoverTimely>89 && item.HandoverTimely<=100">非常<br>优秀</span>
+											<span v-if="item.HandoverTimely>79 && item.HandoverTimely<=89">良好</span>
+											<span v-if="item.HandoverTimely>59 && item.HandoverTimely<=79">一般</span>
+											<span v-if="item.HandoverTimely>29 && item.HandoverTimely<=59">差</span>
+											<span v-if="item.HandoverTimely>=0 && item.HandoverTimely<=29">极差</span>
+										</div>
+										<span class="block-right">{{item.HandoverTimely}}<br>分</span>
+									</li>
+									<li>
+										<span class="top-t">全面性</span>
+										<div class="block-left">
+											<span v-if="item.HandoverOverall>89 && item.HandoverOverall<=100">非常<br>优秀</span>
+											<span v-if="item.HandoverOverall>79 && item.HandoverOverall<=89">良好</span>
+											<span v-if="item.HandoverOverall>59 && item.HandoverOverall<=79">一般</span>
+											<span v-if="item.HandoverOverall>29 && item.HandoverOverall<=59">差</span>
+											<span v-if="item.HandoverOverall>=0 && item.HandoverOverall<=29">极差</span>
+										</div>
+										<span class="block-right">{{item.HandoverOverall}}<br>分</span>
+									</li>
+									<li>
+										<span class="top-t">后续支持</span>
+										<div class="block-left">
+											<span v-if="item.HandoverSupport>89 && item.HandoverSupport<=100">一般</span>
+											<span v-if="item.HandoverSupport>79 && item.HandoverSupport<=89">一般</span>
+											<span v-if="item.HandoverSupport>59 && item.HandoverSupport<=79">一般</span>
+											<span v-if="item.HandoverSupport>29 && item.HandoverSupport<=59">一般</span>
+											<span v-if="item.HandoverSupport>=0 && item.HandoverSupport<=29">一般</span>
+										</div>
+										<span class="block-right">{{item.HandoverSupport}}<br>分</span>
+									</li>
+								</ul>
+							</div>
+							<div class="em3-say files-comment">
+								<div class="say-content">
+									<p>老板点评</p>
+									<div class="say-word">
+										{{{item.WorkComment}}}
+									</div>
+									<div class="remark-img overflow demo-gallery" data-pswp-uid="1" v-show="img!==null">
+										<figure class="img" v-for="img in item.WorkCommentImages">
+											<div>
+												<a href="{{img}}" ata-med-size="1024x1024" data-size="100x100"><img v-bind:src="img"></a>
+											</div>
+										</figure>
+									</div>
+									<div class="audio animate" v-show="item.WorkCommentVoice!==null">
+										<div class="audio-inner play">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+										<div class="audio-inner pause hidden">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+									</div>
+									<p class="want-back">返聘意愿：<span>{{item.WantRecall}}</span></p>
+								</div>
+							</div>
+							<div class="reporte-time">
+								<p>以上报告由{{list.CompanyName}}提交</p>
+								<p>提交时间{{item.CreatedTime | moment}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div v-if="comment!==null">
+		<div v-if="comment==1">
+			<div v-for="item in list.Comments">
+				<div v-if="item.CommentType==1">
+					<!-- 离任报告 -->
+					<div class="files-reporte">
+						<p class="com-tt files-tt">离任报告{{item.CommentCode}}</p>
+						<div class="em3-info11 em3-info21">
+							<p>离任公司：<span>{{list.CompanyName}}</span></p>
+							<p>离任职务：<span>{{list.PostTitle}}</span></p>
+						  	    <p>所在部门：<span>{{list.DeptName}}</span></p>
+							<p>入职时间：<span>{{list.EntryTime | moment}}</span></p>
+							<p>离任时间：<span>{{list.DimissionTime | moment}}</span></p>
+							<p v-if='item.DimissionSalary'>离任薪资：年薪<span>{{item.DimissionSalary}}</span>万元</p>
+							<p v-else>离任薪资：<span>--</span></p>
+							<p>离任原因：<span>{{item.DimissionReason}}</span></p>
+							<p>离任原因补充说明：</p>
+							<p><span>{{item.DimissionSupply}}</span></p>
+							<p class="em3-tt"><i class="iconfont">&#xe641;</i>在职期间工作评价</p>
+							<ul class="em3-block">
+								<li>
+									<span class="top-t">工作能力</span>
+									<div class="block-left">
+										<span v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+										<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+										<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+										<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkAbility}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作态度</span>
+									<div class="block-left">
+										<span v-if="item.WorkAttitude>89 && item.WorkAttitude<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAttitude>79 && item.WorkAttitude<=89">良好</span>
+										<span v-if="item.WorkAttitude>59 && item.WorkAttitude<=79">一般</span>
+										<span v-if="item.WorkAttitude>29 && item.WorkAttitude<=59">差</span>
+										<span v-if="item.WorkAttitude>=0 && item.WorkAttitude<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkAttitude}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作业绩</span>
+									<div class="block-left">
+										<span v-if="item.WorkPerformance>89 && item.WorkPerformance<=100">非常<br>优秀</span>
+										<span v-if="item.WorkPerformance>79 && item.WorkPerformance<=89">良好</span>
+										<span v-if="item.WorkPerformance>59 && item.WorkPerformance<=79">一般</span>
+										<span v-if="item.WorkPerformance>29 && item.WorkPerformance<=59">差</span>
+										<span v-if="item.WorkPerformance>=0 && item.WorkPerformance<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkPerformance}}<br>分</span>
+								</li>
+							</ul>
+							<div class="em3-ev">
+								<p class="em3-tt"><i class="iconfont">&#xe641;</i>工作交接情况</p>
+								<ul class="em3-block">
+									<li>
+										<span class="top-t">及时性</span>
+										<div class="block-left">
+											<span v-if="item.HandoverTimely>89 && item.HandoverTimely<=100">非常<br>优秀</span>
+											<span v-if="item.HandoverTimely>79 && item.HandoverTimely<=89">良好</span>
+											<span v-if="item.HandoverTimely>59 && item.HandoverTimely<=79">一般</span>
+											<span v-if="item.HandoverTimely>29 && item.HandoverTimely<=59">差</span>
+											<span v-if="item.HandoverTimely>=0 && item.HandoverTimely<=29">极差</span>
+										</div>
+										<span class="block-right">{{item.HandoverTimely}}<br>分</span>
+									</li>
+									<li>
+										<span class="top-t">全面性</span>
+										<div class="block-left">
+											<span  v-if="item.HandoverOverall>89 && item.HandoverOverall<=100">非常<br>优秀</span>
+											<span v-if="item.HandoverOverall>79 && item.HandoverOverall<=89">良好</span>
+											<span  v-if="item.HandoverOverall>59 && item.HandoverOverall<=79">一般</span>
+											<span v-if="item.HandoverOverall>29 && item.HandoverOverall<=59">差</span>
+											<span v-if="item.HandoverOverall>=0 && item.HandoverOverall<=29">极差</span>
+										</div>
+										<span class="block-right">{{item.HandoverOverall}}<br>分</span>
+									</li>
+									<li>
+										<span class="top-t">后续支持</span>
+										<div class="block-left">
+											<span v-if="item.HandoverSupport>89 && item.HandoverSupport<=100">一般</span>
+											<span v-if="item.HandoverSupport>79 && item.HandoverSupport<=89">一般</span>
+											<span v-if="item.HandoverSupport>59 && item.HandoverSupport<=79">一般</span>
+											<span v-if="item.HandoverSupport>29 && item.HandoverSupport<=59">一般</span>
+											<span v-if="item.HandoverSupport>=0 && item.HandoverSupport<=29">一般</span>
+										</div>
+										<span class="block-right">{{item.HandoverSupport}}<br>分</span>
+									</li>
+								</ul>
+							</div>
+							<div class="em3-say files-comment">
+								<div class="say-content">
+									<p>老板点评</p>
+									<div class="say-word">
+										{{{item.WorkComment}}}
+									</div>
+									<div class="remark-img overflow demo-gallery" data-pswp-uid="1" v-show="img!==null">
+										<figure class="img" v-for="img in item.WorkCommentImages">
+											<div>
+												<a href="{{img}}" ata-med-size="1024x1024" data-size="100x100"><img v-bind:src="img"></a>
+											</div>
+										</figure>
+									</div>
+									<div class="audio animate" v-show="item.WorkCommentVoice!==null">
+										<div class="audio-inner play">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+										<div class="audio-inner pause hidden">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+									</div>
+									<p>返聘意愿：<span>{{item.WantRecall}}</span></p>
+								</div>
+							</div>
+							<div class="reporte-time">
+								<p>以上报告由{{list.CompanyName}}提交</p>
+								<p>提交时间{{item.CreatedTime | moment}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div v-if="comment==0">
+			<div v-for="item in list.Comments">
+				<div v-if="item.CommentType==0">
+					<!-- 阶段评价 -->
+					<div class="files-reporte">
+						<p class="com-tt files-tt">阶段工作评价</p>
+						<div class="em3-info11 em3-info21">
+							<p>所在公司：<span>{{list.CompanyName}}</span></p>
+							<p class="reporte-year">{{item.StageYear}}年度</p>
+							<p class="em3-tt"><i class="iconfont">&#xe641;</i>{{item.StageSection}}工作评价</p>
+							<ul class="em3-block">
+								<li>
+									<span class="top-t">工作能力</span>
+									<div class="block-left">
+										<span  v-if="item.WorkAbility>89 && item.WorkAbility<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAbility>79 && item.WorkAbility<=89">良好</span>
+										<span v-if="item.WorkAbility>59 && item.WorkAbility<=79">一般</span>
+										<span v-if="item.WorkAbility>29 && item.WorkAbility<=59">差</span>
+										<span v-if="item.WorkAbility>=0 && item.WorkAbility<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkAbility}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作态度</span>
+									<div class="block-left">
+										<span  v-if="item.WorkAttitude>89 && item.WorkAttitude<=100">非常<br>优秀</span>
+										<span v-if="item.WorkAttitude>79 && item.WorkAttitude<=89">良好</span>
+										<span v-if="item.WorkAttitude>59 && item.WorkAttitude<=79">一般</span>
+										<span v-if="item.WorkAttitude>29 && item.WorkAttitude<=59">差</span>
+										<span v-if="item.WorkAttitude>=0 && item.WorkAttitude<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkAttitude}}<br>分</span>
+								</li>
+								<li>
+									<span class="top-t">工作业绩</span>
+									<div class="block-left">
+										<span  v-if="item.WorkPerformance>89 && item.WorkPerformance<=100">非常<br>优秀</span>
+										<span  v-if="item.WorkPerformance>79 && item.WorkPerformance<=89">良好</span>
+										<span  v-if="item.WorkPerformance>59 && item.WorkPerformance<=79">一般</span>
+										<span  v-if="item.WorkPerformance>29 && item.WorkPerformance<=59">差</span>
+										<span  v-if="item.WorkPerformance>=0 && item.WorkPerformance<=29">极差</span>
+									</div>
+									<span class="block-right">{{item.WorkPerformance}}<br>分</span>
+								</li>
+							</ul>
+							<div class="em3-say files-comment">
+								<div class="say-content">
+									<p>老板点评</p>
+									<div class="say-word">
+										{{{item.WorkComment}}}
+									</div>
+									<div class="remark-img overflow demo-gallery" data-pswp-uid="1" v-show="img!==null">
+										<figure class="img" v-for="img in item.WorkCommentImages">
+											<div>
+												<a href="{{img}}" ata-med-size="1024x1024" data-size="100x100"><img v-bind:src="img"></a>
+											</div>
+										</figure>
+
+									</div>
+									<!-- 收听语音 -->
+									<div class="audio animate pad-b" v-show="item.WorkCommentVoice!==null">
+										<div class="audio-inner play">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+										<div class="audio-inner pause hidden">
+											<div class="circle fl"></div>
+											<audio id="audio{{item.CommentId}}" v-bind:src="item.WorkCommentVoice"></audio>
+											<p class="font24 fl audio-txt">点击收听评价{{item.WorkCommentVoiceSecond}}"</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="reporte-time">
+								<p>以上报告由{{list.CompanyName}}提交</p>
+								<p>提交时间{{item.CreatedTime | moment}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="pswp__bg" style=""></div>
+	<div class="pswp__scroll-wrap">
+		<div class="pswp__container">
+			<div class="pswp__item">
+				<div class="pswp__zoom-wrap">
+					<img class="pswp__img" src="">
+				</div>
+			</div>
+			<div class="pswp__item">
+				<div class="pswp__zoom-wrap">
+					<img class="pswp__img" src=""></div>
+			</div>
+			<div class="pswp__item">
+				<div class="pswp__zoom-wrap">
+					<img class="pswp__img" src=""></div>
+			</div>
+		</div>
+		<div class="pswp__ui pswp__ui--hidden">
+			<div class="pswp__top-bar">
+				<div class="pswp__counter"></div>
+				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+				<button class="pswp__button pswp__button--fs pswp__element--disabled" title="Toggle fullscreen"></button>
+				<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+				<div class="pswp__preloader">
+					<div class="pswp__preloader__icn">
+						<div class="pswp__preloader__cut">
+							<div class="pswp__preloader__donut"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block} {block name="resources-footer"}
+<script src="{$Think.config.resources_site_root}/mobile/js/vue.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/vue-resource.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/moment.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+<script>
+	function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]);return null;
+		}
+		var CommentType=getUrlParam('CommentType');
+		
+		Vue.filter('moment', function (value, formatString) {		
+		    formatString = formatString || 'YYYY年MM月DD日';
+		    return moment(value).format(formatString);
+		});
+		var detail=new Vue({
+			el:'#detail',
+			data:{
+				list:{},
+				comment:CommentType
+			},
+			ready:function(){
+				var CompanyId=getUrlParam('CompanyId');
+				var ArchiveId=getUrlParam('ArchiveId');
+				var CommentType =getUrlParam('CommentType');
+				var url=AppEnvironment.apiRoot+'/workplace/BackgroundSurvey/SingleDetail?CompanyId='+CompanyId+'&ArchiveId='+ArchiveId;
+				this.$http.get(url).then(function (response){
+					$.each(response.data.Comments,function(i){
+						response.data.Comments[i].WorkComment = response.data.Comments[i].WorkComment.replace(/\n/g,"<br/>");
+					})
+					this.list = response.data;
+                    console.log(response.data)
+				},function (response){
+					console.log(response.data)
+				})
+			}
+		})	
+		detail.$watch('list',function(){
+			var CommentType =getUrlParam('CommentType');
+			var $audio=$(".audio");
+			var src=$('.audio-inner').siblings('audio').attr('src');
+			if($audio.length>0){
+				//绑定播放暂停控制
+				click();
+			 var styleChange = {pause:{}, play:{}};
+
+				styleChange.play.change = function(obj){
+						obj.addClass('hidden');
+						obj.next('.pause').removeClass('hidden');
+					};
+
+				styleChange.pause.change = function(elem){
+						elem.addClass('hidden');
+						elem.siblings('.play').removeClass('hidden');
+					};
+				  	// 点击播放暂停
+				  	function click(){
+				  		var audio;
+				  		$('.play').on('click',function(){
+				  			if(audio){
+									var elem=$('.pause')
+									styleChange.pause.change(elem);
+					  				audio[0].pause();
+									}
+									var obj=$(this)
+									styleChange.play.change(obj);
+									var current=$(this).children('audio');
+									playCotrol(current);
+					  				audio = $(this).children("audio");
+									audio[0].play();
+				  		})
+				  		$('.pause').on('click',function(){
+				  			if(audio){
+								audio[0].pause();
+								var obj=$(this);
+								styleChange.pause.change(obj);
+							}
+				  		})
+				  	}
+				  	// 播放事件监听
+				  	function playCotrol(current){
+				  		var audio=$(current);
+				  		console.log(audio)
+				  		audio.bind('ended',function(){
+				  			var elem=$('.pause');
+				  			styleChange.pause.change(elem);
+				  		})
+				  	}
+			}
+
+
+
+			var initPhotoSwipeFromDOM = function(gallerySelector) {
+				var parseThumbnailElements = function(el) {
+				    var thumbElements = el.childNodes,
+			            numNodes = thumbElements.length,
+			            items = [],
+			            figureEl,
+			            linkEl,
+			            size,
+			            item,
+						divEl;
+				    for(var i = 0; i < numNodes; i++) {
+
+			            figureEl = thumbElements[i]; // <figure> element
+
+			            // 仅包括元素节点
+			            if(figureEl.nodeType !== 1) {
+			                continue;
+			            }
+						divEl = figureEl.children[0];
+			            linkEl = divEl.children[0]; // <a> element
+
+			            size = linkEl.getAttribute('data-size').split('x');
+
+			            // 创建幻灯片对象
+			            item = {
+			                src: linkEl.getAttribute('href'),
+			                w: parseInt(size[0], 10),
+			                h: parseInt(size[1], 10)
+			            };
+				        if(figureEl.children.length > 1) {
+				                // <figcaption> content
+				            item.title = figureEl.children[1].innerHTML;
+				        }
+
+				        if(linkEl.children.length > 0) {
+				                // <img> 缩略图节点, 检索缩略图网址
+				            item.msrc = linkEl.children[0].getAttribute('src');
+				        }
+
+				            item.el = figureEl; // 保存链接元素 for getThumbBoundsFn
+				            items.push(item);
+				        }
+
+				        return items;
+				    };
+
+			    // 查找最近的父节点
+			    var closest = function closest(el, fn) {
+			        return el && ( fn(el) ? el : closest(el.parentNode, fn) );
+			    };
+
+			    // 当用户点击缩略图触发
+			    var onThumbnailsClick = function(e) {
+			        e = e || window.event;
+			        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+			        var eTarget = e.target || e.srcElement;
+
+			        // find root element of slide
+			        var clickedListItem = closest(eTarget, function(el) {
+			            return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+			        });
+
+			        if(!clickedListItem) {
+			            return;
+			        }
+
+			        // find oldindex of clicked item by looping through all child nodes
+			        // alternatively, you may define oldindex via data- attribute
+			        var clickedGallery = clickedListItem.parentNode,
+			            childNodes = clickedListItem.parentNode.childNodes,
+			            numChildNodes = childNodes.length,
+			            nodeIndex = 0,
+			            index;
+
+			        for (var i = 0; i < numChildNodes; i++) {
+			            if(childNodes[i].nodeType !== 1) {
+			                continue;
+			            }
+
+			            if(childNodes[i] === clickedListItem) {
+			                index = nodeIndex;
+			                break;
+			            }
+			            nodeIndex++;
+			        }
+			        if(index >= 0) {
+			            // open PhotoSwipe if valid oldindex found
+			            openPhotoSwipe( index, clickedGallery );
+			        }
+			        return false;
+			    };
+			    // parse picture oldindex and gallery oldindex from URL (#&pid=1&gid=2)
+			    var photoswipeParseHash = function() {
+			        var hash = window.location.hash.substring(1),
+			        params = {};
+
+			        if(hash.length < 5) {
+			            return params;
+			        }
+
+			        var vars = hash.split('&');
+			        for (var i = 0; i < vars.length; i++) {
+			            if(!vars[i]) {
+			                continue;
+			            }
+			            var pair = vars[i].split('=');
+			            if(pair.length < 2) {
+			                continue;
+			            }
+			            params[pair[0]] = pair[1];
+			        }
+
+			        if(params.gid) {
+			            params.gid = parseInt(params.gid, 10);
+			        }
+
+			        return params;
+			    };
+
+			    var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+			        var pswpElement = document.querySelectorAll('.pswp')[0],
+			            gallery,
+			            options,
+			            items;
+
+			        items = parseThumbnailElements(galleryElement);
+
+			        // 这里可以定义参数
+			        options = {
+			          barsSize: {
+			            top: 100,
+			            bottom: 100
+			          },
+					fullscreenEl : false,
+			            // define gallery oldindex (for URL)
+			            galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+			            getThumbBoundsFn: function(index) {
+			                // See Options -> getThumbBoundsFn section of documentation for more info
+			                var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+			                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+			                    rect = thumbnail.getBoundingClientRect();
+
+			                return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+			            },
+			            barsSize:{top:0,bottom:0},
+						captionEl:false,
+						fullscreenEl : false,
+						shareEl : false,
+						bgOpacity :0.8,
+						tapToClose : true,
+						tapToToggleControls : false
+			        };
+
+			        // PhotoSwipe opened from URL
+			        if(fromURL) {
+			            if(options.galleryPIDs) {
+			                // parse real oldindex when custom PIDs are used
+			                for(var j = 0; j < items.length; j++) {
+			                    if(items[j].pid == index) {
+			                        options.index = j;
+			                        break;
+			                    }
+			                }
+			            } else {
+			                // in URL indexes start from 1
+			                options.index = parseInt(index, 10) - 1;
+			            }
+			        } else {
+			            options.index = parseInt(index, 10);
+			        }
+
+			        // exit if oldindex not found
+			        if( isNaN(options.index) ) {
+			            return;
+			        }
+
+			        if(disableAnimation) {
+			            options.showAnimationDuration = 0;
+			        }
+
+			        // Pass data to PhotoSwipe and initialize it
+			        gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+			        gallery.init();
+			    };
+
+			    // loop through all gallery elements and bind events
+			    var galleryElements = document.querySelectorAll( gallerySelector );
+
+			    for(var i = 0, l = galleryElements.length; i < l; i++) {
+			        galleryElements[i].setAttribute('data-pswp-uid', i+1);
+			        galleryElements[i].onclick = onThumbnailsClick;
+			    }
+
+			    // Parse URL and open gallery if it contains #&pid=3&gid=1
+			    var hashData = photoswipeParseHash();
+			    if(hashData.pid && hashData.gid) {
+			        openPhotoSwipe( hashData.pid ,  galleryElements[ hashData.gid - 1 ], true, true );
+			    }
+				};
+
+				// execute above function
+				initPhotoSwipeFromDOM('.demo-gallery');
+				var images=$('.img img');
+				$('.img img').load(function(){
+					$('.img img').each(function(){
+					var imgs=new Image();
+					imgs.src=$(this).attr('src');
+					var w=imgs.width,h=imgs.height;
+					$(this).parent('a').attr('data-size',w+'x'+h);
+					/*$(this).parent('a').css({
+						'background':'url('+$(this).attr('src')+') center no-repeat',
+						'background-size':'cover'
+					})
+					$(this).css({
+						'position':'relative',
+						'z-oldindex':'-1'
+					})*/
+
+					})
+				})
+		});
+</script>
+{/block}

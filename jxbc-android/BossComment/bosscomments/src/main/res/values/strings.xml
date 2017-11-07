@@ -1,0 +1,632 @@
+<resources>
+    <string name="app_name">老板点评</string>
+
+    <!--<string name="pull_to_refresh_pull_label">下拉刷新</string>-->
+    <!--<string name="pull_to_refresh_release_label">松开立即刷新</string>-->
+    <!--<string name="pull_to_refresh_refreshing_label">载入中</string>-->
+    <string name="pull_to_refresh_pull_label">松开立即刷新</string>
+    <string name="pull_to_refresh_release_label">松开立即刷新</string>
+    <string name="pull_to_refresh_refreshing_label">正在刷新数据..</string>
+    <string name="pull_to_refresh_tap_label">点击这里刷新</string>
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+
+    <string name="photo_album">相册</string>
+    <string name="register">注册</string>
+    <string name="save">保存</string>
+    <string name="complete">完成</string>
+    <string name="ok">确定</string>
+    <string name="clean">清空</string>
+    <string name="pay">支付</string>
+    <string name="time">时间</string>
+    <string name="change">修改</string>
+    <string name="examine_image">查看图片</string>
+    <string name="submit_check">提交审核</string>
+    <string name="add">添加</string>
+    <string name="new_build">新建</string>
+    <string name="corporate_juridical_person">法人代表</string>
+
+    <string name="open_laobandianping">开启老板点评</string>
+    <string name="default_name">未设置</string>
+    <string name="app_exit_confirm">再按一次退出老板点评</string>
+    <string name="submit">提交</string>
+    <string name="net_false_hint">网络异常，请检查网络</string>
+    <string name="for_the_moment_no_information">账号信息</string>
+    <string name="please_input_search_content">请输入搜索内容</string>
+    <string name="company_already_exist">您输入的公司已开通服务！\n请联系该公司管理员</string>
+    <string name="myroles_error_hint">网络错误，请稍候重试</string>
+
+    <!-- dialog弹窗字符串 -->
+    <string name="stage_archive_dialog_one">您是审核人，阶段评价已生效</string>
+    <string name="stage_archive_dialog_two">审核通过后，阶段评价将生效</string>
+    <string name="stage_archive_dialog_three">您是审核人，评价已生效</string>
+    <string name="stage_archive_dialog_four">审核通过后，评价将生效</string>
+    <string name="stage_archive_dialog_five">您是审核人，离任报告已生效</string>
+    <string name="stage_archive_dialog_six">审核通过后，离任报告将生效</string>
+    <string name="stage_archive_dialog_seven">您是审核人，离任报告已生效</string>
+    <string name="stage_archive_dialog_eight">审核通过后，离任报告将生效</string>
+
+    <!-- 页面title -->
+    <string name="login">登录</string>
+    <string name="boss_comment_recharge">交易记录</string>
+    <string name="company_login">企业登录</string>
+    <string name="login_boss_comments">登录老板点评</string>
+    <string name="bosscomments_web">老板点评网页版</string>
+
+
+    <!--tabs 简便用 first second third-->
+    <string name="main_tab_first">工作台</string>
+    <string name="main_tab_second">老板圈</string>
+    <string name="main_tab_third">我的</string>
+
+    <string name="chome_tab_company_opinion">公司口碑</string>
+    <string name="chome_tab_cpersonal">我的</string>
+
+    <!-- login_or_newaccount -->
+    <string name="company_register">企业注册</string>
+    <string name="person_register">个人注册</string>
+
+    <!--main-->
+    <string name="main_comment_on_the_employee">点评员工</string>
+    <string name="main_query">查询</string>
+    <string name="main_workbench">工作台</string>
+    <string name="manage_employee_record">管理员工档案</string>
+    <string name="other">其他</string>
+    <string name="all_employee_record">员工档案</string>
+    <string name="employee_evaluate">阶段评价</string>
+    <string name="departure_report">离任报告</string>
+    <string name="background_investigation">背景调查</string>
+    <string name="recruit">招聘</string>
+    <string name="search_employee_evaluate">查询员工评价</string>
+    <string name="invite_company_register">邀请老板注册</string>
+    <string name="main_message">消息</string>
+
+    <!-- AddEmployeeRecordActivity -->
+    <string name="add_employee_record_title">建立员工档案</string>
+    <string name="on_the_job_can_not_input">在职可不填</string>
+    <string name="employee_avatar">员工照片</string>
+    <string name="current_state">目前状态</string>
+    <string name="add_record_employee_name">姓名</string>
+    <string name="employee_identity_number">身份证号</string>
+    <string name="employee_phone_number">手机号</string>
+    <string name="employee_entry_time">入职日期</string>
+    <string name="employee_departure_time">离任日期</string>
+    <string name="employee_school_of_graduation">毕业学校</string>
+    <string name="employee_education_background">学历</string>
+    <string name="time_limit">入职时间不能晚于离任时间</string>
+    <string name="post_time_limit">任职结束时间不能小于任职开始时间</string>
+    <string name="post_time_entry">请输入入职时间</string>
+    <string name="this_employee_name">该员工的姓名</string>
+    <string name="input_employee_name">请输入姓名</string>
+    <string name="please_input_name">请输入开户名</string>
+    <string name="please_input_bank_name">请输入开户银行</string>
+    <string name="please_input_identity_number">自动提取年龄、性别</string>
+    <string name="please_input_phone_number">常用的手机号</string>
+    <string name="please_input_graduation_school">毕业学校</string>
+    <string name="add_the_position">添加职务</string>
+    <string name="entry_time">入职的日期</string>
+    <string name="add_employee_record_departure_time">离任的日期</string>
+    <string name="please_select_entry_time">请选择入职日期</string>
+    <string name="please_select_departure_time">请选择离任日期</string>
+    <string name="departure_time_limit">在职，可不填</string>
+    <string name="please_input_school_of_graduation">请填写毕业学校</string>
+    <string name="school_of_graduation_limit">毕业学校最多30个汉字</string>
+    <string name="this_employee_highest_education_background">该员工的最高学历</string>
+    <string name="please_select_education_background">请选择学历</string>
+    <string name="please_select_current_status">请选择目前状态</string>
+    <string name="employee_record_name_limit">姓名最多5个汉字</string>
+    <string name="please_add_post">请添加职务</string>
+    <string name="add_employee_record_web_prompt">在电脑上建立员工档案</string>
+    <string name="send_sms_inform_employee">发送短信告知员工</string>
+
+    <!-- hold post -->
+    <string name="select_department_title">选择部门</string>
+    <string name="build_hold_post">添加职务</string>
+    <string name="hold_post_start_time">任职开始时间</string>
+    <string name="hold_post_end_time">任职结束时间</string>
+    <string name="hold_post">担任职务</string>
+    <string name="wage_income">年薪收入(万元)</string>
+    <string name="in_department">所在部门</string>
+    <string name="whether_the_recent_positions">是否是最近担任职务</string>
+    <string name="please_input_hold_post">请输入担任职务</string>
+    <string name="please_select_hold_post_start_time">请选择任职开始时间</string>
+    <string name="please_select_hold_post_end_time">请选择任职结束时间</string>
+    <string name="select_already_build_department">选择已创建的部门</string>
+    <string name="input_department_name">请输入部门名称</string>
+    <string name="please_input_department_name">请选择所在部门</string>
+    <string name="please_input_salary_post">包括：薪资、福利、奖金等等</string>
+    <string name="wage_income_length_limit">请输入正确的年薪收入</string>
+    <string name="input_hold_post_length_limit">担任职务最多30个汉字</string>
+    <string name="input_department_name_length_limit">所在部门最多20个汉字</string>
+    <string name="department_manage">部门管理</string>
+    <string name="my_other_company">我的其他公司</string>
+    <string name="invite_other_company">邀请其他公司</string>
+    <string name="department_about_us">关于我们</string>
+    <string name="department_problems">常见问题</string>
+    <string name="department_feedback">意见反馈</string>
+    <string name="build_new_company">创建新公司</string>
+
+    <!-- register -->
+    <string name="already_have_account">马上登录</string>
+    <string name="company_agreement">《企业用户协议&#38;隐私政策》</string>
+    <string name="company_user_privacy_agreement">《企业用户隐私政策》</string>
+    <string name="personal_agreement">《个人用户协议&#38;隐私政策》</string>
+    <string name="personal_user_privacy_agreement">《个人用户隐私政策》</string>
+    <string name="user_agree_read">我已阅读并同意</string>
+
+    <!-- select_user_identity -->
+    <string name="company_identity">进入企业工作台</string>
+    <string name="person_identity">进入个人工作台</string>
+
+    <!-- open_service -->
+    <string name="open_service">开通服务</string>
+    <string name="open_boss_comment_service">开通老板点评服务</string>
+    <string name="company_name">公司名称：</string>
+    <string name="please_company_name">请输入和营业执照一致企业名称</string>
+    <string name="open_account_fee">开户费：</string>
+    <string name="should_pay_money">应付金额：</string>
+    <string name="already_pay_get_invoice">支付后可索取发票</string>
+    <string name="your_name">您的姓名：</string>
+    <string name="your_position">您的身份：</string>
+    <string name="please_input_your_name">请输入您的姓名</string>
+    <string name="please_input_your_position">请输入您的职务，如：总经理</string>
+    <string name="i_need_invoices">支付后可开发票，请准确填写公司名称</string>
+    <string name="please_input_company_name">请输入公司名称</string>
+    <string name="company_name_length_limit">公司名称超过了30个字</string>
+    <string name="bosscomment_service_already_open">老板点评服务已开通</string>
+    <string name="two_seconds_automatic_skip">2秒后自动跳转</string>
+    <string name="your_position_length_limit">职务最多20个字</string>
+    <string name="name_length_limit">姓名最多5个字</string>
+    <string name="if_need_help">如需帮助，请联系我们</string>
+
+    <!-- select_recharge_method -->
+    <string name="only_recharge">仅充值</string>
+    <string name="input_recharge_money">输入充值金额</string>
+    <string name="please_recharge_money">请输入充值金额</string>
+    <string name="recharge_record_income">收入记录</string>
+    <string name="recharge_record_expense_calendar">消费记录</string>
+    <string name="recharge_record_withdrawal_record">提现记录</string>
+
+    <!-- withdraw_deposit -->
+    <string name="withdraw_deposit_title">提现</string>
+    <string name="company_vault">公司金库</string>
+    <string name="can_be_withdrawal_amount">可提现金额：</string>
+    <string name="the_maximum_withdrawal_amount">最大提现限额：</string>
+    <string name="input_withdrawal_amount">提现金额</string>
+    <string name="withdrawal_explain">提现说明：</string>
+    <string name="withdrawal_explain_company_one">1、提现需提供公司发票</string>
+    <string name="withdrawal_explain_company_two">2、提现后将在10个工作日内打款</string>
+    <string name="withdraw_company_name">公司名称</string>
+    <string name="audit_withdraw_company_name">公司名称：</string>
+    <string name="deposit_bank_name">开户银行</string>
+    <string name="audit_deposit_bank_name">开户银行：</string>
+    <string name="bank_card_number">银行账号</string>
+    <string name="audit_bank_card_number">银行账号：</string>
+    <string name="let_public_bank_account">对公银行账号</string>
+    <string name="input_bank_count">请输入银行账号</string>
+    <string name="input_money">请输入金额</string>
+    <string name="public_bank_account">新建对公账号</string>
+    <string name="can_check_note">可以在交易记录中查看提现信息</string>
+    <string name="submit_ok">提现申请已提交！\n1个工作日内运营将处理您的请求。\n联系客服400-815-9166</string>
+    <string name="public_bank_account_explain">1、提现需提供专用发票；\n2、发票抬头为“北京全联职信科技有限公司”；\n3、发票收到后老板点评将在10个工作日内打款；</string>
+
+    <!-- company register -->
+    <string name="mobile_phone_is_empty">请输入您的手机号</string>
+    <string name="please_input_your_mobile_phone">请输入您的手机号</string>
+    <string name="close_dialog">关闭</string>
+    <string name="please_agree_bosscomment_agreement">请阅读并同意用户协议&#38;隐私政策</string>
+
+    <!--setting-->
+    <string name="my_company">我的公司</string>
+    <string name="change_identity">切换个人身份</string>
+    <string name="clean_cache">清理缓存</string>
+    <string name="suggestion_feedback_text">意见反馈</string>
+    <string name="system_setting_logout">退出当前账号</string>
+
+    <!-- 意见反馈界面 -->
+    <string name="feedback_hint">您的意见让我们变得更好</string>
+    <string name="tell_how_to_do">您希望提交人怎么调整？</string>
+    <string name="reason_why_nopass">请输入未通过的理由，最多200字</string>
+    <string name="tell_something_boss">说说老板的事儿</string>
+    <string name="feedback_content_not_empty">意见反馈内容不能为空！</string>
+    <string name="feedback_content_length_limit">抱歉！您输入的文字太多了，请在1000个字以内~</string>
+    <string name="feedback_content_length_limit1">您输入的文字过少，需多于5个字更有助于我们解决您的问题!</string>
+
+    <!-- 账号界面 -->
+    <string name="authorization_management">授权管理</string>
+    <string name="i_add_the_evaluation">我的评价</string>
+    <string name="my_query_record">我的查询记录</string>
+    <string name="system_setting">设置</string>
+    <string name="photo_uploading_success">图片上传成功</string>
+    <string name="photo_uploading_fail">图片上传失败</string>
+    <string name="photo_uploading_error">图片上传错误</string>
+
+    <!-- 邀请界面 -->
+    <string name="right_now_invite">立即邀请</string>
+    <string name="open_new_account_hint">老板点评仅支持企业法人注册开户；非法人用户开户请联系电话：400-815-9166</string>
+    <string name="invite_benefit_hint">每邀请一位老板开户，您将获得1000元奖金（税前）</string>
+    <string name="invite_register_link">邀请注册链接</string>
+    <string name="share">立即邀请</string>
+    <string name="invite_register_qr_code">邀请注册二维码</string>
+
+
+    <!-- 添加新的授权人界面 -->
+    <string name="add_new_accredit_person">添加授权人</string>
+    <string name="accredit_person_name">授权人姓名</string>
+    <string name="accredit_person_position">授权人职位</string>
+    <string name="accredit_person_phone">授权人手机</string>
+    <string name="accredit_person_hint">确认授权后，该用户可以登录老板点评，进行员工点评，请谨慎操作。</string>
+    <string name="sure_accredit">确认授权</string>
+    <string name="please_input_accredit_person_name">请输入姓名</string>
+    <string name="please_input_accredit_person_position">请输入职务</string>
+    <string name="please_input_accredit_person_phone">请输入手机号，将作为登录账号</string>
+    <string name="delete_accredit_person_hint">确定要删除吗？\n删除后授权关系将取消</string>
+
+    <string name="select_auditor_is_empty">暂无授权的审核人</string>
+    <string name="select_auditor">选择授权的审核人（可以多选）</string>
+    <string name="select_auditor_title">选择授权审核人</string>
+    <string name="please_input_work">请输入职务</string>
+    <string name="please_input_work_max_length">职务最多30个汉字</string>
+    <string name="please_select_role">请选择角色</string>
+    <string name="please_change_role">修改授权人</string>
+    <string name="modify_record">修改记录</string>
+
+
+    <!-- sign界面 -->
+    <string name="password">密码</string>
+    <string name="login_success">登录成功</string>
+    <string name="lost_password">忘记密码？</string>
+    <string name="immediately_sign_up">快速注册</string>
+    <string name="phone_pattern_false">手机号码格式错误</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="password_pattern_false">6-18位数字与字母的组合</string>
+    <string name="please_input_signin_password">请输入6-18位密码</string>
+    <string name="password_length_limit">密码长度必须是6-18位字符</string>
+    <string name="password_not_input_space">密码不能输入空格</string>
+    <string name="user_account_or_pwd_error">用户账号或密码错误</string>
+
+
+    <!-- 忘记密码界面 -->
+    <string name="change_password">修改密码</string>
+    <string name="validation_code_length_much_six">验证码输入错误</string>
+    <string name="phone_not_register">手机号未注册</string>
+    <string name="again_get_validation_code">重新获取</string>
+    <string name="change_false">修改失败</string>
+    <string name="change_success">修改成功</string>
+    <string name="validation_code_false_please_again_get">验证码错误，请重新获取！</string>
+    <string name="please_input_validation_code">请输入验证码</string>
+    <string name="request_failed">请求失败</string>
+
+    <!-- 设置密码界面 -->
+    <string name="sure_password">确认密码</string>
+    <string name="please_input_login_pwd">请输入您的登录密码</string>
+    <string name="please_second_input_login_pwd">请再次输入您的登录密码</string>
+    <string name="first_input_password_not_empty">第一次输入的密码不能为空</string>
+    <string name="confirm_password_not_empty">再次输入密码不能为空</string>
+    <string name="entered_passwords_differ">两次输入的密码不一致</string>
+    <string name="open_success">开户提交成功</string>
+    <string name="open_false">开户提交失败</string>
+
+    <!-- 上传图片界面 -->
+    <string name="uploading_success">上传成功</string>
+    <string name="uploading_false">上传失败</string>
+
+    <!-- 图片选择 -->
+    <string name="max_select_nine_picture">最多选择9张图片</string>
+    <string name="max_select_one_picture">最多选择1张图片</string>
+    <string name="max_select_two_picture">最多选择2张图片</string>
+    <string name="please_select_picture">请选择图片</string>
+    <string name="storage_space_not_use">存储空间不可用</string>
+    <string name="please_select_avatar">请选择头像</string>
+    <string name="please_select_employee_avatar">请选择员工照片</string>
+
+    <!-- 申请开户，注册步骤 -->
+    <string name="please_company_full_name">请填写企业名称</string>
+    <string name="company_abbreviation">请填写公司简称</string>
+    <string name="company_industry">公司行业</string>
+    <string name="please_select_company_industry">请选择公司行业</string>
+    <string name="company_scale">请选择公司人员规模</string>
+    <string name="company_in_city">请选择公司所在城市</string>
+    <string name="return_is_empty">注册失败，请稍候再试</string>
+    <string name="register_success">注册成功</string>
+    <string name="verification_code">验证码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="company_name_already_existing">企业名已存在，请重新输入</string>
+    <string name="the_phone_has_already_been_registered">手机号已经注册，请登录</string>
+    <string name="please_input_company_short_name">请输入公司简称</string>
+    <string name="company_name_length_over_two">公司简称长度不能少于两位字符</string>
+    <string name="company_name_length_below_ten">公司简称超过了10个字符</string>
+    <string name="full_company_name_length_limit">企业名称超过了30个汉字</string>
+    <string name="company_industry_not_empty">请选择公司行业</string>
+    <string name="company_scale_not_empty">请选择公司人员规模</string>
+    <string name="company_in_city_not_empty">请选择所在城市</string>
+    <string name="lagal_person_name_length_over_one">法人姓名长度必须大于1位字符</string>
+    <string name="user_name_illegal">姓名包含非法字符，请重新输入</string>
+    <string name="scale_of_company">公司规模</string>
+    <string name="business_license_picture">营业执照图片</string>
+    <string name="please_upload_business_license_picture">请上传营业执照图片</string>
+    <string name="remodify_company_name">重新修改</string>
+    <string name="remodify_company_name_hint">您输入的企业名称与支付时填写的不一致\n请确认是否提交？</string>
+    <string name="other_authentication_method">其他认证方式，请联系我们</string>
+    <string name="company_promise_content">我们对此郑重承诺：\n法人信息仅用于验证企业信息，及自动为法人创建超级管理员账号使用，老板点评将对此信息内容严格保密。</string>
+    <!--apply_account_head-->
+    <string name="include_head_base_information_text">填写企业信息</string>
+    <string name="include_head_upload_legal_person_picture_text">填写法人信息</string>
+    <string name="include_head_set_password_text">信息审核</string>
+    <string name="include_head_approved_account_text">进入工作台</string>
+    <string name="please_input_legal_person_name">请输入法人姓名</string>
+    <string name="legal_person_name_length_limit">法人姓名超过了5个汉字</string>
+    <string name="please_input_legal_person_phone">请输入法人手机号码</string>
+    <string name="legal_person_identity_card_positive_photo">法人身份证正反面照片</string>
+    <string name="please_upload_identity_card_picture">请上传身份证照片</string>
+    <string name="company_authentication">企业认证</string>
+    <string name="next_step">下一步</string>
+    <string name="apply_submitted_hint">您的企业认证申请已提交,24小时内将通知您审核结果</string>
+    <string name="legal_person_information_hint">老板点评仅支持企业法人认证</string>
+    <string name="select_company_industry">选择行业</string>
+    <string name="select_city">选择城市</string>
+    <string name="please_input_city_name">请输入城市</string>
+    <string name="not_input_industry_content">请输入行业名称</string>
+    <string name="industry_length_limit">行业名称超过了10个汉字</string>
+    <string name="hot_city">热门城市</string>
+    <string name="to_enter_the_workbench">进入工作台</string>
+
+    <!-- edit name -->
+    <string name="add_industry">添加行业</string>
+    <string name="industry_name">请输入行业名称</string>
+    <string name="input_name">填写姓名</string>
+    <string name="input_identity_number">输入身份证号</string>
+    <string name="input_phone_number">填写手机号码</string>
+    <string name="input_graduation_school">输入毕业学校</string>
+
+    <!-- 支付界面 -->
+    <string name="service_time">时间：</string>
+    <string name="service_money">应支付：</string>
+    <string name="pay_success">支付成功</string>
+    <string name="pay_false">支付失败</string>
+    <string name="pay_money">支付金额：</string>
+    <string name="pay_explain">支付说明：</string>
+    <string name="select_pay_method">选择支付方式</string>
+    <string name="pay_wait">支付结果确认中</string>
+    <string name="weixin_pay">微信支付</string>
+    <string name="aliay_pay">支付宝支付</string>
+    <string name="zhuanzhang_pay">公司转账</string>
+    <string name="pay_company_vault">企业金库</string>
+    <string name="go_pay">去支付</string>
+    <string name="recharge">充值</string>
+    <string name="vault_balance">金库余额：</string>
+    <string name="using_treasury_balance_payment">使用金库余额支付</string>
+
+    <!-- 查询页面 -->
+    <string name="employee_name">姓名：</string>
+    <string name="identity_number">身份证号：</string>
+    <string name="employee_working_company">所在公司：</string>
+    <string name="please_input_search_employee_name">请输入所要查询员工姓名</string>
+    <string name="please_input_search_employee_identity_number">请输入所要查询员工的身份证号</string>
+    <string name="please_input_search_employee_current_company">请输入所要查询员工的所在公司</string>
+    <string name="search_city">查询城市</string>
+    <string name="search_comment">查询阶段评价</string>
+    <string name="search_report">查询离任报告</string>
+
+    <!-- 添加老板点评页面 -->
+    <string name="add_work_comment">工作评语</string>
+    <string name="comment_employee_position">职位：</string>
+    <string name="operational_capability">工作能力：</string>
+    <string name="working_attitude">工作态度：</string>
+    <string name="work_performance">工作业绩：</string>
+    <string name="please_input_employee_name">请输入员工姓名</string>
+    <string name="please_input_employee_position">请输入该员工职位</string>
+    <string name="please_input_employee_identity_number">请输入该员工身份证号</string>
+    <string name="please_input_comment_hint">输入老板点评，或拍摄手写点评，或录制语音点评</string>
+    <string name="select_time_phasing">选择时间阶段</string>
+    <!-- 添加老板点评页面错误提示 -->
+    <string name="boss_comment_content_length_limit">老板点评评语最多为500字</string>
+    <string name="boss_comment_content_not_empty">老板点评评语不能为空</string>
+    <string name="comment_success">提交成功</string>
+    <string name="comment_fail">提交失败</string>
+    <string name="voice_record_limit">只能添加一条语音评语</string>
+    <string name="select_employee_record">选择员工档案</string>
+    <string name="stage_work_comment">阶段工作评价</string>
+    <string name="work_synthesize_comment">工作综合评价</string>
+    <string name="add_synthesize_word_comment">添加阶段评价</string>
+    <string name="add_comment_auditor">添加审核人（一人通过审核即生效）</string>
+    <string name="please_select_stage_time">请选择阶段时间</string>
+    <string name="add_archive_comment_prompt">员工离任，其他企业查看该评价，您公司可获得10金币</string>
+    <string name="add_archive_report_prompt">员工离任，其他企业查看该评价，您公司可获得15金币</string>
+
+    <!-- 添加离任报告页面 -->
+    <string name="departure_time">离任时间：</string>
+    <string name="departure_salary">离任薪资：</string>
+    <string name="please_input_salary">请填写年薪收入(万元)，可不填</string>
+    <string name="in_working_synthesize_comment">在职期间工作评价</string>
+    <string name="supplementary_instruction">离任原因补充说明</string>
+    <string name="work_handover_condition">工作交接情况</string>
+    <string name="leave_comments">离任评语</string>
+    <string name="additional_remarks">选填，如有特别情况请说明</string>
+    <string name="please_select_departure_cause">请选择离任原因</string>
+    <string name="please_select_company_aspiration">请选择返聘意愿</string>
+    <string name="supplementary_instruction_length_limit">补充说明的文字超过了100个字</string>
+    <string name="please_input_leave_comments">请输入离任评语</string>
+    <string name="leave_comments_length_limit">离任评语最多为500字</string>
+    <string name="please_select_dimission_time">请选择离任时间</string>
+
+    <!-- 查询界面 -->
+    <string name="edit_working_company_not_empty">所在公司不能为空</string>
+    <string name="edit_working_company_length_limit">所在公司长度不能小于3位</string>
+    <string name="employee_name_not_empty">请输入员工姓名</string>
+    <string name="employee_identity_number_not_empty">请输入身份证号</string>
+    <string name="employee_name_illegal">员工姓名错误</string>
+    <string name="employee_identity_number_error">身份证号不合法</string>
+
+    <!-- 查询结果界面 -->
+    <string name="his_all_tag">他的标签</string>
+    <string name="add_comment">+ 添加点评</string>
+    <!-- 查询结果item页面 -->
+    <string name="comment_person">评价者：</string>
+    <string name="whether_authorized">公司法人已授权</string>
+    <string name="been_commented_person_position">被评价者在公司职位：</string>
+    <string name="click_listen_in_comment">点击试听</string>
+    <string name="employee_boss_comments">的老板点评</string>
+    <!-- 无评论提示 -->
+    <string name="no_comment_hint">暂时还没有老板点评过TA</string>
+
+    <!-- 我添加的老板点评页面 -->
+    <string name="my_add_comments_title">我添加的点评</string>
+
+    <!-- 充值记录页面 -->
+    <string name="recharge_btn">充值</string>
+    <string name="recharge_record_empty">暂时没有充值记录</string>
+
+    <!-- 修改个人资料 -->
+    <string name="change_person_data_title">修改个人资料</string>
+    <string name="change_person_data_role">角色</string>
+
+    <!-- all_employee_record -->
+    <string name="search">搜索</string>
+    <string name="search_employee">查询员工</string>
+
+    <!-- 评价列表或离任报告列表为空 -->
+    <string name="null_departure_report">还没有离任报告</string>
+    <string name="null_employee_evaluate">还没有阶段工作评价</string>
+    <string name="add_departure_report">添加离任报告</string>
+    <string name="add_employee_evaluate">添加阶段评价</string>
+
+    <!-- 修改企业信息 -->
+    <string name="simpleName_company">公司简称</string>
+    <string name="companysfield">公司所属行业</string>
+    <string name="company_size">公司人员规模</string>
+    <string name="modify_cp_info">修改企业信息</string>
+
+    <!-- 我的评价列表-提交人 -->
+    <string name="mycomment_title">我的评价</string>
+    <string name="employee_name_comment_subbitter">员工姓名：</string>
+
+    <!-- 我的评价列表-审核人 -->
+    <string name="mycomment_auditor_employee_name">员工姓名：</string>
+
+    <!-- 录音popupwindow -->
+    <string name="click_start_voice">点击开始录音</string>
+    <string name="click_end_voice">点击结束录音</string>
+    <string name="record_time_max">最多录制</string>
+    <string name="time_value">120秒</string>
+    <string name="now_recording">录音中</string>
+    <string name="record_end_time_length">录音结束共</string>
+    <string name="listening_test">试听</string>
+
+    <!-- 审核离任报告 -->
+    <string name="audit_result_notpass">审核不通过</string>
+    <string name="audit_result_pass">审核通过</string>
+
+    <string name="waitting_audit_report">等待审核中</string>
+
+    <!-- 审核不通过页面 -->
+    <string name="audit_notpass">审核不通过</string>
+    <string name="role_power_explain">角色权限说明</string>
+    <string name="role_power_explain_real">角色权限说明：\n高管：可以建档、提交评价、背景调查查询、发布职位、审核评价；\n建档员：可以建档、提交评价、背景调查查询、发布职位。\n管理员：可以建档、提交评价、背景调查查询、发布职位、授权管理、修改企业资料信息。</string>
+    <string name="add_manager">添加授权人</string>
+
+    <!-- 档案、阶段评价、离任报告详情页 -->
+    <string name="employee_record_detail">员工档案详情</string>
+    <string name="stage_comment_detail">阶段评价详情</string>
+    <string name="leave_post_report_detail">离任报告详情</string>
+
+    <!-- 招聘 -->
+    <string name="post_office">已发布职位</string>
+    <string name="advertise">招聘</string>
+    <string name="advertising">发布职位</string>
+
+    <!-- 部门 -->
+    <string name="all_department_title">部门管理</string>
+    <string name="please_write_department_name">请输入部门名称</string>
+
+    <!-- 个人端 -->
+    <string name="personal_my_archive">我的档案</string>
+    <string name="personal_apply_job">求职</string>
+    <string name="personal_my_pocket">口袋</string>
+    <string name="personal_invite_register">邀请企业注册</string>
+    <string name="personal_right_away_look">马上查看</string>
+    <string name="personal_no_comment">暂无老板对您进行评价</string>
+    <string name="personal_look_hint">为了查询更精准及保护隐私，请校验身份</string>
+    <string name="personal_identity_check_hint">身份证号填写后不能修改，请谨慎填写</string>
+    <string name="personal_job_list_title">职位</string>
+    <string name="personal_open_service">开通会员</string>
+    <string name="personal_identity_number">身份证号：</string>
+    <string name="personal_service_fee">服务年费</string>
+    <string name="personal_buy_service_hint">一年内可免费查看对自己的点评</string>
+    <string name="personal_privilege_member_exclusive">会员特权：\n1.免费查看对自己的点评\n2.查看热招职位，免费求职</string>
+    <string name="personal_bank_account">个人银行账号</string>
+    <string name="personal_open_account_name">开户名</string>
+    <string name="personal_open_account_name_audit">开户名：</string>
+    <string name="personal_please_input_open_account_name">请输入银行开户名</string>
+    <string name="personal_pocket_vault">口袋余额</string>
+    <string name="personal_public_bank_account_explain">提现成功后，老板点评将在一周内打款</string>
+    <string name="personal_recharge_record">交易记录</string>
+    <string name="personal_bank_name">请输入开户银行营业网点</string>
+    <string name="personal_open_account_bank">开户行</string>
+    <string name="personal_open_account_bank_audit">开户行：</string>
+    <string name="company_circle_title">公司口碑</string>
+    <string name="personal_my_comment">我的点评</string>
+    <string name="personal_on_anonymous_comments">匿名评论</string>
+    <string name="post_comment_title">写写评论</string>
+    
+
+    <!-- 企业招聘 -->
+    <string name="advertise_company_info">公司名称</string>
+    <string name="advertise_position_name">职位名称</string>
+    <string name="advertise_recruit_number">招聘人数</string>
+    <string name="advertise_salary_range">薪资范围</string>
+    <string name="advertise_experience_required">经验要求</string>
+    <string name="advertise_education_required">学历要求</string>
+    <string name="advertise_work_city">工作城市</string>
+    <string name="advertise_work_address">工作地点</string>
+    <string name="advertise_job_description">职位描述</string>
+    <string name="advertise_resume_receiving_mail">接收简历邮箱</string>
+    <string name="advertise_contact_number">联系电话</string>
+    <string name="post">发布</string>
+    <string name="modify_to_mine">若要修改，请到“我的”进行修改</string>
+    <string name="company_city">公司所在城市</string>
+    <string name="position_describe">填写详细、清晰的职位描述，有助于您得到更匹配的候选人。\n例如：\n1.岗位职责（工作内容）……；\n2.任职要求（硬技能、软实力等）……；\n3.职位优势诱惑……；\n4.团队介绍……；</string>
+    <string name="please_input_position_name">请输入职位名称</string>
+    <string name="position_name_length_limit">职位名称最多20个字</string>
+    <string name="please_input_salary_range">请输入薪资范围</string>
+    <string name="please_select_experience_required">请选择经验要求</string>
+    <string name="please_select_education_required">请选择学历要求</string>
+    <string name="please_select_work_city">请选择工作城市</string>
+    <string name="please_select_work_address">请输入工作地点</string>
+    <string name="work_address_length_limit">工作地点最多100个字</string>
+    <string name="please_input_job_description">请输入职位描述</string>
+    <string name="please_input_resume_receiving_mail">请输入接收简历邮箱</string>
+    <string name="resume_receiving_mail_length_limit">接收简历邮箱最多200个字</string>
+    <string name="please_input_contact_number">请输入联系电话</string>
+    <string name="contact_number_length_limit">联系电话最多30个字</string>
+    <string name="plaase_input_keyword">请输入关键字/职位/公司</string>
+    <string name="plaase_input_keyword1">请输入职位关键字</string>
+
+    <string name="brought_to_account_information_hint">您可以通过银行账号转账</string>
+    <string name="brought_to_account_information">账户：北京全联职信科技有限公司\n账号：110925635010401\n开户银行：招商银行北京东四环支行</string>
+    <string name="brought_to_account_information_result">汇款后，请联系对接销售人员或老板点评客服开通服务。</string>
+    <string name="brought_to_account_information_phone">客服电话：400-815-9166</string>
+    <string name="feed_text">如果您对“老板点评”产品或服务有任何的建议\n或者意见，欢迎您随时对我们作出评价！</string>
+
+
+    <string name="select_company">选择公司</string>
+
+
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE</string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_EXTERNAL_STORAGE</string>
+    <string name="permission_white_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO</string>
+    
+    <!-- 公司口碑 -->
+    <string name="company_reputation_advanced_settings">高级设置</string>
+
+    <!-- B端 -->
+    <string name="company_opinion_manage_opinion">管理口碑</string>
+    <string name="company_opinion_manage_label">管理标签</string>
+</resources>

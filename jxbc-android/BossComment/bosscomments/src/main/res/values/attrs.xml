@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CropImageView">
+        <attr name="cropMaskColor" format="color"/>
+        <attr name="cropBorderColor" format="color"/>
+        <attr name="cropBorderWidth" format="dimension"/>
+        <attr name="cropFocusWidth" format="dimension"/>
+        <attr name="cropFocusHeight" format="dimension"/>
+        <attr name="cropStyle" format="enum">
+            <enum name="rectangle" value="0"/>
+            <enum name="circle" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="RoundCircleImageView">
+        <attr name="round_civ_border_width" format="dimension"/>
+        <attr name="round_civ_border_color" format="color"/>
+        <attr name="round_civ_border_overlay" format="boolean"/>
+        <attr name="round_civ_fill_color" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="auto_select_effect" format="boolean"></attr>
+        <attr name="max_select" format="integer"></attr>
+        <attr name="gravity">
+            <enum name="left" value="-1"/>
+            <enum name="center" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MyHoriztalProgressBar">
+        <attr name="progressbar_reach_color" format="color"/>
+        <attr name="progressbar_unreach_color" format="color"/>
+        <attr name="progressbar_reach_height" format="dimension"/>
+        <attr name="progressbar_unreach_height" format="dimension"/>
+        <attr name="progressbar_text_color" format="color"/>
+        <attr name="progressbar_text_size" format="dimension"/>
+        <attr name="progressbar_text_offset" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="MyRoundProgressBar">
+        <attr name="progressbar_radius" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundAngleImageView">
+        <attr name="roundWidth" format="dimension"/>
+        <attr name="roundHeight" format="dimension"/>
+        <attr name="roundTag" format="string"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="RangeSeekBar">
+        <!-- the minimum of the range -->
+        <attr name="absoluteMinValue" format="integer|float"/>
+
+        <!-- the maximum of the range -->
+        <attr name="absoluteMaxValue" format="integer|float"/>
+
+        <!-- show a single slider -->
+        <attr name="singleThumb" format="boolean"/>
+
+        <!-- show the labels on the right and left-->
+        <attr name="showLabels" format="boolean"/>
+
+        <!-- alwaysActive will make the buttons and bar always draw as the activeColor (the default is false) -->
+        <attr name="alwaysActive" format="boolean"/>
+
+        <!-- show the currently selected value above each thumb (defaults to true) -->
+        <attr name="valuesAboveThumbs" format="boolean"/>
+
+        <!-- padding on either side on the slider -->
+        <attr name="internalPadding" format="dimension"/>
+
+        <!-- the height of the bar -->
+        <attr name="barHeight" format="dimension"/>
+
+        <!-- the color of the bar that is not selected -->
+        <attr name="defaultColor" format="color"/>
+
+        <!-- the color of the bar that is selected -->
+        <attr name="activeColor" format="color"/>
+
+        <!-- the color of the text above thumbs -->
+        <attr name="textAboveThumbsColor" format="color"/>
+
+        <!-- set drawables for thumb handles -->
+        <attr name="thumbNormal" format="reference"/>
+        <attr name="thumbPressed" format="reference"/>
+        <attr name="thumbDisabled" format="reference"/>
+
+        <!-- thumb shadow specifications -->
+        <attr name="thumbShadow" format="boolean"/>
+        <attr name="thumbShadowColor" format="color"/>
+        <attr name="thumbShadowXOffset" format="dimension"/>
+        <attr name="thumbShadowYOffset" format="dimension"/>
+        <attr name="thumbShadowBlur" format="dimension"/>
+
+        <!-- to activate the thumbs and texts when the min and max values are the default ones (defaults to false) -->
+        <attr name="activateOnDefaultValues" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="RatioImageView">
+        <attr name="ratio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="NineGridLayout">
+        <attr name="sapcing" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundProgressBarWidth" format="dimension"></attr>
+        <attr name="roundProgressWidth" format="dimension"></attr>
+        <attr name="centerTextColor" format="color" />
+        <attr name="centerTextSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+</resources>

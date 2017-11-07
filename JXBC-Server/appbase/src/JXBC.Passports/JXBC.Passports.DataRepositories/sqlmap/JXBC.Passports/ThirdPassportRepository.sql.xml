@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+	<module moduleName="ThirdPassportRepository" namespace="JXBC.Passports">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into third_passport (PassportId,Platform,PlatformPassportId,Nickname,PhotoUrl,AccessToken,PassportInfo
+      , CreatedTime,ModifiedTime)
+      values (@PassportId,@Platform,@PlatformPassportId,@Nickname,@PhotoUrl,@AccessToken,@PassportInfo
+      , @CreatedTime,@ModifiedTime);
+      select @@identity
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update third_passport set Platform=@Platform,PlatformPassportId=@PlatformPassportId,Nickname=@Nickname,PhotoUrl=@PhotoUrl
+      ,AccessToken = @AccessToken,PassportInfo = @PassportInfo, ModifiedTime=@ModifiedTime
+      where DeviceId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from third_passport where DeviceId = @Id
+    </sqlWrap>
+    
+    <sqlWrap sqlName="SelectByPlatformPassportId" supportDBType="SqlServer, MySql">
+      select * from third_passport where Platform = @Platform and PlatformPassportId = @PlatformPassportId
+    </sqlWrap>
+  </module>
+</root>

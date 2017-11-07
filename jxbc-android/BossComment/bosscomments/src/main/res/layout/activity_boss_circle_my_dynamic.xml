@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <include
+        layout="@layout/include_refresh_listview_one_line"/>
+
+    <RelativeLayout
+        android:id="@+id/lin_circle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_91PX"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rela_boss_circle_comment"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="#c7c7c7"/>
+
+        <include
+            layout="@layout/include_boss_circle_edit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_90PX"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/line"/>
+    </RelativeLayout>
+</LinearLayout>

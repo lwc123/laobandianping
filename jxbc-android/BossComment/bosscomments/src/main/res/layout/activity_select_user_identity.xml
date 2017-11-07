@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_96PX"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_220PX"
+        android:gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/company_identity"
+            android:layout_width="@dimen/DIMEN_220PX"
+            android:layout_height="@dimen/DIMEN_60PX"
+            android:gravity="center"
+            android:textSize="@dimen/DIMEN_30PX"
+            android:background="@drawable/select_identity_bg"
+            android:text="企业用户"
+            android:textColor="@color/luxury_gold_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_120PX"
+            android:layout_marginRight="@dimen/DIMEN_120PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:textSize="@dimen/DIMEN_28PX"
+            android:textColor="@color/menu_color"
+            android:text="开通服务，获得员工建档，工作阶段评价，生成离任报告，背景调查等企业服务"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/line_color"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_220PX"
+        android:gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/person_identity"
+            android:layout_width="@dimen/DIMEN_220PX"
+            android:layout_height="@dimen/DIMEN_60PX"
+            android:gravity="center"
+            android:textSize="@dimen/DIMEN_30PX"
+            android:background="@drawable/select_identity_bg"
+            android:text="个人用户"
+            android:textColor="@color/luxury_gold_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_120PX"
+            android:layout_marginRight="@dimen/DIMEN_120PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX"
+            android:textSize="@dimen/DIMEN_28PX"
+            android:textColor="@color/menu_color"
+            android:text="查看公司口碑，看看员工怎么评价老东家"/>
+    </LinearLayout>
+</LinearLayout>

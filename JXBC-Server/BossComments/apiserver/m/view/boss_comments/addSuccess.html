@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>添加点评</title>
+		<!--清理缓存 start-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+		<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+		<div id="pageHead" style="text-align: center;">
+			<b class="font34">添加点评</b>
+		</div>
+		<div class="comments commentSuccess font24">
+			<p>点评成功</p>
+			<a class="blue" href="">看看其他同事对老东家的评价吧~</a><br>
+			<span class="grey"><b id="seconds">2</b> 秒后页面将自动跳转</span>
+		</div>
+	</body>
+	<script>
+		function getUrlParam(name) {
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	        var r = window.location.search.substr(1).match(reg);
+	        if (r != null) return decodeURI(r[2]);return null;
+        }
+		function seconds(){
+		var s=document.getElementById("seconds").innerHTML;
+		s--;
+		document.getElementById("seconds").innerHTML=s;
+		/*if(s==0){
+			var CompanyId=getUrlParam('CompanyId');
+			window.location.href="/CompanyAudit/AuditStepFirst?CompanyId="+CompanyId;
+		}*/
+	}
+	setInterval("seconds()",1000);	
+	</script>
+</html>

@@ -1,0 +1,26 @@
+﻿@using JXBC.WebCore;
+@using JXBC.WebCore.ViewModels;
+@using JXBC.Workplace;
+@{
+    var entity = (OperationJob)Model;
+    ViewBag.Title = "职位详情";
+}
+
+<div class="container">
+    <div class="position-detail">
+        <div class="panel position-basicinformation">
+            <div class="basicinformation">
+                <label class="position-name">@entity.JobTitle</label><br />
+                <span class="position-salaryrange"><i class="iconfont-price"></i>@entity.SalaryRange</span>
+                <span class="position-location"><i class="iconfont-place"></i>@entity.Location</span>
+            </div>
+            <p class="company-name">@entity.Company</p>
+        </div>
+        <div class="panel position-description">
+            <h2>职位描述：</h2>
+            <p>@Html.Raw(entity.JobDescription.Replace("\n", "<br/>"))</p>
+        </div>
+    </div>
+
+</div><!-- /.container -->
+<div style="clear:both;"></div>

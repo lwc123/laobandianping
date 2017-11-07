@@ -1,0 +1,74 @@
+﻿@using M2SA.AppGenome.Data;
+@using JXBC.WebCore;
+@using JXBC.Passports;
+@{
+    ViewBag.Title = "举贤令";
+
+    var list = (IList<UserPassport>)Model;
+
+    var getGenderText = new Func<int, string>((gender) =>
+    {
+        if (gender == 0)
+            return "男";
+        else if (gender == 1)
+            return "女";
+
+        return "未填写";
+    });
+}
+<div id="breadcrumbs" class="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i><a href="/">首页</a>
+        </li>
+        <li class="active">用户管理</li>
+        <li class="active">用户列表</li>
+    </ul>
+</div>
+
+<div>
+    快速筛选：
+</div>
+
+@if (null != list && list.Count > 0)
+{
+    <div class="table-common">
+        <table class="table-bordered" align="center" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="table-td-2 th-header">ID</th>
+                    <th class="table-td-7 th-header">姓名/公司</th>
+                    <th class="table-td-3 th-header">电话</th>
+                    <th class="table-td-1 th-header">性别</th>
+                    <th class="table-td-4 th-header">行业/职能</th>
+                    <th class="table-td-3 th-header">注册时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var userPassport in list)
+                {
+                    var profile = userPassport.Profile;
+                    <tr>
+                        <td class="textalign-center">@profile.PassportId</td>
+                        <td class="textalign-center">
+                            <span class="pull-left"><img class="avatar" src="@profile.Avatar" /></span>
+                            <label class="avatar-text">
+                                @profile.Nickname <br />
+                                @profile.CurrentCompany <br />
+                                @profile.CurrentJobTitle <br />
+                            </label>
+                        </td>
+                        <td class="textalign-center">@profile.MobilePhone</td>
+                        <td class="textalign-center">@getGenderText(profile.Gender)</td>
+                        <td class="textalign-center">@profile.CurrentIndustryText <br/> @profile.CurrentJobCategoryText</td>
+                        <td class="textalign-center">@profile.ModifiedTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<div class="fenye">
+    @Html.Partial("_common_Pagination_Numbers", new Tuple<Pagination, Func<int, string>>((Pagination)ViewBag.UserQuery.Pagination, null))
+</div>

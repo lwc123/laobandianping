@@ -1,0 +1,47 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}职场信用分{/block}
+
+{block name="page-content"}
+<div class="com1-bg">
+	<div class="grade_title">职场信用分</div>
+	<div class="Grade_content">
+		<div class="grade">
+			<div class="content_title">
+				<img src="{$Think.config.resources_site_root}/pc/img/ic_credit.png">
+				<span>什么是贷款信用分</span>	
+			</div>
+			<div class="content_desc">
+				老板点评邀请华道征信协助开发贷款信用评分模型。以大数据的思维模式结合传统征信方式，模型涉及网购、出行通讯、日常缴费等多类维度，填补空白。
+			</div>
+		</div>
+		<div class="grade">
+			<div class="content_title">
+				<img src="{$Think.config.resources_site_root}/pc/img/ic_dimension.png">
+				<span>维度</span>	
+			</div>
+			<div class="content_desc">
+				包括报告人基本身份、工作情况和教育经历等信息<br>
+				包括报告人的历史信贷申请和贷后还款信息<br>
+				包括报告人的历史欠费、催缴信息<br>
+				包括报告人的历史购物、出行商旅和退换货信息<br>
+				包括报告人的信贷申请、历史授信额度和历史还款信息
+			</div>
+		</div>
+		<div class="grade">
+			<div class="content_title">
+				<img src="{$Think.config.resources_site_root}/pc/img/ic_explin.png">
+				<span>分值说明</span>	
+			</div>
+			<div class="content_desc">
+				LOW-541 信用极差<br>
+				541-585 信用差<br>
+				585-605 信用一般<br>
+				605-638 信用好<br>
+				638-HIGH 信用极好
+			</div>
+		</div>
+	</div>
+</div>
+
+{/block}

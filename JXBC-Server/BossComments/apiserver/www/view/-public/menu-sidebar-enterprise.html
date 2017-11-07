@@ -1,0 +1,62 @@
+
+{include file="-public/menu-header-enterprise" /}
+<!--导航-->
+<ul id="menu-sidebar" class="com-nav sidebar">
+	<div>
+		<li class="archive"><a href="#">员工档案</a></li>
+		<ul class="com-slider">
+			<li><a href="/EmployeArchive/create?CompanyId={$CompanyId}">建立员工档案</a></li>
+			<li><a href="/EmployeArchive/index?CompanyId={$CompanyId}&IsDimission=0">在职员工档案：{$CompanySummary.EmployedNum}人</a></li>
+			<li><a href="/EmployeArchive/index?CompanyId={$CompanyId}&IsDimission=1">离任员工档案：{$CompanySummary.DimissionNum}人</a></li>
+		</ul>
+	</div>
+	<div>
+		<li class="comment-stage"><a href="#">阶段评价</a></li>
+		<ul class="com-slider">
+			<li><a href="/ArchiveComment/commentcreate?CompanyId={$CompanyId}&CommentType=0">添加阶段评价</a></li>
+			<li><a href="/ArchiveComment/index?CompanyId={$CompanyId}&CommentType=0">已生效评价</a></li>
+		</ul>
+	</div>
+	<div>
+		<li class="leave"><a href="#">离任报告</a></li>
+		<ul class="com-slider">
+			<li><a href="/ArchiveComment/commentcreate?CompanyId={$CompanyId}&CommentType=1">添加离任报告</a></li>
+			<li><a href="/ArchiveComment/index?CompanyId={$CompanyId}&CommentType=1">已生效报告</a></li>
+		</ul>
+	</div>
+	<div>
+		<li class="background"><a href="/BackgroundSurvey/search?CompanyId={$CompanyId}">背景调查</a></li>
+		<!--<ul class="com-slider">-->
+			<!--<li><a href=""><i class="iconfont">&#xe617;</i>背景调查</a></li>-->
+			<!--<li><a href="#"><i class="iconfont">&#xe617;</i>已购买</a></li>-->
+		<!--</ul>-->
+	</div>
+	<div>
+		<li class="job"><a href="#"><!--<i class="iconfont left l3">&#xe60b;</i>-->招聘</a></li>
+		<ul class="com-slider">
+			<li><a href="/Job/addJob?CompanyId={$CompanyId}">创建新职位</a></li>
+			<li><a href="/Job/jobList?CompanyId={$CompanyId}">已创建职位</a></li>
+		</ul>
+	</div>
+	<div>
+		<li class="information"><a href="/NoticeMessage/messageList?CompanyId={$CompanyId}&MessageType=2" >消息{if($CompanySummary.UnreadMessageNum !=0)}({$CompanySummary.UnreadMessageNum}条未读)<span></span>{/if}</a></li>
+	</div>
+	<div>
+		<li class="mine"><a href="#">我的</a></li>
+		<ul class="com-slider">
+			<li><a href="/Mine/myListByAudit?CompanyId={$CompanyId}&AuditStatus=0">我的评价</a></li>
+			{if $MyCompanyRole==1 or $MyCompanyRole==2}
+			<li><a href="/Mine/MemberList?CompanyId={$CompanyId}">授权管理</a></li>
+			{/if}
+			<li><a href="/Mine/departmentList?CompanyId={$CompanyId}">部门管理</a></li>
+			<li><a href="/CompanyWallet/index?CompanyId={$CompanyId}">金库</a></li>
+            {if $MyCompanyRole==1 or $MyCompanyRole==2}
+            <li><a href="/Mine/CompanyUpdate?CompanyId={$CompanyId}">修改企业信息</a></li>
+            {/if}
+		</ul>
+	</div>
+</ul>
+<!--<div class="com-bot">
+	<p class="com-manager">{$CompanySummary.MyInformation.RealName}<br><span>（{$CompanySummary.MyInformation.Role}）</span></p>
+	<p class="com-exit"><a href="/Account/signout?CompanyId={$CompanyId}"><i class="iconfont">&#xe62e;</i>退出</a></p>
+</div>-->

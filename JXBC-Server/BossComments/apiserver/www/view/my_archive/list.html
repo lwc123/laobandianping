@@ -1,0 +1,87 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}工作台{/block}
+
+{block name="page-content"}
+<!--马上查看的弹框-->
+
+<div id="zhezhao">
+    <form id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <div class="alertB">
+        </div>
+        <button class="newJobSaveBtn" ></button>
+        <div class="file-tip"></div>
+    </form>
+</div>
+<!--弹框结束-->
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<!--右侧内容开始-->
+<div class="com1-bg">
+    <div class="files-bg">
+        <div class="files-detail">
+            <p class="com-tt">该身份证号下的评价</p>
+            {volist name="list" id="vo"}
+            <div class="em1-info1">
+                <p class="detail-name">{$vo.CompanyName}</p>
+                <p class="detail-num">
+                    {if $vo.StageEvaluationNum==0&&$vo.DepartureReportNum==0}
+                    暂无评价
+                    {else}
+                    有{$vo.StageEvaluationNum}份工作评价 {$vo.DepartureReportNum}份离职报告
+                    {/if}
+                </p>
+                <span><a href="{$vo.detail}" class="{$vo.pay}  blue">{$vo.looktext}</a></span>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script>
+    //查看档案弹框
+    $(".files-detail .see").click(function() {
+        $("#alert>.alertT>span").text("开通会员");
+        $(".alertB").html('<div class="file-con"><p>服务年费：<span>20</span>元</p></div>');
+        $(".newJobSaveBtn").html('去支付');
+        $(".file-tip").html('<p>会员特权</p><p>1，免费查看对自己的评价</p><p>2，查看热招职位，免费求职</p>')
+        alertwin();
+        $(".file-con input").val($(".files-identity input").val());
+    })
+
+    // var ReturnUrl=;
+    var payment = {
+        OwnerId: 0,
+        TradeType: 2,
+        TradeMode: 2,
+        PayWay:"",
+        PayRoute:"QRCODE",
+        BizSource: "OpenPersonalService",
+        TotalFee: 20,
+        CommodityCode: 1, //
+        CommoditySubject: "开通老板点评服务",
+        CommodityExtension: [
+            '130128199011252118'
+        ]
+    };
+    var orderItems = [];
+    $(document).on("click",".newJobSaveBtn",function(){
+        if(payment.TotalFee==0){
+            $('#error').show();
+        }else{
+            $('#error').hide();
+            payment.CommodityExtension = JSON.stringify(orderItems);
+            var targetUrl="/Payment/SelectPayWay?payment="+encodeURIComponent(JSON.stringify(payment));
+            //alert(targetUrl);
+            window.location.href=targetUrl;
+            return false;
+        }
+    })
+</script>
+
+{/block}

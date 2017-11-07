@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="WalletRepository" namespace="JXBC.TradeSystem">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into wallet (WalletId, WalletType, OwnerId, AvailableBalance, CanWithdrawBalance, FreezeBalance, IDCard, BankName, BankAccountName, BankAccountNumber, CreatedTime, ModifiedTime)
+      values (@WalletId, @WalletType, @OwnerId, @AvailableBalance, @CanWithdrawBalance, @FreezeBalance, @IDCard, @BankName, @BankAccountName, @BankAccountNumber, @CreatedTime, @ModifiedTime);
+      select @@identity;
+    </sqlWrap>
+    <sqlWrap sqlName="ChangeBankAccount" supportDBType="SqlServer, MySql">
+      update wallet set IDCard=@IDCard, BankName=@BankName, BankAccountName=@BankAccountName, BankAccountNumber=@BankAccountNumber, ModifiedTime=@ModifiedTime where WalletId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="AddBalance" supportDBType="SqlServer, MySql">
+      update wallet set AvailableBalance=AvailableBalance+@Balance,CanWithdrawBalance=CanWithdrawBalance+@WithdrawBalance, ModifiedTime=@ModifiedTime where WalletId = @WalletId;
+      update wallet set CanWithdrawBalance=AvailableBalance where WalletId = @WalletId and CanWithdrawBalance>AvailableBalance;
+    </sqlWrap>    
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from wallet where WalletId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from wallet where WalletId = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from wallet
+    </sqlWrap>
+    <sqlWrap sqlName="SelectByOwnerId" supportDBType="SqlServer, MySql">
+      select * from wallet where OwnerId = @OwnerId and WalletType=@WalletType
+    </sqlWrap>    
+
+  </module>
+</root>

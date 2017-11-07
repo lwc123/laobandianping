@@ -1,0 +1,176 @@
+﻿{extend name="-public:layout_fullscreen" /}
+
+{block name="page-title"}登录老板点评{/block}
+
+{block name="page-content"}
+
+<div id="com-body"> 
+    <div class="find-mid">
+        <a href="../index/index.html"><img class="com-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png"></a>
+        <div class="find-form"></div>
+        <form id="login-form">
+            <p class="com-title">登录老板点评</p>
+            <div class="com-left">
+                <div class="com-put">
+                   <i class="iconfont img">&#xe63f;</i>
+                   <input type="text"  value="{$Think.get.phone}" name="MobilePhone" id="phone" placeholder="请输入手机号码" required>
+                </div>
+                <div class="com-put">
+                    <i class="iconfont img">&#xe63e;</i>
+                    <input type="password" value="" name="Password" id="password" placeholder="请输入由字母和数字组合的6位以上密码" required>
+                    <input type="text" value="2" name="SelectedProfileType" style="visibility:hidden">
+                </div>
+                  
+                <button class="com-btn1" id="login" type="submit">登录</button>
+                <input type="hidden" value="{$Think.get.InviteCode}" name="InviteCode">
+                <p class="find">
+                  <!--  <span><i class="iconfont">&#xe68b;</i>记住我</span>-->
+                    <span class="reg"><a href="register?InviteCode={$Think.get.InviteCode}">立即注册</a></span>
+                    <a href="javascript:;" id="forget">忘记密码？</a>
+                </p>
+                <!--<p class="reg"><a href="register.html">立即注册</a></p>-->
+            </div>
+        </form>
+    </div>
+</div>
+<div class="phone"></div>
+{/block}
+
+{block name="resources-footer"}
+<script src="/api/appbase/WebBridge/LoadAccountInfo"></script>
+<script>
+$(function(){
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return unescape(r[2]);return null;
+    }
+
+
+    var num=getUrlParam('phone');
+    var phone=$('#phone').val(num);
+    $('#forget').click(function(){
+        var InviteCode=getUrlParam('InviteCode');
+        window.location.href="find?phone="+phone+"&InviteCode="+InviteCode;
+    })
+    jQuery.validator.addMethod("isMobile", function (value, element, param) {
+        var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+        if (pattern.test(value) && value.length == 11) {
+            $("#phone-msg").html("");
+            return true;
+        } else {
+            return false;
+        }
+    }, "请输入正确的手机号");
+
+   $("#login-form").validate({
+        onsubmit:true,// 是否在提交是验证  
+        onfocusout:false,// 是否在获取焦点时验证  
+        onkeyup :false,// 是否在敲击键盘时验证  
+        rules: {
+            MobilePhone:{
+                required: true,
+                isMobile: true
+            },
+            Password: {
+                required: true,
+                rangelength: [6, 18]
+            }
+        },
+        messages: {
+            MobilePhone : {
+               required : "<i class='iconfont'>&#xe640;</i>请输入手机号码",
+               isMobile : "<i class='iconfont'>&#xe640;</i>手机格式不正确"
+            },
+            Password: {
+               required: "<i class='iconfont'>&#xe640;</i>请输入密码",
+               rangelength: "<i class='iconfont'>&#xe640;</i>请输入6-18位密码"
+            }
+        },
+        submitHandler:function(form){
+            //判断手机号是否注册
+                var phone=$('#phone').val();
+                var checkUrl=AppEnvironment.apiRoot+'/appbase/Account/existsMobilePhone?phone='+phone;
+                $.get(checkUrl,function(data){
+                    if(data==false){
+                        $('.phone').show().text('手机号未注册，请注册');
+                        setTimeout(function(){
+                            $('.phone').hide();
+                            window.location.href="register?InviteCode={$Think.get.InviteCode}";
+                        },2000);
+                         return false;
+                    }else{
+                        //登陆
+                        var loginUrl=AppEnvironment.apiRoot+'/appbase/Account/signIn';
+                        var InviteCode=getUrlParam('InviteCode')
+                        if(InviteCode==null){
+                            InviteCode="";
+                        }
+                        $.ajax({
+                            type:'post',
+                            url:loginUrl,
+                            dataType: 'json',
+                            data:$('#login-form').serialize(),
+                            beforeSend:function(){
+		                    	$("#login").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+		                    },
+                            success:function(data){
+                                    console.log(data);
+          
+                                    if(data.SignStatus==109){
+                                        $('.phone').show().text('用户账号或密码错误');
+                                        setTimeout(function(){
+                                            $('.phone').hide();
+                                            $("#login").html("登录").removeAttr("disabled");
+                                        },2000);    
+                                    }else{
+                                        /*上次登录身份是个人身份*/
+                                        if(data.Account.MultipleProfiles ==1 ||  data.Account.UserProfile.CurrentProfileType==1  ){
+                                            window.location.href="/MyArchive/Index";
+                                            return ;
+                                        }
+                                        /*是否有企业身份*/
+                                        var comUrl=AppEnvironment.apiRoot+'/workplace/User/myRoles';
+                                        $.get(comUrl,function(data){
+                                            console.log(data);
+                
+                                            var InvitedCode=getUrlParam('InvitedCode');
+                                            var SelectedProfileType=getUrlParam('SelectedProfileType');
+                                            if(InvitedCode==null){
+                                                InvitedCode='';
+                                            } 
+                                            if(data==""){
+                                                window.location.href="/EnterpriseService/openservice?tel="+phone+"&InvitedCode="+InvitedCode;
+                                            }else{
+                                            	if(data.length>1){
+                                            		window.location.href="select?InvitedCode="+InvitedCode+"&SelectedProfileType="+SelectedProfileType;
+                                            	}else{
+                                                    var status=data[0].myCompany.AuditStatus;
+                                                    if(status==2){
+                                                        window.location.href="/Home/console?CompanyId="+data[0].CompanyId;
+                                                    }else if(status!==2){
+                                                        window.location.href="/CompanyAudit/AuditStepFirst?CompanyId="+data[0].CompanyId;
+                                                    }
+
+                                            	}
+                                            }
+                                        })
+                                     }
+
+                                },
+                            error:function(data){
+                                console.log(data);
+                            }
+                        })
+                    }
+                })
+            
+        }
+
+   })
+    
+})
+
+</script>
+{/block}
+

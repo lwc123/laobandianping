@@ -1,0 +1,68 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}职位列表 - 老板点评{/block}
+{block name="page-content"}
+    <!--右侧内容开始-->
+    <div class="com1-bg">
+        <form action="" method="get">
+	    	<div class="jobSearch">
+	    		<i class="iconfont">&#xe63b;</i>
+	    		<input type="text" name="JobName" placeholder="搜职位名称" >
+	    	</div>
+	    	<div class="jobFind">
+	            <select name="Industry" >
+	                <option value="">行业</option>
+	                {foreach $DictionaryIndustry['industry'] as $item}
+	                <option value="{$item['Name']}" {if($Think.get.Industry==$item['Name'])} selected {/if}>{$item['Name']}</option>
+	                {/foreach}
+	            </select>
+	            <select name="JobCity">
+	                <option value="">全国</option>
+	                {foreach $DictionaryRegion as $item}
+	                <option value="{$item['Code']}" {if($Think.get.JobCity==$item['Code'])} selected {/if} >{$item['Name']}</option>
+	                {/foreach}
+	            </select>
+	            <select name="SalaryRange">
+	                <option value="">薪酬范围</option>
+	                {foreach $DictionarySalary['salary'] as $item}
+	                <option value="{$item['Code']}" {if($Think.get.SalaryRange==$item['Code'])} selected {/if} >{$item['Name']}</option>
+	                {/foreach}
+	            </select>
+	    		<button type="submit">搜索职位</button>
+	    	</div>
+        </form>
+    	<div class="jobList">
+    		{if ($JobQueryList)}
+            {volist name="JobQueryList" id="item"}
+    		<div class="position-title">
+			  <span class="position-pos"><a style="color: #cdbc5c" href="/JobQuery/Detail?JobId={$item.JobId}">{$item.JobName}</a></span>
+			 <span class="pos-salary">{$item.SalaryRangeMin}-{$item.SalaryRangeMax}</span>
+			  <p>{$item.Company.CompanyName}  <span class="pos-time">{$item.time}</span></p>
+			  <span class="job-bottom">经验{$item.ExperienceRequire} / {$item.EducationRequire} / {$item.JobLocation}</span>
+			</div>
+            {/volist}
+            <div class="em-page">
+                {$PageNavigation}
+            </div>
+            <!--没有搜索结果-->
+            {else}
+            <div class="open-nodata">
+	            <img src="{$Think.config.resources_site_root}/pc/img/none.jpg">
+	            <p>暂无数据</p>
+            </div>
+            {/if}
+    	</div>
+
+    </div>
+    <!--<script>
+	
+	function getUrlParam(name) {
+	  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	  var r = window.location.search.substr(1).match(reg);
+	  if (r != null) return unescape(r[2]);return null;
+	}
+    var numRange=getUrlParam('SalaryRange');
+    console.log(numRange)
+    $(".jobFind select[name=SalaryRange]").val(numRange);
+	</script>-->
+{/block}

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3F7B65C-E3B1-491E-BFC8-321F4A49AAF2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXBC.TradeSystem</RootNamespace>
+    <AssemblyName>JXBC.TradeSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\libs\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\libs\JXBC.TradeSystem.xml</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\..\R&amp;D\CodeStandard\CodeDesign_Rules_For_JuXian.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\libs\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\libs\JXBC.TradeSystem.xml</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\..\R&amp;D\CodeStandard\CodeDesign_Rules_For_JuXian.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\..\..\..\..\Libs\ThirdLibs\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="M2SA.AppGenome">
+      <HintPath>..\..\..\..\..\Libs\M2SA.AppGenome\M2SA.AppGenome.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Libs\Newtonsoft.Json\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BizSources.cs" />
+    <Compile Include="CodeAnalysis\ArgumentExtension.cs" />
+    <Compile Include="DataRepositories\IPaymentCredentialRepository.cs" />
+    <Compile Include="DataRepositories\ITradeJournalRepository.cs" />
+    <Compile Include="DataRepositories\IWalletJournalRepository.cs" />
+    <Compile Include="DataRepositories\IWalletRepository.cs" />
+    <Compile Include="CodeAnalysis\GlobalSuppressions.cs" />
+    <Compile Include="Handlers\BizProcessResult.cs" />
+    <Compile Include="Handlers\EmptyHandler.cs" />
+    <Compile Include="Handlers\WithdrawHandler.cs" />
+    <Compile Include="Handlers\WebProxyHandler.cs" />
+    <Compile Include="Handlers\DepositHandler.cs" />
+    <Compile Include="Handlers\IPaymentHandler.cs" />
+    <Compile Include="HttpDecorator.cs" />
+    <Compile Include="JsonExtension.cs" />
+    <Compile Include="ModuleEnvironment.cs" />
+    <Compile Include="PaymentCredential.cs" />
+    <Compile Include="PaymentEngine.cs" />
+    <Compile Include="Payment.cs" />
+    <Compile Include="PaymentResult.cs" />
+    <Compile Include="PayWays.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\AlipayProvider.cs" />
+    <Compile Include="Providers\AppleIAPProvider.cs" />
+    <Compile Include="Providers\OfflineProvider.cs" />
+    <Compile Include="Providers\WechatProvider.cs" />
+    <Compile Include="Providers\IPaymentProvider.cs" />
+    <Compile Include="Providers\SystemProvider.cs" />
+    <Compile Include="Providers\WalletProvider.cs" />
+    <Compile Include="RSAProvider.cs" />
+    <Compile Include="TradeJournal.cs" />
+    <Compile Include="WalletType.cs" />
+    <Compile Include="TradeType.cs" />
+    <Compile Include="TradeStatus.cs" />
+    <Compile Include="TradeMode.cs" />
+    <Compile Include="WalletJournal.cs" />
+    <Compile Include="Wallet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\JXBC.Passports\JXBC.Passports\JXBC.Passports.csproj">
+      <Project>{B2959860-6A53-4B8E-900D-6BB2CBEE561D}</Project>
+      <Name>JXBC.Passports</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

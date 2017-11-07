@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/include_withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.juxian.bosscomments.widget.ResultListView
+                android:id="@+id/let_public_bank_account_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </com.juxian.bosscomments.widget.ResultListView>
+
+
+            <TextView
+                android:id="@+id/create_public_bank_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/DIMEN_22PX"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/add_position"
+                android:drawablePadding="@dimen/DIMEN_10PX"
+                android:paddingBottom="@dimen/DIMEN_20PX"
+                android:paddingLeft="@dimen/DIMEN_60PX"
+                android:paddingRight="@dimen/DIMEN_60PX"
+                android:paddingTop="@dimen/DIMEN_20PX"
+                android:text="@string/public_bank_account"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <include
+                layout="@layout/include_button_text34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_30PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:layout_marginTop="@dimen/DIMEN_50PX"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:text="@string/withdrawal_explain"
+                android:textColor="@color/menu_color"
+                android:textSize="@dimen/DIMEN_24PX"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_50PX"
+                android:layout_marginLeft="@dimen/DIMEN_90PX"
+                android:layout_marginRight="@dimen/DIMEN_90PX"
+                android:text="@string/public_bank_account_explain"
+                android:textColor="@color/menu_color"
+                android:textSize="@dimen/DIMEN_24PX"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

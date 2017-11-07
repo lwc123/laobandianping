@@ -1,0 +1,564 @@
+{extend name="-public:layout_console-enterprise" /}
+{block name="page-title"}创建新评价{/block}
+{block name="page-content"}
+
+<!--弹窗-->
+<div id="zhezhao">
+    <div id="alert">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span></span>
+        </div>
+        <form class="alertB">
+            <div class="bcontent">
+            </div>
+        </form>
+        <div class="btnwrap">
+
+        </div>
+        <!--<div class="patch">-->
+        <!--</div>-->
+        <!--<div class="power_person_details">-->
+        <!--</div>-->
+    </div>
+</div>
+<!--弹窗结束-->
+
+<!--loading pic-->
+<div id="loadingpic">
+    <img  src="{$Think.config.resources_site_root}/pc/img/loadingpic.gif">
+</div>
+
+<!--右侧内容开始-->
+<div class="com1-bg">
+    <p class="ev-title">创建新评价<span>温馨提示：员工离任后，其他企业查看该人才的阶段评价，您公司可获得10金币收益</span></p>
+    <div class="em-info">
+        <form class="ev-info" id="employe_create"  method="post" action="" enctype="multipart/form-data">
+            <div id="selectP" class="ev-select">
+                <p class="select-title">选择员工档案</p>
+                <p class="em-rec sel-add" style="margin-top: 0"><i class="iconfont">&#xe651;</i></p>
+                <span class="employee-tip"><i class='iconfont'>&#xe640;</i> 请选择员工</span>
+            </div>
+            <input  type="hidden" name="ArchiveId" value=""  id="txt-person" required>
+            <input  type="hidden" name="CommentType" value="0" >
+            <input  type="hidden" name="HandoverOverall" value="0" >
+            <input  type="hidden" name="HandoverSupport" value="0" >
+            <input  type="hidden" name="HandoverTimely" value="0" >
+            <input  type="hidden" name="ModifiedId" value="0" >
+            <input    name="BossPassportId" type="hidden" value="{$CompanySummary ['BossInformation']['PassportId']}"  />
+            <!--选择评价阶段-->
+            <p class="com-tt select-tt">阶段工作评价</p>
+            <span>选择时间段</span>
+            <select name="StageYear"    >
+                <?php for($i=date('Y');$i>=1990;$i--){
+                echo '<option value="'.$i.'年" >'.$i.'年</option>';
+                }
+                ?>
+            </select>
+            <ul class="sel-stage">
+                    {volist name="StageSection" id="vo"}
+                    <li data-stage-id="{$vo.Code}" >{$vo.Name}</li>
+
+                    {/volist}
+                    <!--<li class="sel-gray">全年  <span>已评</span></li>-->
+            </ul>
+            <span class="stage-tip"><i class='iconfont'>&#xe640;</i> 请选择评价阶段</span>
+            <input id="txt-sel-stage" required name="StageSection" value=""  type="hidden"  role="sel-stage"/>
+            <!--工作评价开始-->
+            <p class="com-tt select-tt">工作综合评价</p>
+            <div class="slider-grade">
+                <span class="title">工作能力</span>
+                <span id="ev">极差</span>
+                <div class="scale" id="bar0">
+                    <div></div>
+                    <span id="btn0"><span id="title0">0</span></span>
+                    <b class="drag_bg_click"></b>
+                </div>
+                <span class="bars_10">100分</span>
+                <input  name="WorkAbility" type="hidden" value="0" id="txt0">
+            </div>
+            <div class="slider-grade">
+                <span class="title">工作态度</span>
+                <span id="ev1">极差</span>
+                <div class="scale" id="bar1">
+                    <div></div>
+                    <span id="btn1"><span id="title1">0</span></span>
+                    <b class="drag_bg_click"></b>
+                </div>
+                <span class="bars_10">100分</span>
+                <input  name="WorkAttitude" type="hidden" value="0" id="txt1">
+            </div>
+            <div class="slider-grade">
+                <span class="title">工作业绩</span>
+                <span id="ev2">极差</span>
+                <div class="scale" id="bar2">
+                    <div></div>
+                    <span id="btn2"><span id="title2">0</span></span>
+                    <b class="drag_bg_click"></b>
+                </div>
+                <span class="bars_10">100分</span>
+                <input c name="WorkPerformance" type="hidden" value="0" id="txt2">
+            </div>
+            <!--工作评语部分-->
+            <p class="com-tt select-tt">工作评语</p>
+            <div class="ev-comment comment-Word">
+            	<div>
+                   <textarea name="WorkComment" id="ev-say" class="ev-say" required placeholder="输入老板点评，或拍摄手写点评"></textarea>
+                </div>
+                <p><span class="count">0</span>/500</p>
+                <img class="ev-pic" src="{$Think.config.resources_site_root}/pc/img/camera.png"><span>上传纸质评语照片</span>
+                <div id="iden-pics">
+                    <div>
+                        <div class="iden-rec iden2-rec" id="previewImagesP1">
+                        </div>
+                        <input class="em-btn" type="file"  name="ImagesP1" accept="image/jpeg,image/x-png,image/png"/>
+                    </div>
+
+                    <div class="iden-rec iden2-rec" id="previewImagesBtn">
+                        <i class="iconfont pic pic2">&#xe651;</i>
+                    </div>
+                    <input type="hidden" value="1" name="ImageIndex" id="ImageIndex">
+                </div>
+
+            </div>
+            <!--添加审核人部分-->
+            <p class="com-tt select-tt" style="padding-top: 50px">添加评价审核人<span>（一人通过审核即生效）</span></p>
+            <div class="ev-person">
+                <input id="txt-audit-persons" name="AuditPersons" type="hidden" value="" role="ev-person"/>
+                <p data-boss="{$CompanySummary ['BossInformation']['PassportId']}" data-user="{$PassportId}">{$CompanySummary ['BossInformation']['RealName']}<span class="position">(老板)</span></p>
+                <ul></ul>
+                <p class="rect"><i class="iconfont">&#xe651;</i></p>
+            </div>
+            <input name="CompanyId" type="hidden" value="{$CompanyId}"  />
+
+            <div class="send-msg-employe" style="display: none">
+                <input id="send-msg" type="text" value="true" name="IsSendSms"style="display: none">
+                <img id="send-msg-true" src="{$Think.config.resources_site_root}/pc/img/green.png" alt="">
+                <img id="send-msg-false" style="display: none" src="{$Think.config.resources_site_root}/pc/img/gray.png" alt="">
+                <label id="send-msg-label" class="radio">发送短信通知员工</label>
+            </div>
+            <br>
+            <button id="submit"  >保存</button>
+            <!--<p class="comment-tip">审核生效后将发送短信告知员工</p>-->
+        </form>
+        <!--弹框部分-->
+        <div id="employee-zhao">
+	        <div class="evaluate-add">
+	            <p class="com-tt add-tt">员工档案列表<i class="iconfont close">&#xe647;</i></p>
+	             <!--<form action="" method="get">
+	                  <input type="hidden" name="CompanyId" value="{$Think.get.CompanyId}"/>
+	                  <div class="add-search">
+	                      <div>部门<select name="DeptId">
+	                          <option value="">所有部门</option>
+	                          {volist name="Departments" id="vo"}
+	                          <option value="{$vo.DeptId}"> {$vo.DeptName}</option>
+	                          {/volist}</select>
+	                      </div>
+	                  </div>
+	                  <div class="add-search">
+	                      <div>在职状态<select name="CommentType">
+	                          <option value="">全部</option>
+	                          <option value="0">在职</option>
+	                          <option value="1">已离职</option>
+	                      </select>
+	                      </div>
+	                  </div>
+	                  <div class="add-search">姓名<span ><input type="text" class="add-k" name="RealName" /></span></div>
+	                  <button class="add-cha">查询</button>
+	              </form>-->
+	            <table>
+	              
+	            </table>
+	            <div class="totalPage">
+	            	
+	            </div>
+	            <!--弹框部分-->
+	            <div id="no-employee" class="em-mid ev-mid1 hide">
+	                <img src="{$Think.config.resources_site_root}/pc/img/none.jpg"> 	
+	                <p>检测到您目前没有任何员工档案，先创建几个员工档案吧</p> 
+	                <button type="button" class="create">创建档案</button>
+	            </div>
+	        </div>
+        </div>
+        <!--添加审核人弹框-->
+            <div id="alertzhe">
+            	{if(empty($AuditPerson))}
+                <div class="person1">
+                    <p class="person-tt">选择授权的审核人（可多选）<i class="iconfont close1">&#xe647;</i></p>
+                    <p class="pe-con">您公司目前除了老板，没有更多的评价审核人，请联系老板或管理员添加。</p>
+                    <button type="button">我知道了</button>
+                </div>
+                {else/}
+                <div class="person2">
+                    <p class="person-tt">选择授权的审核人（可多选）<i class="iconfont close1">&#xe647;</i></p>
+                    <div class="pp">
+                        {foreach $AuditPerson as $value}
+                        <span data-person-id="{$value.PassportId}">{$value.RealName}<label class="position">(高管)</label></span>
+                        {/foreach}
+                    </div>
+                    <button type="button">确定</button>
+                </div>
+                {/if}
+            </div>
+    </div>
+</div>
+
+
+{/block}
+{block name="resources-footer"}
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/jQuery.validate.js"></script>
+<script type="text/javascript" src="{$Think.config.resources_site_root}/pc/js/form_validate.js"></script>
+<script>
+    $(function(){
+
+
+
+        function shenheren() {
+            //删除审核人
+            $(document).on("click",".del",function(){
+                var dataVal = $(this).parent().attr('data-val');
+                $(this).parent("li").remove();
+                var inpVal = $("#txt-audit-persons").val();
+                var inpArr = inpVal.split(",");
+                for (var i = 0; i < inpArr.length; i++) {
+                    if (inpArr[i] == dataVal) {
+                        delete inpArr[i];
+                    }
+                }
+                $("#txt-audit-persons").val(inpArr);
+                $(".pp span").each(function(){
+                    for(var i=0;i<inpArr.length;i++){
+                        if($(this).attr("data-person-id")!=inpArr[i]){
+                            $(this).removeClass("bg-add");
+                        }
+                    }
+                })
+                shenheChange();
+            });
+
+            $('.ev-person>ul').bind('DOMNodeInserted', function(e) {
+                shenheChange()
+            });
+            shenheChange()
+            function shenheChange() {
+                var shenheIdArr=[];
+                var bossId= $('.ev-person p[data-boss]').attr('data-boss');
+                shenheIdArr.push(bossId)
+                $('.ev-person>ul>li').each(function () {
+                    shenheIdArr.push($(this).attr('data-val'))
+                })
+                var userId= $('.ev-person p[data-user]').attr('data-user')
+                console.log(shenheIdArr)
+                if(shenheIdArr.indexOf(userId)>=0){
+                    $('.send-msg-employe').show()
+                }else {
+                    $('.send-msg-employe').hide()
+                }
+            }
+        }
+        shenheren();
+
+
+        function sendMsg() {
+            var n=0
+            $('.send-msg-employe').click(function () {
+                n+=1;
+                console.log(n)
+                if(n%2==1){
+                    $('#send-msg-true').hide();
+                    $('#send-msg-false').show()
+                    $('#send-msg').attr('value','false')
+                }else if(n%2==0){
+                    $('#send-msg-false').hide();
+                    $('#send-msg-true').show()
+                    $('#send-msg').attr('value','true')
+                }
+            })
+        }
+        sendMsg();
+
+        function picadd() {
+            $("#previewImagesBtn").click(function () {
+                var num = $("#ImageIndex").val();
+                $("input[name=ImagesP"+num+"]").unbind("change").change(function () {
+                    previewLocalImageFile(this, $("#previewImagesP"+num));
+                    if($(this).data("has-file")){
+                        $('#previewImagesP'+num).append('<div class="pics_close">×</div>');
+                        $("#previewImagesP"+num).show();
+                        num++;
+                        $("#ImageIndex").val(num);
+                        $("#previewImagesBtn").before('<div><div class="iden-rec iden2-rec" id="previewImagesP'+num+'"></div><input class="em-btn" type="file"  name="ImagesP'+num+'" accept="image/jpeg,image/x-png,image/png"/></div>')
+
+                        if($("#iden-pics input[type='file']").size()>9){
+                            $("#previewImagesBtn").hide();
+                        }
+                    }
+                });
+                $("input[name=ImagesP"+num+"]").unbind("click").click();
+            })
+
+            $(document).on("click","#iden-pics .pics_close",function () {
+
+                $(this).parent().parent().remove();
+                $("#previewImagesBtn").show()
+            })
+        }
+        picadd();
+    })
+</script>
+
+
+<script>
+
+ var CompanyId = {$CompanyId};
+    $.validator.setDefaults({
+            submitHandler: function() {
+            var AuditPersons = $('input[name=AuditPersons]').val();
+            var BossPassportId = $('input[name=BossPassportId]').val();
+                var apiUrl="add?CompanyId="+{$CompanyId};
+                var formData = new FormData($("#employe_create")[0]);
+                $.ajax({
+                    type:'post',
+                    contentType: false,
+                    beforeSend:function(){
+                    	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+                    },
+                    url:apiUrl,
+                    data:formData,
+                    processData: false,
+                    success:function(data){
+//                      removeLoading();
+						$("#submit").html("保存").removeAttr("disabled");
+                      if(data==true){
+                            $("#alert>.alertT>span").text("");
+                          if(AuditPersons !="") {
+                              if (AuditPersons.indexOf({$PassportId}) > 0) {
+                                  $(".alertB").html('<div class="bcontent">操作成功！<br>  您是审核人，阶段评价已生效</div>');
+                              } else {
+                                  if (BossPassportId == {$PassportId} || AuditPersons == {$PassportId}) {
+                                      $(".alertB").html('<div class="bcontent">操作成功！<br> 您是审核人，阶段评价已生效</div>');
+                                  } else {
+                                      $(".alertB").html('<div class="bcontent">操作成功！<br> 审核通过后，阶段评价将生效</div>');
+                                  }
+                              }
+                           }else{
+                          if(BossPassportId =={$PassportId}){
+                              $(".alertB").html('<div class="bcontent">操作成功！<br> 您是审核人，阶段评价已生效</div>');
+                          }else{
+                              $(".alertB").html('<div class="bcontent">操作成功！<br> 审核通过后，阶段评价将生效</div>');
+                          }
+                      }
+                                $('.alertClose').hide();
+                              $(".btnwrap").html('<a id="employe_create_cancel"  href="/Mine/myListByAudit?CompanyId={$CompanyId}&AuditStatus=0" class="button db_btn_style">去查看</a><a id="employe_create_cancel"  href="/ArchiveComment/commentcreate?CompanyId={$CompanyId}&CommentType=0" class="button db_btn_style ">继续添加</a>');
+                              alertwin();
+                        }else{
+                            $("#alert>.alertT>span").text("错误提示");
+                            $(".alertB").html('<div class="bcontent">提交失败，请重新提交</div>');
+                            $(".btnwrap").html('<a  href="javascript:void (0)" class="button newJobSaveBtn alertClose">关闭</a>');
+                            alertwin();
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data)
+                    }
+                })
+        }
+    });
+    
+   $(document).on("click", "#submit", function() {
+    	var str=$("#ev-say").val();
+        var ArchiveId = $('input[name=ArchiveId]').val();
+        var StageSection = $('input[name=StageSection]').val();
+        if(ArchiveId==''){
+            $(".employee-tip").css("visibility","visible");
+            return false
+        }
+        if(StageSection==""){
+            $(".stage-tip").css("visibility","visible");
+            return false;
+        }
+
+    })
+
+ 
+    //选择员工请求
+    $(document).on("click", ".sel-add,.totalPage .page-num", function() {
+
+		var reg = /^[0-9]+.?[0-9]*$/;
+		var pageactive=$(this).html();
+		if(reg.test(pageactive)){
+			pageactive=pageactive;
+		}else{
+			pageactive=1;
+		}
+	    var url = '/ArchiveComment/searchArchive?CompanyId='+CompanyId+'&RealName=&DeptId=&IsDimission=&Page='+pageactive+'&Size=9';
+	    $.ajax({
+	        type:"post",
+	        url: url,
+	        dataType:'json',
+            beforeSend:alertLoading(),
+	        success:function(data){
+	            removeLoading();
+	       	  var total="<span>共<label class='total-red'>"+ data.pagination['TotalCount'] +"</label>条</span>";
+	       	  var pageIndex="<span>当前第"+pageactive+"页</span>";
+	       	  var pages="<span class='pages'>共"+data.pagination['Pages']+"页</span>"
+	       	  var page="<div>";
+	       	  for(var i=1;i<=data.pagination['Pages'];i++){
+	       	  	if(i==data.pagination['PageIndex']){
+	       	  		page+="<button class='page-num page-active'>"+i+"</button>";
+	       	  	}else{
+	       	  		page+="<button class='page-num'>"+i+"</button>";
+	       	  	}  
+	       	 
+	       	  }
+	       	   page+="</div>";
+	       	 
+	       	  $(".evaluate-add .totalPage").html("");
+	       	  $(".evaluate-add .totalPage").append(total+pageIndex+pages+page);
+	       	  
+	          data = data.CommentList;
+	          if(data.length>=1){
+		          var str="<tr class='thead'><td>姓名</td><td>部门</td><td>职务</td><td>在职状态</td><td>入职时间</td><td>操作</td></tr><tr>";
+		          for(var i=0;i<data.length;i++){
+			            str+="<td>"+data[i].RealName+"</td>";
+			            str+="<td>"+data[i].DepartName+"</td>";
+			            str+="<td>"+data[i]['WorkItem'].PostTitle+"</td>";
+			            if(data[i].IsDimission==1){
+			                 str+="<td>已离职</td>";
+			            }else{
+			               str+="<td>在职</td>";
+			            }
+			            str+="<td>"+data[i].EntryTime.substr(0,10)+"</td>";
+			            str+="<td class='add add1' data-employee-id="+data[i].ArchiveId+" data-picture="+data[i].Picture+">选择</td>";
+			
+			            str+="</tr>";
+		          }
+		          $(".evaluate-add table").html("");
+		          $(".evaluate-add table").append(str);
+		        
+		          
+	            }else{
+	            	$(".evaluate-add table,.totalPage").hide();
+	                $("#no-employee").show();
+	                $("#no-employee .create").click(function(){
+	                	 window.location.href="/EmployeArchive/create?CompanyId="+CompanyId;
+	                })
+	            }
+               $(".evaluate-add").add("#employee-zhao").show();
+	       }
+	       
+	    })
+    })
+    
+   
+    function changeStage(ArchiveId){
+			var stageUrl='/ArchiveComment/EmployeArchive?CompanyId='+CompanyId+'&ArchiveId='+ArchiveId;
+		      $.ajax({
+		       type:"post",
+		       url: stageUrl,
+		       dataType:'json',
+		       success:function(data){
+		            var year=data.exists;
+		            for(var i=0;i<year.length;i++){
+		                
+		                if(year[i].StageYear ==$("#employe_create select").val()){
+		                    var code=year[i].StageSection;
+		                    for(var m=0;m<code.length;m++){
+		                    	var codeArr=data.periods;
+		                        var bar="";
+			                   	for(var j=0;j<codeArr.length;j++){ 			                   		
+			                   		if(code.indexOf(codeArr[j].Code)>=0){			                   						                   					                  			                   			                        
+			                           bar+="<li class='sel-gray' data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"（已评）</li>";
+			                        }else{
+			                           bar+="<li data-stage-id="+codeArr[j].Code+">"+codeArr[j].Name+"</li>";
+			                        }   
+			                   }
+		                    }
+		                   $(".sel-stage").empty();
+		                   $(".sel-stage").append(bar);
+		                }
+		            }
+
+		       }
+		    })
+	    }
+    //选择员工
+    var person = {
+		name: '',
+		department: '',
+		job: '',
+		state: '',
+		time: ''
+	};
+	$(document).on('click','.add1',function(){
+		person.name = $(this).siblings().eq(0).text();
+		person.job = $(this).siblings().eq(2).text();
+		person.time = $(this).siblings().eq(4).text();
+		var perId = $(this).attr("data-employee-id");
+		var picture = $(this).attr("data-picture");
+		$("#txt-person").attr("value", perId);
+		$('#selectP').html('<p class="select-title">选择员工</p><div class="person"><img class="sel-add" src="' + picture + '" style="border-radius:8px;width:80px;height:80px"><p class="nname1"><a href="#"></a></p><p class="work1">&nbsp;&nbsp;&nbsp;<span>新建离任职务</span></p><p class="time1"></p></div>');
+		$('.person .nname1').text(person.name);
+		$('.person .work1').text(person.job);
+		$('.person .time1').text(person.time + '加入公司');
+		$(".evaluate-add").add("#employee-zhao").hide();
+		person.name = '';
+		person.job = '';
+		person.time = '';
+		
+         
+	    changeStage(perId);
+	    $(".sel-gray").each(function(){
+			$(this).text($(this).text().substr(0,2));
+		})
+	    $(".sel-stage li").each(function(){
+			$(this).removeClass("sel-gray");
+		})
+	    $("select[name=StageYear]").val("2017年")
+	
+	})
+	
+	//选择年份
+	$("#employe_create select").change(function(){
+		$(".sel-gray").each(function(){
+			$(this).text($(this).text().substr(0,2));
+		})
+		$(".sel-stage li").each(function(){
+			$(this).removeClass("sel-gray");
+		})
+	      var ArchiveId = $("#txt-person").val();
+	     if($("#txt-person").val()==""){
+	        $(".employee-tip").css("visibility","visible");
+	     }else{
+            $(".employee-tip").css("visibility","hidden");
+            changeStage(ArchiveId);
+	        
+	     }
+         
+	    })
+	
+	
+	//选择评价阶段
+	
+    $(document).on("click",".sel-stage li:not('.sel-gray')",function(){
+    	$(".stage-tip").css("visibility","hidden");
+    if($("#txt-person").val()==""){
+	         $(".employee-tip").css("visibility","visible");
+	    }else{
+		     $(this).addClass("selected").siblings().removeClass("selected");
+			var selected = $(".selected").attr("data-stage-id");
+			$("#txt-sel-stage").attr("value", selected);
+			var stageId = $(this).attr("data-stage-id");
+			$("#txt-sel-stage").attr("value", stageId);
+	
+			var selected1 = $(".selected").attr("data-want-id");
+			$("#txt-wantRecall").attr("value", selected1);
+			var wantId = $(this).attr("data-want-id");
+			$("#txt-wantRecall").attr("value", wantId);
+	    }
+		
+	})
+</script>
+
+{/block}

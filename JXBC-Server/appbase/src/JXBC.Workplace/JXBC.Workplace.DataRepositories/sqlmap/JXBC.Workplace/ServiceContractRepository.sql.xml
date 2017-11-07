@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="ServiceContractRepository" dbName="JXBC.Workplace">
+    <sqlWrap sqlName="SelectLastOneByBuyer" supportDBType="MySql">
+      select * from service_contract where BuyerId = @BuyerId order by ServiceEndTime desc limit 0, 1
+    </sqlWrap>
+  </module>
+</root>

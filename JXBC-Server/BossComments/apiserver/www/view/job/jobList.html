@@ -1,0 +1,136 @@
+{extend name="-public:layout_console-enterprise" /}
+{block name="page-title"}职位列表{/block}
+{block name="page-content"}
+
+<link href="{$Think.config.resources_site_root}/pc/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<div id="zhezhao" style="width: 1903px; height: 884px;">
+    <div id="alert" style="margin-top: -99px;">
+        <div class="alertT">
+            <b class="alertClose">×</b>
+            <span>温馨提示</span>
+        </div>
+        <form class="alertB" novalidate="novalidate">
+            <div class="bcontent">
+                删除后，这个职位无法恢复，确认吗?
+            </div>
+        </form>
+        <div class="btnwrap">
+            <a href="javascript:void (0)" class="button db_btn_style alertClose">取消</a>
+            <a id="job_list_delete" href="javascript:void (0)" class="button db_btn_style">确认</a>
+        </div>
+    </div>
+</div>
+
+<!--右侧内容部分开始-->
+<div class="com1-bg">
+    <div class="em-info em1-info">
+        <div class="ei-title">
+            <span>职务名称</span>
+            <span>薪资</span>
+            <span>工作城市</span>
+            <span>发布人</span>
+            <span>发布时间</span>
+            <span>状态</span>
+        </div>
+        {foreach($jobList as $val )}
+        <div class="ei-joblist">
+            <span><a style="color: #cdbc5c" href="/Job/Detail?CompanyId={$CompanyId}&JobId={$val.JobId}">{$val.JobName}</a></span>
+            <span>{$val.SalaryRangeMin}--{$val.SalaryRangeMax}</span>
+            <span>{$val.JobCity}</span>
+            <span>{$val.CompanyMember.RealName}</span>
+            <span>{:toLocalDateTime($val.CreatedTime,'Y-m-d')}</span>
+            <span>{if($val.DisplayState==0)}
+             正常
+           {else/}
+             已关闭
+            {/if}
+            </span>
+            <!--<div class="joblist_operation">
+                <div class="jl_top button" JobId="{$val.JobId}" CompanyId="{$CompanyId}" DisplayState="{$val.DisplayState}" ><i class="iconfont">
+                    {if($val.DisplayState==0)}
+                    &#xe64c;
+                    {else/}
+                    &#xe64b;
+                    {/if}
+                </i></div>
+                <div class="jl_btm button" JobId="{$val.JobId}" CompanyId="{$CompanyId}"><i class="iconfont">&#xe649;</i></div>
+            </div>-->
+            <ul class="joblist_operation1">
+            	<li>
+                    <a  href="javascript:void(0);" JobId="{$val.JobId}" CompanyId="{$CompanyId}" DisplayState="{$val.DisplayState}"   JobId="{$val.JobId}"  class="open">
+                        {if($val.DisplayState==1)}
+            		<img title="开启" src="{$Think.config.resources_site_root}/pc/img/ic_open.png">
+                        {else/}
+                        <img  title="关闭" src="{$Think.config.resources_site_root}/pc/img/ic_close.png">
+                        {/if}
+                    </a>
+            	</li>
+            	<li>
+            		<a  href="/Job/addJob?CompanyId={$CompanyId}&JobId={$val.JobId}" JobId="{$val.JobId}" CompanyId="{$CompanyId}">
+            		   <img title="修改职位" src="{$Think.config.resources_site_root}/pc/img/ic_xiugai.png">
+                    </a>
+
+            	</li>
+            	<li>
+                    <a  href="javascript:void(0);" JobId="{$val.JobId}" CompanyId="{$CompanyId}" class="delete">
+            		<img title="删除职位" src="{$Think.config.resources_site_root}/pc/img/ic_delete.png" >
+                    </a>
+            	</li>
+            </ul>
+        </div>
+        {/foreach}
+        <div class="em-page">
+            {$PageNavigation}
+        </div>
+    </div>
+
+</div>
+{/block} {block name="resources-footer"}
+<script>
+    //职位开启 关闭
+    $(document).on('click','.open',function(){
+        var $this = $(this);
+        var JobId = $this.attr('JobId');
+        var CompanyId = $this.attr('CompanyId');
+        var DisplayState = $this.attr('DisplayState');
+        $.post('OpenCloseJob',{JobId:JobId,CompanyId:CompanyId,DisplayState:DisplayState},function(msg){
+
+            var State = DisplayState<1?"1":"0";
+            var State3 = DisplayState<1?"已关闭":"正常";
+            if(msg == true){
+                if(DisplayState==1){
+                    str = ' <a href="javascript:void(0);"  JobId="'+JobId+'" CompanyId="'+CompanyId+'" DisplayState="'+State+'"   class="open">' +
+                    '<img src="{$Think.config.resources_site_root}/pc/img/ic_close.png"> </a>' ;
+                }else{
+                    str = '<a href="javascript:void(0);"  JobId="'+JobId+'" CompanyId="'+CompanyId+'" DisplayState="'+State+'"   class="open">' +
+                    '<img src="{$Think.config.resources_site_root}/pc/img/ic_open.png"> </a> ' ;
+                }
+                $this.parents('.joblist_operation1').prev().text(State3);
+                $this.parent().html(str);
+            }else{
+                console.log('修改失败')
+            }
+        })
+    })
+    //删除职位
+    $('.delete').click(function(){
+        alertwin();
+        var $this = $(this);
+        var JobId = $(this).attr('JobId');
+        var CompanyId = $(this).attr('CompanyId');
+        $("#job_list_delete").click(function () {
+//            alert(JobId)
+            $.post('DeleteJob',{JobId:JobId,CompanyId:CompanyId},function(msg){
+                if(msg == true){
+                    $this.parents('.ei-joblist').remove();
+                }else{
+                    console.log('删除失败')
+                }
+            })
+            $("#zhezhao").hide();
+        })
+    })
+
+</script>
+
+{/block}

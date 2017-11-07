@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns="http://m2sa.net/Schema/SqlMapping">
+  <module moduleName="TradeJournalRepository" namespace="JXBC.TradeSystem">
+    <sqlWrap sqlName="Insert" supportDBType="SqlServer, MySql">
+      insert into trade_journal (TradeCode, ParentTradeCode, OwnerId, TradeType, TradeMode, PayWay, PayRoute, TradeStatus, BizSource, TotalFee, CommodityCategory, CommodityCode, CommodityQuantity, CommoditySubject, CommoditySummary, CommodityExtension, ReturnUrl, BuyerId, SellerId, ClientIP, LastOperator, CreatedTime, ModifiedTime)
+      values (@TradeCode, @ParentTradeCode, @OwnerId, @TradeType, @TradeMode, @PayWay, @PayRoute, @TradeStatus, @BizSource, @TotalFee, @CommodityCategory, @CommodityCode, @CommodityQuantity, @CommoditySubject, @CommoditySummary, @CommodityExtension, @ReturnUrl, @BuyerId, @SellerId, @ClientIP, @LastOperator, @CreatedTime, @ModifiedTime);
+      select @TradeCode;
+    </sqlWrap>
+    <sqlWrap sqlName="Update" supportDBType="SqlServer, MySql">
+      update trade_journal set PayWay=@PayWay, PayRoute=@PayRoute, TradeStatus=@TradeStatus, LastOperator=@LastOperator, ModifiedTime=@ModifiedTime where TradeCode = @TradeCode
+    </sqlWrap>
+    <sqlWrap sqlName="DeleteById" supportDBType="SqlServer, MySql">
+      delete from trade_journal where TradeCode = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectById" supportDBType="SqlServer, MySql">
+      select * from trade_journal where TradeCode = @Id
+    </sqlWrap>
+    <sqlWrap sqlName="SelectAll" supportDBType="SqlServer, MySql">
+      select * from trade_journal
+    </sqlWrap>
+    <sqlWrap sqlName="UpdateTradeStatus" supportDBType="SqlServer, MySql">
+      update trade_journal set TradeStatus=@TradeStatus, LastOperator=@LastOperator, ModifiedTime=@ModifiedTime where TradeCode = @TradeCode
+    </sqlWrap>
+    <sqlWrap sqlName="UpdateBizTradeCode" supportDBType="SqlServer, MySql">
+      update trade_journal set OwnerId=@OwnerId, TargetBizTradeCode=@TargetBizTradeCode, TradeStatus=@TradeStatus, ModifiedTime=@ModifiedTime where TradeCode = @TradeCode
+    </sqlWrap>
+
+    <sqlWrap sqlName="SelectByOwnerId" supportDBType="SqlServer, MySql">
+      select * from trade_journal where OwnerId=@OwnerId and TradeStatus=@TradeStatus
+      #if(@TradeTypes) { and TradeTypes in (@TradeTypes)}
+      order by ModifiedTime desc
+    </sqlWrap>
+  </module>
+</root>

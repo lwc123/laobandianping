@@ -1,0 +1,182 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box ui-sortable-handle">
+            <!-- #section:custom/widget-box.options.collapsed -->
+            <div class="widget-header widget-header-small">
+                <h6 class="widget-title">
+                    用户搜索
+                </h6>
+
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div>
+                        <form id="form-search" method="get" class="form-inline" role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10">  
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-4">
+                                            <label for="RealName">姓　　名：</label>
+                                            <input type="text" id="RealName" name="RealName">
+                                        </div>                        
+                                        <div class="form-group col-xs-12 col-sm-8">
+                                            <label>注册时间：</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" id="MaxSignUpDate" name="MaxSignUpDate" class="date-picker hasDatepicker">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-calendar"></i>
+                                                </span>
+											</div>
+                                            <span>至</span>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" id="MinSignUpDate" name="MinSignUpDate" class="date-picker hasDatepicker">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-calendar"></i>
+                                                </span>
+											</div>
+                                        </div>
+                                    </div> 
+                                    <div>
+                                        <div class="form-group col-xs-12 col-sm-4">
+                                            <label for="MobilePhone">手机号码：</label>
+                                            <input type="text" id="MobilePhone" name="MobilePhone">
+                                        </div>                        
+                                        <div class="form-group col-xs-12 col-sm-8">
+                                            <label>注册类型：</label>
+                                            <select id="InvitedType" data-placeholder="选择身份类型">
+                                                <option value="">全部</option>
+                                                <option value="0">主动注册</option>
+                                                <option value="1">邀请注册</option>                                            
+                                            </select>
+                                        </div>
+                                    </div>                             
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    <button class="btn btn-app btn-purple btn-sm pull-right">
+                                        <i class="ace-icon fa fa-search bigger-200"></i>
+                                        搜索
+                                    </button>
+                                </div>   
+                            </div>  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="header smaller lighter blue">用户列表</h3>
+        <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                    <tr> <!- 表格总宽度=12 ->
+                        <th class="center col-xs-1">#</th>
+                        <th>Domain</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                        <th class="col-xs-2">Price</th>
+                        <th class="col-xs-2">Clicks</th>
+                        <th class="col-xs-2">状态</th>
+                        <th class="col-xs-2">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="center">1</td>
+                        <td>
+                            <a href="/sample/details">ace.com</a>
+                        </td>
+                        <td>$45</td>
+                        <td>3,330</td>
+                        <td>
+                            <span class="label label-sm label-success">success</span>
+                            <span class="label label-sm label-info">info</span>
+                            <span class="label label-sm label-warning">warning</span>                            
+                            <span class="label label-sm label-danger">danger</span>
+                        </td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <button class="btn btn-xs btn-success">
+                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                    审核
+                                </button>
+
+                                <button class="btn btn-xs btn btn-primary">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    编辑
+                                </button>
+
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="ace-icon fa fa-remove bigger-120"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="center">2</td>
+                        <td>
+                            <a href="/sample/details">ace.com</a>
+                        </td>
+                        <td>$45</td>
+                        <td>3,330</td>
+                        <td>
+                            <span class="label label-sm label-pink">pink</span>
+                            <span class="label label-sm label-purple">purple</span>
+                            <span class="label label-sm label-grey">grey</span>                            
+                            <span class="label label-sm label-yellow">yellow</span>
+                        </td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <button class="btn btn-xs btn-success">
+                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                    审核
+                                </button>
+
+                                <button class="btn btn-xs btn btn-primary">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    编辑
+                                </button>
+
+                                <button class="btn btn-xs btn-danger">
+                                    <i class="ace-icon fa fa-remove bigger-120"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="dataTables_info">Total: 999</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="paginate_button previous disabled"><a href="#">Previous</a></li>
+                            <li class="paginate_button active"><a href="#">1</a></li>
+                            <li class="paginate_button "><a href="#">2</a></li>
+                            <li class="paginate_button "><a href="#">3</a></li>
+                            <li class="paginate_button next"><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

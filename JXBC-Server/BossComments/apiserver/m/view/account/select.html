@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>选择公司</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="{$Think.config.resources_site_root}/mobile/css/style.css?v=0" rel="stylesheet">
+	<script src="{$Think.config.resources_site_root}/mobile/js/flexible.js"></script>
+</head>
+<body>
+	<div class="select">
+		<div class="inner">
+			<h3>您目前所在的公司</h3>
+			<ul id="list">
+			</ul>
+			<div class="create">
+				<a href="javascript:;" id="create">创建新公司</a>
+			</div>
+		</div>
+	</div>
+	<!-- 错误提示 -->
+<div class="error" id="error">手机号不能为空</div>
+{include file="-public/resources__footer" /}
+<script type="text/javascript">
+	$(function(){
+		var comUrl=AppEnvironment.apiRoot+'/workplace/User/myRoles';
+		var comLi="";
+		$.ajax({
+			type:'get',
+			url:comUrl,
+			dataType:'json',
+			success:function(data){
+				$.each(data,function(i){
+					//alert(data[i].CompanyId )
+					comLi="<li data-id='"+data[i].CompanyId +"'>";
+                            status=data[i].myCompany.AuditStatus;
+                    if(status==0){
+                        comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>未提交认证<label class='list_icon'>></label></span></a>";
+                    }else if(status==1){
+                        comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>审核中<label class='list_icon'>></label></span></a>";
+                    }else if(status==2){
+                        ServiceEndTime=data[i]['myCompany'].ServiceEndTime;
+                        EndTime =  new Date(ServiceEndTime).getTime();
+                        var timestamp=new Date().getTime();
+                        days= Math.ceil((EndTime-timestamp)/86400000);
+                        if(days>30 || ServiceEndTime==null){
+                            if(data[i]['UnreadMessageNum'] ==0){
+                                comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_blue'><label class='list_icon'>></label></span></a>";
+                            }else{
+                                comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_blue'>"+data[i].UnreadMessageNum+"条待审核评价<label class='list_icon'>></label></span></a>";
+                            }
+                        }else if(days>0 && days<=30){
+                            comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>剩余"+days+"天<label class='list_icon'>></label></span></a>";
+                        }else{
+                            comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='danger_red'>服务到期<label class='list_icon'>></label></span></a>";
+                        }
+                    }else if(status==9){
+                        comLi+="<a>"+data[i].myCompany.CompanyName+"<span class='span_gray'>审核不通过<label class='list_icon'>></label></span></a>";
+                    }
+
+                            comLi+="</li>";
+					$('#list').append(comLi);
+					$('#list li').bind('click',function(){
+						var CompanyId=$(this).attr('data-id');
+						window.location.href="/m/Account/share?CompanyId="+CompanyId;
+					})
+				})
+			},
+			error:function(){
+				$('#error').show().text('暂无数据！');
+				setTimeout(function(){
+					$('#error').hide();
+				},2000);	
+			}
+		})
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]);return null;
+		}
+		var InviteCode=getUrlParam('InviteCode');
+		if(InviteCode==null){
+			InviteCode='';
+		}
+		$('#create').bind('click',function(){
+            window.location.href="/m/enterprise_service/openservice"
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{extend name="_public:layout" /}
+
+{block name="page-content"}
+
+<div class="row">
+    <div class="col-xs-12  col-sm-8">
+        <div class="hr hr-18 dotted hr-double"></div>
+        {if(!empty($Think.get.CompanyName))}关联开户公司名称：{$Think.get.CompanyName}{/if}
+        <div class="table-header">
+            新增口碑公司
+        </div>
+        <form id="addActivity" action="createRequest" method="post" enctype="multipart/form-data">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <input type="hidden" name="ClaimCompanyId" value="{$Think.get.workplaceCompanyId}"/>
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>*公司名称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td><input type="text"  name="CompanyName" value="{$Think.get.CompanyName}"/></td>
+                </tr>
+
+                <tr> <!- 表格总宽度=12 ->
+                    <th class="col-xs-3" style='text-align:center'>*公司简称</th> <!- 此列自动适应，宽度=12-(其他列宽度之和) ->
+                    <td><input type="text"  name="CompanyAbbr" value=""/></td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司LOGO</th>
+                    <td><input type="file" name="CompanyLogo" value=""/></td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司一句话介绍</th>
+                    <td><textarea name="BriefIntroduction" id="" cols="30" rows="3" style="resize:none"></textarea></td>
+                </tr>
+
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center' >公司标签</th>
+                    <td><input type="text"  name="Labels" value="" placeholder="请输入|分割，单个标签文字不超过5个汉字"/></td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center'  >行业：</th>
+                    <td>
+                        <select name="Industry">
+                            {foreach($DictionaryIndustry['industry'] as $item)}
+                            <option value="{$item['Name']}" >{$item['Name']}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center' >地点：</th>
+                    <td>
+                        <select name="Region">
+                            {foreach($DictionaryRegion['city'] as $item)}
+                            <option value="{$item['Code']}" >{$item['Name']}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th  class="col-xs-3" style='text-align:center' >规模：</th>
+                    <td>
+                        <select name="CompanySize" >
+                            {foreach($DictionaryCompanySize['CompanySize'] as $item)}
+                            <option value="{$item['Code']}" >{$item['Name']}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center' >公司CEO：</th>
+                    <td><input type="text"  name="CompanyCEO" value=""/></td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>成立时间</th>
+                    <td>
+                        <div class="input-group input-group-sm" style="width: 100px">
+                            <input type="text" id="EstablishedTime" name="EstablishedTime" class="date-picker hasDatepicker">
+                        <span class="input-group-addon">
+                            <i class="ace-icon fa fa-calendar"></i>
+                        </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司地址：</th>
+                    <td><input type="text"  name="Address" value=""/></td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-3" style='text-align:center'>公司介绍</th>
+                    <td>  <textarea name="Introduction" id="" cols="30" rows="3" style="resize:none"></textarea></td>
+                </tr>
+
+            </table>
+            <center>
+                <input type="submit" style="background: #00b3ee;border-radius: 7px;width:130px;height: 45px;" value="保存"/>
+            </center>
+        </form>
+    </div>
+</div>
+
+
+{/block}
+

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rsb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/menu_color"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="及时性" />
+
+        <com.juxian.bosscomments.widget.rangeseekbar.RangeSeekBar
+            android:id="@+id/rangeSeekBar4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/grade4"
+            android:layout_marginTop="@dimen/DIMEN_15PX"
+            android:layout_marginLeft="@dimen/DIMEN_18PX"
+            rsb:absoluteMaxValue="100"
+            rsb:absoluteMinValue="0"
+            rsb:activateOnDefaultValues="true"
+            rsb:showLabels="false"
+            rsb:singleThumb="true"
+            rsb:thumbNormal="@drawable/shape_seekbar"
+            rsb:thumbPressed="@drawable/shape_seekbar"
+            rsb:thumbDisabled="@drawable/shape_seekbar"
+            rsb:activeColor="@color/square_border_gold_color"
+            rsb:defaultColor="@color/discount_gray"
+            rsb:barHeight="@dimen/DIMEN_10PX"
+            rsb:textAboveThumbsColor="@color/juxian_red"
+            rsb:valuesAboveThumbs="true" />
+
+        <LinearLayout
+            android:id="@+id/grade4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/DIMEN_25PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rangeSeekBar4_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="极差" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/luxury_gold_color"
+                android:text="100分" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_marginTop="@dimen/DIMEN_10PX"
+        android:layout_marginBottom="@dimen/DIMEN_10PX"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/menu_color"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="全面性" />
+
+        <com.juxian.bosscomments.widget.rangeseekbar.RangeSeekBar
+            android:id="@+id/rangeSeekBar5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/grade5"
+            android:layout_marginTop="@dimen/DIMEN_15PX"
+            android:layout_marginLeft="@dimen/DIMEN_18PX"
+            rsb:absoluteMaxValue="100"
+            rsb:absoluteMinValue="0"
+            rsb:activateOnDefaultValues="true"
+            rsb:showLabels="false"
+            rsb:singleThumb="true"
+            rsb:thumbNormal="@drawable/shape_seekbar"
+            rsb:thumbPressed="@drawable/shape_seekbar"
+            rsb:thumbDisabled="@drawable/shape_seekbar"
+            rsb:activeColor="@color/square_border_gold_color"
+            rsb:defaultColor="@color/discount_gray"
+            rsb:barHeight="@dimen/DIMEN_10PX"
+            rsb:textAboveThumbsColor="@color/juxian_red"
+            rsb:valuesAboveThumbs="true" />
+
+        <LinearLayout
+            android:id="@+id/grade5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/DIMEN_25PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rangeSeekBar5_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="极差" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/luxury_gold_color"
+                android:text="100分" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_marginTop="@dimen/DIMEN_10PX"
+        android:layout_marginBottom="@dimen/DIMEN_10PX"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/DIMEN_24PX">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/menu_color"
+            android:layout_marginLeft="@dimen/DIMEN_30PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:text="后续支持" />
+
+        <com.juxian.bosscomments.widget.rangeseekbar.RangeSeekBar
+            android:id="@+id/rangeSeekBar6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/grade6"
+            android:layout_marginTop="@dimen/DIMEN_15PX"
+            android:layout_marginLeft="@dimen/DIMEN_18PX"
+            rsb:absoluteMaxValue="100"
+            rsb:absoluteMinValue="0"
+            rsb:activateOnDefaultValues="true"
+            rsb:showLabels="false"
+            rsb:singleThumb="true"
+            rsb:thumbNormal="@drawable/shape_seekbar"
+            rsb:thumbPressed="@drawable/shape_seekbar"
+            rsb:thumbDisabled="@drawable/shape_seekbar"
+            rsb:activeColor="@color/square_border_gold_color"
+            rsb:defaultColor="@color/discount_gray"
+            rsb:barHeight="@dimen/DIMEN_10PX"
+            rsb:textAboveThumbsColor="@color/juxian_red"
+            rsb:valuesAboveThumbs="true" />
+
+        <LinearLayout
+            android:id="@+id/grade6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/DIMEN_25PX"
+            android:layout_marginRight="@dimen/DIMEN_30PX"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rangeSeekBar6_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="极差" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_20PX"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:textColor="@color/luxury_gold_color"
+                android:text="100分" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

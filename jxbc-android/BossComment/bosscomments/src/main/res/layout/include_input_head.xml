@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            android:background="@color/white">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/input_one_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <com.juxian.bosscomments.widget.EditText
+                android:id="@+id/edit_one_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/input_one_text"
+                android:background="@null"
+                android:gravity="right"
+                android:paddingRight="@dimen/DIMEN_44PX"
+                android:textColor="@color/menu_color"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="@color/line_color"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            android:background="@color/white">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/input_two_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <com.juxian.bosscomments.widget.EditText
+                android:id="@+id/edit_two_content"
+                android:layout_width="@dimen/DIMEN_350PX"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/input_two_text"
+                android:background="@null"
+                android:gravity="right"
+                android:paddingRight="@dimen/DIMEN_44PX"
+                android:textColor="@color/menu_color"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_1PX"
+            android:background="@color/line_color"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/excel_height_90px"
+            android:background="@color/white">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:id="@+id/input_three_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/DIMEN_22PX"
+                android:text=""
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+
+            <com.juxian.bosscomments.widget.EditText
+                android:id="@+id/edit_three_content"
+                android:layout_width="@dimen/DIMEN_350PX"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/input_three_text"
+                android:background="@null"
+                android:gravity="right"
+                android:paddingRight="@dimen/DIMEN_44PX"
+                android:textColor="@color/menu_color"
+                android:textColorHint="@color/menu_color"
+                android:textSize="@dimen/DIMEN_30PX"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

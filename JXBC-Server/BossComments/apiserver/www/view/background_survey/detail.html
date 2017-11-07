@@ -1,0 +1,311 @@
+{extend name="-public:layout_console-enterprise" /}
+
+{block name="page-title"}背景调查{/block}
+
+{block name="page-content"}
+	<!--右侧内容开始-->
+	<div class="com1-bg">
+		<div id="report">
+		<div class="backgrounddetail fr">
+			<h2>背景调查报告</h2>
+			<div class="detail-inner">
+				<div class="work_details_top">正在计算职场信用分，贷款信用分</div>
+				<!-- 人员信息 -->
+				<div class="detail-tit">
+
+					<ul>
+						<li>
+							<b>姓名：</b><span>{{model.RealName}}</span>
+						</li>
+						<li>
+							<b>身份证号：</b><span>{{model.IDCard}}</span>
+						</li>
+						<li class="blf">
+							<b>职场信用分：</b><span id="pfxy"></span><a target="_blank" href="/BackgroundSurvey/workGrade.html?CompanyId={$Think.get.CompanyId}"><svg class="icon" viewBox="0 0 1029 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="539"><path d="M2.273103 512.962207C2.184828 230.859034 231.362207 1.69931 513.377103 1.893517 795.29931 2.087724 1024.022069 230.845793 1024.105931 512.697379 1024.189793 794.818207 795.144828 1023.819034 512.979862 1023.730759 231.106207 1023.638069 2.356966 794.866759 2.273103 512.962207L2.273103 512.962207ZM66.070069 512.662069C65.915586 759.296 266.262069 959.726345 513.160828 959.938207 759.538759 960.150069 959.823448 759.997793 960.048552 513.341793 960.278069 266.217931 760.779034 66.317241 513.513931 65.906759 266.866759 65.496276 66.220138 265.829517 66.070069 512.662069L66.070069 512.662069ZM705.739034 417.103448C704.044138 496.878345 656.233931 566.135172 582.121931 594.988138 575.774897 597.459862 569.445517 600.059586 563.36331 603.109517 551.746207 608.940138 545.527172 618.425379 545.103448 631.591724 544.926897 637.078069 545.160828 642.718897 543.96469 648.006621 540.468966 663.450483 525.700414 673.990621 510.72 672.388414 493.810759 670.578759 482.01269 657.906759 481.37269 641.222621 479.638069 596.215172 498.401103 563.442759 539.286069 543.841103 544.825379 541.188414 550.444138 538.632828 556.217379 536.553931 611.67669 516.581517 646.404414 461.784276 640.251586 403.764966 634.067862 345.472 588.089379 298.028138 530.387862 290.476138 454.867862 280.589241 387.963586 337.527172 385.460966 413.576828 385.324138 417.739034 385.134345 422.033655 384.026483 426.001655 379.806897 441.101241 364.57931 450.992552 349.581241 448.768 333.051586 446.318345 321.390345 433.222621 321.597793 416.242759 322.171586 369.262345 336.900414 327.044414 368.322207 292.073931 419.954759 234.619586 484.859586 212.82869 559.699862 231.750621 635.264 250.853517 682.07669 301.245793 700.32331 377.224828 703.439448 390.201379 704 403.795862 705.739034 417.103448L705.739034 417.103448ZM481.399172 784.472276C481.399172 778.743172 481.257931 773.009655 481.430069 767.284966 481.946483 749.956414 495.730759 736.507586 512.93131 736.406069 530.109793 736.308966 544.384 749.585655 544.993103 766.786207 545.399172 778.231172 545.346207 789.707034 545.024 801.156414 544.529655 818.754207 530.304 832.150069 512.768 831.982345 495.505655 831.814621 481.92 818.436414 481.421241 800.997517 481.262345 795.493517 481.394759 789.98069 481.399172 784.472276L481.399172 784.472276Z" p-id="540"></path></svg></a>
+						</li>
+						<li class="blf">
+							<b>贷款信用分：</b><span id="pfbl"></span><a target="_blank" href="/BackgroundSurvey/loadGrade.html?CompanyId={$Think.get.CompanyId}"><svg class="icon" viewBox="0 0 1029 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="539"><path d="M2.273103 512.962207C2.184828 230.859034 231.362207 1.69931 513.377103 1.893517 795.29931 2.087724 1024.022069 230.845793 1024.105931 512.697379 1024.189793 794.818207 795.144828 1023.819034 512.979862 1023.730759 231.106207 1023.638069 2.356966 794.866759 2.273103 512.962207L2.273103 512.962207ZM66.070069 512.662069C65.915586 759.296 266.262069 959.726345 513.160828 959.938207 759.538759 960.150069 959.823448 759.997793 960.048552 513.341793 960.278069 266.217931 760.779034 66.317241 513.513931 65.906759 266.866759 65.496276 66.220138 265.829517 66.070069 512.662069L66.070069 512.662069ZM705.739034 417.103448C704.044138 496.878345 656.233931 566.135172 582.121931 594.988138 575.774897 597.459862 569.445517 600.059586 563.36331 603.109517 551.746207 608.940138 545.527172 618.425379 545.103448 631.591724 544.926897 637.078069 545.160828 642.718897 543.96469 648.006621 540.468966 663.450483 525.700414 673.990621 510.72 672.388414 493.810759 670.578759 482.01269 657.906759 481.37269 641.222621 479.638069 596.215172 498.401103 563.442759 539.286069 543.841103 544.825379 541.188414 550.444138 538.632828 556.217379 536.553931 611.67669 516.581517 646.404414 461.784276 640.251586 403.764966 634.067862 345.472 588.089379 298.028138 530.387862 290.476138 454.867862 280.589241 387.963586 337.527172 385.460966 413.576828 385.324138 417.739034 385.134345 422.033655 384.026483 426.001655 379.806897 441.101241 364.57931 450.992552 349.581241 448.768 333.051586 446.318345 321.390345 433.222621 321.597793 416.242759 322.171586 369.262345 336.900414 327.044414 368.322207 292.073931 419.954759 234.619586 484.859586 212.82869 559.699862 231.750621 635.264 250.853517 682.07669 301.245793 700.32331 377.224828 703.439448 390.201379 704 403.795862 705.739034 417.103448L705.739034 417.103448ZM481.399172 784.472276C481.399172 778.743172 481.257931 773.009655 481.430069 767.284966 481.946483 749.956414 495.730759 736.507586 512.93131 736.406069 530.109793 736.308966 544.384 749.585655 544.993103 766.786207 545.399172 778.231172 545.346207 789.707034 545.024 801.156414 544.529655 818.754207 530.304 832.150069 512.768 831.982345 495.505655 831.814621 481.92 818.436414 481.421241 800.997517 481.262345 795.493517 481.394759 789.98069 481.399172 784.472276L481.399172 784.472276Z" p-id="540"></path></svg></a>
+						</li>
+						<li><b>{{model.HeOrShe}}的标签：</b></li>
+						<li class="item">
+							<span v-for="(tag,value) in model.Tags">{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<!-- 购买离职信息列表 -->
+				<div v-if="model.IsDimission==true && model.IsArchive==true && model.ErrorMessage!='发现身份证号匹配的员工档案姓名与您输入的姓名不一致'">
+					<div class="buy-li" v-for="item in model.Archives">
+						<ul>
+							<li class="border-b">
+								<p class="com-name">离任公司：{{item.CompanyName}}</p>
+								<p>在任时间：{{item.EntryTime}}入职，{{item.DimissionTime}}离职</p>
+								<p>担任职位：{{item.PostTitle}}</p>
+								<p>所在部门：{{item.DeptName}}</p>
+							</li>
+							<li>
+								<ul class="comment">
+									<!-- 阶段评价已购买 -->
+									<li class="overflow stage" data-archiveid="{{item.ArchiveId}}" v-if="item.StageEvaluationNum>0 && item.IsBoughtStageEvaluation == true">
+										<div class="fl">
+											<span class="check-radio already-buy">
+												<input type="checkbox">
+											</span>
+											<b>阶段评价</b>
+											<span class="num font24">({{item.StageEvaluationNum}}条)</span>
+										</div>
+										<div class="fr">
+											<a href="javascript:;" class="see font24"  v-if="item.IsBoughtStageEvaluation==true">已购买，直接查看</a>
+										</div>
+									</li>
+									<!-- 阶段评价 未购买 -->
+									<li class="overflow monli" v-if="item.StageEvaluationNum>0 && item.IsBoughtStageEvaluation == false"
+										data-ArchiveCompanyId='{{item.CompanyId}}'
+										data-ArchiveId='{{item.ArchiveId}}' 
+										data-CommentType='StageEvaluation'
+										data-price='{{item.StageEvaluationPrice}}'>
+										<div class="fl">
+											<span class="check-radio"  >
+												<input type="checkbox" value="">
+											</span>
+											<b>阶段评价</b>
+											<span class="num font24">({{item.StageEvaluationNum}}条)</span>
+										</div>
+										<div class="fr">
+											<b class="money" v-if="item.IsBoughtStageEvaluation==false">{{item.StageEvaluationPrice}}金币</b>
+										</div>
+									</li>
+									<!-- 离任报告 已购买 -->
+									<li class="overflow depart" data-archiveid="{{item.ArchiveId}}"  v-if="item.DepartureReportNum>0 && item.IsBoughtDepartureReport == true">
+										<div class="fl">
+											<span class="check-radio already-buy">
+												<input type="checkbox">
+											</span>
+											<b>离任报告</b>
+											<span class="num font24">({{item.DepartureReportNum}}条)</span>
+										</div>
+										<div class="fr">
+											<a href="javascript:;" class="see font24" v-if="item.IsBoughtDepartureReport==true">已购买，直接查看</a>
+										</div>
+									</li>
+									<!-- 离任报告 未购买 -->
+									<li class="overflow monli" v-if="item.DepartureReportNum>0 && item.IsBoughtDepartureReport == false"
+										data-ArchiveCompanyId='{{item.CompanyId}}'
+										data-ArchiveId='{{item.ArchiveId}}' 
+										data-CommentType='DepartureReport'
+										data-price='{{item.DepartureReportPrice}}'>
+										<div class="fl">
+											<span class="check-radio">
+												<input type="checkbox">
+											</span>
+											<b>离任报告</b>
+											<span class="num font24">({{item.DepartureReportNum}}条)</span>
+										</div>
+										<div class="fr">
+											<b class="money" v-if="item.IsBoughtDepartureReport==false">{{item.DepartureReportPrice}}金币</b>
+										</div>
+									</li>
+									<div class="detail-none"v-show="item.StageEvaluationNum==0 && item.DepartureReportNum==0">
+										<p>公司暂无对他的评价或离任报告</p>
+									</div>	
+								</ul>	
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 无信息 -->
+				<div class="detail-none" v-show="model.IsDimission==false">
+					<p>{{model.RealName}}目前在职，不能查看 <!--{{model.IsDimission==true && model.IsArchive==true }}--></p>
+				</div>
+				<div class="detail-none" v-show="model.IsArchive==false">
+					<p>暂无对他的评价或离任报告</p>
+				</div>
+			</div>
+		</div>
+        <div id="buyContainer" class="count-sum hide">
+			<div class="count-inner">
+				<div class="fl money">
+					<p class="sum inline" >总计0金币</p><!-- <span class="line">|</span><span class="inline">已优惠20元</span> -->
+				</div>
+				<div class="fr sure-wrapper">
+					<button class="sure" id="sure">确认购买</button>
+					<label id="error" class="error" for="password" style="display:none"><i class="iconfont">&#xe640;</i>请选择您要购买的背景调查报告</label>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<!-- 购买结账信息 -->
+	
+{/block}
+
+{block name="resources-footer"}
+<script src="{$Think.config.resources_site_root}/mobile/js/vue.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/vue-resource.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/moment.js"></script>
+<script src="{$Think.config.resources_site_root}/mobile/js/photoswipe.min.js"></script>
+    <script>
+    /*$(function(){
+    	var w=document.body.clientWidth;
+	 	$('.backgrounddetail').css('width',w-230+'px');
+	 	$('.count-sum').css('width',w-210+'px');
+	 	var h=document.documentElement.clientHeight;
+	 	$('.detail-none').css('height',h-343+'px')
+    })*/
+
+
+
+
+ 	var pageName = "BuyBackgroundSurvey";
+	var payment = {
+		OwnerId: 0, 
+		TradeType: 4, 
+		TradeMode: 2, 
+		PayWay:"",
+        PayRoute:"QRCODE",
+		BizSource: "BuyBackgroundSurvey",
+		TotalFee: 0,
+		CommodityCode: 1, //
+		CommoditySubject: "购买背景调查",
+		CommodityExtension: [
+
+		]
+	};
+	function getUrlParam(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]);return null;
+	}
+	var orderItems = [];
+	
+	Vue.filter('moment', function (value, formatString) {
+		    formatString = formatString || 'YYYY年MM月';
+		    return moment(value).format(formatString);
+	});
+		
+	var list=new Vue({
+		el:'#report',
+		data:{
+			model: {},
+			StageEvaluation: AppEnvironment.bizTypes.StageEvaluation,
+			DepartureReport: AppEnvironment.bizTypes.DepartureReport
+		},
+		ready: function(){
+			var CompanyId = getUrlParam('CompanyId');
+			var idcard = getUrlParam('IDCard');
+            var blfnum = 0;
+            var blftime = setInterval(function () {
+                blfnum+=1;
+                list.$http.get(AppEnvironment.apiRoot+'/workplace/ThirdPersonalCredit/findExistsCredits?IDCard='+idcard).then(function (response) {
+                    var data=JSON.parse(response.data)
+                    if(data.length>0){
+                        clearInterval(blftime)
+                        $('.blf').show()
+                        $('#pfxy').text(data[0].ThirdCreditScore+'分');
+                        $('#pfbl').text(data[1].ThirdCreditScore+'分');
+                        $('.work_details_top').hide();
+                    }else{
+                        if(blfnum==5){
+                            clearInterval(blftime)
+                            $('.work_details_top').text('未能计算出职场信用分、贷款信用分');
+                            $('#pfxy').hide();
+                            $('#pfbl').hide();
+                            setTimeout(function () {
+                                $('.work_details_top').hide();
+                            },2000)
+                        }
+                    }
+                })
+            },2000)
+            var name = getUrlParam('RealName');
+			var url = AppEnvironment.apiRoot+'/workplace/BackgroundSurvey/Search?CompanyId='+CompanyId+'&IDCard='+idcard+'&RealName='+name;
+			payment.OwnerId=CompanyId;
+			this.$http.get(url).then(function (response) {
+				this.model = response.data;
+				if(response.data.ErrorMessage){
+					alert('发现身份证号匹配的员工档案姓名与您输入的姓名不一致')
+				}
+                if(this.model.IsDimission==true && this.model.IsArchive==true ){
+					$("#buyContainer").show();
+				}
+				if(response.data==""){
+					$('.detail-none').show();
+				}else{
+					$('.detail-none').hide();
+				}
+
+			}, function (error) {
+				console.log('没有获取到员工信息');
+			});
+		}
+	})
+	
+	list.$watch('model', function () {
+		$('.monli').off('click').on('click',function(){
+				var $this = $(this);
+				var $span = $this.find('.check-radio');
+
+				var $price = parseFloat($this.attr('data-price'));
+				var archiveId = $this.attr('data-ArchiveId');
+				var $addItem = !$span.hasClass('checked');
+
+				var $item = null;
+				for (var i = 0; i < orderItems.length; i++) {
+					if(orderItems[i].ArchiveId == archiveId) {
+						$item = orderItems[i];
+						orderItems.splice(i, 1);
+						break;
+					}
+				}
+				if(null == $item) {
+					 $item = { "Price":0, "ArchiveId": archiveId, "ArchiveCompanyId": $this.attr('data-ArchiveCompanyId') };
+				}
+
+				$item.Price += $price;
+				if($this.attr('data-CommentType')=='DepartureReport'){
+					$item.BoughtDepartureReport = $addItem;
+				} else {
+					$item.BoughtStageEvaluation = $addItem;
+				}
+				if($item.BoughtDepartureReport || $item.BoughtStageEvaluation) {
+					orderItems.push($item);
+				}
+
+				if ($addItem) {
+					$span.addClass('checked');
+					payment.TotalFee += $price;
+				} else {
+					$span.removeClass('checked');
+					payment.TotalFee -= $price;
+				}
+				$('.money .sum').text('总计'+payment.TotalFee+'金币');
+			
+		});
+		$('#sure').off('click').on('click',function(){
+			if(payment.TotalFee==0){
+				$('#error').show();
+			}else{
+				$('#error').hide();
+				payment.CommodityExtension = JSON.stringify(orderItems);
+				var targetUrl="/Payment/SelectPayWay?CompanyId="+getUrlParam("CompanyId")+"&payment="+encodeURIComponent(JSON.stringify(payment));
+				window.location.href=targetUrl;
+			}
+		})
+		/*阶段评价*/
+		$('.stage').unbind('click').bind('click',function(){
+			var CompanyId = getUrlParam('CompanyId');
+			var ArchiveId =  $(this).attr('data-archiveid');
+			window.location.href='SingleDetail?CompanyId='+CompanyId+'&ArchiveId='+ArchiveId+'&CommentType=0'
+		})
+		/*离职报告*/
+		$('.depart').unbind('click').bind('click',function(){
+			var CompanyId = getUrlParam('CompanyId');
+			var ArchiveId =  $(this).attr('data-archiveid');
+			window.location.href='SingleDetail?CompanyId='+CompanyId+'&ArchiveId='+ArchiveId+'&CommentType=1'
+		})
+		
+	});
+
+    </script>
+{/block} 
+
+	
+ 

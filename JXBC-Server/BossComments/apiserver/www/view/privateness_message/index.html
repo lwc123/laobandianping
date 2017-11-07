@@ -1,0 +1,42 @@
+{extend name="-public:layout_console-privateness" /}
+
+{block name="page-title"}消息列表{/block}
+{block name="page-content"}
+    <!--右侧内容开始-->
+    <div class="com1-bg info-bg">
+		<div class="files-detail">
+		    <p class="com-tt">消息</p>
+                <ul class="info-list">
+                    {if(empty($list))}
+                    <div class="detail-none" >
+                        <img src="{$Think.config.resources_site_root}/pc/img/none.png">
+                        <p>暂无通知</p>
+                    </div>
+                    {else/}
+                    {foreach($list as $value)}
+                    <li class="info-list">
+                        <p class="detail-name"> <a href="#">{php}echo nl2br($value['Content']){/php}</a></p>
+                        <p class="detail-num">{$value.time}</p>
+                        <!-- {if($value.BizType==0)}
+                         {elseif($value.BizType==2)/}
+                         &lt;!&ndash;离职报告&ndash;&gt;
+                         <span ><a href="/ArchiveComment/comment?oid={$value.BizId}&CompanyId={$value.ToCompanyId}&CommentType=1&MessageId={$value.MessageId}" class="blue">去查看</a></span>
+                         &lt;!&ndash;离职报告&ndash;&gt;
+                         {else/}
+                         &lt;!&ndash;阶段评价&ndash;&gt;
+                         <span ><a href="/ArchiveComment/comment?oid={$value.BizId}&CompanyId={$value.ToCompanyId}&CommentType=0&MessageId={$value.MessageId}" class="blue">去查看</a></span>
+                         &lt;!&ndash;阶段评价&ndash;&gt;
+                         {/if}-->
+                    </li>
+
+                    {/foreach}
+                    <div class="em-page">
+                        {$pagination}
+                    </div>
+                    {/if}
+                </ul>
+            </div>
+        </div>
+
+{/block}
+

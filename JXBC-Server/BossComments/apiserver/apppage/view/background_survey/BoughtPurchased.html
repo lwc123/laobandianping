@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>背景调查</title>
+	<meta name="description" content=""/>
+	<!--清理缓存 start-->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<meta content="telephone=no" name="format-detection" />
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	{include file="public/resources_header" /}
+</head>
+<body>
+	<!-- 缓冲动画 -->
+	<div class="loader-bg">
+		<div class="loader">
+    	</div>
+	</div>
+	<!-- 列表详情 -->
+	<div class="already-buy" id="buy" >
+		<div class="wrapper check-search" id="search" style="display:none">
+			<div class="inner">
+				<h2>背景调查查询</h2>
+				<form class="boss-form">
+					<div class="marginb-32">
+						<input class="inp check-name" id="check-name" type="text" placeholder="请输入姓名">
+					</div>
+					<div class="marginb-50">
+						<input class="inp idcard" id="idcard" type="text" placeholder="请输入身份证号">
+					</div>
+					<div class="btn marginb-40">
+						<button id="search-btn" @click="openUrl" type="button" data-is="true">查询</button>
+						<p>在职人员的信息将不能被查询</p>
+					</div>
+				</form>	
+			</div>
+		</div>
+		<div id="al-bg" style="display:none">
+			<h2 class="font30">公司已购买的背景调查</h2>
+<!-- 			自定义元素：作用只是作为一个挂载点 -->
+			<div v-for="item in buyData" class="already-list font30">
+				<h2 class="font30">{{item.RealName}}</h2>
+				<ul>
+					<li class="font28">
+						<div class="company-div" v-for="li in item.companys" data-companyid='{{li.CompanyId}}' data-archiveid="{{li.ArchiveId}}">
+							<p class="font30 li-name">{{li.Company.CompanyName}}</p>
+							<p class="font24"><span v-if="li.BoughtDepartureReport!=0">离任报告1份</span><span v-if="li.StageEvaluationNum!=0 && li.BoughtDepartureReport!=0">|</span>
+                                <span v-if="li.StageEvaluationNum!=0">阶段评价{{li.StageEvaluationNum}}份</span></p>
+						</div> 
+					</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+
+		<!-- 错误提示 -->
+		<div class="error" id="error">手机号不能为空</div>
+	{include file="public/resources_footer" /}
+
+<script type="text/javascript">
+    function getUrlParam(name){
+        var reg=new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r=window.location.search.substr(1).match(reg);
+        if(r!=null)return unescape(r[2]); return null;
+    }
+    AppEnvironment.currentCompanyId = getUrlParam('CompanyId');
+    $(document).ready(function() {
+		var demo=new Vue({
+				el:'#buy',
+				data:{
+					buyData:[],
+					//loading:false
+				},
+
+				ready:function(){
+					
+					var isSearch=getUrlParam('Search');
+					if(isSearch==1){
+						$('#al-bg').hide();
+						$('#search').show();
+						$('.loader-bg').hide();
+						AppBridge.gotoNativePage('ShowSearchButton','false');
+					} else {
+						var apiUrl=AppEnvironment.apiRoot+'/workplace/BackgroundSurvey/Purchased?CompanyId='+AppEnvironment.currentCompanyId;
+						$('.loader-bg').show();
+						this.$http.get(apiUrl).then(function(response){
+                        
+							this.buyData=response.data;
+							$('.loader-bg').hide();
+							if(response.data==''){
+								$('#al-bg').hide();
+								$('#search').show()
+								AppBridge.gotoNativePage('ShowSearchButton','false');
+							}else{
+								AppBridge.gotoNativePage('ShowSearchButton','true');
+								$('#al-bg').show();
+								$('#search').hide()
+							}
+						},function(response){
+							
+					})
+				}
+			},
+			methods:{
+				openUrl:function(){
+					var name=encodeURI($('#check-name').val());
+					var idcard=$('#idcard').val();
+					var url="detail?CompanyId="+AppEnvironment.currentCompanyId+"&IDCard="+idcard+"&RealName="+encodeURIComponent(name);
+					var checkName=$('#check-name').val();
+					var idcard=$('#idcard').val()
+					var regNum = /^(\d{3})(\d{3})(\d{4})(\d{2})(\d{2})(?:\d{2})(\d)(?:\d|X)$/;
+					var regName=/^[\u4e00-\u9fa5]{2,5}$/;
+					if(checkName==''){
+						$('#error').show().text('姓名不能为空');
+						setTimeout(function(){
+							$('#error').hide();
+						},2000);
+					}else if(!regName.test(checkName)){
+						$('#error').show().text('姓名格式错误');
+						setTimeout(function(){
+							$('#error').hide();
+						},2000);
+					}else if(idcard==''){
+						$('#error').show().text('身份证不能为空');
+						setTimeout(function(){
+							$('#error').hide();
+						},2000);
+					}else if(!regNum.test(idcard)){
+						$('#error').show().text('身份证格式不正确');
+						setTimeout(function(){
+							$('#error').hide();
+						},2000);
+					}else{
+                        this.$http.get(AppEnvironment.apiRoot+'/thirdapis/sinoway/sendQueryRequest?IDCard='+idcard+'&RealName='+checkName).then(function (response) {
+                            console.log('伯乐分查询成功')
+                        },function (response) {
+                            console.log('伯乐分查询失败')
+                        });
+                        $('.loader-bg').show();
+                        AppBase.navigate(url);
+                        return ;
+					}
+				}
+			}
+
+		});
+        $("#buy").on("click",".company-div",function(){        
+            var CompanyId=$(this).attr('data-companyid');
+            var ArchiveId=$(this).attr('data-archiveid');
+            var url="SingleDetail.html?CompanyId="+AppEnvironment.currentCompanyId+"&ArchiveId="+ArchiveId;
+            AppBridge.gotoNativePage('ShowSearchButton','false');
+            AppBase.navigate(url);
+        });  
+    });
+		
+	</script>
+</body>
+</html>

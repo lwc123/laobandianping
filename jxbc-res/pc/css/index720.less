@@ -1,0 +1,496 @@
+/*适配*/
+@rem:45rem;
+
+/*清楚默认样式*/
+body,h1,h2,h3,h4,h5,h6,ul,li,input,a,button{
+  margin: 0;
+  padding: 0;
+  font-family:"Microsoft YaHei";
+}
+.clearfix:after,.clearfix:before{
+  display: table;
+  clear: both;
+  content: '';
+}
+img{
+  display: block;
+}
+a{
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+li{
+  list-style: none;
+}
+input{
+  outline: none;
+  -webkit-appearance: none;
+}
+
+/*解决固定定位*/
+html,body{
+  background: #eee;
+  color: white;
+}
+.wrap{
+  overflow: hidden;
+  height: 100%;
+  font-size: 20/@rem;
+  font-weight: 200;
+}
+#header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80/@rem;
+  background: #232323;
+  z-index: 996;
+  /*display:none;*/    /*关闭下载打开这个*/
+}
+
+/*头部左侧*/
+.header-left{
+  float: left;
+}
+.logo img{
+  width: 59/@rem;
+  height: 58/@rem;
+  padding:12/@rem 22/@rem;
+}
+.logo,.header-title{
+  float: left;
+}
+.header-title em{
+  display: block;
+  background: url("../img/home720/phone.png") no-repeat center;
+  background-size:19/@rem 25/@rem;
+  width: 19/@rem;
+  height: 25/@rem;
+  float: left;
+}
+.header-title>span{
+  display: block;
+  font-size: 18/@rem;
+  color: #c0a260;
+  padding: 15/@rem 0 3/@rem;
+}
+.header-title div span{
+  float: left;
+  font-size: 20/@rem;
+  font-weight: 500;
+  line-height: 23/@rem;
+  padding-left: 9/@rem;
+  color: white;
+  text-decoration: none;
+}
+
+/*头右侧*/
+.header-right{
+  float: right;
+  padding-top: 22/@rem;
+}
+#download{
+  display: inline-block;
+  width: 132/@rem;
+  height: 32/@rem;
+  line-height: 35/@rem;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  background: url("../img/home720/btn_bg.png") no-repeat center;
+  background-size:132/@rem 32/@rem;
+}
+#downloadClose{
+  display: inline-block;
+  width: 17/@rem;
+  height: 17/@rem;
+  background: url("../img/home720/delete.png") no-repeat center;
+  background-size:17/@rem;
+  padding: 0 19/@rem 0 37/@rem;
+}
+
+/*内容区*/
+#content{
+  position: relative;
+  width: 100%;
+  padding-top: 79/@rem;  /*关闭下载这个清除*/
+  background-color: white;
+}
+
+//无缝滑屏
+#picWrap{
+  position:relative;
+  overflow: hidden;
+  height: 600/@rem;
+}
+
+#picList{
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+#picList li{
+  float: left;
+  list-style: none;
+  width: 720/@rem;
+  height: 600/@rem;
+}
+#picList img{
+  width: 100%;
+  display: block;
+}
+#picNav{
+  position: absolute;
+  left: 0;
+  bottom: 36/@rem;
+  width: 100%;
+  text-align: center;
+  line-height: 16/@rem;
+}
+#picNav span{
+  display: inline-block;
+  width: 12/@rem;
+  height: 12/@rem;
+  border: 1px solid #C2C0BD;
+  border-radius: 5/@rem;
+}
+#picNav .picActive{
+  background-color: #C2C0BD;
+}
+
+/*登录阴影*/
+#shadow{
+  position: absolute;
+  left: 0;
+  top: 80/@rem;   /*关闭下载 这个清除*/
+  z-index: 69;
+  width: 100%;
+  height: 80/@rem;
+  background: url("../img/home720/home_banner_bg1.png");
+}
+.shadow-close{
+  display: none;   /*下载页面关闭，这个显示*/
+}
+.shadow-login{
+  float: right;
+  color: #F6F6F6;
+
+}
+.shadow-login a{
+  float: right;
+  color: #F6F6F6;
+  font-size: 28/@rem;
+  padding: 21/@rem;
+}
+
+.shadow-title{
+  display: block;
+  padding: 23/@rem 0;
+  color: #b5995a;
+}
+
+/*观影*/
+#movie{
+
+  position: relative;
+  width: 100%;
+  height: 50/@rem;
+  background-color: #fff;
+}
+#movie .contact{
+  position: absolute;
+  left: 0;
+  top: -52/@rem;
+  height: 105/@rem;
+  width: 164/@rem;
+  background: url("../img/home720/home_pup_bg.png") no-repeat center;
+  background-size:164/@rem 105/@rem;
+}
+.movie-video{
+  display: inline-block;
+  padding-left: 260/@rem;
+}
+.movie-video img{
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 10/@rem;
+  width: 28/@rem;
+  height: 28/@rem;
+}
+//.movie-video img{
+//  position: relative;
+//  top: 3/@rem;
+//  display: block;
+//  width: 100%;
+//}
+.movie-video span{
+  display: inline-block;
+  height: 20/@rem;
+  vertical-align: middle;
+  margin-top: 6/@rem;
+  color: #b5995a;
+}
+.contact a{
+  display: block;
+  height:48/@rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+.contact span{
+  display: inline-block;
+  margin-left: 1/@rem;
+  margin-top: 2/@rem;
+}
+.contact a img{
+  float: left;
+  height: 30/@rem;
+  width: 32/@rem;
+  padding: 9/@rem;
+}
+.contact div{
+
+  width: 90%;
+  height:48/@rem;
+  line-height: 48/@rem;
+}
+.lianxi{
+  border-bottom: 1px solid #F2EDDF;
+}
+
+.pic1{
+  width: 720/@rem;
+}
+.pic1 img{
+  width: 100%;
+}
+
+.banner{
+  position: relative;
+  width: 720/@rem;
+  height: 550/@rem;
+  background-color: #F7C957;
+  background-size:720/@rem 550/@rem;
+}
+.picban{
+  width: 720/@rem;
+  height: 550/@rem;
+  overflow: hidden;
+}
+.picban ul{
+  display: block;
+  transition: 1s;
+  transform: translateX(0/@rem);
+}
+.picban li{
+  display: inline-block;
+  float: left;
+  box-sizing: border-box;
+  width: 720/@rem;
+  padding: 0 7/@rem;
+  height: 550/@rem;
+}
+.picban li span{
+  display: inline-block;
+  width: 214/@rem;
+  height: 214/@rem;
+  border-radius: 10/@rem;
+  margin: 160/@rem 8/@rem;
+  overflow: hidden;
+}
+.picban span img{
+  width: 214/@rem;
+  height: 214/@rem;
+}
+.banner .btnl{
+  position: absolute;
+  top: 55%;
+  left: 0;
+  width: 100/@rem;
+  height: 109/@rem;
+}
+.pic_banner_title{
+  position: absolute;
+  width: 100%;
+}
+.pic_banner_title img{
+  width: 100%;
+}
+.banner .btnl img{
+  width: 100/@rem;
+  height: 109/@rem;
+}
+.banner .btnr{
+  position: absolute;
+  top: 55%;
+  right: 0;
+  width: 98/@rem;
+  height: 109/@rem;
+}
+.banner .btnr img{
+  width: 100/@rem;
+  height: 109/@rem;
+}
+
+
+/*底部*/
+#footerT{
+  width: 100%;
+  height: 280/@rem;
+  background-color: #000;
+  font-size: 15/@rem;
+}
+#footerT .ftAdd{
+  padding-top: 38/@rem;
+}
+#footerT .faLeft{
+  background: url("../img/home720/home_pic8_cut.png") no-repeat right;
+  background-size: 3/@rem 100/@rem;
+  float: left;
+  width: 325/@rem;
+  padding: 4/@rem 5/@rem 5/@rem 20/@rem;
+}
+#footerT .faRight{
+  float: left;
+  width: 330/@rem;
+  padding: 0/@rem 20/@rem 5/@rem 13/@rem;
+}
+#footerT .faLeft em {
+  display: inline-block;
+  position: relative;
+  top: 12/@rem;
+  width: 33/@rem;
+  height:33/@rem;
+  background: url("../img/home720/logo.png") no-repeat center;
+  background-size: 33/@rem 33/@rem;
+}
+
+#footerT .faLeft a{
+  text-decoration: none;
+  font-weight: 300;
+  color: #b5995a;
+}
+#footerT .ftCall{
+  height: 39/@rem;
+  padding:20/@rem 20/@rem;
+}
+#footerT .ftCall a{
+  display: block;
+  width: 50%;
+  height: 39/@rem;
+}
+.ftCall em{
+  display: inline-block;
+  width: 29/@rem;
+  height: 39/@rem;
+  background: url("../img/home720/home_pic8_ic_phone.png") no-repeat center;
+  background-size:29/@rem 39/@rem;
+}
+.ftCall span{
+  position: relative;
+  top:-16/@rem;
+  text-decoration: none;
+  color:white;
+}
+
+/*底部固定*/
+#footerFix{
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  width: 720/@rem;
+  height: 50/@rem;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  padding: 1%;
+}
+#footerFix>div{
+  width: 49%;
+  height: 50/@rem;
+  float: left;
+}
+#footerFix>.ffleft{
+  border-right: 1px solid white;
+}
+
+#footerFix img{
+  width: 35/@rem;
+  height: 35/@rem;
+}
+#footerFix img,#footerFix span{
+  color: white;
+  position: relative;
+  left: 90/@rem;
+  bottom: 10/@rem;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 25/@rem;
+}
+
+#icp a:hover,#icp a:visited,#icp a:link,#icp a:active{
+  color: white;
+  text-decoration: none;
+}
+
+#registerAlert{
+  position: fixed;
+  top:40%;
+  left: 20%;
+  width: 554/@rem;
+  height: 451/@rem;
+  display: none;
+}
+#registerAlert img{
+  width: 554/@rem;
+  height: 451/@rem;
+}
+.registerAlertClose{
+  width: 50/@rem;
+  height: 50/@rem;
+  position: absolute;
+  top: 1/@rem;
+  left: 420/@rem;
+}
+
+.feature{
+  position: relative;
+}
+.feature-title{
+  position: absolute;
+  width: 20%;
+  left: 40%;
+  top: 5%;
+}
+.feature-con{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top:20%;
+  overflow: hidden;
+}
+.swiper-container2{
+  width: 100%;
+}
+.swiper-wrapper{
+  width: 100%;
+  margin-left: 2%;
+}
+.swiper-slide{
+  width: 100%;
+
+  overflow: hidden;
+}
+.swiper-slide img{
+  width: 100%;
+margin-left: -5%;
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+  text-align: center;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}

@@ -1,0 +1,87 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	    <!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+	<body>
+	<!--弹窗-->
+	<div id="zhezhao">
+		<div id="alert">
+			<div class="alertT">
+				<b class="alertClose">×</b>
+				<span></span>
+			</div>
+			<form class="alertB">
+				<div class="bcontent">
+				</div>
+			</form>
+			<div class="btnwrap">
+				<!--<a href="javascript:void (0)" class="button newJobSaveBtn">单个按钮</a>-->
+				<!--<a href="javascript:void (0)" class="button db_btn_style alertClose">db按钮</a>-->
+			</div>
+			<div class="patch">
+			</div>
+			<div class="power_person_details">
+			</div>
+		</div>
+	</div>
+	<!--弹窗结束-->
+
+	   <!--左侧部分-->
+		<div class="com1-left">
+		  	  <!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+		</div>
+		<!--#include virtual="/-sources/-common/header.html"-->
+		 <!--档案详情部分-->
+		<div class="com1-bg em-info">
+		  <!--员工档案详情部分-->
+		  <div class="em3-info1">
+			  <p class="com-tt">授权管理<a id="creat_new_power" class="table_creat_power" href="javascript:void (0)">创建新的授权</a></p>
+			  <table class="em_content_table"  width="300" border="1" cellspacing="0">
+				  <tr>
+					  <th width="200" height="40">公司管理者</th>
+					  <th width="200" height="40">角色</th>
+					  <th width="500">操作</th>
+				  </tr>
+				  <tr>
+					  <td height="40">马蓉</td>
+					  <td>公司法人</td>
+					  <td class="bossNoDid"></td>
+				  </tr>
+
+				  <tr>
+					  <td height="40">宋哲</td>
+					  <td>个人助理</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+				  </tr>
+				  <tr>
+					  <td height="40">王宝强</td>
+					  <td>赚钱工人</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+				  </tr>
+				  <tr>
+					  <td height="40">王宝强大儿子</td>
+					  <td>宋喆儿子</td>
+					  <td><span class="table_revise">修改</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_delete">删除</span></td>
+
+				  </tr>
+			  </table>
+		   </div>
+
+	    </div>	
+	</body>
+	<!--#include virtual="/-sources/-common/resources_footer.html"-->
+	<script type="text/javascript">
+        $("#creat_new_power,.table_revise").click(function () {
+            $("#alert>.alertT>span").text("创建新的授权");
+            $(".alertB").html('<span>赋予角色：<label for="admin"><input id="admin" type="radio" value="2" name="Role" checked>管理员</label><label for="high-level"><input id="high-level"  type="radio" value="3" name="Role">高管</label><label for="creat-msg"><input id="creat-msg" type="radio" value="4" name="Role">建档员</label></span><br><br><div class="pocket-con">姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" required name="RealName"	placeholder="请输入姓名"><br></div><div class="pocket-con">职务&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="JobTitle" required placeholder="请输入职务"><br></div><div class="pocket-con">手机号&nbsp;&nbsp;：<input type="text" name="MobilePhone" required placeholder="请输入手机号，将作为登录账号"><br></div>')
+            $(".patch").html('<span class="table_creat_warnning warnning"><i class="iconfont">&#xe616;</i>保存后，将以短信形式吧用户名和密码发送到上方手机号</span>')
+            $(".btnwrap").html('<a href="javascript:void (0)" class="button newJobSaveBtn">保存并生效</a>');
+            $(".power_person_details").html('<span>角色权限描述：</span><br><span>高管：可以建档、提交评价、背景调查查询、发布职位、审核评价；</span><br><span>建档员：可以建档、提交评价、北京调查查询、发布职位</span><br><span>管理员：可以建档、提交评论、北京调查查询、发布职位、授权管<b></b>理、修改企业资料信息。</span>')
+            alertwin();
+        })
+	</script>
+</html>
+	

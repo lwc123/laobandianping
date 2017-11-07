@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>开通老板点评服务</title>
+    {include file="-public/resources_fullscreen_header" /}
+</head>
+<body>
+<div class="open-body">
+    <img class="com-logo open-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" >
+    <div class="open-bg1"></div>
+    <div class="open-bg">
+        <p class="com-title">开通老板点评服务</p>
+        <div class="com-left">
+            <div class="open-price">
+                <img class="price_img" src="{$PriceStrategy.ActivityHeadFigure}" height="222">
+                {if($PriceStrategy.IsActivity >0)}
+                <div class="open-word">
+                    <i class="iconfont open-img"><img src="{$PriceStrategy.ActivityIcon}" alt=""/></i>
+                    <p>开户原价：<del>{$PriceStrategy.AndroidOriginalPrice}元</del></p>
+                    <p>{$PriceStrategy.ActivityName}：{$PriceStrategy.AndroidPreferentialPrice}元</p>
+                    <p class="open-w1">{$PriceStrategy.ActivityDescription}</p>
+                </div>
+                {else/}
+                <div class="open-word">
+                    <p>开户原价：{$PriceStrategy.AndroidOriginalPrice}元</p>
+                    <p class="open-w1">{$PriceStrategy.ActivityDescription}</p>
+                </div>
+                {/if}
+            </div>
+            <form id="commentForm">
+                <p class="open-title">开户信息</p>
+                <div class="com-put">
+                    <i class="iconfont img">&#xe63f;</i>
+                    <input type="text" value="" placeholder="请输入和营业执照一致企业名称" name="company" id="company" required >
+                </div>
+                <div class="com-put">
+                    <i class="iconfont img">&#xe644;</i>
+                    <input type="text" value="" placeholder="请输入您的姓名" name="name1" id="name" required >
+                </div>
+                <div class="com-put">
+                    <i class="iconfont img">&#xe63d;</i>
+                    <input type="text" value="" name="position1" id="duties" required placeholder="请输入您担任的职务">
+                </div>
+                <button id="btnSubmit" class="com-btn1" type="submit">去支付</button><br>
+                <p class="open-p">支付后可开发票，请准确填写公司名称</p>
+            </form>
+        </div>
+    </div>
+    <div class="com-footer"></div>
+    <div class="phone"></div>
+</body>
+{include file="-public/resources_fullscreen_footer" /}
+<script type="text/javascript">
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);return null;
+    }
+    //担任职务
+    jQuery.validator.addMethod("isPosition", function(value, element) {
+		var position = /^([A-Za-z]|[\u4E00-\u9FA5])+$/;
+		return this.optional(element) || position.test(value);
+	}, "请正确填写您担任的职务");
+    $("#commentForm").validate({
+        onsubmit:true,// 是否在提交是验证
+        onfocusout:false,// 是否在获取焦点时验证
+        onkeyup :false,// 是否在敲击键盘时验证
+        rules: {
+            company:{
+                required: true,
+            },
+            name1: {
+                required: true,
+            },
+            position1:{
+                required: true,
+                isPosition:true
+            }
+        },
+        messages: {
+            company : {
+                required : "<i class='iconfont'>&#xe640;</i> 请输入公司名称",
+            },
+            name1: {
+                required: "<i class='iconfont'>&#xe640;</i> 请输入您的姓名",
+            },
+            position1 : {
+                required:"<i class='iconfont'>&#xe640;</i> 请输入您担任的职务",
+                isPosition:"<i class='iconfont'>&#xe640;</i> 请正确填写您担任的职务"
+            }
+        },
+        submitHandler:function(form){
+            var tel=getUrlParam('tel')
+            var company=$('#company').val();
+            var name=$('#name').val();
+            var duties=$('#duties').val();
+            var InviteCode=getUrlParam('InviteCode');
+            if(InviteCode==null){
+                InviteCode="";
+            };
+//            $("#btnSubmit").attr("disabled","disabled");
+            var payUrl=AppEnvironment.apiRoot+'/workplace/User/existsCompany?CompanyName='+company;
+            $.ajax({
+                type:'post',
+                url:payUrl,
+                dataType:'json',
+                beforeSend:function(){
+                	$("#btnSubmit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+                },
+                success:function(data){
+                    if(data==true){
+                        $('.phone').show().html('您输入的公司已开通服务!请联系该公司管理员');
+                        setTimeout(function(){
+                        	$("#btnSubmit").html("去支付").removeAttr("disabled");
+                            $('.phone').hide();
+                        },2000);
+                    }else{
+                        window.location.href="choicepay?company="+encodeURIComponent(company)+"&JobTitle="+encodeURIComponent(duties)+"&RealName="+encodeURIComponent(name)+"&tel="+tel+"&InviteCode="+InviteCode;
+                    }
+                }
+            })
+        }
+    })
+</script>
+</html>

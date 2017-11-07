@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/modify_personal_information"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_360PX"
+    android:background="@drawable/personal_center_head">
+
+    <RelativeLayout
+        android:id="@+id/profile_image_rl"
+        android:layout_width="@dimen/DIMEN_130PX"
+        android:layout_height="@dimen/DIMEN_130PX"
+        android:layout_centerInParent="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:border_width="0dp"
+            android:layout_width="@dimen/DIMEN_130PX"
+            android:layout_height="@dimen/DIMEN_130PX"
+            android:src="@drawable/personal_gold_head" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            app:border_width="0dp"
+            android:layout_width="@dimen/DIMEN_122PX"
+            android:layout_height="@dimen/DIMEN_122PX"
+            android:layout_centerInParent="true"
+            android:src="@drawable/personal_default_avatar" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/DIMEN_10PX"
+            android:layout_marginTop="@dimen/DIMEN_30PX"
+            android:src="@drawable/modify_avatar" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/personal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_image_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_30PX"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="@dimen/DIMEN_28PX" />
+</RelativeLayout>

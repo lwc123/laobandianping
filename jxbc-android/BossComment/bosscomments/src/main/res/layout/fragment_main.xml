@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <!--<include-->
+        <!--android:id="@+id/head_title"-->
+        <!--layout="@layout/include_head_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <include
+        layout="@layout/include_company_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_431PX" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_marginTop="@dimen/DIMEN_20PX"
+        android:background="@color/main_line_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_188PX"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/employee_record"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableTop="@drawable/employee_record"
+            android:drawablePadding="@dimen/DIMEN_34PX"
+            android:gravity="center"
+            android:paddingTop="@dimen/DIMEN_38PX"
+            android:paddingBottom="@dimen/DIMEN_34PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_text_color"
+            android:text="@string/all_employee_record" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="match_parent"
+            android:background="@color/main_line_color"/>
+
+        <TextView
+            android:id="@+id/stage_employee_comments"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableTop="@drawable/stage_employee_comments"
+            android:gravity="center"
+            android:paddingTop="@dimen/DIMEN_38PX"
+            android:paddingBottom="@dimen/DIMEN_34PX"
+            android:drawablePadding="@dimen/DIMEN_34PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_text_color"
+            android:text="@string/employee_evaluate" />
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="match_parent"
+            android:background="@color/main_line_color"/>
+
+        <TextView
+            android:id="@+id/departure_report"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableTop="@drawable/departure_report"
+            android:gravity="center"
+            android:paddingTop="@dimen/DIMEN_38PX"
+            android:paddingBottom="@dimen/DIMEN_34PX"
+            android:drawablePadding="@dimen/DIMEN_34PX"
+            android:textSize="@dimen/DIMEN_24PX"
+            android:textColor="@color/main_text_color"
+            android:text="@string/departure_report" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/main_line_color"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_188PX"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/background_investigation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableTop="@drawable/background_investigation"
+                android:gravity="center"
+                android:paddingTop="@dimen/DIMEN_38PX"
+                android:paddingBottom="@dimen/DIMEN_34PX"
+                android:drawablePadding="@dimen/DIMEN_34PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="@string/background_investigation" />
+
+            <View
+                android:layout_width="@dimen/DIMEN_1PX"
+                android:layout_height="match_parent"
+                android:background="@color/main_line_color"/>
+
+            <TextView
+                android:id="@+id/recruit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableTop="@drawable/recruit"
+                android:gravity="center"
+                android:paddingTop="@dimen/DIMEN_38PX"
+                android:paddingBottom="@dimen/DIMEN_34PX"
+                android:drawablePadding="@dimen/DIMEN_34PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="@string/recruit" />
+
+            <View
+                android:layout_width="@dimen/DIMEN_1PX"
+                android:layout_height="match_parent"
+                android:background="@color/main_line_color"/>
+
+            <TextView
+                android:id="@+id/main_message"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableTop="@drawable/main_message"
+                android:gravity="center"
+                android:paddingTop="@dimen/DIMEN_38PX"
+                android:paddingBottom="@dimen/DIMEN_34PX"
+                android:drawablePadding="@dimen/DIMEN_34PX"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="@string/main_message" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/unread_msg_number"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/shape_oval_red"
+            android:gravity="center"
+            android:text="99+"
+            android:visibility="gone"
+            android:textColor="@color/juxian_red"
+            android:textSize="@dimen/DIMEN_20PX" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:visibility="visible"
+        android:background="@color/main_line_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_188PX"
+        android:visibility="visible"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/invite_register"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:drawableTop="@drawable/company_opinion_img"
+                android:gravity="center"
+                android:paddingTop="@dimen/DIMEN_38PX"
+                android:paddingBottom="@dimen/DIMEN_34PX"
+                android:textColor="@color/main_text_color"
+                android:drawablePadding="@dimen/DIMEN_34PX"
+                android:textSize="@dimen/DIMEN_24PX"
+                android:text="@string/company_circle_title" />
+            <ImageView
+                android:id="@+id/invite_prize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/DIMEN_40PX"
+                android:src="@drawable/invite_prize"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/DIMEN_1PX"
+            android:layout_height="match_parent"
+            android:background="@color/main_line_color"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:visibility="visible"
+            android:paddingTop="@dimen/DIMEN_40PX"
+            android:paddingBottom="@dimen/DIMEN_40PX" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:visibility="visible"
+            android:paddingTop="@dimen/DIMEN_40PX"
+            android:paddingBottom="@dimen/DIMEN_40PX" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:background="@color/main_line_color"/>
+
+    <TextView
+        android:id="@+id/exist_demonstration"
+        android:layout_width="@dimen/DIMEN_220PX"
+        android:layout_height="@dimen/DIMEN_44PX"
+        android:layout_marginTop="@dimen/DIMEN_50PX"
+        android:background="@drawable/login_bg"
+        android:textSize="@dimen/DIMEN_30PX"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/luxury_gold_color"
+        android:visibility="gone"
+        android:text="退出演示"/>
+</LinearLayout>

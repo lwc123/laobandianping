@@ -1,0 +1,58 @@
+﻿@model Tuple<M2SA.AppGenome.Data.Pagination, Func<int,string>>
+
+@{
+    var pagination = Model.Item1;
+    var getPaginationUrl = Model.Item2;
+    if(getPaginationUrl == null)
+    {
+        getPaginationUrl = new Func<int, string>((index) =>
+        {
+            if (Request.Url.Query.Contains("page=" + pagination.PageIndex.ToString()))
+                return Request.Url.PathAndQuery.Replace("page=" + pagination.PageIndex.ToString(), "page=" + index.ToString());
+            else
+                return Request.Url.PathAndQuery + "&page=" + index.ToString();
+        });
+    }
+    if (pagination.TotalCount > 0)
+    {
+        var showPageCount = 10;
+        var pageCount = pagination.TotalCount / pagination.PageSize + (pagination.TotalCount % pagination.PageSize == 0 ? 0 : 1);
+        var minIndex = pagination.PageIndex - showPageCount/2;
+        if (minIndex < 1) { minIndex = 1; }
+        var maxIndex = minIndex + showPageCount;
+        if (maxIndex > pageCount)
+        {
+            maxIndex = pageCount+1;
+            minIndex = maxIndex - showPageCount;
+            if (minIndex < 1) { minIndex = 1; }
+        }
+        if (pageCount > 1)
+        {
+        <ul class="pagination">
+            <li @if (pagination.PageIndex == 1) { @Html.Raw("class='active'") }>
+                <a href="@getPaginationUrl(1)">首页</a>
+            </li>
+            @if (pagination.PageIndex > 1)
+            {
+                <li>
+                    <a href="@getPaginationUrl(pagination.PageIndex-1)">上一页</a>
+                </li>
+            }
+            @for (int i = minIndex; i < maxIndex; i++)
+            {
+                <li @if (pagination.PageIndex == i) { @Html.Raw("class='active'")  }>
+                    <a href="@getPaginationUrl(i)">@i</a>
+                </li>
+            }
+            @if(pagination.PageIndex < pageCount)
+            {
+                <li>
+                    <a href="@getPaginationUrl(pagination.PageIndex+1)">下一页</a>
+                </li>
+            }
+        </ul>
+        }    
+    }
+}
+ 
+

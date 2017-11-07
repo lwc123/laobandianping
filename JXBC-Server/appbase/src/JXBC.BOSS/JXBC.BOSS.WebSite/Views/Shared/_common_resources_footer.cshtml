@@ -1,0 +1,138 @@
+﻿@using JXBC.WebCore;
+@using Resources = JXTB.CommonData.Resources;
+
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+<script src="@Resources.GetResourceUri("/js/bootstrap.min.js")"></script>
+<script src="@Resources.GetResourceUri("/js/jquery-ui-1.10.3.custom.min.js")"></script>
+<script src="@Resources.GetResourceUri("/js/jquery.ui.touch-punch.min.js")"></script>
+<script src="@Resources.GetResourceUri("/js/bootstrap-select.js")"></script>
+<script src="@Resources.GetResourceUri("/js/bootstrap-switch.js")"></script>
+<script src="@Resources.GetResourceUri("/js/flatui-checkbox.js")"></script>
+<script src="@Resources.GetResourceUri("/js/flatui-radio.js")"></script>
+<script src="@Resources.GetResourceUri("/js/jquery.tagsinput.js")"></script>
+<script src="@Resources.GetResourceUri("/js/jquery.placeholder.js")"></script>
+<script src="@Resources.GetResourceUri("/js/application.js")"></script>
+<script src="@Resources.GetResourceUri("/js/resources.js")"></script>
+<script src="@Resources.GetResourceUri("/js/juxian-base.js")"></script>
+<script src="@Resources.GetResourceUri("/js/jquery.leanModal.min.js")"></script>
+<script src="@Resources.GetResourceUri("/js/bootstrap-datepicker.min.js?v=0")"></script>
+<script src="@Resources.GetResourceUri("/js/bootstrap-datepicker.zh-CN.min.js?v=0")"></script>
+<script src="@Resources.GetResourceUri("boss","/js/boss-base.js?v=0")"></script>
+
+<!-- common-alert -->
+<div id="common-alert" class="hidden">
+    <p class="common-alert textalign-center">this is a alert</p>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-action="close" data-dismiss="modal">确定</button>
+    </div>
+</div><!-- /.common-alert -->
+
+<!-- modal -->
+<div class="modal fade" id="commonModal" tabindex="-1" role="dialog">
+    <div id="commonModal-main" class="modal-dialog" style="width:450px;">
+        <div class="modal-content">
+            <div class="modal-header hidden">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 id="commonModal-title" class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        /*展开更多列表项*/
+        $('.get-option').parent().click(function () {
+            var o = $(this).next().css('display');
+            if (o == "none" || o == null || o == "") {
+                $(this).children(".get-option").css("background-image", "url(@Resources.GetResourceUri("boss", "/img/img-fold.png"))");
+            } else {
+                $(this).children(".get-option").css("background-image", "url(@Resources.GetResourceUri("boss", "/img/img-open.png"))");
+            }
+            $(this).next().slideToggle();
+        });
+        $(".sidebar li").each(function () {
+            var $class = $(this).attr("class");
+            if ($class != undefined && $class != null && $class == "active") {
+                $(this).parent().parent().css("display", "block");
+                $(this).parent().parent().parent().addClass("active");
+                return false;
+            }
+        })
+        $(".main-content a").each(function () {
+            var $href = $(this).attr("href");
+            if ($href != undefined && $href != null && $href.indexOf('/') > -1) {
+                var isTrue = true;
+                var tem = $href.split('/');
+                for (var i = 0; i < tem.length; i++) {
+                    if (tem[i] == "sq")
+                    {
+                        isTrue = false;
+                        break;
+                    }
+                }
+                if (isTrue)
+                {
+                    if ($href.indexOf('?') == -1) {
+                        $href = $href + "?";
+                    }
+                    if ($href.indexOf("leftFrom=") == -1) {
+                        var leftFrom = "@Request["leftFrom"]";
+                        if (leftFrom != undefined && leftFrom != null && leftFrom.length > 0) {
+                            $href = $href + "&leftFrom=" + leftFrom;
+                        }
+                    }
+                    if ($href.indexOf("headerFrom=") == -1) {
+                        var headerFrom = "@Request["headerFrom"]";
+                        if (headerFrom != undefined && headerFrom != null && headerFrom.length > 0) {
+                            $href = $href + "&headerFrom=" + headerFrom;
+                        }
+                    }
+                    if ($href.indexOf("leftNav=") == -1) {
+                        var leftNav = "@Request["leftNav"]";
+                        if (leftNav != undefined && leftNav != null && leftNav.length > 0) {
+                            $href = $href + "&leftNav=" + headerFrom;
+                        }
+                    }
+                    $(this).attr("href", $href);
+                }
+            }
+        })
+        $(".main-content form").each(function () {
+            var $search = window.location.search;
+            if ($search.indexOf("leftFrom=") > -1) {
+                var leftFrom = "@Request["leftFrom"]";
+                if (leftFrom != undefined && leftFrom != null && leftFrom.length > 0) {
+                    var inputLeft = document.createElement('input');
+                    inputLeft.setAttribute('type', 'hidden');
+                    inputLeft.setAttribute('name', 'leftFrom');
+                    inputLeft.setAttribute('value', '@Request["leftFrom"]');
+                    $(this).append(inputLeft);
+                }
+            }
+            if ($search.indexOf("headerFrom=") > -1) {
+                var headerFrom = "@Request["headerFrom"]";
+                if (headerFrom != undefined && headerFrom != null && headerFrom.length > 0) {
+                    var inputHeader = document.createElement('input');
+                    inputHeader.setAttribute('type', 'hidden');
+                    inputHeader.setAttribute('name', 'headerFrom');
+                    inputHeader.setAttribute('value', '@Request["headerFrom"]');
+                    $(this).append(inputHeader);
+                }
+            }
+            if ($search.indexOf("leftNav=") > -1) {
+                var headerFrom = "@Request["leftNav"]";
+                if (headerFrom != undefined && headerFrom != null && headerFrom.length > 0) {
+                    var inputHeader = document.createElement('input');
+                    inputHeader.setAttribute('type', 'hidden');
+                    inputHeader.setAttribute('name', 'leftNav');
+                    inputHeader.setAttribute('value', '@Request["leftNav"]');
+                    $(this).append(inputHeader);
+                }
+            }
+        })
+    });
+</script>

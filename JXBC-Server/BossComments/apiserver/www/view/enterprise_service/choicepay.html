@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>选择支付方式</title>
+     {include file="-public/resources_fullscreen_header" /} 
+  </head>
+  <body>
+     <div class="open-body">
+         <img class="com-logo open-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" >
+         <div class="open-bg1"></div>
+         <div class="open-bg">
+              <p class="com-title">选择支付方式</p>
+               <div class="com-left">
+                 <div class="choice-way">
+                 <div class="choice-line">
+                      <img src="{$Think.config.resources_site_root}/pc/img/p1.png">
+                      <div class="choice-radio">
+                          <input id="checked2" checked type="radio" value="Wechat" name="pay">
+                          <label for="checked2">微信支付</label>
+                      </div>
+                  </div>
+                  <div class="choice-line">
+                      <img src="{$Think.config.resources_site_root}/pc/img/p2.png">
+                      <div class="choice-radio">
+                          <input  id="checked3" type="radio" value="Alipay" name="pay">
+                          <label  for="checked3">支付宝支付</label>
+                      </div>      
+                  </div>
+                    <div class="cc choice-line">
+                      <img src="{$Think.config.resources_site_root}/pc/img/p3.png">
+                      <div class="choice-radio">
+                          <input  id="checked4" type="radio" value="wang" name="pay">
+                          <label  for="checked4">公司转账</label>
+                      </div>      
+                  </div>
+                 </div>
+                 <div class="choice-info">
+                   <p class="info-title">开户信息</p>
+                   <div class="info-con1">
+                     <p id="company"></p>
+                     <p id="name"></p>
+                     <p id="duties"></p>
+                     <p id="tel"></p>
+                   </div>
+                   <div class="info-con2">
+                       <p>开户原价：{$PriceStrategy["AndroidOriginalPrice"]}元</p>
+                       <p>{$PriceStrategy.ActivityName}：{$PriceStrategy.AndroidPreferentialPrice}元</p>
+                       <p>支付说明：开通老板点评服务</p>
+                       <p>实际需支付：<span>{$PriceStrategy.AndroidPreferentialPrice}元</span></p>
+                    </div>
+               <button class="com-btn1" type="button" id="pay">支付</button>
+             </div>
+          </div>
+      </div>
+      <div class="com-footer"></div>
+       {include file="-public/resources_fullscreen_footer" /} 
+      <script type="text/javascript">
+          //转账说明
+          $('#checked4').click(function(){
+           window.location.href="/EnterpriseService/TransferAccounts";
+           })
+
+         function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURI(r[2]);return null;
+          }
+          var company=getUrlParam('company');
+          var name=getUrlParam('RealName');
+          var duties=getUrlParam('JobTitle');
+          var tel=getUrlParam('tel');
+          $('#company').text('公司名称：'+company);
+          $('#name').text('您的姓名：'+name);
+          $('#duties').text('您的职务：'+duties);
+          $('#tel').text('您的电话：'+tel);
+          /*支付*/
+          var bizSource = AppEnvironment.bizSources.OpenEnterpriseService;
+          var companyId = -1;
+          if(null!=AppEnvironment.companyId&& AppEnvironment.companyId>0) {
+              bizSource = AppEnvironment.bizSources.RenewalEnterpriseService;
+              companyId = AppEnvironment.companyId;
+          }
+          var payment = {
+              OwnerId: companyId,
+              TradeType: AppEnvironment.TradeTypes.OrganizationToOrganization,
+              TradeMode: AppEnvironment.TradeModes.Payout,
+              BizSource: bizSource,
+              PayWay:"",
+              PayRoute:"QRCODE",
+              TotalFee:parseFloat("{$PriceStrategy.AndroidPreferentialPrice}"),
+              CommoditySubject:"开通老板点评服务",
+              ReturnUrl:"http://"+window.location.host+"/Home/console?CompanyId="+companyId,
+              CommodityExtension: {}
+          };
+
+          $(function(){
+              $('#pay').bind('click',function(){
+                  var payWay=$('input[type=radio]:checked').val();
+                  payment.PayWay=payWay;
+                  var InviteCode=getUrlParam('InviteCode');
+                  var item={
+                      'CompanyName':company,
+                      'InviteCode':InviteCode,
+                      'JobTitle':duties,
+                      'RealName':name,
+                  }
+                  payment.CommodityExtension = JSON.stringify(item);
+                  var apiUrl=AppEnvironment.apiRoot+'/appbase/Payment/createTrade';
+                  $.ajax({
+                      type:'post',
+                      url:apiUrl,
+                      data:payment,
+                      dataType:"json",
+                      beforeSend:function(){
+		                    	$("#pay").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+		                   },
+                      success:function(data){
+                        console.log(data)
+                        $("#pay").html("支付").removeAttr("disabled");
+                        var TradeCode=data.TradeCode;
+                        var CommoditySubject=payment.CommoditySubject;
+                        var TotalFee=payment.TotalFee;
+                        var SignedParams=data.SignedParams;
+                        var payWay=payment.PayWay;
+                        window.location.href='/Payment/QRCodePay?TradeCode='+TradeCode+"&QRCode="+encodeURIComponent(data.SignedParams);
+                      },
+                      error:function(data){
+                          console.log('支付失败！')
+                      }
+                 })
+              })
+              
+          })
+      </script>
+  </body>
+</html>

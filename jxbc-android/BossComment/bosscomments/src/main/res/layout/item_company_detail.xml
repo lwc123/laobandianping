@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.juxian.bosscomments.widget.CustomRelativeLayout
+        android:id="@+id/company_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/DIMEN_20PX">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/DIMEN_100PX"
+            android:layout_height="@dimen/DIMEN_100PX"
+            android:src="@drawable/personal_default_avatar"
+            app:border_width="0dp" />
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/profile_image"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/DIMEN_30PX"
+            tools:text="1234546" />
+
+        <TextView
+            android:id="@+id/comment_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ratingBar"
+            android:layout_centerVertical="true"
+            tools:text="4分" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/MyRatingBarTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/DIMEN_36PX"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:isIndicator="true"
+            android:numStars="5" />
+    </com.juxian.bosscomments.widget.CustomRelativeLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/company_information"
+        android:background="@color/line_color" />
+
+    <com.juxian.bosscomments.widget.CustomRelativeLayout
+        android:id="@+id/comment_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/DIMEN_20PX"
+        android:layout_below="@+id/line1">
+
+        <com.juxian.bosscomments.widget.TagFlowLayout
+            android:id="@+id/tag_flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_22PX"
+            android:layout_marginRight="@dimen/DIMEN_22PX"
+            android:layout_marginTop="@dimen/DIMEN_20PX">
+
+        </com.juxian.bosscomments.widget.TagFlowLayout>
+
+        <TextView
+            android:id="@+id/comment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tag_flow"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:layout_marginRight="@dimen/DIMEN_20PX"
+            android:layout_marginTop="@dimen/DIMEN_10PX"
+            tools:text="记者行也专家级别，新闻挖掘能力很" />
+
+        <TextView
+            android:id="@+id/comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comment_title"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:layout_marginRight="@dimen/DIMEN_20PX"
+            android:layout_marginTop="@dimen/DIMEN_10PX"
+            tools:text="fasdfasdfasdfasfasfa" />
+    </com.juxian.bosscomments.widget.CustomRelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1PX"
+        android:layout_below="@+id/comment_information"
+        android:background="@color/line_color" />
+
+    <RelativeLayout
+        android:id="@+id/user_information"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_90PX"
+        android:paddingLeft="@dimen/DIMEN_20PX"
+        android:paddingRight="@dimen/DIMEN_20PX"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/line">
+
+        <TextView
+            android:id="@+id/employee_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="前员工-1年-北京" />
+
+        <TextView
+            android:id="@+id/read_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/click_love"
+            android:layout_marginRight="@dimen/DIMEN_16PX"
+            tools:text="阅读2222" />
+
+        <ImageView
+            android:id="@+id/click_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/click_number"
+            android:layout_marginRight="@dimen/DIMEN_16PX"
+            android:src="@drawable/ic_like" />
+
+        <TextView
+            android:id="@+id/click_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="12344" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_20PX"
+        android:layout_below="@+id/user_information"
+        android:background="@color/main_background"/>
+</RelativeLayout>

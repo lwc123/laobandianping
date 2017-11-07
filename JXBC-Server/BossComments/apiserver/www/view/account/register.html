@@ -1,0 +1,291 @@
+{extend name="-public:layout_fullscreen" /}
+
+{block name="page-title"}注册{/block}
+
+{block name="page-content"}
+
+<div id="com-body"> 
+    <div class="com-a">
+         <a href="../index/index.html"><img class="com-logo" src="{$Think.config.resources_site_root}/pc/img/logo.png" ></a>
+        <div class="com-form reg-form"></div>
+        <form id="commentForm">
+            <p class="com-title ">注册老板点评</p>
+            <p class='com-title1 hide'>举贤网<br>邀请您注册老板点评</p>
+            <div class="com-left">
+                <div class="reg-button">
+                    <button type="button" data-user-identity="2" class="com-btn1 reg-btn">企业用户注册</button>
+                    <button type="button" id="personal" data-user-identity="1" class="reg-btn1">个人用户注册</button>
+                    <input id="txt-user-identity" name="SelectedProfileType" value="2" type="text" style="visibility:hidden" role="sel-identity"/> 
+                </div>
+               <div class="com-put">
+                   <i class="iconfont img">&#xe63f;</i>
+                   <input type="text" value="" placeholder="请输入手机号" name="MobilePhone" id="phone" required>
+               </div>
+               <div class="com-put">
+                   <i class="iconfont img">&#xe63d;</i>
+                   <input type="text" value="" name="ValidationCode" placeholder="请输入验证码" id="yzm">
+                   <button class="com-btn" id="com-btn" type="button">获取验证码</button>
+               </div>
+               <div class="com-put">
+                   <i class="iconfont img">&#xe63e;</i>
+                   <input name="Password" type="Password" id="password" placeholder="请输入6-18位密码" required>
+               </div>
+                <button class="com-btn1" id="submit" type="submit">立即注册</button><br>
+            </div> 
+            <div class="reg-read">
+                 <i class="iconfont">&#xe654;</i>
+                 <span>我已阅读并同意</span>
+                 <span class="reg-blue policy1">
+                 	<a href="../index/about-company.html">《企业用户协议》</a>
+                 	<a href="../index/company-policy.html">《企业用户隐私政策》</a>
+                 </span>
+                 <span class="reg-blue  hide">
+                 	<a href="../index/about-person.html">《个人用户协议》</a>
+                 	<a href="../index/user-policy.html">《个人用户隐私政策》</a>
+                 </span>
+
+            </div>
+            <input type="text" value="{$InviteCode}" name="InviteCode" id="InviteCode" style="visibility:hidden">
+            <a class="reg-log" href="login?InviteCode={$InviteCode}">已有账号？立即登录</a>
+        </form>
+    </div>
+    <div class="com-footer"></div>
+</div>
+<div class="phone">
+    手机号已注册，请登录
+</div>
+{/block}
+
+{block name="resources-footer"}
+<script src="/api/appbase/WebBridge/LoadAccountInfo"></script>
+<script>
+$(function(){
+    /*
+    $('#personal').click(function(){
+        $('.phone').show().text('暂未开通个人服务！');
+        setTimeout(function(){
+         $('.phone').hide();
+        },1000);
+    })*/
+
+
+    var ProfileType = getUrlParam('ProfileType');
+    if(ProfileType==1){
+        $('.reg-button button').removeClass();
+        $('.reg-button button:not("#personal")').addClass('com-btn1 reg-btn');
+        $('.reg-button button#personal').addClass('reg-btn1');
+        $('.policy1').show().next().hide();
+    }
+    if(ProfileType==2){
+        $('.reg-button button').removeClass();
+        $('.reg-button button:not("#personal")').addClass('reg-btn1');
+        $('.reg-button button#personal').addClass('com-btn1 reg-btn');
+        $('.policy1').hide().next().show();
+    }
+
+
+    var selected=$('.com-btn1.reg-btn').attr('data-user-identity');
+    $('#txt-user-identity').attr('value',selected);
+    $('.reg-button button').click(function(){
+      $('.reg-button button').each(function(){
+        $(this).removeClass().addClass('reg-btn1');
+      })
+      $(this).removeClass().addClass('com-btn1 reg-btn');
+      var identityId=$(this).attr('data-user-identity');
+      $('#txt-user-identity').attr('value',identityId);
+      if($('#txt-user-identity').val()==1){
+       	  	
+       	  	$('.policy1').hide().next().show();
+       	  }else{
+       	  	$('.policy1').show().next().hide();
+       	  }
+    })
+    
+    /*获取验证码*/
+    function SMS(obj,timer){
+        this.enable=true;
+        this.obj=$(obj);
+        this.timer=parseInt(timer)||10;
+    }
+    SMS.prototype.init = function() {
+        var that=this;
+        that.obj.bind('click',function(){
+        var phone=$('#phone').val();
+        var password=$('#password').val();
+        var pattern = /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+        if(phone==""){
+            return false;
+        }else if(phone.length !=11){
+            return false;
+        }else if(!pattern.test(phone)){
+            return false;
+        }else{
+            // 手机号是否注册过
+             var checkUrl=AppEnvironment.apiRoot+'/appbase/Account/existsMobilePhone?phone='+phone;
+             var InviteCode="{$InviteCode}";
+             if(InviteCode==null){
+                InviteCode="";
+             }
+             var SelectedProfileType=$('#txt-user-identity').val();
+             $.get(checkUrl,function(data){
+                if(data==true){
+                    $('.phone').show().text('手机号已注册，请登录！');
+                    setTimeout(function(){
+                        $('.phone').hide();
+                        window.location.href="login?InviteCode="+InviteCode+"&SelectedProfileType="+SelectedProfileType+'&phone='+phone;
+                    },1000);    
+                }else{
+                    //发送验证码
+                     var yzmUrl=AppEnvironment.apiRoot+"/appbase/Account/sendValidationCode?phone="+phone;
+                     $.ajax({
+                        type:'post',
+                        url:yzmUrl,
+                        data:phone,
+                        dataType:'json',
+                        success:function(data){
+                            if(data.responseText='true'){
+                                that.enable=false;
+                                that.obj.addClass('gray-bg').text('已发送'+that.timer+"s");
+                                that.obj.attr('disabled','disabled')
+                                var _time,_i=that.timer;
+                                var _fun=function(){
+                                    if(_i>1){
+                                        _i--;
+                                        that.obj.text('已发送'+_i+"s");
+                                        _time=setTimeout(_fun,1000);
+                                    }else{
+                                        clearTimeout(_time);
+                                        that.enable=true;
+                                        that.obj.text("重新获取").removeClass('gray-bg');
+                                        that.obj.removeAttr('disabled')
+                                    }
+                                }
+                                _time=setTimeout(_fun,1000);
+                            }else{
+                                that.obj.text("重新获取").removeClass('gray-bg');
+                            }
+                        },
+                        error:function(data){
+                            console.log(data.responseText);
+                        }
+                     })
+                }
+             })
+        }
+        })
+    }
+    var sms=new SMS(".com-btn",120);
+    sms.init();
+    jQuery.validator.addMethod("isMobile", function (value, element, param) {
+        var pattern = /^1[3|4|5|7|8][0-9]{9}$/;
+        if (pattern.test(value) && value.length == 11) {
+            $("#phone-msg").html("");
+            return true;
+        } else {
+            return false;
+        }
+    }, "请输入正确的手机号");
+    $.validator.setDefaults({
+           ignore: ':hidden'
+     });
+   $("#commentForm").validate({
+//      onsubmit:true,// 是否在提交是验证  
+//      onfocusout:false,// 是否在获取焦点时验证  
+//      onkeyup :false,// 是否在敲击键盘时验证  
+        rules: {
+            MobilePhone:{
+                required: true,
+                isMobile: true
+            },
+            Password: {
+                required: true,
+                rangelength: [6, 18]
+            }/*,
+            code:{
+                required: true
+            }*/
+        },
+        messages: {
+            MobilePhone : {
+               required : "<i class='iconfont'>&#xe640;</i>请输入手机号码",
+               isMobile : "<i class='iconfont'>&#xe640;</i>手机格式不正确"
+            },
+            Password: {
+               required: "<i class='iconfont'>&#xe640;</i>请输入密码",
+               rangelength: "<i class='iconfont'>&#xe640;</i>请输入6-18位密码"
+            }/*,
+           code : {
+                required:"<i class='iconfont'>&#xe640;</i>请输入短信验证码"
+            }*/
+        },
+        submitHandler:function(form){
+            var phone=$('#phone').val();
+            var yzmVal=$('#yzm').val();
+            if(yzmVal==''){
+                 $('.phone').show().text('验证码不能为空');
+                     setTimeout(function(){
+                    $('.phone').hide();
+                },1000);    
+            }else{
+                var apiurl=AppEnvironment.apiRoot+'/appbase/Account/checkValidationCode?phone='+phone+'&code='+yzmVal;
+                $.get(apiurl,function(data){
+                    if(data!==true){
+                         $('.phone').show().text('验证码不正确');
+                             setTimeout(function(){
+                            $('.phone').hide();
+                        },1000);   
+                    }else{
+                        console.log($('#commentForm').serialize())
+                        var registerUrl=AppEnvironment.apiRoot+'/appbase/Account/signUp';
+                        var InviteCode="{$InviteCode}";
+                        if(InviteCode==null){
+                            InviteCode="";
+                        }
+                        $.ajax({
+                            type:'post',
+                            url:registerUrl,
+                            dataType: 'json',
+                            data:$('#commentForm').serialize(),
+                            beforeSend:function(){
+		                    	$("#submit").html("<img style='vertical-align: middle;margin-right: 8px;'src='{$Think.config.resources_site_root}/pc/img/gif.gif'> 请稍后...").attr({disabled:'disabled'})
+		                    },
+                            success:function(data){
+                               var SelectedProfileType=$('#txt-user-identity').val();
+                              if(data.SignStatus==202){
+                                  $('.phone').show().text('手机号已注册，请登录！');
+                                  setTimeout(function(){
+                                      $('.phone').hide();
+                                      $("#submit").html("立即注册").removeAttr("disabled");
+                                      window.location.href="login?InviteCode="+InviteCode+"&SelectedProfileType="+SelectedProfileType+'&phone='+phone;
+                                  },1000);  
+                                }else if(data.SignStatus==1){
+                                  $('.phone').show().text('注册完成！');
+
+                                   setTimeout(function(){
+                                    $('.phone').hide();
+                                    $("#submit").html("立即注册").removeAttr("disabled");
+                                    var nextUrl = "/EnterpriseService/openservice?tel="+phone+'&InviteCode='+InviteCode;
+                                    if($('#txt-user-identity').val()==1){
+                                        nextUrl = "/MyArchive/Index";
+                                    }
+                                    window.location.href=nextUrl;
+                                  },1000);
+                                }
+                                
+                            }
+                        })
+                    }
+                })
+            }
+            return false;
+        }
+    })
+})
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]);return null;
+}
+</script>
+{/block}
+

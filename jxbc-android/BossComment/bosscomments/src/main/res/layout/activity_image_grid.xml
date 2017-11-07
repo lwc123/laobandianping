@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_bar_height"
+        android:background="#3bd7cd"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/image_grid_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:src="@drawable/nav_icon_back" />
+
+        <com.juxian.bosscomments.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/photo_album"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/nav_bar_title_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/DIMEN_18PX"
+            android:visibility="gone"
+            android:scaleType="centerCrop"
+            android:src="@drawable/take_photo">
+
+        </ImageView>
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/DIMEN_18PX"
+            android:horizontalSpacing="@dimen/DIMEN_18PX"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/DIMEN_18PX">
+
+        </GridView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_101PX"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="#FFFFFF"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <com.juxian.bosscomments.widget.TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_2PX"
+                android:background="#ff495a"
+                android:visibility="gone" />
+
+            <com.juxian.bosscomments.widget.Button
+                android:id="@+id/bt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bt_nobgd"
+                android:textColor="#ff495a"
+                android:textSize="@dimen/SIZE_30"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

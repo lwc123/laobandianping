@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>修改企业信息</title>
+		<!--#include virtual="/-sources/-common/resources_header.html"-->
+	</head>
+	<body>
+	<!--左侧部分-->
+	<div class="com1-left">
+		 <!--#include virtual="/-sources/-common/menu-sidebar.html"-->
+    </div>
+	<!--#include virtual="/-sources/-common/header.html"-->
+	<!--右侧内容部分-->
+	<div class="com1-bg">
+		<form id="employe_create" class="em-info reverse-form" action="" enctype="multipart/form-data" method="post">
+			<div class="reverse-title">
+				<div class="reverse-pic">
+				    <span class="company-img" id="previewPicture"></span>
+				    <span class="file-btn"><input type="file" name="CompanyLogo" class="em-btn" data-img-preview="previewPicture"/>选择照片</span>
+				</div>
+				<p>举贤网科技（北京）股份有限公司<br>王晓贤&nbsp; 公司法人</p>
+			</div>
+            <div class="com-put">
+                <i class="iconfont img">&#xe779;</i>
+                <input type="text" value="" name="CompanyAbbr" placeholder="请输入企业简称" required>
+            </div>
+            <div class="com-put">
+                <i class="iconfont img">&#xe608;</i>
+                <select name="Industry" required>
+                    <option value="">请选择企业行业</option>
+                    {foreach $IndustryDictionary['industry'] as $item}
+                    <option value="{$item['Name']}">{$item['Name']}</option>
+                    {/foreach}
+                </select>
+            </div>
+            <div class="com-put">
+                <i class="iconfont img">&#xe65d;</i>
+                <select name="CompanySize" required>
+	                <option value="">请选择企业规模</option>
+	                {foreach $CompanySizeDictionary['CompanySize'] as $item}
+	                <option value="{$item['Code']}">{$item['Name']}</option>
+	                {/foreach}
+                </select>
+            </div>
+            <div class="com-put">
+                <i class="iconfont img">&#xe609;</i>
+                <select name="Region">
+                    <option value="">请选择企业所在城市</option>
+                    {foreach $RegionDictionary as $item}
+                    <option value="{$item['Code']}">{$item['Name']}</option>
+                    {/foreach}
+                </select>
+            </div>
+            <button id="submit" >保存并生效</button>
+		</form>
+	</div>
+	</body>
+</html>

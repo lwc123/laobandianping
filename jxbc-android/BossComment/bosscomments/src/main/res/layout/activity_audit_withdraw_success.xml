@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/include_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/emoji"
+        android:src="@drawable/apply_submit"
+        android:layout_width="@dimen/DIMEN_160PX"
+        android:layout_height="@dimen/DIMEN_160PX"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/DIMEN_100PX"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_100PX"
+        android:gravity="center"
+        android:text="@string/submit_ok"
+        android:textColor="@color/menu_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_50PX"
+        android:gravity="center"
+        android:text="@string/can_check_note"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/DIMEN_30PX"/>
+</LinearLayout>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>微信支付</title>
+		<!--#include virtual="/-sources/-common/resources_single_header.html"-->	
+	</head>
+	<body>
+	<div class="com-width">
+	   <div class="com-top">
+	   	 <img src="http://bc-res.jx.io:8000/pc/img/40.png">
+	   </div>
+	   <div class="pay-content">   
+	   	    <div class="pay-method hide">  	
+	   	      <!--微信支付部分-->
+	   	      <div class="weixin">
+	   	  	      <p>订单编号：584681f9a320fc416882ffa5</p>
+	   	          <p>订单内容：微信充值</p>
+	   	          <p>应付金额：<span>2400元</span></p>
+	   	  	      <img src="http://bc-res.jx.io:8000/pc/img/p1.png">
+	   	  	      <span>微信支付</span>
+	   	  	      <div class="img-pic">
+	   	  		       <div class="img-code">
+	   	  	              <img src="http://bc-res.jx.io:8000/pc/img/weicode.jpg">
+	   	  	              <p>请使用微信扫描二维码完成支付</p>
+	   	  	            </div>
+	   	  	            <img src="http://bc-res.jx.io:8000/pc/img/wei.jpg">
+	   	  	       </div>
+	   	      </div>
+	   	      <!--支付宝支付部分-->
+	   	      <div class="zhi hide">
+	   	  	       <p>订单编号：584681f9a320fc416882ffa5</p>
+	   	           <p>订单内容：微信充值</p>
+	   	           <p>应付金额：<span>2400元</span></p>
+	   	  	       <img src="http://bc-res.jx.io:8000/pc/img/p2.png">
+	   	  	       <span>支付宝支付</span>
+	   	  	       <div class="img-pic">
+	   	  		      <div class="img-code">
+	   	  	              <img src="http://bc-res.jx.io:8000/pc/img/weicode.jpg">
+	   	  	              <p>请使用微信扫描二维码完成支付</p>
+	   	  	          </div>
+	   	  	           <img src="http://bc-res.jx.io:8000/pc/img/wei.jpg">
+	   	  	      </div>
+	   	       </div>
+	   	    </div>
+	   	   <!--支付跳转页面-->
+	   	   <div class="success">
+	   	   	  <img src="http://bc-res.jx.io:8000/pc/img/face.png">
+	   	   	  <p>恭喜您，支付成功</p>
+	   	   	  <p><span id="seconds">2</span>秒后将自动跳转到“<span class="gold">企业认证</span>”页面，请稍后...</p>
+	   	   </div>
+	   </div>
+	</div>
+	</body>
+	<script>
+	function seconds(){
+		var s=document.getElementById("seconds").innerHTML;
+		s--;
+		document.getElementById("seconds").innerHTML=s;
+		if(s==0){
+			window.location.href="workbench.html";
+		}
+	}
+	setInterval("seconds()",1000);	
+	</script>
+</html>

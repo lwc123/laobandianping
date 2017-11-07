@@ -244,5 +244,6 @@ if( preg_match_all($CommentRule2,$result[0],$result2)){
 
 
 //print_r($Company);
+echo '哈哈';
 
 ?>
